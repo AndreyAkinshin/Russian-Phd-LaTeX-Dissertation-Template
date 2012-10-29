@@ -1,0 +1,41 @@
+%%% Поля и разметка страницы %%%
+\usepackage{lscape} % Для включения альбомных страниц
+
+%%% Кодировки и шрифты %%%
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[english, russian]{babel} % Языки: русский, английский
+\usepackage{pscyr} % Нормальные шрифты
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd,mathtext}
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst} % Красная строка
+
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%%% Таблицы %%%
+\usepackage{longtable}
+\usepackage[singlelinecheck=off]{caption}
+
+%%% Список литературы %%%
+\usepackage{cite}
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Гиперссылки %%%
+%\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+
+%%% Изображения %%%
+\usepackage{graphicx} % Подключаем пакет работы с графикой
+\graphicspath{{images/}} % Пути к изображениям
+
+
+%%% Прочее %%%
+\usepackage{array}
+\usepackage{fontenc}
+\usepackage{textcomp}
