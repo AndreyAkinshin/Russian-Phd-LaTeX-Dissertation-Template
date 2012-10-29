@@ -1,7 +1,7 @@
 %dvipdfm main.dvi
 
-%\documentclass[a4paper,12pt]{report}
-\documentclass{dissert_new}
+\documentclass[a4paper,12pt]{report}
+%\documentclass{dissert_new}
 %\textheight=24.5cm \voffset=-.5cm \hoffset=-.4cm
 
 % добавление по 5мм к верхнему, нижнему и правому полям - для обрезки после переплета
@@ -29,6 +29,8 @@
 \include{mydiscfg}
 
 %\pagestyle{headings}
+
+\graphicspath{{images/}}
 
 \begin{document}
 %\layout                % вывод макета страницы: поля, колонтитулы и т.п.
