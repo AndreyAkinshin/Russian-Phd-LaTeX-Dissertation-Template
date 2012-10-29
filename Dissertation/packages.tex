@@ -1,13 +1,16 @@
 %%% Поля и разметка страницы %%%
 \usepackage{lscape} % Для включения альбомных страниц
+%TODO Определить правильную разметку страницы
 
 %%% Кодировки и шрифты %%%
+\usepackage[T2A]{fontenc} % Поддержка русских букв
 \usepackage[utf8]{inputenc} % Кодировка utf8
 \usepackage[english, russian]{babel} % Языки: русский, английский
 \usepackage{pscyr} % Нормальные шрифты
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd,mathtext}
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
 
 %%% Оформление абзацев %%%
 \usepackage{indentfirst} % Красная строка
@@ -18,24 +21,18 @@
 \usepackage{colortbl}
 
 %%% Таблицы %%%
-\usepackage{longtable}
-\usepackage[singlelinecheck=off]{caption}
+\usepackage{longtable} % Длинные таблицы
+\usepackage{multirow,makecell,array} % Улучшенное форматирование таблиц
 
-%%% Список литературы %%%
+%%% Общее форматирование
+\usepackage[singlelinecheck=off]{caption} % Многострочные подписи
+\usepackage{soul} % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+
+%%% Библиография %%%
 \usepackage{cite}
-\makeatletter
-\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
-\makeatother
 
 %%% Гиперссылки %%%
-%\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+%\usepackage[plainpages=false,pdfpagelabels=false]{hyperref} %TODO Починить
 
 %%% Изображения %%%
 \usepackage{graphicx} % Подключаем пакет работы с графикой
-\graphicspath{{images/}} % Пути к изображениям
-
-
-%%% Прочее %%%
-\usepackage{array}
-\usepackage{fontenc}
-\usepackage{textcomp}

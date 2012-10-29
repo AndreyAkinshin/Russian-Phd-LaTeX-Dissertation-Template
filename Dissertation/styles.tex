@@ -1,4 +1,15 @@
+%%% Кодировки и шрифты %%%
+\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
+
 %%% Выравнивание и переносы %%%
 \sloppy
 \clubpenalty=10000
 \widowpenalty=10000
+
+%%% Библиография %%%
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Изображения %%%
+\graphicspath{{images/}} % Пути к изображениям
