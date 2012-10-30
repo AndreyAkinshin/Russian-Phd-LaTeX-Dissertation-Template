@@ -1,0 +1,65 @@
+\documentclass[12pt,a4paper]{article} %,twoside
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{indentfirst}
+
+% следующий пакет может быть полезен, если надо ужать текст, чтобы сам текст не править, но чтобы места он занимал поменьше
+%\usepackage{savetrees}        
+
+% этот пакет может быть полезен для печати текста брошюрой, сама с ним не разбиралась
+%\usepackage[print]{booklet}
+
+% а при помощи этого пакета можно посмотреть макет страницы
+%\usepackage{layout}
+
+% Задаю параметры макета страницы, все поля по 2 см
+\oddsidemargin=-13pt
+\topmargin=-66pt %%
+\headheight=12pt %%
+\headsep=38pt
+\textheight=732pt
+\textwidth=484pt
+\marginparsep=14pt
+\marginparwidth=43pt
+\footskip=14pt
+\marginparpush=7pt %%
+\hoffset=0pt %%
+\voffset=0pt %%
+%\paperwidth=597pt %%
+%\paperheight=845pt %%
+
+%размер табуляции (для красной строки) в начале каждого абзаца
+\parindent=1.5cm
+
+\renewcommand{\baselinestretch}{1.25}
+\newfloat{scheme}{tb}{sch}
+
+\sloppy
+
+% Ввожу новые комманды для своих нужд
+\newcommand{\COd}{$\rm{CO_2}$}
+\newcommand{\CHf}{$\rm{CH_4}$}
+\newcommand{\IPCC}{МГЭИК}
+\newcommand{\Signifcalc}{$\rm{Significance}$}
+
+% Подавление висячих строк
+\clubpenalty=10000
+\widowpenalty=10000
+
+\author{Фамилия И.О.} % Фамилия И.О. автора
+
+\begin{document}
+% если надо посмотреть макет страницы, также должен быть откомментирован соответствующий пакет в начале 
+%\layout  
+
+\input{title}    % вставка титульника
+\input{content}     % вставка самого текста автореферата
+\newpage
+\end{document}
