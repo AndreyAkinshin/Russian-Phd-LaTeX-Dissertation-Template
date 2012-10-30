@@ -1,88 +1,96 @@
-\chapter{Название первой главы} \label{chapt1}
+\chapter{Оформление различных элементов} \label{chapt1}
 
-\section{Параграф номер один} \label{sect1_1}
+\section{Форматирование текста} \label{sect1_1}
 
-Вот так может выглядеть формула: $\Delta Q$, которую необходимо вставить в строку по тексту.
-
-А вот так выглядит ненумерованая отдельностоящая формула:
-$$
-\Delta R = \Delta Q + \lambda_f \Delta T_S,
-$$
-где $\lambda_f$ некоторая величина.
-
-
-%============================================================================================================================
+Мы можем сделать \textbf{жирный текст} и \textit{курсив}.
 
 %\newpage
-\section{Параграф номер два} \label{sect1_2_model}
+%============================================================================================================================
+
+\section{Формулы} \label{sect1_2}
+
+\subsection{Ненумерованные одиночные формулы} \label{subsect1_2_1}
+
+Вот так может выглядеть формула, которую необходимо вставить в строку по тексту: $x \approx \sin x$ при $x \to 0$.
+
+А вот так выглядит ненумерованая отдельностоящая формула c подстрочными и надстрочными индексами:
+$$
+(x_1+x_2)^2 = x_1^2 + 2 x_1 x_2 + x_2^2
+$$
+
+При использовании дробей формулы могут получаться очень высокие:
+$$
+  \frac{1}{\sqrt(2)+
+  \displaystyle\frac{1}{\sqrt{2}+
+  \displaystyle\frac{1}{\sqrt{2}+\cdots}}}
+$$
+
+В формулах можно использовать греческие буквы:
+$$
+\alpha\beta\gamma\delta\epsilon\varepsilon\zeta\eta\theta\vartheta\iota\kappa\lambda\\mu\nu\xi\pi\varpi\rho\varrho\sigma\varsigma\tau\upsilon\phi\varphi\chi\psi\omega\Gamma\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega
+$$
+
+%\newpage
+%============================================================================================================================
+
+\subsection{Ненумерованные многосторчные формулы} \label{subsect1_2_2}
 
 Вот так можно написать две формулы, не нумеруя их, чтобы знаки равно были строго друг под другом:
-\begin{eqnarray}\label{plasim25P1}
-f_W & = & \min \left( 1, \max \left( 0, \frac{W_{soil} / W_{max}}{W_{crit}} \right)  \right), \nonumber \\
-f_T & = & \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
+\begin{eqnarray}
+  f_W & = & \min \left( 1, \max \left( 0, \frac{W_{soil} / W_{max}}{W_{crit}} \right)  \right), \nonumber \\
+  f_T & = & \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
 \end{eqnarray}
 
-А вот так можно сослаться на приложение: подробное описание чего-нибудь содержится в Приложении \ref{AppendixA}.
+Можно использовать разные математические алфавиты:
+\begin{eqnarray}
+\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
+\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
+\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber
+\end{eqnarray}
 
-%============================================================================================================================
+Посмотрим на систему уравнений на примере аттрактора Лоренца:
+
+$$
+\left\{
+  \begin{array}{rl}
+    \dot x = & \sigma (y-x) \\
+    \dot y = & x (r - z) - y \\
+    \dot z = & xy - bz
+  \end{array}
+\right.
+$$
+
+А для вёрстки матриц удобно использовать многоточия:
+$$
+\left(
+  \begin{array}{ccc}
+  	a_{11} & \ldots & a_{1n} \\
+  	\vdots & \ddots & \vdots \\
+  	a_{n1} & \ldots & a_{nn} \\
+  \end{array}
+\right)
+$$
 
 
 %\newpage
-\section{Параграф номер три} \label{sect1_2}
+%============================================================================================================================
+\subsection{Нумерованные формулы} \label{subsect1_2_3}
 
 А вот так пишется нумерованая формула:
-
-\begin{equation}\label{eq1}
-\frac{d\textbf{X}}{dt}=F_e,
+\begin{equation}
+  \label{eq:equation1}
+  e = \lim_{n \to \infty} \left( 1+\frac{1}{n} \right) ^n
 \end{equation}
-где $\textbf{X}$~--- 
-А вот это - ссылка на формулу (\ref{eq1})
 
-%============================================================================================================================
+Нумерованых формул может быть несколько:
+\begin{equation}
+  \label{eq:equation2}
+  \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
+\end{equation}
 
-
-%\newpage
-\section{Параграф номер четыре}  \label{sect1_3}
-
-Вот так можно вставить картинку:
-\begin{figure} [htb] 
-\centering
-\includegraphics [scale=0.27] {tex}
-\caption{Подпись к картинку.} 
-\label{CO2}
-\end{figure}
-
-
-%============================================================================================================================
+В последствии на формулы (\ref{eq:equation1}) и (\ref{eq:equation2}) можно ссылаться.
 
 %\newpage
-\section{Параграф номер пять} \label{sect1_4}
-
-А это две картинки под общим номером и названием:
-\begin{figure} [htbp] 
-   \centering\begin{tabular}{c}
-     \includegraphics [scale=0.25] {tex} \\ 
-      а) \\
-      $\:$ \\   
-     \includegraphics [scale=0.25] {tex} \\
-      б) \\
-   \end{tabular}
-   \caption{Подпись к рисунку.} 
-   \label{FBtsCA2}
- \end{figure}
-
-
 %============================================================================================================================
-
-\newpage
-\section{Параграф номер шесть} \label{sect1_5}
-
-Содержание по пунктам (например, выводы)  можно отобразить вот так:
-\begin{enumerate}
- \item Первый вывод.
- \item Следующий вывод.
- \item Очередной вывод.
-\end{enumerate}
-
 
 \clearpage
