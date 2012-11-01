@@ -1,0 +1,43 @@
+PSCyr - это набор красивых русских шрифтов для LaTeX.
+---------------------------------------------------------------------------------------------------------
+Инструкция по установке:
+* Разархивировать pscyr0.4d.zip
+* Cкопировать содержимое в корень основной директории MiKTeX-а (например, "C:\Program Files\MiKTeX 2.9\")
+* Перейти в bin-директорию MiKTeX-а (например, "C:\Program Files\MiKTeX 2.9\miktex\bin\x64\")
+* Выполнить команду initexmf --edit-config-file dvips и ввести в открывшийся блокнот p +pscyr.map
+* Выполнить команду initexmf --edit-config-file pdftex и ввести в открывшийся блокнот +pscyr.map
+* Выполнить команду initexmf --edit-config-file updmap и ввести в открывшийся блокнот Map pscyr.map
+* Выполнить команду updmap
+* Выполнить команду initexmf --edit-config-file dvipdfm и ввести в открывшийся блокнот f pscyr2.map
+* Выполнить команду initexmf -u
+* Запустить из меню Пуск программу "Settings (Admin)" и на вкладке General нажать кнопку Refresh FNDB
+* Выполнить команду mkfntmap
+---------------------------------------------------------------------------------------------------------
+PSCyr включает следующие шрифты:
+* Шрифты с засечками:
+  -> AcademyPSCyr в начертаниях Regular, Bold, Italic
+  -> AntiquaPSCyr в начертаниях Regular, Bold, Italic, Bold Italic
+  -> HandbookPSCyr в начертаниях Regular, Bold, Italic
+  -> CollegePSCyr в начертаниях Regular, Bold, Italic 
+  -> JournalPSCyr в начертаниях Regular, Bold, Italic
+  -> Lazurski в начертании Regular
+  -> TimesNewRomanPSMT в начертаниях Regular, Bold, Italic, Bold Italic
+* Рубленые шрифты:
+  -> ArialMT в начертаниях Regular, Bold, Italic, Bold Italic и Black (сверхжирный)
+  -> TextbookPSCyr в начертаниях Regular, Bold, Italic
+  -> MagazinePSCyr в начертаниях Regular, Bold, Italic
+* Моноширинные шрифты:
+  -> CourierNewPSMT в начертаниях Regular, Bold, Italic, Bold Italic
+  -> ERKurierPSCyr в начертаниях Regular, Bold, Italic, Bold Italic
+* Декоративные шрифты: 
+  -> CooperPSCyr
+  -> AdvertisementPSCyr
+ ---------------------------------------------------------------------------------------------------------
+Для подключения Times New Roman нужно включить в преамбулу следующие строки:
+    \usepackage{pscyr}
+    \renewcommand{\rmdefault}{ftm}
+---------------------------------------------------------------------------------------------------------
+ Ссылки на исходный материал:
+ * http://plumbum-blog.blogspot.ru/2010/06/miktex-28-pscyr-04d.html
+ * http://www.tex.uniyar.ac.ru/package/fonts/pscyr/0.4d-beta9/
+ * http://tex.imm.uran.ru/texserver/fonts/pscyr/pscyr4c/
