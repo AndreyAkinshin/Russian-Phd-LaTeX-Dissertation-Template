@@ -3,11 +3,11 @@
 %TODO Определить правильную разметку страницы
 
 %%% Кодировки и шрифты %%%
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
 \usepackage[T2A]{fontenc} % Поддержка русских букв
 \usepackage[utf8]{inputenc} % Кодировка utf8
 \usepackage[english, russian]{babel} % Языки: русский, английский
 \usepackage{pscyr} % Нормальные шрифты
-\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
 
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
@@ -32,7 +32,7 @@
 \usepackage{cite}
 
 %%% Гиперссылки %%%
-%\usepackage[plainpages=false,pdfpagelabels=false]{hyperref} %TODO Починить
+\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
 
 %%% Изображения %%%
 \usepackage{graphicx} % Подключаем пакет работы с графикой
