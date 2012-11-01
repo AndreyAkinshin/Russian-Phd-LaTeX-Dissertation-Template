@@ -14,5 +14,9 @@
 ##Утилиты
 * [Online-конвертер из LaTeX в Rtf](http://www.sciweavers.org/convert-latex-to-rtf)
 
+##Библиография
+* [JabRef](http://jabref.sourceforge.net/)
+* [Подборка стилевых пакетов для ГОСТов](http://www.ctan.org/tex-archive/biblio/bibtex/contrib/gost)
+
 ##Презентации
 * [Beamer Theme Matrix](http://www.hartwork.org/beamer-theme-matrix/)
