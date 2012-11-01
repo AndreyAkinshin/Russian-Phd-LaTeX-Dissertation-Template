@@ -1,6 +1,7 @@
 ##Основные
 * [LaTeX](http://www.latex-project.org/)
 * [MiKTeX](http://www.miktex.org/)
+* [TeX в ЯрГУ](http://www.tex.uniyar.ac.ru/soft.htm)
 
 ##Литература
 * [Не очень краткое введение в LaTeX 2e](http://www.ccas.ru/voron/download/books/tex/oetiker99latex.pdf)
