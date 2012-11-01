@@ -13,6 +13,7 @@
 
 ##Утилиты
 * [Online-конвертер из LaTeX в Rtf](http://www.sciweavers.org/convert-latex-to-rtf)
+* [Online-конвертер изображений в eps](http://www.converthub.com/)
 
 ##Библиография
 * [JabRef](http://jabref.sourceforge.net/)
