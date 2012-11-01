@@ -13,8 +13,16 @@
 * [Русский словарь для Texmaker](http://extensions.openoffice.org/en/project/dict_ru_RU_yo)
 
 ##Утилиты
-* [Online-конвертер из LaTeX в Rtf](http://www.sciweavers.org/convert-latex-to-rtf)
+* [Online-конвертер latex->rtf](http://www.sciweavers.org/convert-latex-to-rtf)
 * [Online-конвертер изображений в eps](http://www.converthub.com/)
+* [Конвертер tiff->ps](http://www.libtiff.org/)
+* [Конвертер jpeg->ps](http://www.pdflib.com/)
+* [Конвертер eps->pdf](http://www.ctan.org/tex-archive/support/epstopdf/?action=/tex-archive/support/)
+* [Конвертер wmf->eps](http://www.wmf2eps.de.vu/)
+* [Конвертер tex->html](http://hutchinson.belmont.ma.us/tth/)
+* [Конвертер xls->tex](http://www.jam-software.com/software.html)
+* [Конвертер latex->rtf](http://sourceforge.net/projects/latex2rtf/)
+* [Конвертер OpenOffice->latex](http://writer2latex.sourceforge.net/)
 
 ##Библиография
 * [JabRef](http://jabref.sourceforge.net/)
