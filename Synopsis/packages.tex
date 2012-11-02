@@ -1,0 +1,46 @@
+%%% Поля и разметка страницы %%%
+\usepackage{lscape} % Для включения альбомных страниц
+\usepackage{geometry} % Для последующего задания полей
+\usepackage{float}
+
+%%% Кодировки и шрифты %%%
+\usepackage{cmap} % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc} % Поддержка русских букв
+\usepackage[utf8]{inputenc} % Кодировка utf8
+\usepackage[english, russian]{babel} % Языки: русский, английский
+\usepackage{pscyr} % Нормальные шрифты
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst} % Красная строка
+
+%%% Цвета %%%
+\usepackage[usenames]{color}
+\usepackage{color}
+\usepackage{colortbl}
+
+%%% Таблицы %%%
+\usepackage{longtable} % Длинные таблицы
+\usepackage{multirow,makecell,array} % Улучшенное форматирование таблиц
+
+%%% Общее форматирование
+\usepackage[singlelinecheck=off,center]{caption} % Многострочные подписи
+\usepackage{soul} % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+
+%%% Библиография %%%
+\usepackage{cite}
+
+%%% Гиперссылки %%%
+\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+
+%%% Изображения %%%
+\usepackage{graphicx} % Подключаем пакет работы с графикой
+
+%%% Опционально %%%
+% следующий пакет может быть полезен, если надо ужать текст, чтобы сам текст не править, но чтобы места он занимал поменьше
+%\usepackage{savetrees}        
+
+% этот пакет может быть полезен для печати текста брошюрой, сама с ним не разбиралась
+%\usepackage[print]{booklet}

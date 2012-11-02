@@ -1,0 +1,38 @@
+%%% Макет страницы %%%
+\oddsidemargin=-13pt
+\topmargin=-66pt
+\headheight=12pt
+\headsep=38pt
+\textheight=732pt
+\textwidth=484pt
+\marginparsep=14pt
+\marginparwidth=43pt
+\footskip=14pt
+\marginparpush=7pt
+\hoffset=0pt
+\voffset=0pt
+%\paperwidth=597pt
+%\paperheight=845pt
+\parindent=1.5cm %размер табуляции (для красной строки) в начале каждого абзаца
+\renewcommand{\baselinestretch}{1.25}
+\newfloat{scheme}{tb}{sch}
+
+%%% Общая информация %%%
+\author{Фамилия И.О.} % Фамилия И.О. автора
+
+%%% Кодировки и шрифты %%%
+\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
+
+%%% Выравнивание и переносы %%%
+\sloppy
+\clubpenalty=10000
+\widowpenalty=10000
+
+%%% Библиография %%%
+\makeatletter
+\bibliographystyle{utf8gost705u} % Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
+\makeatother
+
+%%% Изображения %%%
+\graphicspath{{images/}} % Пути к изображениям
