@@ -2,11 +2,11 @@
 
 \section{Одиночное изображение} \label{sect2_1}
 
-\begin{figure} [htb] 
-  \label{img:image1}
-  \centering
-  \includegraphics [scale=0.27] {tex}
-  \caption{Подпись к картинке.} 
+\begin{figure} [h] 
+  \center
+  \includegraphics [scale=0.27] {LaTeX}
+  \caption{TeX.} 
+  \label{img:latex}  
 \end{figure}
 
 %\newpage
@@ -14,27 +14,47 @@
 \section{Длинное название параграфа, в котором мы узнаём как сделать две картинки с общим номером и названием} \label{sect2_2}
 
 А это две картинки под общим номером и названием:
-\begin{figure} [h!] 
-   \centering\begin{tabular}{c}
-     \includegraphics [scale=0.25] {tex} \\ 
-      а) \\
-      $\:$ \\   
-     \includegraphics [scale=0.25] {tex} \\
-      б) \\
-   \end{tabular}
-   \caption{Подпись к рисунку.} 
-   \label{FBtsCA2}
+\begin{figure}[h]
+  \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=0.5\linewidth]{knuth1} \\ а)}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[h]{0.49\linewidth}
+    \center{\includegraphics[width=0.5\linewidth]{knuth2} \\ б)}
+  \end{minipage}
+  \caption{Очень длинная подпись к изображению, на котором представлены две фотографии Дональда Кнута}
+  \label{img:knuth}  
 \end{figure}
 
 %\newpage
 %============================================================================================================================
 \section{Пример вёрстки списоков} \label{sect2_3}
 
-Содержание по пунктам (например, выводы)  можно отобразить вот так:
+\noindent Нумерованный список:
 \begin{enumerate}
- \item Первый вывод.
- \item Следующий вывод.
- \item Очередной вывод.
+  \item Первый пункт.
+  \item Второй пункт.
+  \item Третий пункт.
 \end{enumerate}
+
+\noindent Маркированный список:
+\begin{itemize}
+  \item Первый пункт.
+  \item Второй пункт.
+  \item Третий пункт.
+\end{itemize}
+
+\noindent Вложенные списки:
+\begin{itemize}
+  \item Имеется маркированный список.
+  \begin{enumerate}
+    \item В нём лежит нумерованный список,
+    \item в котором
+    \begin{itemize}
+      \item лежит ещё один маркированный список.
+    \end{itemize}    
+  \end{enumerate}
+\end{itemize}
+
 
 \clearpage
