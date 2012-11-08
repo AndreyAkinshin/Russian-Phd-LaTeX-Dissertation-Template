@@ -5,14 +5,14 @@
 \renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
 
 %%% Выравнивание и переносы %%%
-\sloppy
-\clubpenalty=10000
-\widowpenalty=10000
+\sloppy					% Избавляемся от переполнений
+\clubpenalty=10000		% Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000		% Запрещаем разрыв страницы после последней строки абзаца
 
 %%% Библиография %%%
 \makeatletter
-\bibliographystyle{utf8gost705u} % Оформляем библиографию в соответствии с ГОСТ 7.0.5
-\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
+\bibliographystyle{utf8gost705u}	% Оформляем библиографию в соответствии с ГОСТ 7.0.5
+\renewcommand{\@biblabel}[1]{#1.}	% Заменяем библиографию с квадратных скобок на точку:
 \makeatother
 
 %%% Изображения %%%
