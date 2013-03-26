@@ -1,0 +1,62 @@
+% Пример работы с пакетом listings: http://www.ctan.org/tex-archive/macros/latex/contrib/listings/
+% Краткая документация: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+% Полная документация: http://mirrors.nlab.su/ctan/macros/latex/contrib/listings/listings.pdf
+\documentclass[a4paper,12pt]{article}
+\usepackage{lscape}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{color}
+\usepackage{listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codemauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  columns=fixed,					% Делаем моноширинный шрифт
+  backgroundcolor=\color{white},	% Цвет фона, нужно подключить пакет color или xcolor  
+  basicstyle=\small\sffamily,		% Размер и начертание  
+  breakatwhitespace=false,			% Переносим строки только при наличии пробела  
+  breaklines=true,					% Автоматически переносим строки  
+  captionpos=b,						% Позиция заголовка вверху [t] или внизу [b]   
+  commentstyle=\color{codegreen},	% Стиль для комментариев  
+  deletekeywords={...},				% Удалить какие-нибудь ключевые слова из языка  
+  escapeinside={\%*}{*)},			% Если вы хотите использовать LaTeX в вашем коде  
+  extendedchars=true,				% Позволяем использовать не-ASCII символы  
+  frame=single,						% Добавляем рамку вокруг кода  
+  keywordstyle=\color{blue},		% Стиль для ключевых слов  
+  language=R,						% Язык программирования  
+  morekeywords={*,...},				% Пользовательские ключевые слова  
+  numbers=left,						% Позиция номеров строк  
+  numbersep=5pt,					% Как далеко номера строк находятся от кода  
+  numberstyle=\tiny\color{codegray},% Стиль для номеров строк  
+  rulecolor=\color{black},			% Если не установлено, то цвет рамки может меняться  
+  showspaces=false,					% Показывать ли пробелы с помощью специальных отступов  
+  showstringspaces=false,			% Показывать ли пробелы в строках  
+  showtabs=false,					% Показывать ли знаки табуляции
+  stepnumber=1,						% Размер шага между номерами строк
+  stringstyle=\color{codemauve},	% Стиль для строковых литералов
+  tabsize=2,						% Размер табуляции
+  title=\lstname					% Показывать имя подкючаемого файла
+}
+
+\begin{document}
+
+\begin{lstlisting}[label=mandelbrot-code,caption=Рисуем фрактал Мандельброта на R]
+library(caTools)         # external package providing write.gif function
+jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")) 
+m <- 1200                # define size
+C <- complex( real=rep(seq(-1.8,0.6, length.out=m), each=m), imag=rep(seq(-1.2,1.2, length.out=m), m)) 
+C <- matrix(C,m,m)       # reshape as square matrix of complex numbers
+Z <- 0                   # initialize Z to zero
+X <- array(0, c(m,m,20)) # initialize output 3D array
+for (k in 1:20) {        # loop with 20 iterations
+  Z <- Z^2+C             # the central difference equation  
+  X[,,k] <- exp(-abs(Z)) # capture results
+} 
+write.gif(X, "Mandelbrot.gif", col=jet.colors, delay=100)
+\end{lstlisting}
+
+\end{document}
