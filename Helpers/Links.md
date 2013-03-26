@@ -9,8 +9,8 @@
 * [Набор математических формул в LaTeX 2e](http://grammarware.net/text/syutkin/MathInLaTeX.pdf)
 
 ##Редакторы
-* [Texmaker](http://www.xm1math.net/texmaker/)
-* [Русский словарь для Texmaker](http://extensions.openoffice.org/en/project/dict_ru_RU_yo)
+* [TeXstudio](http://texstudio.sourceforge.net/)
+* [Русский словарь для TeXstudio](http://extensions.openoffice.org/en/project/dict_ru_RU_yo)
 
 ##Утилиты
 * [Online-конвертер latex->rtf](http://www.sciweavers.org/convert-latex-to-rtf)
