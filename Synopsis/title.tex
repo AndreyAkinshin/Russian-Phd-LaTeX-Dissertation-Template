@@ -1,4 +1,5 @@
-\fontsize{14pt}{15pt}\selectfont  % размер шрифта и расстояния между строками
+\newcommand{\sfs}{\fontsize{14pt}{15pt}\selectfont}
+\sfs % размер шрифта и расстояния между строками
 \thispagestyle{empty}
 
 \vspace{10mm}
@@ -36,51 +37,63 @@
 
 \newpage
 % оборотная сторона обложки
+\thispagestyle{empty}
+\noindent Работа выполнена в Название учреждения, где выполнялась работа
 
-\noindent{\bfРабота выполнена} Название учреждения, где выполнялась работа
-\vspace{10mm}
 \begin{table} [h]  
-  \begin{tabular}{ll}
-  \fontsize{14pt}{15pt}\selectfontНаучный руководитель: & \fontsize{14pt}{15pt}\selectfontдоктор физико-математических наук,                     \\
-                        & \fontsize{14pt}{15pt}\selectfontпрофессор Фамилия Имя Отчество
+  \begin{tabular}{ll}  
+   \makecell[l]{\sfs Научный руководитель:\\~} &
+   \makecell*[{{p{11cm}}}]{\sfs
+   доктор физико-математических наук, профессор \\ \textbf{\sfs Фамилия Имя Отчество}}
+      
 \vspace{3mm} \\
-  \fontsize{14pt}{15pt}\selectfontОфициальные оппоненты:& \fontsize{14pt}{15pt}\selectfontдоктор физико-математических наук,                     \\
-                        & \fontsize{14pt}{15pt}\selectfontпрофессор Фамилия Имя Отчество \vspace{1mm}         \\
-                        & \fontsize{14pt}{15pt}\selectfontкандидат физико-математических наук                    \\
-                        & \fontsize{14pt}{15pt}\selectfontФамилия Имя Отчество \vspace{3mm}                \\
-  \fontsize{14pt}{15pt}\selectfontВедущая организация:  & \fontsize{14pt}{15pt}\selectfont Название                \\
-                        & \fontsize{14pt}{15pt}\selectfont ведущей                     \\
-                        & \fontsize{14pt}{15pt}\selectfont организации
+
+   \makecell[l]{\sfs Официальные оппоненты: \vspace{6.65cm}} &
+   \makecell[{{p{11cm}}}]{   
+   \sfs \textbf{Фамилия Имя Отчество,} \\
+   \sfs доктор физико-математических наук, профессор, \\
+   \sfs Основное место работы c длинным длинным длинным длинным длинным длинным длинным длинным названием, \\ 
+   \sfs старший научный сотрудник \vspace{1mm} \\
+   \sfs \textbf{Фамилия Имя Отчество,} \\
+   \sfs доктор физико-математических наук, \\
+   \sfs Основное место работы c длинным длинным длинным длинным названием, \\    
+   \sfs старший научный сотрудник
+   }
+
+\vspace{3mm} \\
+
+   \makecell[l]{\sfs Ведущая организация:\\~\\~\\~} &
+   \makecell*[{{p{11cm}}}]{\sfs
+   Федеральное государственное бюджетное образовательное учреждение высшего профессионального образования с длинным длинным длинным длинным названием
+   }
   \end{tabular}  
 \end{table}
 
-\vspace{20mm}
-\noindent Защита состоится DD mmmmmm YYYY~г.~в~$XX^{yy}$ часов на~заседании диссертационного совета $\mbox{NN}$ при~Название учреждения, где состоится защита по~адресу: 
+\noindent Защита состоится DD mmmmmmmm YYYY~г.~в~XX часов на~заседании диссертационного совета NN на базе Название учреждения по 
+адресу: Адрес.
 
-\vspace{15mm}
-\noindentС диссертацией можно ознакомиться в библиотеке Название библиотеки.
+\vspace{5mm}
+\noindent С диссертацией можно ознакомиться в библиотеке Название библиотеки.
 
-\vspace{15mm}
-\noindentАвтореферат разослан DD~mmmmmm YYYY года.
+\vspace{5mm}
+\noindentАвтореферат разослан DD mmmmmmmm YYYY года.
 
-\vspace{15mm}
+\vspace{5mm}
 \begin{table} [h]
-  \begin{tabular}{p{10cm}cr}
-    \begin{tabular}{p{10cm}}
-      \fontsize{14pt}{15pt}\selectfont Ученый секретарь  \\
-      \fontsize{14pt}{15pt}\selectfont диссертационного совета Номер совета  \\
-      \fontsize{14pt}{15pt}\selectfont при Организация, д.ф.-м.н.                  
+  \begin{tabular}{p{8cm}cr}
+    \begin{tabular}{p{8cm}}
+      \sfs Ученый секретарь  \\
+      \sfs диссертационного совета  \\
+      \sfs Номер совета, д.ф.-м.н.
     \end{tabular} 
     & \begin{tabular}{c}
-       \\       
-       %\includegraphics [scale=0.18] {signature} 
+       %\includegraphics [height=2cm] {signature} 
     \end{tabular} 
     & \begin{tabular}{r}
        \\
        \\
-       \fontsize{14pt}{15pt}\selectfont Фамилия~И.О. 
+       \sfs Фамилия Имя Отчество
     \end{tabular} 
   \end{tabular}
 \end{table}
-
 \newpage
