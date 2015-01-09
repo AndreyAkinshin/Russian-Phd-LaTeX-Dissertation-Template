@@ -1,3 +1,6 @@
+%%% Проверка используемого TeX-движка %%%
+\usepackage{ifxetex}
+
 %%% Поля и разметка страницы %%%
 \usepackage{lscape} % Для включения альбомных страниц
 \usepackage{geometry} % Для последующего задания полей
@@ -7,8 +10,16 @@
 \usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
 
 %%% Кодировки и шрифты %%%
-\usepackage{polyglossia}
-\usepackage{fontspec}
+\ifxetex
+  \usepackage{polyglossia}             % Поддержка многоязычности
+  \usepackage{fontspec}                % TrueType-шрифты
+\else
+  \usepackage{cmap}                    % Улучшенный поиск русских слов в полученном pdf-файле
+  \usepackage[T2A]{fontenc}            % Поддержка русских букв
+  \usepackage[utf8]{inputenc}          % Кодировка utf8
+  \usepackage[english, russian]{babel} % Языки: русский, английский
+  \usepackage{pscyr}                   % Красивые русские шрифты
+\fi
 
 %%% Оформление абзацев %%%
 \usepackage{indentfirst} % Красная строка
