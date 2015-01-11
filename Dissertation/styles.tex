@@ -1,5 +1,6 @@
 %%% Макет страницы %%%
-\geometry{a4paper,top=2cm,bottom=2cm,left=3cm,right=1cm}
+% Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
+\geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm}
 
 %%% Кодировки и шрифты %%%
 \ifxetex
@@ -8,8 +9,11 @@
   \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
   \setmainfont{Times New Roman}
 \else
-  \renewcommand{\rmdefault}{ftm}
+  \renewcommand{\rmdefault}{ftm}    % Times New Roman
 \fi
+
+%%% Интервалы %%%
+\linespread{1.3}                    % Полуторный интвервал (ГОСТ Р 7.0.11-2011, 5.3.6)
 
 %%% Выравнивание и переносы %%%
 \sloppy                             % Избавляемся от переполнений
@@ -18,8 +22,8 @@
 
 %%% Библиография %%%
 \makeatletter
-\bibliographystyle{utf8gost705u}    % Оформляем библиографию в соответствии с ГОСТ 7.0.5
-\renewcommand{\@biblabel}[1]{#1.}   % Заменяем библиографию с квадратных скобок на точку:
+\bibliographystyle{utf8gost71u}     % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
+\renewcommand{\@biblabel}[1]{#1.}   % Заменяем библиографию с квадратных скобок на точку
 \makeatother
 
 %%% Изображения %%%
@@ -40,13 +44,6 @@
 %%% Шаблон %%%
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 
-%%% Делаем шаблон более похожим на ГОСТ-ы %%%
-
 %%%%% Списки %%%%%
-% Замена точек на средние тире в ненумерованных списках
-% (в госте чётко не зафиксировано, за искл. ГОСТ 2.105-95 п. 4.1.7,
-% где в качестве маркера указан дефис (sic!))
-%\renewcommand{\labelitemi}{\normalfont\bfseries{--}}
-
-%%%%% Интервалы %%%%%
-%\doublespacing % Двойной интервал
+% Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)
+\renewcommand{\labelitemi}{\normalfont\bfseries{--}} 
