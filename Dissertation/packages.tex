@@ -2,26 +2,26 @@
 \usepackage{ifxetex}
 
 %%% Поля и разметка страницы %%%
-\usepackage{lscape}		% Для включения альбомных страниц
-\usepackage{geometry}	% Для последующего задания полей
+\usepackage{lscape}                                 % Для включения альбомных страниц
+\usepackage{geometry}                               % Для последующего задания полей
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
 
 %%% Кодировки и шрифты %%%
 \ifxetex
-  \usepackage{polyglossia}             % Поддержка многоязычности
-  \usepackage{fontspec}                % TrueType-шрифты
+  \usepackage{polyglossia}                          % Поддержка многоязычности
+  \usepackage{fontspec}                             % TrueType-шрифты
 \else
-  \usepackage{cmap}                    % Улучшенный поиск русских слов в полученном pdf-файле
-  \usepackage[T2A]{fontenc}            % Поддержка русских букв
-  \usepackage[utf8]{inputenc}          % Кодировка utf8
-  \usepackage[english, russian]{babel} % Языки: русский, английский
-  \usepackage{pscyr}                   % Красивые русские шрифты
+  \usepackage{cmap}                                 % Улучшенный поиск русских слов в полученном pdf-файле
+  \usepackage[T2A]{fontenc}                         % Поддержка русских букв
+  \usepackage[utf8]{inputenc}                       % Кодировка utf8
+  \usepackage[english, russian]{babel}              % Языки: русский, английский
+  \usepackage{pscyr}                                % Красивые русские шрифты
 \fi
 
 %%% Оформление абзацев %%%
-\usepackage{indentfirst} % Красная строка
+\usepackage{indentfirst}                            % Красная строка
 
 %%% Цвета %%%
 \usepackage[usenames]{color}
@@ -29,21 +29,21 @@
 \usepackage{colortbl}
 
 %%% Таблицы %%%
-\usepackage{longtable}					% Длинные таблицы
-\usepackage{multirow,makecell,array}	% Улучшенное форматирование таблиц
+\usepackage{longtable}                              % Длинные таблицы
+\usepackage{multirow,makecell,array}                % Улучшенное форматирование таблиц
 
 %%% Общее форматирование
-\usepackage[singlelinecheck=off,center]{caption}	% Многострочные подписи
-\usepackage{soul}									% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage[singlelinecheck=off,center]{caption}    % Многострочные подписи
+\usepackage{soul}                                   % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
 
 %%% Библиография %%%
-\usepackage{cite} % Красивые ссылки на литературу
+\usepackage{cite}                                   % Красивые ссылки на литературу
 
 %%% Гиперссылки %%%
 \usepackage[linktocpage=true,plainpages=false,pdfpagelabels=false]{hyperref}
 
 %%% Изображения %%%
-\usepackage{graphicx} % Подключаем пакет работы с графикой
+\usepackage{graphicx}                               % Подключаем пакет работы с графикой
 
 %%% Оглавление %%%
 \usepackage{tocloft}
