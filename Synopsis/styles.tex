@@ -13,12 +13,9 @@
 \voffset=0pt
 %\paperwidth=597pt
 %\paperheight=845pt
-\parindent=1.5cm                  %размер табуляции (для красной строки) в начале каждого абзаца
+\parindent=1.5cm                  % Размер табуляции (для красной строки) в начале каждого абзаца
 \renewcommand{\baselinestretch}{1.25}
 \newfloat{scheme}{tb}{sch}
-
-%%% Общая информация %%%
-\author{Фамилия И.О.}             % Фамилия И.О. автора
 
 %%% Кодировки и шрифты %%%
 \ifxetex
@@ -43,3 +40,6 @@
 
 %%% Изображения %%%
 \graphicspath{{images/}}          % Пути к изображениям
+
+%%% Шаблон %%%
+\newcommand{\todo}[1]{\textcolor{red}{#1}}

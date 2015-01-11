@@ -5,78 +5,73 @@
 \vspace{10mm}
 \begin{flushright}
   \Large{На правах рукописи}
-  \textit{моя подпись}
+  \thesisSignature
 \end{flushright}
 
 \vspace{30mm}
 \begin{center}
-{\Large\bf{Фамилия Имя Отчество}}
+{\Large\bf{\thesisAuthor}}
 \end{center}
 
 \vspace{30mm}
 \begin{center}
-{\bf \LARGE Название диссертационной работы
-\par}
+{\bf \LARGE \thesisTitle \par}
 
 \vspace{30mm}
-{\Large
-Специальность 05.13.18 --- математическое моделирование,\par
-численные методы и комплексы программ
-}
+{\Large\thesisSpecialty}
 
 \vspace{15mm}
 \LARGE{Автореферат}\par
-\Large{диссертации на соискание учёной степени\par
-кандидата физико-математических наук}
+\Large{диссертации на соискание учёной степени\par \thesisDegree}
 \end{center}
 
 \vspace{40mm}
 \begin{center}
-{\Large{Город --- 20XX}}
+{\Large{\thesisCity~--- \thesisYear}}
 \end{center}
 
 \newpage
 % оборотная сторона обложки
 \thispagestyle{empty}
-\noindent Работа выполнена в Название учреждения, где выполнялась работа
+\noindent Работа выполнена в \thesisOrganization
 
 \begin{table} [h]  
   \begin{tabular}{ll}  
    \makecell[l]{\sfs Научный руководитель:\\~} &
    \makecell*[{{p{11cm}}}]{\sfs
-   доктор физико-математических наук, профессор \\ \textbf{\sfs Фамилия Имя Отчество}}
+   \supervisorRegalia \\ \textbf{\sfs \supervisorFio}}
       
 \vspace{3mm} \\
 
-   \makecell[l]{\sfs Официальные оппоненты: \vspace{6.65cm}} &
-   \makecell[{{p{11cm}}}]{   
-   \sfs \textbf{Фамилия Имя Отчество,} \\
-   \sfs доктор физико-математических наук, профессор, \\
-   \sfs Основное место работы c длинным длинным длинным длинным длинным длинным длинным длинным названием, \\ 
-   \sfs старший научный сотрудник \vspace{1mm} \\
-   \sfs \textbf{Фамилия Имя Отчество,} \\
-   \sfs доктор физико-математических наук, \\
-   \sfs Основное место работы c длинным длинным длинным длинным названием, \\    
-   \sfs старший научный сотрудник
+   \makecell[l]{\sfs Официальные оппоненты:} &
+   \makecell*[{{p{11cm}}}]{\sfs \textbf{\opponentOneFio,}} \\
+   &
+   \makecell[{{p{11cm}}}]{
+   	\sfs \opponentOneRegalia, \\
+   	\sfs \opponentOneJobPlace, \\
+   	\sfs \opponentOneJobPost \vspace{3mm} \\
+   	\sfs \textbf{\opponentTwoFio,} \vspace{1mm}\\
+   	\sfs \opponentTwoRegalia, \\
+   	\sfs \opponentTwoJobPlace, \\
+   	\sfs \opponentTwoJobPost
    }
 
 \vspace{3mm} \\
 
-   \makecell[l]{\sfs Ведущая организация:\\~\\~\\~} &
+   \makecell[l]{\sfs Ведущая организация: \leadingOrganizationLines} &
    \makecell*[{{p{11cm}}}]{\sfs
-   Федеральное государственное бюджетное образовательное учреждение высшего профессионального образования с длинным длинным длинным длинным названием
+   \leadingOrganizationTitle
    }
   \end{tabular}  
 \end{table}
 
-\noindent Защита состоится DD mmmmmmmm YYYY~г.~в~XX часов на~заседании диссертационного совета NN на базе Название учреждения по 
-адресу: Адрес.
+\noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~на базе \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
 
 \vspace{5mm}
-\noindent С диссертацией можно ознакомиться в библиотеке Название библиотеки.
+\noindent С диссертацией можно ознакомиться в библиотеке \synopsisLibrary.
 
 \vspace{5mm}
-\noindent{Автореферат разослан DD mmmmmmmm YYYY года.}
+\noindent{Автореферат разослан \synopsisDate.}
 
 \vspace{5mm}
 \begin{table} [h]
@@ -84,7 +79,7 @@
     \begin{tabular}{p{8cm}}
       \sfs Ученый секретарь  \\
       \sfs диссертационного совета  \\
-      \sfs Номер совета, д.ф.-м.н.
+      \sfs \defenseCouncilNumber, \defenseSecretaryRegalia
     \end{tabular} 
     & \begin{tabular}{c}
        %\includegraphics [height=2cm] {signature} 
@@ -92,7 +87,7 @@
     & \begin{tabular}{r}
        \\
        \\
-       \sfs Фамилия Имя Отчество
+       \sfs \defenseSecretaryFio
     \end{tabular} 
   \end{tabular}
 \end{table}
