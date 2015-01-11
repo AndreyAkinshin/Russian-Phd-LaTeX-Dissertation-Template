@@ -2,7 +2,14 @@
 \geometry{a4paper,top=2cm,bottom=2cm,left=3cm,right=1cm}
 
 %%% Кодировки и шрифты %%%
-\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
+\ifxetex
+  \setmainlanguage{russian}
+  \setotherlanguage{english}
+  \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+  \setmainfont{Times New Roman}
+\else
+  \renewcommand{\rmdefault}{ftm}
+\fi
 
 %%% Выравнивание и переносы %%%
 \sloppy					% Избавляемся от переполнений
