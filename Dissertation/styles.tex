@@ -2,7 +2,14 @@
 \geometry{a4paper,top=2cm,bottom=2cm,left=3cm,right=1cm}
 
 %%% Кодировки и шрифты %%%
-\renewcommand{\rmdefault}{ftm} % Включаем Times New Roman
+\ifxetex
+  \setmainlanguage{russian}
+  \setotherlanguage{english}
+  \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+  \setmainfont{Times New Roman}
+\else
+  \renewcommand{\rmdefault}{ftm}
+\fi
 
 %%% Выравнивание и переносы %%%
 \sloppy					% Избавляемся от переполнений
@@ -29,3 +36,11 @@
 
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
+
+%%% Делаем шаблон более похожим на ГОСТ-ы %%%
+
+%%%%% Списки %%%%%
+% Замена точек на средние тире в ненумерованных списках
+% (в госте чётко не зафиксировано, за искл. ГОСТ 2.105-95 п. 4.1.7,
+% где в качестве маркера указан дефис (sic!))
+%\renewcommand{\labelitemi}{\normalfont\bfseries{--}}
