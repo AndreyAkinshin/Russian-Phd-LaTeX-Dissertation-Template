@@ -15,3 +15,8 @@ LaTeX-шаблон для русской кандидатской диссерт
     * *Listings:* Используем пакет listings для вставки листинга программного кода
     * *Shortcuts:* Новые команды для быстрой вёрстки часто использующихся обозначений
     * *Nice:* Переопределяем стандартные команды так, чтобы они отображались более правильно
+
+## Благодарности
+* Большое спасибо Юлии Мартыновой за оригинальный вариант шаблона: ([http://alessia-lano.livejournal.com/4267.html](http://alessia-lano.livejournal.com/4267.html)).
+* Большое спасибо [dustalov](https://github.com/dustalov), [Lenchik](https://github.com/Lenchik), [tonkonogov](https://github.com/tonkonogov) за значительный вклад и обсуждения.
+* Спасибо [storkvist](https://github.com/storkvist), [kshmirko](https://github.com/kshmirko), [ZoomRmc](https://github.com/ZoomRmc), [tonytonov](https://github.com/tonytonov), [Thibak](https://github.com/Thibak), [eximius8](https://github.com/eximius8) за полезные правки и замечания.
