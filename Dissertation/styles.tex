@@ -9,7 +9,7 @@
   \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
   \setmainfont{Times New Roman}
 \else
-  \renewcommand{\rmdefault}{ftm}    % Times New Roman
+  \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 \fi
 
 %%% Интервалы %%%
