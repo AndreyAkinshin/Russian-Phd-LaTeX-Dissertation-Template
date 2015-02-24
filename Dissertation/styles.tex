@@ -62,3 +62,38 @@
 \fancyhf{}                          % Очищаем текущие значения
 \fancyhead[C]{\thepage}             % Печатаем номер страницы на середине верхнего поля
 \renewcommand{\headrulewidth}{0pt}  % Убираем разделительную линию
+
+%%% Формат глав и частей должен содержать точку Глава 1. Красивое название %%%
+\renewcommand{\thechapter}{\arabic{chapter}.}
+\renewcommand{\thesection}{\thechapter\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+
+%%% Нумерация %%%
+% Таблицы - сквозная
+% Картинки и формулы во введении - сквозная, далее относительно формулы
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\theequation}{\arabic{equation}} % будет переопределена в Главе 1
+\captionsetup[table]{justification=raggedleft,singlelinecheck=off}      % правильное положение надписи Таблица
+
+% шрифты
+\usepackage{sectsty}
+\partfont{\fontsize{14pt}{14pt}\selectfont}
+\chapterfont{\fontsize{14pt}{14pt}\selectfont}
+\sectionfont{\fontsize{14pt}{14pt}\selectfont}
+\subsectionfont{\fontsize{14pt}{14pt}\selectfont}
+\subsubsectionfont{\fontsize{14pt}{14pt}\selectfont}
+
+\titlespacing{\chapter}{0pt}{\parskip}{-\parskip}
+\titlespacing{\section}{0pt}{\parskip}{-\parskip}
+\titlespacing{\subsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+
+% убрать расстояние между параграфами
+\setlength{\parskip}{0pt}
+\setlength\headheight{1cm}
+
+% убрать расстояние внутри списков
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[enumerate]{noitemsep, topsep=0pt}
