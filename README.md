@@ -5,6 +5,9 @@ LaTeX-шаблон для русской кандидатской диссерт
 * Стандарт: ГОСТ Р 7.0.11-2011
 * Поддерживаемые движки: LaTeX, XeTeX
 
+## Online
+* Шаблон [выставлен](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template) в галерее шаблонов ShareLaTeX.
+
 ## Структура
 * **Dissertation:** Структурированная система файлов с шаблоном диссертации
 * **Synopsis**: Структурированная система файлов с шаблоном автореферата
