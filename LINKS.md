@@ -1,4 +1,4 @@
-##Основные
+##LaTeX
 * [LaTeX](http://www.latex-project.org/)
 * [MiKTeX](http://www.miktex.org/)
 * [TeX в ЯрГУ](http://www.tex.uniyar.ac.ru/soft.htm)
@@ -6,6 +6,7 @@
 #Аспирантура и защита
 * [Я аспирант — сайт для аспирантов](http://yaaspirant.ru/)
 * [Изменения в правилах защиты диссертаций от 1 января 2014](http://aakinshin.blogspot.ru/2014/01/government-decree-842.html)
+* [russian-post-C5-addr — Стилевой файл, позволяющий оформить конверты формата C5 приближенно к отечественным стандартам](https://github.com/nvoronchev/russian-post-C5-addr)
 
 ##Литература
 * [Не очень краткое введение в LaTeX 2e](http://www.ccas.ru/voron/download/books/tex/oetiker99latex.pdf)
