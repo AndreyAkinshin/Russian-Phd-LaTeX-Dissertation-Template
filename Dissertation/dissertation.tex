@@ -13,6 +13,12 @@
 \input{title}           % Титульный лист
 \input{contents}        % Оглавление
 \input{introduction}    % Введение
+
+% По тексту диссертации таблицы имеют сквозную нумерацию, а рисунки и формулы относительно главы.
+% Тут нет точки после thechapter, потому что ее уже добавили в переопределении этой команды
+\renewcommand{\thefigure}{\thechapter\arabic{figure}}		% переопределяем рисунки на X.X
+\renewcommand{\theequation}{\thechapter\arabic{equation}}	% переопределяем формулы на X.X
+
 \input{part1}           % Глава 1
 \input{part2}           % Глава 2
 \input{part3}           % Глава 3
