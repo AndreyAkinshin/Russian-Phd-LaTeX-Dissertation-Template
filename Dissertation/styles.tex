@@ -46,6 +46,18 @@
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 
+\ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
+\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка оглавления 
+\fi
+
+
+%%% Оформление названий глав %%%
+\ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
+\renewcommand{\cftloftitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка рисунков
+\renewcommand{\cftlottitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка таблиц 
+\titleformat*{\chapter}{\LARGE\bfseries}            % Исправляем размер заголовка названий глав 
+\fi
+
 %%% Шаблон %%%
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 

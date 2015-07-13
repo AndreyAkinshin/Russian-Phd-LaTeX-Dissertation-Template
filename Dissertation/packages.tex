@@ -54,3 +54,20 @@
 
 %%% Колонтитулы %%%
 \usepackage{fancyhdr}
+
+
+%%%% Установки для размера шрифта 14 pt %%%%
+%% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
+\newlength{\curtextsize}
+\newlength{\bigtextsize}
+\setlength{\bigtextsize}{13.9pt}
+
+\makeatletter
+\show\f@size
+\setlength{\curtextsize}{\f@size pt}
+\makeatother
+
+%% Проверка условия установки шрифта 14 pt %%
+\ifnum\curtextsize>\bigtextsize
+\usepackage[small]{titlesec}                        % Уменьшаем размер заголовков разделов и подразделов
+\fi
