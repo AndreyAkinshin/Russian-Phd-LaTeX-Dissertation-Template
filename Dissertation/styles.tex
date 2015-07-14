@@ -56,7 +56,11 @@
 \renewcommand{\cftloftitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка рисунков
 \renewcommand{\cftlottitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка таблиц 
 \titleformat*{\chapter}{\LARGE\bfseries}            % Исправляем размер заголовка названий глав 
+\setlength{\headheight}{17pt}                       % Исправляем высоту заголовка
+\else
+\setlength{\headheight}{15pt}                       % Исправляем высоту заголовка
 \fi
+
 
 %%% Шаблон %%%
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
