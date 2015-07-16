@@ -8,6 +8,18 @@
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
 
+%%%% Установки для размера шрифта 14 pt %%%%
+%% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
+%% должно располагаться до вызова пакета fontspec или polyglossia, потому что они сбивают его работу
+\newlength{\curtextsize}
+\newlength{\bigtextsize}
+\setlength{\bigtextsize}{13.9pt}
+
+\makeatletter
+\show\f@size
+\setlength{\curtextsize}{\f@size pt}
+\makeatother
+
 %%% Кодировки и шрифты %%%
 \ifxetex
   \usepackage{polyglossia}                          % Поддержка многоязычности
@@ -55,17 +67,6 @@
 %%% Колонтитулы %%%
 \usepackage{fancyhdr}
 
-
-%%%% Установки для размера шрифта 14 pt %%%%
-%% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
-\newlength{\curtextsize}
-\newlength{\bigtextsize}
-\setlength{\bigtextsize}{13.9pt}
-
-\makeatletter
-\show\f@size
-\setlength{\curtextsize}{\f@size pt}
-\makeatother
 
 %% Проверка условия установки шрифта 14 pt %%
 \ifnum\curtextsize>\bigtextsize
