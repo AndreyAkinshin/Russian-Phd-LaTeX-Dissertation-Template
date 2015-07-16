@@ -1,4 +1,9 @@
 \appendix
+\titleformat{\chapter}[display]%
+    {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}% %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
+    {\chaptertitlename\ \thechapter}% (ГОСТ Р 2.105, 4.3.6)
+    {20pt}%
+    {}
 \renewcommand\thechapter{\Asbuk{chapter}} % Чтобы приложения русскими буквами нумеровались
 \chapter{Название первого приложения} \label{AppendixA}
 
