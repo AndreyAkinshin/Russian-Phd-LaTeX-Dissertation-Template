@@ -79,6 +79,9 @@
 
 %% Переносить слова в заголовке не допускается (ГОСТ Р 7.0.11-2011, 5.3.5). Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Прямого указания на запрет переносов в оглавлении нет, но по той же логике невнесения искажений в смысл, лучше в оглавлении не переносить:
 \cftsetrmarg{2.55em plus1fil} %To have the (sectional) titles in the ToC, etc., typeset ragged right with no hyphenation
+\renewcommand{\cftchappagefont}{\normalfont}        % нежирные номера страниц у глав в оглавлении
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}} % нежирные точки до номеров страниц у глав в оглавлении
+%\renewcommand{\cftchapfont}{}                      % нежирные названия глав в оглавлении
 
 %\addtocontents{toc}{~\hfill{Стр.}\par}			    % добавить Стр. над номерами страниц
 
