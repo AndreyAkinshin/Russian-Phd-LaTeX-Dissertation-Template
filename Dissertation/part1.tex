@@ -55,6 +55,26 @@ $$
   f_T & = & \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
 \end{eqnarray}
 
+Выровнять систему ещё и по переменной $ x $ можно, используя окружение \verb|alignedat| из пакета \verb|amsmath|. Вот так: 
+\[
+    |x| = \left\{
+    \begin{alignedat}{2}
+        &&x, \quad &\text{eсли } x\geqslant 0 \\
+        &-&x, \quad & \text{eсли } x<0
+    \end{alignedat}
+    \right.
+\]
+Здесь первый амперсанд  означает выравнивание по~левому краю, второй "--- по~$ x $, а~третий "--- по~слову <<если>>. Команда \verb|\quad| делает большой горизонтальный пробел. 
+
+Ещё вариант:
+\[
+    |x|=
+    \begin{cases}
+    \phantom{-}x, \text{если } x \geqslant 0 \\
+    -x, \text{если } x<0
+    \end{cases}
+\]
+
 Можно использовать разные математические алфавиты:
 \begin{eqnarray}
 \mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
@@ -102,7 +122,16 @@ $$
   \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
 \end{equation}
 
-В последствии на формулы (\ref{eq:equation1}) и (\ref{eq:equation2}) можно ссылаться.
+Впоследствии на формулы (\ref{eq:equation1}) и (\ref{eq:equation2}) можно ссылаться.
+
+Сделать так, чтобы номер формулы стоял напротив средней строки, можно, используя окружение \verb|multlined| (пакет \verb|mathtools|) вместо \verb|multline| внутри окружения \verb|equation|. Вот так:
+\begin{equation} % \tag{S} % tag - вписывает свой текст 
+    \begin{multlined}
+        1+ 2+3+4+5+6+7+\dots + \\ 
+        + 50+51+52+53+54+55+56+57 + \dots + \\ 
+        + 96+97+98+99+100=5050 
+    \end{multlined}
+\end{equation}
 
 %\newpage
 %============================================================================================================================

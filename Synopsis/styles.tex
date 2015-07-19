@@ -19,8 +19,8 @@
 
 %%% Кодировки и шрифты %%%
 \ifxetex
-  \setmainlanguage{russian}
-  \setotherlanguage{english}
+  \setmainlanguage[babelshorthands=true]{russian}   % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
+  \setotherlanguage{english}                        % Дополнительный язык = английский (в американской вариации по-умолчанию)
   \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
   \setmainfont{Times New Roman}
   \newfontfamily\cyrillicfont{Times New Roman}
@@ -46,5 +46,33 @@
 %%% Изображения %%%
 \graphicspath{{images/}}          % Пути к изображениям
 
+%%% Рисунки %%%
+\DeclareCaptionLabelSeparator*{emdash}{~--- }             % (ГОСТ 2.105, 4.3.1)
+\captionsetup[figure]{labelsep=emdash,font=onehalfspacing,position=bottom}
+
+%%% Таблицы %%%
+\DeclareCaptionFormat{tablecaption}{\raggedleft #1#2\\%   % Идентификатор таблицы справа, на отдельной строке
+    \centering{#3}}                                           % Наименование таблицы строкой ниже и центрировано, без переносов
+\DeclareCaptionFormat{tablenocaption}{\raggedleft #1#2%   % Идентификатор таблицы справа, на отдельной строке
+}                                                         % Наименование таблицы отсутствует
+\captionsetup[table]{format=tablecaption,labelsep=space,singlelinecheck=off,font=onehalfspacing,position=top}  % пробельный разделитьель идентификатора с номером от наименования, многострочные наименования и прочее
+\DeclareCaptionLabelFormat{continued}{Продолжение таблицы~#2}
+
+%%% Подписи %%%
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}           % Буквенные номера подрисунков
+\captionsetup[subfloat]{font={normalsize},                % Шрифт подписи названий подрисунков (не отличается от основного)
+    labelformat=brace,                                    % Формат обозначения подрисунка
+    justification=centering                               % Выключка подписей (форматирование), один из вариантов            
+}
+%\DeclareCaptionFont{font12pt}{\fontsize{12pt}{13pt}\selectfont} % объявляем шрифт 12pt для использования в подписях, тут же надо интерлиньяж объявлять, если не наследуется
+%\captionsetup[subfloat]{font={font12pt}}                  % Шрифт подписи названий подрисунков (всегда 12pt)
+
 %%% Шаблон %%%
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+%%% Списки %%%
+% Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)
+\renewcommand{\labelitemi}{\normalfont\bfseries{--}} 
+\setlist{nosep,%                                    % Единый стиль для всех списков (пакет enumitem), без дополнительных интервалов.
+    labelindent=\parindent,leftmargin=*%            % Каждый пункт, подпункт и перечисление записывают с абзацного отступа (ГОСТ 2.105-95, 4.1.8)
+}

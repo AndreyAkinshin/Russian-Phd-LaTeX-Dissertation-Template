@@ -2,11 +2,24 @@
 \usepackage{ifxetex}
 
 %%% Поля и разметка страницы %%%
-\usepackage{lscape}                                 % Для включения альбомных страниц
+\usepackage{pdflscape}                              % Для включения альбомных страниц
 \usepackage{geometry}                               % Для последующего задания полей
 
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
+\usepackage{mathtools}                              % Добавляет окружение multlined
+
+%%%% Установки для размера шрифта 14 pt %%%%
+%% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
+%% должно располагаться до вызова пакета fontspec или polyglossia, потому что они сбивают его работу
+\newlength{\curtextsize}
+\newlength{\bigtextsize}
+\setlength{\bigtextsize}{13.9pt}
+
+\makeatletter
+\show\f@size
+\setlength{\curtextsize}{\f@size pt}
+\makeatother
 
 %%% Кодировки и шрифты %%%
 \ifxetex
@@ -25,12 +38,12 @@
 
 %%% Цвета %%%
 \usepackage[usenames]{color}
-\usepackage{color}
 \usepackage{colortbl}
 
 %%% Таблицы %%%
 \usepackage{longtable}                              % Длинные таблицы
 \usepackage{multirow,makecell,array}                % Улучшенное форматирование таблиц
+\usepackage{booktabs}                               % Возможность оформления таблиц в классическом книжном стиле (при правильном использовании не противоречит ГОСТ)
 
 %%% Общее форматирование
 \usepackage[singlelinecheck=off,center]{caption}    % Многострочные подписи
@@ -49,25 +62,31 @@
 %%% Оглавление %%%
 \usepackage{tocloft}
 
+%%% Подписи %%%
+\usepackage[skip=2pt]{caption}                      % Для управления подписями (рисунков и таблиц) % Может управлять номерами рисунков и таблиц с caption %Иногда может управлять заголовками в списках рисунков и таблиц
+% skip = Вертикальная отбивка между подписью и содержимым рисунка или таблицы определяется ключом
+\usepackage[lofdepth]{subfig}                       % Работа с подрисунками и подобным % должна быть после tocloft, если посредством опции lofdepth вносить подрисунки в список рисунков
+
 %%% Интервалы %%%
-\usepackage{setspace}
+\usepackage[onehalfspacing]{setspace}               % Опция запуска пакета правит не только интервалы в обычном тексте, но и формульные
 
 %%% Колонтитулы %%%
 \usepackage{fancyhdr}
 
+%%% Списки %%%
+\usepackage{enumitem}
 
-%%%% Установки для размера шрифта 14 pt %%%%
-%% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
-\newlength{\curtextsize}
-\newlength{\bigtextsize}
-\setlength{\bigtextsize}{13.9pt}
-
-\makeatletter
-\show\f@size
-\setlength{\curtextsize}{\f@size pt}
-\makeatother
+%%% Прикладные пакеты %%% 
+\usepackage{calc}                                   % Пакет для расчётов параметров, например длины
 
 %% Проверка условия установки шрифта 14 pt %%
 \ifnum\curtextsize>\bigtextsize
 \usepackage[small]{titlesec}                        % Уменьшаем размер заголовков разделов и подразделов
+\else
+\usepackage{titlesec}                               % Всё равно пакет нужен, чтобы настраивать шрифты заголовков
 \fi
+
+%%% Счётчики %%%
+\usepackage[figure,table]{totalcount}               % Счётчик рисунков и таблиц
+\usepackage{totcount}                               % Пакет создания счётчиков на основе последнего номера подсчитываемого элемента (может требовать дважды компилировать документ)
+\usepackage{totpages}                               % Счётчик страниц, совместимый с hyperref (ссылается на номер последней страницы). Желательно ставить последним пакетом в преамбуле
