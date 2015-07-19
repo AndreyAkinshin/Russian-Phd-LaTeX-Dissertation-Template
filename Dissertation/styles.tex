@@ -46,21 +46,42 @@
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 
-\ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
-\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка оглавления 
-\fi
+\renewcommand{\cfttoctitlefont}{\hfill\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
+\renewcommand{\cftaftertoctitle}{\hfill}% устанавливает заголовок по центру.
+\setlength{\cftbeforetoctitleskip}{-1.4\curtextsize}% Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.4\curtextsize.
+\setlength{\cftaftertoctitleskip}{3\curtextsize}% Если считаем Оглавление заголовком, то выставляем после него тройной интервал через наше определённое значение
+
+%% Ниже закомментирован вариант, несоответствующий ГОСТ 7.0.11, в котором заголовки крупнее положенного размера в 12-14 пт
+%\ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
+%\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка оглавления 
+%\fi
+
+%% Переносить слова в заголовке не допускается (ГОСТ Р 7.0.11-2011, 5.3.5). Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Прямого указания на запрет переносов в оглавлении нет, но по той же логике невнесения искажений в смысл, лучше в оглавлении не переносить:
+\cftsetrmarg{2.55em plus1fil} %To have the (sectional) titles in the ToC, etc., typeset ragged right with no hyphenation
 
 
 %%% Оформление названий глав %%%
+%% настройки заголовка списка рисунков
+\renewcommand{\cftloftitlefont}{\hfill\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
+\renewcommand{\cftafterloftitle}{\hfill}% устанавливает заголовок по центру.
+\setlength{\cftbeforeloftitleskip}{-1.5\curtextsize}% Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.5\curtextsize.
+\setlength{\cftafterloftitleskip}{3\curtextsize}% выставляем после него тройной интервал через наше определённое значение
+
+%% настройки заголовка списка таблиц
+\renewcommand{\cftlottitlefont}{\hfill\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
+\renewcommand{\cftafterlottitle}{\hfill}% устанавливает заголовок по центру.
+\setlength{\cftbeforelottitleskip}{-1.5\curtextsize}% Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.5\curtextsize.
+\setlength{\cftafterlottitleskip}{3\curtextsize}% выставляем после него тройной интервал через наше определённое значение
+
+%% Ниже закомментирован вариант, несоответствующий ГОСТ 7.0.11, в котором заголовки крупнее положенного размера в 12-14 пт
 \ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
-\renewcommand{\cftloftitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка рисунков
-\renewcommand{\cftlottitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка таблиц 
-\titleformat*{\chapter}{\LARGE\bfseries}            % Исправляем размер заголовка названий глав 
+%\renewcommand{\cftloftitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка рисунков
+%\renewcommand{\cftlottitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка таблиц 
+%\titleformat*{\chapter}{\LARGE\bfseries}            % Исправляем размер заголовка названий глав 
 \setlength{\headheight}{17pt}                       % Исправляем высоту заголовка
 \else
 \setlength{\headheight}{15pt}                       % Исправляем высоту заголовка
 \fi
-
 
 %%% Шаблон %%%
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
@@ -78,3 +99,37 @@
 \fancyhf{}                          % Очищаем текущие значения
 \fancyhead[C]{\thepage}             % Печатаем номер страницы на середине верхнего поля
 \renewcommand{\headrulewidth}{0pt}  % Убираем разделительную линию
+
+%%% Оформление заголовков глав, разделов, подразделов %%%
+%% Работа должна быть выполнена ... размером шрифта 12-14 пунктов (ГОСТ Р 7.0.11-2011, 5.3.8). То есть не должно быть надписей шрифтом более 14. Так и поставим.
+%% Эти установки будут давать одинаковый результат независимо от выбора базовым шрифтом 12 пт или 14 пт
+\titleformat{\chapter}[block]% default display;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
+        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
+        {\thechapter}% Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Раз не фигурирует слово Глава в оглавлении, то и здесь не надо
+        {1em}%
+        {}%
+
+\titleformat{\section}[block]% default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
+        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
+        {\thesection}% Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
+        {1em}%
+        {}%
+
+\titleformat{\subsection}[block]% default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
+        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
+        {\thesubsection}% Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
+        {1em}%
+        {}%
+
+%% Интервалы между заголовками
+% На эти величины titlespacing множит через *
+\beforetitleunit=\curtextsize% привязались к нашему полуторному интервалу, поскольку он к компилятору не привязан
+\aftertitleunit=\curtextsize% привязались к нашему полуторному интервалу, поскольку он к компилятору не привязан
+
+\titlespacing{\chapter}{0pt}{-1.7em}{*3} % Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5). Поскольку название главы всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление происходит при -1.7em.
+\titlespacing{\section}{0pt}{*3}{*3} % Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5)
+\titlespacing{\subsection}{0pt}{*3}{*3} % Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5)
+\titlespacing{\subsubsection}{0pt}{*3}{*3} % Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5)
