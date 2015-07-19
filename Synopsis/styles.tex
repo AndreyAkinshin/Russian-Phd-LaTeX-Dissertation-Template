@@ -19,8 +19,8 @@
 
 %%% Кодировки и шрифты %%%
 \ifxetex
-  \setmainlanguage{russian}
-  \setotherlanguage{english}
+  \setmainlanguage[babelshorthands=true]{russian}   % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
+  \setotherlanguage{english}                        % Дополнительный язык = английский (в американской вариации по-умолчанию)
   \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
   \setmainfont{Times New Roman}
   \newfontfamily\cyrillicfont{Times New Roman}
