@@ -88,4 +88,23 @@
     \item неразрывные пробелы в~предложениях.
 \end{itemize}
 
+\section{Математика}
+
+Русская традиция начертания греческих букв отличается от~западной. Это исправляется серией \verb|\renewcommand|.
+\begin{itemize}
+    \item[До:] $ \epsilon \ge \phi$, $\phi \leq \epsilon$, $\kappa \in \emptyset$.
+    \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
+    \renewcommand{\phi}{\ensuremath{\varphi}}
+    \renewcommand{\kappa}{\ensuremath{\varkappa}}
+    \renewcommand{\le}{\ensuremath{\leqslant}}
+    \renewcommand{\leq}{\ensuremath{\leqslant}}
+    \renewcommand{\ge}{\ensuremath{\geqslant}}
+    \renewcommand{\geq}{\ensuremath{\geqslant}}
+    \renewcommand{\emptyset}{\varnothing}
+    \item[После:] $\epsilon \ge \phi$, $\phi \leq \epsilon$, $\kappa \in \emptyset$.
+\end{itemize}
+
+Кроме того, принято набирать греческие буквы вертикальными, что решается подключением пакета \verb|upgreek| и~аналогичным переопределением в преамбуле.
+
+
 \clearpage
