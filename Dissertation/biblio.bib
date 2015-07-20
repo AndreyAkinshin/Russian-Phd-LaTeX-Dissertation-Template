@@ -81,7 +81,7 @@
 }
 
 @BOOK{FamilyCode,
-  title = {Семейный кодекс Российской Федерации: [федер. закон: принят Гос. Думой 8 дек. 1995 г.: по состоянию на 3 янв. 2001 г.]},
+  title = {Семейный кодекс Российской Федерации: [федер. закон: принят Гос. Думой 8 дек. 1995~г.: по состоянию на 3~янв. 2001~г.]},
   address = {СПб.},
   publisher = {Стаун-кантри},
   year = {2001},
@@ -199,6 +199,186 @@
   note = {1 июля},
   language = {russian}
 }
+
+%Real example, Google Scholar
+@article{samojlovich2004trehmernye,
+  title={Трехмерные нанокомпозиты на основе упорядоченных упаковок наносфер кремнезема},
+  author={Самойлович, МИ and Клещева, СМ and Белянин, АФ and Житковский, ВД and Цветков, МЮ},
+  journal={Микросистемная техника},
+  number={6},
+  pages={3--7},
+  year={2004},
+  language = {russian}
+}
+
+
+% Real example (Статья в русском электронном журнале с DOI и URL), test of processing doi, url and note with additional words + Инициалы
+@ARTICLE{Sinev2014,
+  author = {Синев, Л. С.},
+  doi={10.7463/1214.0745310},
+  title = {Особенности применения электростатического соединения кремния со стеклом в микросистемной технике [Электронный ресурс]},
+  url={http://engbul.bmstu.ru/doc/722572.html},
+  journal = {Инженерный вестник. МГТУ им. Н. Э. Баумана. Электрон. журн.},
+  year = {2014},
+  number = {5},
+  note = {Режим доступа: http://engbul.bmstu.ru/doc/722572.html (дата обращения 20.07.2015)},
+  language = {russian}
+}
+
+% Real example (from Google or Springer), test of processing doi, url and underscore in them
+% unmodified styles don't know %language = {English}
+@incollection{Li2007StressAnalysis,
+year={2007},
+isbn={978-0-387-27974-9},
+booktitle={Micro- and Opto-Electronic Materials and Structures: Physics, Mechanics, Design, Reliability, Packaging},
+editor={Suhir, E. and Lee, Y.C. and Wong, C.P.},
+doi={10.1007/0-387-32989-7\_45},
+title={Stress Analysis for Processed Silicon Wafers and Packaged Micro-devices},
+url={http://dx.doi.org/10.1007/0-387-32989-7\_45},
+publisher={Springer US},
+author={Li, Li and Guo, Yifan and Zheng, Dawei},
+pages={B677-B709},
+language={english}
+}
+
+% Real, β sign 
+% inputenc don't know β sign %aluminosilicate-β-quartz
+@article{Shoji199895,
+title = "Low-temperature anodic bonding using lithium aluminosilicate-$\beta$-quartz glass ceramic ",
+journal = "Sensors and Actuators A: Physical ",
+volume = "64",
+number = "1",
+pages = "95 - 100",
+year = "1998",
+note = "Tenth \{IEEE\} International Workshop on Micro Electro Mechanical Systems ",
+issn = "0924-4247",
+doi = "http://dx.doi.org/10.1016/S0924-4247(97)01659-2",
+url = "http://www.sciencedirect.com/science/article/pii/S0924424797016592",
+author = "Shuichi Shoji and Hiroto Kikuchi and Hirotaka Torigoe",
+keywords = "Anodic bonding",
+keywords = "Low-temperature bonding",
+keywords = "Micro assembly",
+keywords = "Micro package",
+keywords = "Glass ceramic "
+}
+
+% doi with http, with () , title with umlaut or other unicode or specific symbols, 9 authors
+% latex don't like Gösele1999161 in ref
+@article{Gosele1999161,
+title = "Wafer bonding for microsystems technologies ",
+journal = "Sensors and Actuators A: Physical ",
+volume = "74",
+number = "1–3",
+pages = "161 - 168",
+year = "1999",
+note = "",
+issn = "0924-4247",
+doi = "http://dx.doi.org/10.1016/S0924-4247(98)00310-0",
+url = "http://www.sciencedirect.com/science/article/pii/S0924424798003100",
+author = "U. Gösele and Q.-Y. Tong and A. Schumacher and G. Kräuter and M. Reiche and A. Plößl and P. Kopperschmidt and T.-H. Lee and W.-J. Kim",
+keywords = "Wafer bonding",
+keywords = "Fusion bonding",
+keywords = "Pressure sensors",
+keywords = "Interface reactions",
+keywords = "Hydrophilic bonding",
+keywords = "Hydrophobic bonding "
+}
+
+% Real with eprint field and 4 authors
+@article{doi:10.1080/01932691.2010.513279,
+author = { Young-Sang   Cho  and  Young   Kuk   Kim  and  Kook   Chae   Chung  and  Chul   Jin   Choi },
+title = {Deformation of Colloidal Crystals for Photonic Band Gap Tuning},
+journal = {Journal of Dispersion Science and Technology},
+volume = {32},
+number = {10},
+pages = {1408-1415},
+year = {2011},
+doi = {10.1080/01932691.2010.513279},
+
+URL = { 
+        http://dx.doi.org/10.1080/01932691.2010.513279
+    
+},
+eprint = { 
+        http://dx.doi.org/10.1080/01932691.2010.513279
+    
+}
+
+}
+
+
+% Инициалы
+% Подчёркивания в ссылке приходится ескейпить
+@article{medvedev2006jelektronnye,
+  title={Электронные компоненты и монтажные подложки},
+  author={Медведев, АМ},
+  journal={Компоненты и технологии},
+  number={12},
+  pages={124--134},
+  year={2006},
+  note = {Режим доступа: http://www.kit-e.ru/articles/elcomp/2006\_12\_124.php (дата обращения 19.01.2015)},
+  language = {russian}
+}
+
+
+% Real example
+%http://dx.doi.org/10.1002/1521-4001(200209)82:9%3C579::AID-ZAMM579%3E3.0.CO;2-V
+@article {ZAMM:ZAMM579,
+author = {Herwig, H.},
+title = {Flow and Heat Transfer in Micro Systems: Is Everything Different or Just Smaller?},
+journal = {ZAMM - Journal of Applied Mathematics and Mechanics / Zeitschrift für Angewandte Mathematik und Mechanik},
+volume = {82},
+number = {9},
+publisher = {WILEY-VCH Verlag},
+issn = {1521-4001},
+url = {http://dx.doi.org/10.1002/1521-4001(200209)82:9<579::AID-ZAMM579>3.0.CO;2-V},
+doi = {10.1002/1521-4001(200209)82:9<579::AID-ZAMM579>3.0.CO;2-V},
+pages = {579--586},
+year = {2002},
+}
+
+% Real example
+%http://dx.doi.org/10.1002/1521-4125(200007)23:7%3C581::AID-CEAT581%3E3.0.CO;2-P
+% не нравится знак & %journal = {Chemical Engineering & Technology},
+@article {CEAT:CEAT581,
+author = {Deiters, U. K.},
+title = {A Modular Program System for the Calculation of Thermodynamic Properties of Fluids},
+journal = {Chemical Engineering \& Technology},
+volume = {23},
+number = {7},
+publisher = {WILEY-VCH Verlag},
+issn = {1521-4125},
+url = {http://dx.doi.org/10.1002/1521-4125(200007)23:7<581::AID-CEAT581>3.0.CO;2-P},
+doi = {10.1002/1521-4125(200007)23:7<581::AID-CEAT581>3.0.CO;2-P},
+pages = {581--584},
+year = {2000},
+}
+
+% Real, 2 authors in 2 fields, suggested ref name is 0_0
+%
+%JohnsenRahbek
+% unmodified styles don't know %language = {English},
+% bibtex ignores extra author field, with utf8gost71u.bst at least
+%   author = {Alfred Johnsen},
+%   author = {Knud Rahbek},
+% and it doesn't like commented out author fields
+@ARTICLE{:/content/journals/10.1049/jiee-1.1923.0092,
+   author = {Alfred Johnsen and Knud Rahbek},
+   ISSN = {0099-2887},
+   language = {english},
+   doi={10.1049/jiee-1.1923.0092},
+   title = {A physical phenomenon and its applications to telegraphy, telephony, etc.},
+   journal = {Journal of the Institution of Electrical Engineers},
+   issue = {320},   
+   volume = {61},
+   year = {1923},
+   month = {July},
+   pages = {713-725(12)},
+   publisher ={},
+   copyright = {© The Institution of Electrical Engineers},
+   url = {http://digital-library.theiet.org/content/journals/10.1049/jiee-1.1923.0092}
+}
+
 
 % Examples from https://verbosus.com/bibtex-style-examples.html
 @ARTICLE{Article,
