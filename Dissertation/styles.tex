@@ -39,6 +39,10 @@
 % {}
 % {\typeout{Couldn't patch the command}}
 
+%%% Цитирование %%%
+\renewcommand\citepunct{;\penalty\citepunctpenalty%
+    \hskip.13emplus.1emminus.1em\relax}                % Разделение ; при перечислении ссылок (ГОСТ Р 7.0.5-2008)
+
 %%% Изображения %%%
 \graphicspath{{images/}}            % Пути к изображениям
 
