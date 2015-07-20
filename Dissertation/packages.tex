@@ -17,7 +17,7 @@
 \setlength{\bigtextsize}{13.9pt}
 
 \makeatletter
-\show\f@size
+%\show\f@size                                       % неплохо для отслеживания, но вызывает стопорение процесса, если документ компилируется без команды  -interaction=nonstopmode 
 \setlength{\curtextsize}{\f@size pt}
 \makeatother
 
