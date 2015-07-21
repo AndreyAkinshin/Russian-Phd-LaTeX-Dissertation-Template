@@ -2,5 +2,8 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{\bibname}	% Добавляем список литературы в оглавление
 %\hypersetup{ urlcolor=black }               % Ссылки делаем чёрными
+%\providecommand*{\BibDash}{}                % В стилях ugost2008 отключаем использование тире как разделителя 
+\urlstyle{rm}                               % ссылки URL обычным шрифтом
 \bibliography{biblio}						% Подключаем BibTeX-базы
+\urlstyle{tt}                               % возвращаем установки шрифта ссылок URL
 %\hypersetup{ urlcolor={urlcolor} }          % Восстанавливаем цвет ссылок
