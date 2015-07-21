@@ -1673,6 +1673,8 @@ FUNCTION {masterthesis}
   fin.entry
 }
 
+FUNCTION {mastersthesis} { masterthesis }
+
 FUNCTION {dscithesis}
 { output.bibitem
   format.authors "author" output.check
