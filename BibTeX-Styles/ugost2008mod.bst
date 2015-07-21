@@ -1225,6 +1225,15 @@ FUNCTION {editor.organization.after}
   if$
 }
 
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+    {
+      "\BibDOI{" doi * "}" *
+    }
+  if$
+}
+
 FUNCTION {format.url}
 { url empty$
     { "" }
@@ -1294,11 +1303,23 @@ FUNCTION {format.eprint}
 FUNCTION {output.eprint.url}
 {
   eprint empty$
-    { format.url output }
+    { 
+      url empty$
+        { format.doi output }
+        { format.url output }
+      if$
+    }
     { format.eprint output }
   if$
 }
 
+%FUNCTION {output.eprint.url}
+%{
+%  eprint empty$
+%    { format.url output }
+%    { format.eprint output }
+%  if$
+%}
 
 
 FUNCTION {article}
@@ -1929,6 +1950,7 @@ FUNCTION {begin.bib}
   "\providecommand*{\href}[2]{{\small #2}}"          write$ newline$
   "\providecommand*{\url}[1]{{\small #1}}"           write$ newline$
   "\providecommand*{\BibUrl}[1]{\url{#1}}"           write$ newline$
+  "\providecommand*{\BibDOI}[1]{DOI: \href{http://dx.doi.org/#1}{#1}}"           write$ newline$
   "\providecommand{\BibAnnote}[1]{}"                 write$ newline$
   "\providecommand*{\BibEmph}[1]{#1}"                write$ newline$
   "\providecommand*{\BibEmphi}[1]{#1}"                write$ newline$
