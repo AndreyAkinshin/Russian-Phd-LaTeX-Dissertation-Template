@@ -1304,8 +1304,8 @@ FUNCTION {output.eprint.url}
 FUNCTION {article}
 {
   output.bibitem
-  author.before
-  format.title add.medium "title" output.check
+  author.before add.doi
+  format.title add.doi add.medium "title" output.check
   new.slash
   author.after
   new.dblslash
@@ -1328,7 +1328,7 @@ FUNCTION {article}
 FUNCTION {book}
 {
   output.bibitem
-  author.before
+  author.before add.doi
   format.btitle add.doi add.medium "title" output.check
   new.slash
   author.after
@@ -1357,7 +1357,7 @@ FUNCTION {book}
 FUNCTION {booklet}
 {
   output.bibitem
-  author.before
+  author.before add.doi
   format.title add.doi add.medium "title" output.check
   new.slash
   author.after
@@ -1377,7 +1377,7 @@ FUNCTION {booklet}
 FUNCTION {inbook}
 {
   output.bibitem
-  author.before
+  author.before add.doi
   format.btitle add.doi add.medium "title" output.check
   new.slash
   author.after
@@ -1410,7 +1410,7 @@ FUNCTION {inbook}
 FUNCTION {incollection}
 {
   output.bibitem
-  author.before
+  author.before add.doi
   new.sentence
   format.title add.doi add.medium "title" output.check
   new.slash
@@ -1456,7 +1456,7 @@ FUNCTION {proceedings}
 
 FUNCTION {inproceedings}
 { output.bibitem
-  author.before
+  author.before add.doi
   new.sentence
   format.title add.doi add.medium "title" output.check
   new.slash
@@ -1491,7 +1491,7 @@ FUNCTION {manual}
         }
       if$
     }
-    { format.authors output.nonnull }
+    { format.authors add.doi output.nonnull }
   if$
   new.block
   format.btitle add.doi add.medium "title" output.check
@@ -1522,9 +1522,9 @@ FUNCTION {manual}
 
 FUNCTION {misc}
 { output.bibitem
-  format.authors output
+  format.authors add.doi output
   title howpublished new.sentence.checkb
-  format.title add.medium output
+  format.title add.doi add.medium output
   howpublished new.block.checka
   howpublished output
   new.block
@@ -1539,8 +1539,8 @@ FUNCTION {misc}
 
 FUNCTION {unpublished}
 { output.bibitem
-  author.before
-  format.btitle "title" output.check
+  author.before add.doi
+  format.btitle add.doi "title" output.check
   new.slash
   author.after
   editor.organization.after
@@ -1556,7 +1556,7 @@ FUNCTION {unpublished}
 
 FUNCTION {online}
 { output.bibitem
-  format.authors output
+  format.authors add.doi output
   title howpublished new.sentence.checkb
   format.title add.doi add.medium "title" output.check
   howpublished new.dblslash.checka
@@ -1580,7 +1580,7 @@ FUNCTION {webpage}    {online}
 FUNCTION {electronic} {online}
 FUNCTION {thesis}
 { output.bibitem
-  format.authors "author" output.check
+  format.authors add.doi "author" output.check
   new.sentence
   format.btitle add.doi add.medium "title" output.check
   new.column
@@ -1637,7 +1637,7 @@ FUNCTION {report}
 
 FUNCTION {phdthesis}
 { output.bibitem
-  format.authors "author" output.check
+  format.authors add.doi "author" output.check
   new.sentence
   format.btitle add.doi add.medium "title" output.check
   new.column
@@ -1663,7 +1663,7 @@ FUNCTION {phdthesis}
 
 FUNCTION {masterthesis}
 { output.bibitem
-  format.authors "author" output.check
+  format.authors add.doi "author" output.check
   new.sentence
   format.btitle add.doi add.medium "title" output.check
   new.column
@@ -1691,7 +1691,7 @@ FUNCTION {mastersthesis} { masterthesis }
 
 FUNCTION {dscithesis}
 { output.bibitem
-  format.authors "author" output.check
+  format.authors add.doi "author" output.check
   new.sentence
   format.btitle add.doi add.medium "title" output.check
   new.column
