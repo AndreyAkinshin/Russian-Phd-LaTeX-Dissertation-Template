@@ -1229,6 +1229,7 @@ FUNCTION {format.doi}
 { doi empty$
     { "" }
     {
+      after.sentence 'output.state :=
       "\BibDOI{" doi * "}" *
     }
   if$
