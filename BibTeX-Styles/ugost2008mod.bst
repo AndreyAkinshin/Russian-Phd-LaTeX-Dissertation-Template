@@ -287,6 +287,20 @@ FUNCTION {emphasize}
   if$
 }
 
+FUNCTION {emphasizei}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "\BibEmphi{" swap$ * "}" * }
+  if$
+}
+
+FUNCTION {emphasizeii}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "\BibEmphii{" swap$ * "}" * }
+  if$
+}
+
 FUNCTION {enclose.square.brackets} { }
 
 FUNCTION {bracify}
@@ -953,7 +967,7 @@ FUNCTION {format.bvolume}
     { bbl.vvol volume tie.connect
       series empty$
         'skip$
-        { bbl.of space.word * series emphasize * }
+        { bbl.of space.word * series emphasizeii * }
       if$
       "volume and number" number either.or.check
     }
@@ -1295,7 +1309,7 @@ FUNCTION {article}
   new.slash
   author.after
   new.dblslash
-  journal emphasize add.doi "journal" output.check % new in v.2
+  journal emphasizei add.doi "journal" output.check % new in v.2
   new.block
   format.date "year" output.check
   new.block
@@ -1917,6 +1931,8 @@ FUNCTION {begin.bib}
   "\providecommand*{\BibUrl}[1]{\url{#1}}"           write$ newline$
   "\providecommand{\BibAnnote}[1]{}"                 write$ newline$
   "\providecommand*{\BibEmph}[1]{#1}"                write$ newline$
+  "\providecommand*{\BibEmphi}[1]{#1}"                write$ newline$
+  "\providecommand*{\BibEmphii}[1]{#1}"                write$ newline$
   "\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}" write$ newline$
   "\providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em\fi" write$ newline$
   "\cyrdash\hskip.2em\ignorespaces}" write$ newline$
