@@ -44,11 +44,11 @@
 
 ## В случае проблем
 В случае проблем компиляции библиографии, попробуйте настроить в среде компиляции запуск bibtex8:
-```cmd
+```bat
 bibtex8.exe -B -c utf8cyrillic.csf %
 ```
 где ```%``` --- имя файла без расширения, или
 
-```cmd
+```bat
 bibtex8.exe -B -c utf8cyrillic.csf dissertation.aux
 ```
