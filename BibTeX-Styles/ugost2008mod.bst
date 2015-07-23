@@ -453,7 +453,7 @@ FUNCTION {bbl.etal}      %  { "\bblof{}" }
       { curlanguage "ukrainian" =
          {"{та~ін.}"}
          { curlanguage "russian" =
-            {"и~др."}
+            {"[и~др.]"}
             {"language is not defined: " language  "et~al" * * warning$ "et~al."}
          if$}
       if$}
@@ -733,7 +733,7 @@ FUNCTION {format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{vv~}{ll}{~jj}{~ff}" format.name$ 't :=
+      "{vv~}{ll}{~jj}{~ff}" format.name$ 't := %% von Last Jr First;
       nameptr #1 >
         { nameptr #4 =
           numnames #4 > and
@@ -769,7 +769,7 @@ FUNCTION {format.names.rev}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{ff}{~vv}{~ll}{, jj}" format.name$ 't :=
+      "{ff~}{~vv}{~ll}{, jj}" format.name$ 't := %First von Last,  Jr;
       nameptr #1 >
         { nameptr #2 = % [это число]-1 = то количество ФИО, которое остаётся перед "и др."
           numnames #3 > and % [это число] = то количество ФИО, свыше которого начинают сокращать до  "и др."
