@@ -771,8 +771,8 @@ FUNCTION {format.names.rev}
     { s nameptr
       "{ff}{~vv}{~ll}{, jj}" format.name$ 't :=
       nameptr #1 >
-        { nameptr #4 =
-          numnames #4 > and
+        { nameptr #2 = % [это число]-1 = то количество ФИО, которое остаётся перед "и др."
+          numnames #3 > and % [это число] = то количество ФИО, свыше которого начинают сокращать до  "и др."
             { "others" 't :=
               #1 'namesleft := }
             'skip$
@@ -1186,7 +1186,7 @@ FUNCTION {author.after}
 {
   author empty$
     'skip$
-    {author num.names$ #3 >
+    {author num.names$ #3 > % свыше этого числа авторов их переносят направо после названия работы
       {format.authors.after output
        new.semicolumn }
       'skip$
