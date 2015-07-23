@@ -301,7 +301,14 @@ FUNCTION {emphasizeii}
   if$
 }
 
-FUNCTION {enclose.square.brackets} { }
+%FUNCTION {enclose.square.brackets} { }
+
+FUNCTION {enclose.square.brackets}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "[" swap$ * "]" * }
+  if$
+}
 
 FUNCTION {bracify}
 { duplicate$ empty$
@@ -453,7 +460,7 @@ FUNCTION {bbl.etal}      %  { "\bblof{}" }
       { curlanguage "ukrainian" =
          {"{та~ін.}"}
          { curlanguage "russian" =
-            {"[и~др.]"}
+            {"и~др."}
             {"language is not defined: " language  "et~al" * * warning$ "et~al."}
          if$}
       if$}
@@ -746,7 +753,8 @@ FUNCTION {format.names}
             { t "others" =
           t "~others" =
           or
-                { " " * bbl.etal * }
+%                { " " * bbl.etal * }
+                { " " * bbl.etal enclose.square.brackets * }
                 { ", " * t * }
               if$
             }
@@ -769,7 +777,7 @@ FUNCTION {format.names.rev}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{ff~}{~vv}{~ll}{, jj}" format.name$ 't := %First von Last,  Jr;
+      "{ff}{~vv}{~ll}{, jj}" format.name$ 't := %First von Last,  Jr;
       nameptr #1 >
         { nameptr #2 = % [это число]-1 = то количество ФИО, которое остаётся перед "и др."
           numnames #3 > and % [это число] = то количество ФИО, свыше которого начинают сокращать до  "и др."
@@ -782,7 +790,8 @@ FUNCTION {format.names.rev}
             { t "others" =
           t "~others" =
           or
-                { " " * bbl.etal * }
+%                { " " * bbl.etal * }
+                { " " * bbl.etal enclose.square.brackets * }
                 { ", " * t * }
               if$
             }
@@ -1582,7 +1591,8 @@ FUNCTION {online}
   title howpublished new.sentence.checkb
   format.title add.doi add.medium "title" output.check
   howpublished new.dblslash.checka
-  howpublished enclose.square.brackets output
+  howpublished output
+%  howpublished enclose.square.brackets output
   editor.organization.after
   new.sentence
   new.block
