@@ -301,7 +301,14 @@ FUNCTION {emphasizeii}
   if$
 }
 
-FUNCTION {enclose.square.brackets} { }
+%FUNCTION {enclose.square.brackets} { }
+
+FUNCTION {enclose.square.brackets}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "[" swap$ * "]" * }
+  if$
+}
 
 FUNCTION {bracify}
 { duplicate$ empty$
@@ -733,7 +740,7 @@ FUNCTION {format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{vv~}{ll}{~jj}{~ff}" format.name$ 't :=
+      "{vv~}{ll}{~jj}{~ff}" format.name$ 't := %% von Last Jr First;
       nameptr #1 >
         { nameptr #4 =
           numnames #4 > and
@@ -746,7 +753,8 @@ FUNCTION {format.names}
             { t "others" =
           t "~others" =
           or
-                { " " * bbl.etal * }
+%                { " " * bbl.etal * }
+                { " " * bbl.etal enclose.square.brackets * }
                 { ", " * t * }
               if$
             }
@@ -769,10 +777,10 @@ FUNCTION {format.names.rev}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{ff}{~vv}{~ll}{, jj}" format.name$ 't :=
+      "{ff}{~vv}{~ll}{, jj}" format.name$ 't := %First von Last,  Jr;
       nameptr #1 >
-        { nameptr #4 =
-          numnames #4 > and
+        { nameptr #2 = % [это число]-1 = то количество ФИО, которое остаётся перед "и др."
+          numnames #3 > and % [это число] = то количество ФИО, свыше которого начинают сокращать до  "и др."
             { "others" 't :=
               #1 'namesleft := }
             'skip$
@@ -782,7 +790,8 @@ FUNCTION {format.names.rev}
             { t "others" =
           t "~others" =
           or
-                { " " * bbl.etal * }
+%                { " " * bbl.etal * }
+                { " " * bbl.etal enclose.square.brackets * }
                 { ", " * t * }
               if$
             }
@@ -1186,7 +1195,7 @@ FUNCTION {author.after}
 {
   author empty$
     'skip$
-    {author num.names$ #3 >
+    {author num.names$ #3 > % свыше этого числа авторов их переносят направо после названия работы
       {format.authors.after output
        new.semicolumn }
       'skip$
@@ -1582,7 +1591,8 @@ FUNCTION {online}
   title howpublished new.sentence.checkb
   format.title add.doi add.medium "title" output.check
   howpublished new.dblslash.checka
-  howpublished enclose.square.brackets output
+  howpublished output
+%  howpublished enclose.square.brackets output
   editor.organization.after
   new.sentence
   new.block
