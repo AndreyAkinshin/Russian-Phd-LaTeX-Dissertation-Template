@@ -1961,7 +1961,7 @@ FUNCTION {begin.bib}
   "\providecommand*{\href}[2]{{\small #2}}"          write$ newline$
   "\providecommand*{\url}[1]{{\small #1}}"           write$ newline$
   "\providecommand*{\BibUrl}[1]{\url{#1}}"           write$ newline$
-  "\providecommand*{\BibDOI}[1]{DOI: \href{http://dx.doi.org/#1}{#1}}"           write$ newline$
+  "\providecommand*{\BibDOI}[1]{DOI: \href{http://dx.doi.org/#1}{\nolinkurl{#1}}}"           write$ newline$
   "\providecommand{\BibAnnote}[1]{}"                 write$ newline$
   "\providecommand*{\BibEmph}[1]{#1}"                write$ newline$
   "\providecommand*{\BibEmphi}[1]{#1}"                write$ newline$
