@@ -38,10 +38,8 @@
 \widowpenalty=10000
 
 %%% Библиография %%%
-\makeatletter
-\bibliographystyle{utf8gost71u}   % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
-\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку
-\makeatother
+\input{../biblio/bibliopreamble}    % Настройки библиографии из внешнего файла
+
 
 %%% Изображения %%%
 \graphicspath{{images/}}          % Пути к изображениям
