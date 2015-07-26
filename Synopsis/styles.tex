@@ -68,7 +68,7 @@
 %\captionsetup[subfloat]{font={font12pt}}                  % Шрифт подписи названий подрисунков (всегда 12pt)
 
 %%% Шаблон %%%
-\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\DeclareRobustCommand{\todo}{\textcolor{red}}              % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930/79756 , \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase
 
 %%% Списки %%%
 % Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)
