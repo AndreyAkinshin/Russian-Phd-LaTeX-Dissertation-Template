@@ -1,5 +1,6 @@
 ##LaTeX
 * [LaTeX](http://www.latex-project.org/)
+* [TeXLive](http://www.tug.org/texlive/index.html)
 * [MiKTeX](http://www.miktex.org/)
 * [TeX в ЯрГУ](http://www.tex.uniyar.ac.ru/soft.htm)
 
@@ -12,6 +13,7 @@
 * [Не очень краткое введение в LaTeX 2e](http://www.ccas.ru/voron/download/books/tex/oetiker99latex.pdf)
 * [Справочник по командам LaTeX 2e](http://grammarware.net/text/syutkin/TextInLaTeX.pdf)
 * [Набор математических формул в LaTeX 2e](http://grammarware.net/text/syutkin/MathInLaTeX.pdf)
+* [Памятка полному новичку системы LaTeX](http://kostyrka.ru/blog/archives/837)
 
 ##Редакторы
 * [TeXstudio](http://texstudio.sourceforge.net/)
