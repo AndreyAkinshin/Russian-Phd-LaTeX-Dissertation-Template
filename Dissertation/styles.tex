@@ -17,9 +17,6 @@
   \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 \fi
 
-%%% Интервалы %%%
-\linespread{1.3}                    % Полуторный интервал (ГОСТ Р 7.0.11-2011, 5.3.6)
-
 %%% Выравнивание и переносы %%%
 \sloppy                             % Избавляемся от переполнений
 \clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
@@ -31,7 +28,7 @@
 \renewcommand{\@biblabel}[1]{#1.}   % Заменяем библиографию с квадратных скобок на точку
 \makeatother
 %% Управление отступами между записями
-%% требует etoolbox 
+%% требует etoolbox
 %% http://tex.stackexchange.com/a/105642
 %\patchcmd\thebibliography
 % {\labelsep}
@@ -62,7 +59,7 @@
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}           % Буквенные номера подрисунков
 \captionsetup[subfloat]{font={normalsize},                % Шрифт подписи названий подрисунков (не отличается от основного)
     labelformat=brace,                                    % Формат обозначения подрисунка
-    justification=centering                               % Выключка подписей (форматирование), один из вариантов            
+    justification=centering                               % Выключка подписей (форматирование), один из вариантов
 }
 %\DeclareCaptionFont{font12pt}{\fontsize{12pt}{13pt}\selectfont} % объявляем шрифт 12pt для использования в подписях, тут же надо интерлиньяж объявлять, если не наследуется
 %\captionsetup[subfloat]{font={font12pt}}                  % Шрифт подписи названий подрисунков (всегда 12pt)
@@ -86,7 +83,7 @@
 
 %% Ниже закомментирован вариант, несоответствующий ГОСТ 7.0.11, в котором заголовки крупнее положенного размера в 12-14 пт
 %\ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
-%\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка оглавления 
+%\renewcommand{\cfttoctitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка оглавления
 %\fi
 
 %% Переносить слова в заголовке не допускается (ГОСТ Р 7.0.11-2011, 5.3.5). Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Прямого указания на запрет переносов в оглавлении нет, но по той же логике невнесения искажений в смысл, лучше в оглавлении не переносить:
@@ -114,8 +111,8 @@
 %% Ниже закомментирован вариант, несоответствующий ГОСТ 7.0.11, в котором заголовки крупнее положенного размера в 12-14 пт
 \ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
 %\renewcommand{\cftloftitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка рисунков
-%\renewcommand{\cftlottitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка таблиц 
-%\titleformat*{\chapter}{\LARGE\bfseries}            % Исправляем размер заголовка названий глав 
+%\renewcommand{\cftlottitlefont}{\LARGE\bfseries}    % Исправляем размер заголовка списка таблиц
+%\titleformat*{\chapter}{\LARGE\bfseries}            % Исправляем размер заголовка названий глав
 \setlength{\headheight}{17pt}                       % Исправляем высоту заголовка
 \else
 \setlength{\headheight}{15pt}                       % Исправляем высоту заголовка
@@ -127,7 +124,7 @@
 
 %%% Списки %%%
 % Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)
-\renewcommand{\labelitemi}{\normalfont\bfseries{--}} 
+\renewcommand{\labelitemi}{\normalfont\bfseries{--}}
 \setlist{nosep,%                                    % Единый стиль для всех списков (пакет enumitem), без дополнительных интервалов.
     labelindent=\parindent,leftmargin=*%            % Каждый пункт, подпункт и перечисление записывают с абзацного отступа (ГОСТ 2.105-95, 4.1.8)
 }
@@ -146,21 +143,21 @@
 %% Работа должна быть выполнена ... размером шрифта 12-14 пунктов (ГОСТ Р 7.0.11-2011, 5.3.8). То есть не должно быть надписей шрифтом более 14. Так и поставим.
 %% Эти установки будут давать одинаковый результат независимо от выбора базовым шрифтом 12 пт или 14 пт
 \titleformat{\chapter}[block]% default display;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5)
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
         {\thechapter}% Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Раз не фигурирует слово Глава в оглавлении, то и здесь не надо
         {1em}%
         {}%
 
 \titleformat{\section}[block]% default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5)
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
         {\thesection}% Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
         {1em}%
         {}%
 
 \titleformat{\subsection}[block]% default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5)
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
         {\thesubsection}% Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
         {1em}%
