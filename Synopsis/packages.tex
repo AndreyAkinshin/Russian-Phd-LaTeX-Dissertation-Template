@@ -2,60 +2,58 @@
 \usepackage{ifxetex}
 
 %%% Поля и разметка страницы %%%
-\usepackage{pdflscape}                             % Для включения альбомных страниц
-\usepackage{geometry}                              % Для последующего задания полей
+\usepackage{pdflscape}                              % Для включения альбомных страниц
+\usepackage{geometry}                               % Для последующего задания полей
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
 
 %%% Кодировки и шрифты %%%
 \ifxetex
-  \usepackage{polyglossia}                         % Поддержка многоязычности
-  \usepackage{fontspec}                            % TrueType-шрифты
+  \usepackage{polyglossia}                          % Поддержка многоязычности
+  \usepackage{fontspec}                             % TrueType-шрифты
 \else
-  \usepackage{cmap}                                % Улучшенный поиск русских слов в полученном pdf-файле
-  \usepackage[T2A]{fontenc}                        % Поддержка русских букв
-  \usepackage[utf8]{inputenc}                      % Кодировка utf8
-  \usepackage[english, russian]{babel}             % Языки: русский, английский
-  \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}   % Красивые русские шрифты
+  \usepackage{cmap}                                 % Улучшенный поиск русских слов в полученном pdf-файле
+  \usepackage[T2A]{fontenc}                         % Поддержка русских букв
+  \usepackage[utf8]{inputenc}                       % Кодировка utf8
+  \usepackage[english, russian]{babel}              % Языки: русский, английский
+  \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}    % Красивые русские шрифты
 \fi
 
 %%% Оформление абзацев %%%
-\usepackage{indentfirst}                           % Красная строка
+\usepackage{indentfirst}                            % Красная строка
 
 %%% Цвета %%%
 \usepackage[usenames]{color}
 \usepackage{colortbl}
 
 %%% Таблицы %%%
-\usepackage{longtable}                             % Длинные таблицы
-\usepackage{multirow,makecell,array}               % Улучшенное форматирование таблиц
+\usepackage{longtable}                              % Длинные таблицы
+\usepackage{multirow,makecell,array}                % Улучшенное форматирование таблиц
 \usepackage{booktabs}                               % Возможность оформления таблиц в классическом книжном стиле (при правильном использовании не противоречит ГОСТ)
 
 %%% Общее форматирование
-\usepackage[singlelinecheck=off,center]{caption}   % Многострочные подписи
-\usepackage{soulutf8}                                  % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
-\usepackage{icomma}                                % Запятая в десятичных дробях
+\usepackage{soulutf8}                               % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}                                 % Запятая в десятичных дробях
 
 %%% Библиография %%%
 \usepackage{cite}                                   % Красивые ссылки на литературу
 
 %%% Гиперссылки %%%
-\usepackage[plainpages=false,pdfpagelabels=false]{hyperref}
+\usepackage{hyperref}
 
 %%% Изображения %%%
-\usepackage{graphicx}                              % Подключаем пакет работы с графикой
+\usepackage{graphicx}                               % Подключаем пакет работы с графикой
 
 %%% Списки %%%
 \usepackage{enumitem}
 
 %%% Подписи %%%
-\usepackage[skip=2pt]{caption}                      % Для управления подписями (рисунков и таблиц) % Может управлять номерами рисунков и таблиц с caption %Иногда может управлять заголовками в списках рисунков и таблиц
-% skip = Вертикальная отбивка между подписью и содержимым рисунка или таблицы определяется ключом
+\usepackage{caption}                                % Для управления подписями (рисунков и таблиц) % Может управлять номерами рисунков и таблиц с caption %Иногда может управлять заголовками в списках рисунков и таблиц
 \usepackage{subcaption}                             % Работа с подрисунками и подобным
 
 %%% Интервалы %%%
-\usepackage[onehalfspacing]{setspace}              % Опция запуска пакета правит не только интервалы в обычном тексте, но и формульные
+\usepackage[onehalfspacing]{setspace}               % Опция запуска пакета правит не только интервалы в обычном тексте, но и формульные
 
 %%% Опционально %%%
 % Следующий пакет может быть полезен, если надо ужать текст, чтобы сам текст не править, но чтобы места он занимал поменьше
