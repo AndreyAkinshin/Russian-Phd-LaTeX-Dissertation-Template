@@ -35,6 +35,14 @@ $ sudo fc-cache -fv
 * диссертация: `latexmk -pdf -pdflatex="xelatex %O %S" dissertation`
 * автореферат: `latexmk -pdf -pdflatex="xelatex %O %S" synopsis`
 
+Либо можно использовать make-файлы: из корневого каталога
+выполнять
+
+* `make` для сборки диссертации,
+* `make synopsis` для сборки автореферата,
+
+либо в соответствующем каталоге (`Dissertation` или `Synopsis`) просто выполнять `make`.
+
 ## [Библиография](Bibliography.md)
 
 
