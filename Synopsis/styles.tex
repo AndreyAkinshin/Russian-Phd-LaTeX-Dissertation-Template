@@ -15,7 +15,6 @@
 %\paperheight=845pt
 \parindent=1.5cm                  % Размер табуляции (для красной строки) в начале каждого абзаца
 \renewcommand{\baselinestretch}{1.25}
-\newfloat{scheme}{tb}{sch}
 
 %%% Кодировки и шрифты %%%
 \ifxetex
@@ -33,16 +32,16 @@
 \fi
 
 %%% Выравнивание и переносы %%%
-\sloppy
-\clubpenalty=10000
-\widowpenalty=10000
+\sloppy                             % Избавляемся от переполнений
+\clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
 
 %%% Библиография %%%
 \input{../biblio/bibliopreamble}    % Настройки библиографии из внешнего файла
 
 
 %%% Изображения %%%
-\graphicspath{{images/}}          % Пути к изображениям
+\graphicspath{{images/}}            % Пути к изображениям
 
 %%% Рисунки %%%
 \DeclareCaptionLabelSeparator*{emdash}{~--- }             % (ГОСТ 2.105, 4.3.1)
@@ -58,7 +57,7 @@
 
 %%% Подписи %%%
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}           % Буквенные номера подрисунков
-\captionsetup[subfloat]{font={normalsize},                % Шрифт подписи названий подрисунков (не отличается от основного)
+\captionsetup[subfigure]{font={normalsize},                % Шрифт подписи названий подрисунков (не отличается от основного)
     labelformat=brace,                                    % Формат обозначения подрисунка
     justification=centering                               % Выключка подписей (форматирование), один из вариантов            
 }

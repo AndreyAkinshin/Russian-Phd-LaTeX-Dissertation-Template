@@ -26,13 +26,13 @@
   \label{img:knuth}  
 \end{figure}
 
-Те~же~две картинки под~общим номером и~названием, но с автоматизированной нумерацей подрисунков посредством пакета \verb|subfig|:
+Те~же~две картинки под~общим номером и~названием, но с автоматизированной нумерацей подрисунков посредством пакета \verb|subcaption|:
 \begin{figure}[ht]
     \center{
         \hfill
-        \subfloat[Первый подрисунок] {\includegraphics[width=0.25\linewidth]{knuth1} \label{img:knuth_2_1}}%
+        \subcaptionbox[List-of-Figures entry]{Первый подрисунок\label{img:knuth_2_1}} {\includegraphics[width=0.25\linewidth]{knuth1}}%
         \hfill       
-        \subfloat[Второй подрисунок] {\includegraphics[width=0.25\linewidth]{knuth2} \label{img:knuth_2_2}}
+        \subcaptionbox{Второй подрисунок\label{img:knuth_2_2}} {\includegraphics[width=0.25\linewidth]{knuth2}}
         \hfill
     }
     
