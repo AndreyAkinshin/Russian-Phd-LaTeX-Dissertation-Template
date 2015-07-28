@@ -1,0 +1,113 @@
+%%% Реализация библиографии пакетами biblatex и biblatex-gost с использованием движка biber %%%
+
+\usepackage{csquotes}
+
+%%% Загрузка пакета с основными настройками %%%
+\usepackage[%
+backend=biber,% движок
+bibencoding=utf8,% кодировка bib файла
+sorting=none,% настройка сортировки списка литературы
+style=gost-numeric,% стиль цитирования и библиографии (по ГОСТ)
+language=auto,% получение языка из babel/polyglossia
+autolang=other,% многоязычная библиография
+clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
+defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
+sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
+]{biblatex}
+
+
+
+%http://tex.stackexchange.com/a/141831/79756
+%There is a way to automatically map the language field to the langid field. The following lines in the preamble should be enough to do that.
+%This command will copy the language field into the langid field and will then delete the contents of the language field. The language field will only be deleted if it was successfully copied into the langid field.
+\DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex 
+    \maps{
+        \map{% перекидываем значения полей language в поля langid, которыми пользуется biblatex
+            \step[fieldsource=language, fieldset=langid, origfieldval, final]
+            \step[fieldset=language, null]
+        }
+        \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
+            \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
+            \step[fieldset=pagestotal, null]
+        }
+        \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media. которым пользуется biblatex в значение eresource
+            \step[fieldsource=medium,
+            match=\regexp{Электронный\s+ресурс},
+            final]
+            \step[fieldset=media, fieldvalue=eresource]
+        }
+        \map[overwrite]{% стираем значения всех полей issn
+            \step[fieldset=issn, null]
+        }
+        \map[overwrite]{% стираем значения всех полей abstract, поскольку ими не пользуемся, а там бывают "неприятные" латеху символы
+            \step[fieldsource=abstract]
+            \step[fieldset=abstract,null]
+        }
+        \map[overwrite]{ % переделка формата записи даты
+            \step[fieldsource=urldate,
+            match=\regexp{([0-9]{2})\.([0-9]{2})\.([0-9]{4})},
+            replace={$3-$2-$1$4}, % $4 вставлен исключительно ради нормальной работы программ подсветки синтаксиса, которые некорректно обрабатывают $ в таких конструкциях
+            final]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{../biblio/authorpapersVAK.bib}
+            \perdatasource{../biblio/authorpapers.bib}
+            \perdatasource{../biblio/authorconferences.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthor}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{../biblio/othercites.bib}
+            \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{../biblio/othercites.bib}
+            \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
+        }
+    }
+}
+
+\newbibmacro{string+doi}[1]{% новая макрокоманда на простановку ссылки на doi
+    \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+
+\renewcommand*{\mkgostheading}[1]{\usebibmacro{string+doi}{#1}} % ссылка на doi с авторов. стоящих впереди записи
+\DeclareFieldFormat{title}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия работы
+\DeclareFieldFormat{journaltitle}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия журнала
+
+%%% Подключение файлов bib %%%
+\addbibresource{../biblio/othercites.bib}
+\addbibresource{../biblio/authorpapersVAK.bib}
+\addbibresource{../biblio/authorpapers.bib}
+\addbibresource{../biblio/authorconferences.bib}
+
+
+%% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
+%http://tex.stackexchange.com/a/66851/79756
+%\newcounter{citenum}
+\newtotcounter{citenum}
+\makeatletter
+\defbibenvironment{counter}
+  {\setcounter{citenum}{0}
+  \renewcommand{\blx@driver}[1]{}
+  }
+  {} %\thecitenum сюда писать не надо
+  {\stepcounter{citenum}}
+\makeatother
+\defbibheading{counter}{}
+
+%%% Создание команд для вывода списка литературы %%%
+\newcommand*{\insertbibliofull}{
+\printbibliography[keyword=bibliofull]
+\printbibliography[heading=counter,env=counter,keyword=bibliofull]
+}
+
+\newcommand*{\insertbiblioauthor}{
+\printbibliography[keyword=biblioauthor]
+\printbibliography[heading=counter,env=counter,keyword=biblioauthor]
+}
+
+\newcommand*{\insertbiblioother}{
+\printbibliography[keyword=biblioother]
+\printbibliography[heading=counter,env=counter,keyword=biblioother]
+}
+
+
