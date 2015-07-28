@@ -27,3 +27,5 @@
 *.mtc
 *.mtc0
 *.bak
+*.bcf
+*.run.xml
