@@ -1,0 +1,46 @@
+%%% Реализация библиографии встроенными средствами посредством движка bibtex8 %%%
+
+%%% Пакеты %%%
+\usepackage{cite}                                   % Красивые ссылки на литературу
+
+
+%%% Стили %%%
+\bibliographystyle{../BibTeX-Styles/utf8gost71u}    % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}   % Заменяем библиографию с квадратных скобок на точку
+\makeatother
+%% Управление отступами между записями
+%% требует etoolbox 
+%% http://tex.stackexchange.com/a/105642
+%\patchcmd\thebibliography
+% {\labelsep}
+% {\labelsep\itemsep=5pt\parsep=0pt\relax}
+% {}
+% {\typeout{Couldn't patch the command}}
+
+%%% Цитирование %%%
+\renewcommand\citepunct{;\penalty\citepunctpenalty%
+    \hskip.13emplus.1emminus.1em\relax}                % Разделение ; при перечислении ссылок (ГОСТ Р 7.0.5-2008)
+
+
+%%% Создание команд для вывода списка литературы %%%
+\newcommand*{\insertbibliofull}{
+\bibliography{../biblio/othercites,../biblio/authorpapersVAK,../biblio/authorpapers,../biblio/authorconferences}         % Подключаем BibTeX-базы % После запятых не должно быть лишних пробелов — он "думает", что это тоже имя пути
+}
+
+\newcommand*{\insertbiblioauthor}{
+\bibliography{../biblio/authorpapersVAK,../biblio/authorpapers,../biblio/authorconferences}         % Подключаем BibTeX-базы % После запятых не должно быть лишних пробелов — он "думает", что это тоже имя пути
+}
+
+\newcommand*{\insertbiblioother}{
+\bibliography{../biblio/othercites}         % Подключаем BibTeX-базы
+}
+
+
+%% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
+%% Требуется дважды компилировать, поскольку ему нужно считать актуальный внешний файл со списком литературы
+\newtotcounter{citenum}
+\def\oldcite{}
+\let\oldcite=\bibcite
+\def\bibcite{\stepcounter{citenum}\oldcite}
