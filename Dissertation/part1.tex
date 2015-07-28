@@ -51,10 +51,10 @@ $$
 \subsection{Ненумерованные многострочные формулы} \label{subsect1_3_2}
 
 Вот так можно написать две формулы, не нумеруя их, чтобы знаки равно были строго друг под другом:
-\begin{eqnarray}
-  f_W & = & \min \left( 1, \max \left( 0, \frac{W_{soil} / W_{max}}{W_{crit}} \right)  \right), \nonumber \\
-  f_T & = & \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
-\end{eqnarray}
+\begin{align}
+  f_W & =  \min \left( 1, \max \left( 0, \frac{W_{soil} / W_{max}}{W_{crit}} \right)  \right), \nonumber \\
+  f_T & =  \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
+\end{align}
 
 Выровнять систему ещё и по переменной $ x $ можно, используя окружение \verb|alignedat| из пакета \verb|amsmath|. Вот так: 
 \[
@@ -77,11 +77,11 @@ $$
 \]
 
 Можно использовать разные математические алфавиты:
-\begin{eqnarray}
+\begin{align}
 \mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
 \mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
 \mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber
-\end{eqnarray}
+\end{align}
 
 Посмотрим на систему уравнений на примере аттрактора Лоренца:
 

@@ -18,7 +18,7 @@
 {\bf \LARGE \thesisTitle \par}
 
 \vspace{30mm}
-{\Large Специальность \thesisSpecialtyNumber~---\par <<\thesisSpecialtyTitle>>}
+{\Large Специальность \thesisSpecialtyNumber\ "---\par <<\thesisSpecialtyTitle>>}
 
 \vspace{15mm}
 \LARGE{Автореферат}\par
@@ -27,7 +27,7 @@
 
 \vspace{40mm}
 \begin{center}
-{\Large{\thesisCity~--- \thesisYear}}
+{\Large{\thesisCity\ "--- \thesisYear}}
 \end{center}
 
 \newpage
@@ -35,34 +35,24 @@
 \thispagestyle{empty}
 \noindent Работа выполнена в \thesisOrganization
 
-\begin{table} [h]  
-  \begin{tabular}{ll}  
-   \makecell[l]{\sfs Научный руководитель:\\~} &
-   \makecell*[{{p{11cm}}}]{\sfs
-   \supervisorRegalia \\ \textbf{\sfs \supervisorFio}}
-      
-\vspace{3mm} \\
-
-   \makecell[l]{\sfs Официальные оппоненты:} &
-   \makecell*[{{p{11cm}}}]{\sfs \textbf{\opponentOneFio,}} \\
-   &
-   \makecell[{{p{11cm}}}]{
-   	\sfs \opponentOneRegalia, \\
-   	\sfs \opponentOneJobPlace, \\
-   	\sfs \opponentOneJobPost \vspace{3mm} \\
-   	\sfs \textbf{\opponentTwoFio,} \vspace{1mm}\\
-   	\sfs \opponentTwoRegalia, \\
-   	\sfs \opponentTwoJobPlace, \\
-   	\sfs \opponentTwoJobPost
-   }
-
-\vspace{3mm} \\
-
-   \makecell[l]{\sfs Ведущая организация: \leadingOrganizationLines} &
-   \makecell*[{{p{11cm}}}]{\sfs
-   \leadingOrganizationTitle
-   }
-  \end{tabular}  
+\begin{table}[h]  
+    \begin{tabular}{@{}lp{11cm}}
+        \sfs Научный руководитель: & \sfs \supervisorRegalia \par
+                                      \textbf{\supervisorFio}
+        \vspace{4mm} \\
+        {\sfs Официальные оппоненты:} &
+        {\sfs \textbf{\opponentOneFio,}\par
+                  \opponentOneRegalia,\par
+                  \opponentOneJobPlace,\par
+                  \opponentOneJobPost\par \vspace{3mm}
+                  \textbf{\opponentTwoFio,}\par \vspace{1mm}
+                  \opponentTwoRegalia,\par
+                  \opponentTwoJobPlace,\par
+                  \opponentTwoJobPost
+        }
+        \vspace{4mm} \\
+        {\sfs Ведущая организация:} & {\sfs \leadingOrganizationTitle }
+    \end{tabular}  
 \end{table}
 
 \noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~на базе \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
@@ -75,20 +65,22 @@
 
 \vspace{5mm}
 \begin{table} [h]
-  \begin{tabular}{p{8cm}cr}
-    \begin{tabular}{p{8cm}}
-      \sfs Ученый секретарь  \\
-      \sfs диссертационного совета  \\
-      \sfs \defenseCouncilNumber, \defenseSecretaryRegalia
-    \end{tabular} 
-    & \begin{tabular}{c}
-       \includegraphics[height=1cm]{secretary-signature} 
-    \end{tabular} 
-    & \begin{tabular}{r}
-       \\
-       \\
-       \sfs \defenseSecretaryFio
-    \end{tabular} 
-  \end{tabular}
+    \begin{tabular}{p{8cm}cr}
+        \begin{tabular}{p{8cm}}
+            \sfs Ученый секретарь  \\
+            \sfs диссертационного совета  \\
+            \sfs \defenseCouncilNumber, \defenseSecretaryRegalia
+        \end{tabular} 
+    &
+        \begin{tabular}{c}
+            \includegraphics[height=1cm]{secretary-signature} 
+        \end{tabular} 
+    &
+        \begin{tabular}{r}
+            \\
+            \\
+            \sfs \defenseSecretaryFio
+        \end{tabular} 
+    \end{tabular}
 \end{table}
 \newpage

@@ -15,7 +15,6 @@
 %\paperheight=845pt
 \parindent=1.5cm                  % Размер табуляции (для красной строки) в начале каждого абзаца
 \renewcommand{\baselinestretch}{1.25}
-\newfloat{scheme}{tb}{sch}
 
 %%% Кодировки и шрифты %%%
 \ifxetex
@@ -33,18 +32,23 @@
 \fi
 
 %%% Выравнивание и переносы %%%
-\sloppy
-\clubpenalty=10000
-\widowpenalty=10000
+\sloppy                             % Избавляемся от переполнений
+\clubpenalty=10000                  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000                 % Запрещаем разрыв страницы после последней строки абзаца
 
 %%% Библиография %%%
-\makeatletter
-\bibliographystyle{utf8gost71u}   % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
-\renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку
-\makeatother
+\input{../biblio/bibliopreamble}    % Настройки библиографии из внешнего файла
+
 
 %%% Изображения %%%
-\graphicspath{{images/}}          % Пути к изображениям
+\graphicspath{{images/}}            % Пути к изображениям
+
+%%% Подписи %%%
+\captionsetup{%
+singlelinecheck=off,                % Многострочные подписи, например у таблиц
+skip=2pt,                           % Вертикальная отбивка между подписью и содержимым рисунка или таблицы определяется ключом
+justification=centering,            % Центрирование подписей, заданных командой \caption
+}
 
 %%% Рисунки %%%
 \DeclareCaptionLabelSeparator*{emdash}{~--- }             % (ГОСТ 2.105, 4.3.1)
@@ -52,23 +56,38 @@
 
 %%% Таблицы %%%
 \DeclareCaptionFormat{tablecaption}{\raggedleft #1#2\\%   % Идентификатор таблицы справа, на отдельной строке
-    \centering{#3}}                                           % Наименование таблицы строкой ниже и центрировано, без переносов
+    \centering{#3}}                                       % Наименование таблицы строкой ниже и центрировано, без переносов
 \DeclareCaptionFormat{tablenocaption}{\raggedleft #1#2%   % Идентификатор таблицы справа, на отдельной строке
 }                                                         % Наименование таблицы отсутствует
 \captionsetup[table]{format=tablecaption,labelsep=space,singlelinecheck=off,font=onehalfspacing,position=top}  % пробельный разделитьель идентификатора с номером от наименования, многострочные наименования и прочее
 \DeclareCaptionLabelFormat{continued}{Продолжение таблицы~#2}
 
-%%% Подписи %%%
+%%% Подписи подрисунков %%%
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}           % Буквенные номера подрисунков
-\captionsetup[subfloat]{font={normalsize},                % Шрифт подписи названий подрисунков (не отличается от основного)
+\captionsetup[subfigure]{font={normalsize},               % Шрифт подписи названий подрисунков (не отличается от основного)
     labelformat=brace,                                    % Формат обозначения подрисунка
-    justification=centering                               % Выключка подписей (форматирование), один из вариантов            
+    justification=centering,                              % Выключка подписей (форматирование), один из вариантов            
 }
 %\DeclareCaptionFont{font12pt}{\fontsize{12pt}{13pt}\selectfont} % объявляем шрифт 12pt для использования в подписях, тут же надо интерлиньяж объявлять, если не наследуется
-%\captionsetup[subfloat]{font={font12pt}}                  % Шрифт подписи названий подрисунков (всегда 12pt)
+%\captionsetup[subfigure]{font={font12pt}}                 % Шрифт подписи названий подрисунков (всегда 12pt)
+
+%%% Цвета гиперссылок %%%
+\definecolor{linkcolor}{rgb}{0.9,0,0}
+\definecolor{citecolor}{rgb}{0,0.6,0}
+\definecolor{urlcolor}{rgb}{0,0,1}
+
+%%% Настройки гиперссылок %%%
+\hypersetup{
+%    pdfpagelabels=false,        % set PDF page labels (true|false)
+    plainpages=false,           % Forces page anchors to be named by the Arabic form  of the page number, rather than the formatted form
+    colorlinks,                 % ссылки отображаются раскрашенным текстом, а не раскрашенным прямоугольником, вокруг текста
+    linkcolor={linkcolor},      % цвет ссылок типа ref, eqref и подобных
+    citecolor={citecolor},      % цвет ссылок-цитат
+    urlcolor={urlcolor},        % цвет гиперссылок
+}
 
 %%% Шаблон %%%
-\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\DeclareRobustCommand{\todo}{\textcolor{red}}       % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930/79756 , \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase
 
 %%% Списки %%%
 % Используем дефис для ненумерованных списков (ГОСТ 2.105-95, 4.1.7)

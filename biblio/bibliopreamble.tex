@@ -1,0 +1,12 @@
+\makeatletter
+\bibliographystyle{../BibTeX-Styles/utf8gost71u}     % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
+\renewcommand{\@biblabel}[1]{#1.}   % Заменяем библиографию с квадратных скобок на точку
+\makeatother
+%% Управление отступами между записями
+%% требует etoolbox 
+%% http://tex.stackexchange.com/a/105642
+%\patchcmd\thebibliography
+% {\labelsep}
+% {\labelsep\itemsep=5pt\parsep=0pt\relax}
+% {}
+% {\typeout{Couldn't patch the command}}

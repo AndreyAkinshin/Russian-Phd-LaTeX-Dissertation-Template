@@ -52,7 +52,7 @@
 \underline{\textbf{Первая глава}} посвящена ...
 
  картинку можно добавить так:
-\begin{figure}[h] 
+\begin{figure}[ht] 
   \center
   \includegraphics [scale=0.27] {latex}
   \caption{Подпись к картинке.} 
@@ -83,4 +83,4 @@ $$
 %\newpage
 \renewcommand{\refname}{\Large Публикации автора по теме диссертации}
 \nocite{*}
-\bibliography{biblio}
+\bibliography{../biblio/authorpapersVAK,../biblio/authorpapers,../biblio/authorconferences} % После запятых не должно быть лишних пробелов — он "думает". что это тоже имя пути
