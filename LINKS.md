@@ -14,6 +14,7 @@
 * [Справочник по командам LaTeX 2e](http://grammarware.net/text/syutkin/TextInLaTeX.pdf)
 * [Набор математических формул в LaTeX 2e](http://grammarware.net/text/syutkin/MathInLaTeX.pdf)
 * [Памятка полному новичку системы LaTeX](http://kostyrka.ru/blog/archives/837)
+* [What are the most common mistakes that beginners of (La)TeX and Friends make?](http://tex.stackexchange.com/questions/139873/what-are-the-most-common-mistakes-that-beginners-of-latex-and-friends-make)
 
 ##Редакторы
 * [TeXstudio](http://texstudio.sourceforge.net/)
