@@ -8,12 +8,12 @@
 
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
-{\large\bf{\thesisAuthor}}
+\textbf {\large \thesisAuthor}
 \end{center}
 
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
-{\bf \Large \thesisTitle}
+\textbf {\Large \thesisTitle}
 
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 {\large Специальность \thesisSpecialtyNumber\ "---\par <<\thesisSpecialtyTitle>>}
@@ -33,7 +33,9 @@
 \thispagestyle{empty}
 \noindent Работа выполнена в \thesisOrganization
 
-\begin{table}[h]  
+\par\bigskip
+%\begin{table}[h] % считается не очень правильным использовать окружение table, не задавая caption
+    \noindent%
     \begin{tabular}{@{}lp{11cm}}
         \sfs Научный руководитель: & \sfs \supervisorRegalia \par
                                       \textbf{\supervisorFio}
@@ -51,7 +53,8 @@
         \vspace{4mm} \\
         {\sfs Ведущая организация:} & {\sfs \leadingOrganizationTitle }
     \end{tabular}  
-\end{table}
+%\end{table}
+\par\bigskip
 
 \noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~на базе \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
 
@@ -62,7 +65,9 @@
 \noindent{Автореферат разослан \synopsisDate.}
 
 \vspace{5mm}
-\begin{table} [h]
+%\begin{table} [h] % считается не очень правильным использовать окружение table, не задавая caption
+\par\bigskip
+    \noindent%
     \begin{tabular}{p{8cm}cr}
         \begin{tabular}{p{8cm}}
             \sfs Ученый секретарь  \\
@@ -80,5 +85,5 @@
             \sfs \defenseSecretaryFio
         \end{tabular} 
     \end{tabular}
-\end{table}
+%\end{table}
 \newpage
