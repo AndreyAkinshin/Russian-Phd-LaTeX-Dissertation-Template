@@ -1,0 +1,9 @@
+% для вертикального центрирования ячеек в tabulary
+\def\zz{\ifx\[$\else\aftergroup\zzz\fi}
+\def\zzz{\setbox0\lastbox
+\dimen0\dimexpr\extrarowheight + \ht0-\dp0\relax
+\setbox0\hbox{\raise-.5\dimen0\box0}%
+\ht0=\dimexpr\ht0+\extrarowheight\relax
+\dp0=\dimexpr\dp0+\extrarowheight\relax 
+\box0
+}
