@@ -7,3 +7,273 @@
 \dp0=\dimexpr\dp0+\extrarowheight\relax 
 \box0
 }
+
+
+
+\lstdefinelanguage{Renhanced}%
+{keywords={abbreviate,abline,abs,acos,acosh,action,add1,add,%
+        aggregate,alias,Alias,alist,all,anova,any,aov,aperm,append,apply,%
+        approx,approxfun,apropos,Arg,args,array,arrows,as,asin,asinh,%
+        atan,atan2,atanh,attach,attr,attributes,autoload,autoloader,ave,%
+        axis,backsolve,barplot,basename,besselI,besselJ,besselK,besselY,%
+        beta,binomial,body,box,boxplot,break,browser,bug,builtins,bxp,by,%
+        c,C,call,Call,case,cat,category,cbind,ceiling,character,char,%
+        charmatch,check,chol,chol2inv,choose,chull,class,close,cm,codes,%
+        coef,coefficients,co,col,colnames,colors,colours,commandArgs,%
+        comment,complete,complex,conflicts,Conj,contents,contour,%
+        contrasts,contr,control,helmert,contrib,convolve,cooks,coords,%
+        distance,coplot,cor,cos,cosh,count,fields,cov,covratio,wt,CRAN,%
+        create,crossprod,cummax,cummin,cumprod,cumsum,curve,cut,cycle,D,%
+        data,dataentry,date,dbeta,dbinom,dcauchy,dchisq,de,debug,%
+        debugger,Defunct,default,delay,delete,deltat,demo,de,density,%
+        deparse,dependencies,Deprecated,deriv,description,detach,%
+        dev2bitmap,dev,cur,deviance,off,prev,,dexp,df,dfbetas,dffits,%
+        dgamma,dgeom,dget,dhyper,diag,diff,digamma,dim,dimnames,dir,%
+        dirname,dlnorm,dlogis,dnbinom,dnchisq,dnorm,do,dotplot,double,%
+        download,dpois,dput,drop,drop1,dsignrank,dt,dummy,dump,dunif,%
+        duplicated,dweibull,dwilcox,dyn,edit,eff,effects,eigen,else,%
+        emacs,end,environment,env,erase,eval,equal,evalq,example,exists,%
+        exit,exp,expand,expression,External,extract,extractAIC,factor,%
+        fail,family,fft,file,filled,find,fitted,fivenum,fix,floor,for,%
+        For,formals,format,formatC,formula,Fortran,forwardsolve,frame,%
+        frequency,ftable,ftable2table,function,gamma,Gamma,gammaCody,%
+        gaussian,gc,gcinfo,gctorture,get,getenv,geterrmessage,getOption,%
+        getwd,gl,glm,globalenv,gnome,GNOME,graphics,gray,grep,grey,grid,%
+        gsub,hasTsp,hat,heat,help,hist,home,hsv,httpclient,I,identify,if,%
+        ifelse,Im,image,\%in\%,index,influence,measures,inherits,install,%
+        installed,integer,interaction,interactive,Internal,intersect,%
+        inverse,invisible,IQR,is,jitter,kappa,kronecker,labels,lapply,%
+        layout,lbeta,lchoose,lcm,legend,length,levels,lgamma,library,%
+        licence,license,lines,list,lm,load,local,locator,log,log10,log1p,%
+        log2,logical,loglin,lower,lowess,ls,lsfit,lsf,ls,machine,Machine,%
+        mad,mahalanobis,make,link,margin,match,Math,matlines,mat,matplot,%
+        matpoints,matrix,max,mean,median,memory,menu,merge,methods,min,%
+        missing,Mod,mode,model,response,mosaicplot,mtext,mvfft,na,nan,%
+        names,omit,nargs,nchar,ncol,NCOL,new,next,NextMethod,nextn,%
+        nlevels,nlm,noquote,NotYetImplemented,NotYetUsed,nrow,NROW,null,%
+        numeric,\%o\%,objects,offset,old,on,Ops,optim,optimise,optimize,%
+        options,or,order,ordered,outer,package,packages,page,pairlist,%
+        pairs,palette,panel,par,parent,parse,paste,path,pbeta,pbinom,%
+        pcauchy,pchisq,pentagamma,persp,pexp,pf,pgamma,pgeom,phyper,pico,%
+        pictex,piechart,Platform,plnorm,plogis,plot,pmatch,pmax,pmin,%
+        pnbinom,pnchisq,pnorm,points,poisson,poly,polygon,polyroot,pos,%
+        postscript,power,ppoints,ppois,predict,preplot,pretty,Primitive,%
+        print,prmatrix,proc,prod,profile,proj,prompt,prop,provide,%
+        psignrank,ps,pt,ptukey,punif,pweibull,pwilcox,q,qbeta,qbinom,%
+        qcauchy,qchisq,qexp,qf,qgamma,qgeom,qhyper,qlnorm,qlogis,qnbinom,%
+        qnchisq,qnorm,qpois,qqline,qqnorm,qqplot,qr,Q,qty,qy,qsignrank,%
+        qt,qtukey,quantile,quasi,quit,qunif,quote,qweibull,qwilcox,%
+        rainbow,range,rank,rbeta,rbind,rbinom,rcauchy,rchisq,Re,read,csv,%
+        csv2,fwf,readline,socket,real,Recall,rect,reformulate,regexpr,%
+        relevel,remove,rep,repeat,replace,replications,report,require,%
+        resid,residuals,restart,return,rev,rexp,rf,rgamma,rgb,rgeom,R,%
+        rhyper,rle,rlnorm,rlogis,rm,rnbinom,RNGkind,rnorm,round,row,%
+        rownames,rowsum,rpois,rsignrank,rstandard,rstudent,rt,rug,runif,%
+        rweibull,rwilcox,sample,sapply,save,scale,scan,scan,screen,sd,se,%
+        search,searchpaths,segments,seq,sequence,setdiff,setequal,set,%
+        setwd,show,sign,signif,sin,single,sinh,sink,solve,sort,source,%
+        spline,splinefun,split,sqrt,stars,start,stat,stem,step,stop,%
+        storage,strstrheight,stripplot,strsplit,structure,strwidth,sub,%
+        subset,substitute,substr,substring,sum,summary,sunflowerplot,svd,%
+        sweep,switch,symbol,symbols,symnum,sys,status,system,t,table,%
+        tabulate,tan,tanh,tapply,tempfile,terms,terrain,tetragamma,text,%
+        time,title,topo,trace,traceback,transform,tri,trigamma,trunc,try,%
+        ts,tsp,typeof,unclass,undebug,undoc,union,unique,uniroot,unix,%
+        unlink,unlist,unname,untrace,update,upper,url,UseMethod,var,%
+        variable,vector,Version,vi,warning,warnings,weighted,weights,%
+        which,while,window,write,\%x\%,x11,X11,xedit,xemacs,xinch,xor,%
+        xpdrows,xy,xyinch,yinch,zapsmall,zip},%
+    otherkeywords={!,!=,~,$,*,\%,\&,\%/\%,\%*\%,\%\%,<-,<<-},%
+    alsoother={._$},%
+    sensitive,%
+    morecomment=[l]\#,%
+    morestring=[d]",%
+    morestring=[d]'% 2001 Robert Denham
+}%
+
+%решаем проблему с кириллицей в комментариях (в pdflatex) https://tex.stackexchange.com/a/103712/79756
+\lstset{extendedchars=true,literate={Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+    {а}{{\selectfont\char224}}1
+    {б}{{\selectfont\char225}}1
+    {в}{{\selectfont\char226}}1
+    {г}{{\selectfont\char227}}1
+    {д}{{\selectfont\char228}}1
+    {е}{{\selectfont\char229}}1
+    {ё}{{\"e}}1
+    {ж}{{\selectfont\char230}}1
+    {з}{{\selectfont\char231}}1
+    {и}{{\selectfont\char232}}1
+    {й}{{\selectfont\char233}}1
+    {к}{{\selectfont\char234}}1
+    {л}{{\selectfont\char235}}1
+    {м}{{\selectfont\char236}}1
+    {н}{{\selectfont\char237}}1
+    {о}{{\selectfont\char238}}1
+    {п}{{\selectfont\char239}}1
+    {р}{{\selectfont\char240}}1
+    {с}{{\selectfont\char241}}1
+    {т}{{\selectfont\char242}}1
+    {у}{{\selectfont\char243}}1
+    {ф}{{\selectfont\char244}}1
+    {х}{{\selectfont\char245}}1
+    {ц}{{\selectfont\char246}}1
+    {ч}{{\selectfont\char247}}1
+    {ш}{{\selectfont\char248}}1
+    {щ}{{\selectfont\char249}}1
+    {ъ}{{\selectfont\char250}}1
+    {ы}{{\selectfont\char251}}1
+    {ь}{{\selectfont\char252}}1
+    {э}{{\selectfont\char253}}1
+    {ю}{{\selectfont\char254}}1
+    {я}{{\selectfont\char255}}1
+    {А}{{\selectfont\char192}}1
+    {Б}{{\selectfont\char193}}1
+    {В}{{\selectfont\char194}}1
+    {Г}{{\selectfont\char195}}1
+    {Д}{{\selectfont\char196}}1
+    {Е}{{\selectfont\char197}}1
+    {Ё}{{\"E}}1
+    {Ж}{{\selectfont\char198}}1
+    {З}{{\selectfont\char199}}1
+    {И}{{\selectfont\char200}}1
+    {Й}{{\selectfont\char201}}1
+    {К}{{\selectfont\char202}}1
+    {Л}{{\selectfont\char203}}1
+    {М}{{\selectfont\char204}}1
+    {Н}{{\selectfont\char205}}1
+    {О}{{\selectfont\char206}}1
+    {П}{{\selectfont\char207}}1
+    {Р}{{\selectfont\char208}}1
+    {С}{{\selectfont\char209}}1
+    {Т}{{\selectfont\char210}}1
+    {У}{{\selectfont\char211}}1
+    {Ф}{{\selectfont\char212}}1
+    {Х}{{\selectfont\char213}}1
+    {Ц}{{\selectfont\char214}}1
+    {Ч}{{\selectfont\char215}}1
+    {Ш}{{\selectfont\char216}}1
+    {Щ}{{\selectfont\char217}}1
+    {Ъ}{{\selectfont\char218}}1
+    {Ы}{{\selectfont\char219}}1
+    {Ь}{{\selectfont\char220}}1
+    {Э}{{\selectfont\char221}}1
+    {Ю}{{\selectfont\char222}}1
+    {Я}{{\selectfont\char223}}1
+    {і}{{\selectfont\char105}}1
+    {ї}{{\selectfont\char168}}1
+    {є}{{\selectfont\char185}}1
+    {ґ}{{\selectfont\char160}}1
+    {І}{{\selectfont\char73}}1
+    {Ї}{{\selectfont\char136}}1
+    {Є}{{\selectfont\char153}}1
+    {Ґ}{{\selectfont\char128}}1
+}
+
+% Ширина текста минус ширина надписи 999
+\newlength{\twless}
+\newlength{\lmarg}
+\setlength{\lmarg}{\widthof{999}}   % ширина надписи 999
+\setlength{\twless}{\textwidth-\lmarg}
+
+
+\lstset{ %
+%    language=R,                     %  Язык указать здесь, если во всех листингах преимущественно один язык, в результате часть настроек может пойти только для этого языка
+    numbers=left,                   % where to put the line-numbers
+    numberstyle=\fontsize{12pt}{14pt}\selectfont\color{Gray},  % the style that is used for the line-numbers
+    firstnumber=2,                  % в этой и следующей строках задаётся поведение нумерации 5, 10, 15...
+    stepnumber=5,                   % the step between two line-numbers. If it's 1, each line will be numbered
+    numbersep=5pt,                  % how far the line-numbers are from the code
+    backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    frame=leftline,                 % adds a frame of different types around the code
+    rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+    tabsize=2,                      % sets default tabsize to 2 spaces
+    captionpos=t,                   % sets the caption-position to top
+    breaklines=true,                % sets automatic line breaking
+    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+%    title=\lstname,                 % show the filename of files included with \lstinputlisting;
+    % also try caption instead of title
+    basicstyle=\fontsize{12pt}{14pt}\selectfont\ttfamily,% the size of the fonts that are used for the code
+%    keywordstyle=\color{blue},      % keyword style
+    commentstyle=\color{ForestGreen}\emph,% comment style
+    stringstyle=\color{Mahogany},   % string literal style
+    escapeinside={\%*}{*)},         % if you want to add a comment within your code
+    morekeywords={*,...},           % if you want to add more keywords to the set
+    inputencoding=utf8,             % кодировка кода
+    xleftmargin={\lmarg},           % Чтобы весь код и полоска с номерами строк была смещена влево, так чтобы цифры не вылезали за пределы текста слева
+} 
+
+%http://tex.stackexchange.com/questions/26872/smaller-frame-with-listings
+% Окружение, чтобы листинг был компактнее обведен рамкой, если она задается, а не на всю ширину текста
+\makeatletter
+\newenvironment{SmallListing}[1][]
+{\lstset{#1}\VerbatimEnvironment\begin{VerbatimOut}{VerbEnv.tmp}}
+{\end{VerbatimOut}\settowidth\@tempdima{%
+        \lstinputlisting{VerbEnv.tmp}}
+    \minipage{\@tempdima}\lstinputlisting{VerbEnv.tmp}\endminipage}    
+\makeatother
+
+
+\DefineVerbatimEnvironment% с шрифтом 12 пт
+{Verb}{Verbatim}
+{fontsize=\fontsize{12pt}{14pt}\selectfont}
+
+
+\DeclareNewFloatType{ListingEnv}{
+    placement=htb,
+    within=chapter,
+    fileext=lol,
+    name=Листинг,
+}
+
+\captionsetup[ListingEnv]{
+    format=tablecaption,
+    labelsep=space,                 % Точка после номера листинга задается значением period
+    singlelinecheck=off,
+    font=onehalfspacing,
+    position=top,
+}
+
+
+\floatsetup[ListingEnv]{
+    style=plaintop,
+    captionskip=4pt,
+}
+
+\captionsetup[lstlisting]{
+    format=tablecaption,
+    labelsep=space,                 % Точка после номера листинга задается значением period
+    singlelinecheck=off,
+    font=onehalfspacing,
+    position=top,
+}
+
+\renewcommand{\lstlistingname}{Листинг}
+
+%Общие счётчики окружений листингов
+%http://tex.stackexchange.com/questions/145546/how-to-make-figure-and-listing-share-their-counter
+% Если смешивать плавающие и не плавающие окружения, то могут быть проблемы с нумерацией
+\makeatletter
+\AtBeginDocument{%
+    \let\c@ListingEnv\c@lstlisting
+    \let\theListingEnv\thelstlisting
+    \let\ftype@lstlisting\ftype@ListingEnv % give the floats the same precedence
+}
+\makeatother
+
+% значок С++ — используйте команду \cpp
+\newcommand{\cpp}{%
+    C\nolinebreak\hspace{-.05em}%
+    \raisebox{.2ex}{+}\nolinebreak\hspace{-.10em}%
+    \raisebox{.2ex}{+}%
+}
+
