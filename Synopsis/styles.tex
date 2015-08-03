@@ -18,8 +18,8 @@
 
 %%% Кодировки и шрифты %%%
 \ifxetex
-  \setmainlanguage[babelshorthands=true]{russian}   % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
-  \setotherlanguage{english}                        % Дополнительный язык = английский (в американской вариации по-умолчанию)
+  \setmainlanguage[babelshorthands=true]{russian}  % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
+  \setotherlanguage{english}                       % Дополнительный язык = английский (в американской вариации по-умолчанию)
   \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
   \setmainfont{Times New Roman}
   \newfontfamily\cyrillicfont{Times New Roman}
@@ -28,7 +28,19 @@
   \setmonofont{Courier New}
   \newfontfamily\cyrillicfonttt{Courier New}
 \else
-  \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
+  \ifluatex
+    \setmainlanguage[babelshorthands=true]{russian}% Язык по-умолчанию русский с поддержкой приятных команд пакета babel
+    \setotherlanguage{english}                     % Дополнительный язык = английский (в американской вариации по-умолчанию)
+    \defaultfontfeatures{Ligatures=TeX}
+    \setmainfont{Times New Roman}
+    \newfontfamily\cyrillicfont{Times New Roman}
+    \setsansfont{Arial}
+    \newfontfamily\cyrillicfontsf{Arial}
+    \setmonofont{Courier New}
+    \newfontfamily\cyrillicfonttt{Courier New}
+  \else
+    \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
+  \fi
 \fi
 
 %%% Выравнивание и переносы %%%
