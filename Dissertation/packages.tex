@@ -1,5 +1,6 @@
 %%% Проверка используемого TeX-движка %%%
 \usepackage{ifxetex}
+\usepackage{ifluatex}
 
 %%% Поля и разметка страницы %%%
 \usepackage{pdflscape}                              % Для включения альбомных страниц
@@ -26,11 +27,15 @@
   \usepackage{polyglossia}                          % Поддержка многоязычности
   \usepackage{fontspec}                             % TrueType-шрифты
 \else
-  \usepackage{cmap}                                 % Улучшенный поиск русских слов в полученном pdf-файле
-  \usepackage[T2A]{fontenc}                         % Поддержка русских букв
-  \usepackage[utf8]{inputenc}                       % Кодировка utf8
-  \usepackage[english, russian]{babel}              % Языки: русский, английский
-  \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}    % Красивые русские шрифты
+  \ifluatex
+    \usepackage{polyglossia}                        % Поддержка многоязычности (fontspec подгружается автоматически)
+  \else
+    \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
+    \usepackage[T2A]{fontenc}                       % Поддержка русских букв
+    \usepackage[utf8]{inputenc}                     % Кодировка utf8
+    \usepackage[english, russian]{babel}            % Языки: русский, английский
+    \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
+  \fi
 \fi
 
 %%% Оформление абзацев %%%
