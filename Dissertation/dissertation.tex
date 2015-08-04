@@ -1,12 +1,13 @@
 % Формат А4, 14pt (ГОСТ Р 7.0.11-2011, 5.3.6)
 \documentclass[a4paper,14pt]{extreport}
 
-\input{packages}        % Пакеты
-\input{userpackages}    % Пакеты для специфических пользовательских задач
-\input{styles}          % Стили
-\input{userstyles}      % Стили для специфических пользовательских задач
+\input{../common/packages}  % Пакеты общие для диссертации и автореферата
+\input{dispackages}         % Пакеты для диссертации
+\input{userpackages}        % Пакеты для специфических пользовательских задач
+\input{styles}              % Стили
+\input{userstyles}          % Стили для специфических пользовательских задач
 \input{../biblio/bibliopreamble}% Настройки библиографии из внешнего файла (там же выбор: встроенная или на основе biblatex)
-\input{../common/data}  % Основные сведения
+\input{../common/data}      % Основные сведения
 
 \begin{document}
 

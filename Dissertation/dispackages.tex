@@ -1,0 +1,16 @@
+%%% Колонтитулы %%%
+\usepackage{fancyhdr}
+
+%%% Прикладные пакеты %%% 
+\usepackage{calc}                                   % Пакет для расчётов параметров, например длины
+%\usepackage{etoolbox}                               % ради функции patchcmd для управления списком литературы
+
+%% Проверка условия установки шрифта 14 pt %%
+\ifnum\curtextsize>\bigtextsize
+\usepackage[small]{titlesec}                        % Уменьшаем размер заголовков разделов и подразделов
+\else
+\usepackage{titlesec}                               % Всё равно пакет нужен, чтобы настраивать шрифты заголовков
+\fi
+
+%%% Оглавление %%%
+\usepackage{tocloft}
