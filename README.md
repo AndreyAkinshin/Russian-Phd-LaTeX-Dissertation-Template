@@ -3,7 +3,7 @@ LaTeX-шаблон для русской кандидатской диссерт
 ## Особенности
 * Кодировка: UTF-8
 * Стандарт: ГОСТ Р 7.0.11-2011
-* Поддерживаемые движки: LaTeX, XeTeX
+* Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX
 
 ## Online
 * Шаблон [выставлен](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template) в галерее шаблонов ShareLaTeX.
