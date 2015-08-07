@@ -104,6 +104,13 @@
 
 %%% Счётчики %%%
 
+%% Упрощённые настройки шаблона диссертации: нумерация формул, таблиц, рисунков
+\ifthenelse{\equal{\thecontnum}{1}}{%
+    \counterwithout{equation}{chapter}
+    \counterwithout{figure}{chapter}
+    \counterwithout{table}{chapter}
+}
+
 %%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
 \makeatletter
 \def\formbytotal#1#2#3#4#5{%
