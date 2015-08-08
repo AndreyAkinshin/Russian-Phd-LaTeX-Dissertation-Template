@@ -31,7 +31,7 @@
 	#include <iostream>
 	using namespace std;
 
-	int main() //кириллица в комментариях при xelatex имеет проблемы с пробелами
+	int main() //кириллица в комментариях при xelatex и lualatex имеет проблемы с пробелами
 	{
 		cout << "Hello, world" << endl; //latin letters in commentaries
 		system("pause");
@@ -84,7 +84,7 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 ## makeCacheMatrix creates a special "matrix" object that can cache its inverse
 
-makeCacheMatrix <- function(x = matrix()) {#кириллица в комментариях при xelatex имеет проблемы с пробелами
+makeCacheMatrix <- function(x = matrix()) {#кириллица в комментариях при xelatex b lualatex имеет проблемы с пробелами
     i <- NULL
     set <- function(y) {
         x <<- y
