@@ -1,3 +1,5 @@
+\LoadInterface {titlesec}                   % Подгружаем интерфейсы для дополнительных опций управления некоторыми пакетами
+
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 
@@ -17,14 +19,18 @@
 \renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}% нежирные точки до номеров страниц у глав в оглавлении
 %\renewcommand{\cftchapfont}{}                       % нежирные названия глав в оглавлении
 
-%% Если раскомментировать следующие две строки, то будет вписано слово Глава перед каждым номером раздела в оглавлении (не забыть включить аналогичное в заголовках разделов в самом тексте)        
-%\renewcommand{\cftchappresnum}{\chaptername\ }
-%\setlength{\cftchapnumwidth}{\widthof{\textbf{\chaptername\ }}}
-
-%\renewcommand\cftchapaftersnum{.}       % добавляет точку после номера раздела в оглавлении
-%\renewcommand\cftsecaftersnum{.}        % добавляет точку после номера подраздела в оглавлении
-%\renewcommand\cftsubsecaftersnum{.}     % добавляет точку после номера подподраздела в оглавлении
-
+\ifthenelse{\theheadingdelim > 0}{%
+    \renewcommand\cftchapaftersnum{.\ }   % добавляет точку с пробелом после номера раздела в оглавлении
+}{%
+\renewcommand\cftchapaftersnum{\quad} % добавляет \quad после номера раздела в оглавлении
+}
+\ifthenelse{\theheadingdelim > 1}{%
+    \renewcommand\cftsecaftersnum{.\ }    % добавляет точку с пробелом после номера подраздела в оглавлении
+    \renewcommand\cftsubsecaftersnum{.\ } % добавляет точку с пробелом после номера подподраздела в оглавлении
+}{%
+\renewcommand\cftsecaftersnum{\quad}    % добавляет \quad после номера подраздела в оглавлении
+\renewcommand\cftsubsecaftersnum{\quad} % добавляет \quad после номера подподраздела в оглавлении
+}
 
 \ifthenelse{\equal{\thepgnum}{1}}{%
     \addtocontents{toc}{~\hfill{Стр.}\par}    % добавить Стр. над номерами страниц
@@ -69,27 +75,37 @@
 \titleformat{\chapter}[block]                                % default display;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
         {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thechapter}                                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Раз не фигурирует слово Глава в оглавлении, то и здесь не надо
+        {\thechapter\cftchapaftersnum}                                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Раз не фигурирует слово Глава в оглавлении, то и здесь не надо
         % Если вместо строки выше писать {\chaptername\ \thechapter}, то будет вписано слово Глава перед номером раздела  (не забыть включить аналогичное в заголовках разделов в оглавлении)
         % Если поставить точку после \thechapter, то точка будет после номера раздела в тексте
-        {1em}% отступ от номера до текста
+        {0em}% отступ от номера до текста
         {}%
 
 \titleformat{\section}[block]                                % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
         {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thesection}                                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
+        {\thesection\cftsecaftersnum}                                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
         % Если поставить точку после \thesection, то точка будет после номера подраздела в тексте
-        {1em}% отступ от номера до текста
+        {0em}% отступ от номера до текста
         {}%
 
 \titleformat{\subsection}[block]                             % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
         {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thesubsection}                                     % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
+        {\thesubsection\cftsubsecaftersnum}                                     % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
         % Если поставить точку после \thesubsection, то точка будет после номера подподраздела в тексте
-        {1em}% отступ от номера до текста
+        {0em}% отступ от номера до текста
         {}%
+
+\ifthenelse{\equal{\thechapstyle}{1}}{%
+    \sectionformat{\chapter}{% Параметры заголовков разделов в тексте
+        label=\chaptername\ \thechapter\cftchapaftersnum,
+        labelsep=0em,
+    }
+    %% Следующие две строки: будет вписано слово Глава перед каждым номером раздела в оглавлении   
+    \renewcommand{\cftchappresnum}{\chaptername\ }
+    \setlength{\cftchapnumwidth}{\widthof{\cftchapfont\cftchappresnum\thechapter\cftchapaftersnum}}
+}%
 
 %% Интервалы между заголовками
 % На эти величины titlespacing множит через *
