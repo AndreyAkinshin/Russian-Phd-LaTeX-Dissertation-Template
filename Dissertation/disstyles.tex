@@ -1,12 +1,24 @@
 \LoadInterface {titlesec}                   % Подгружаем интерфейсы для дополнительных опций управления некоторыми пакетами
 
+
+%%% Блок управления параметрами для выравнивания заголовков в тексте %%%
+\newlength{\otstuplen}
+\setlength{\otstuplen}{\theotstup\parindent}
+\ifthenelse{\equal{\theheadingalign}{0}}{% выравнивание заголовков в тексте
+    \newcommand{\hdngalign}{\filcenter}  % по центру
+    \newcommand{\hdngaligni}{\hfill\hspace{\otstuplen}}     % по центру
+}{%
+\newcommand{\hdngalign}{\filright}  % по левому краю
+\newcommand{\hdngaligni}{\hspace{\otstuplen}}          % по левому краю
+} % В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5)
+
 %%% Оглавление %%%
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 
-\renewcommand{\cfttoctitlefont}{\hfill\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
+\renewcommand{\cfttoctitlefont}{\hdngaligni\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
 \renewcommand{\cftaftertoctitle}{\hfill}            % устанавливает заголовок по центру.
 \setlength{\cftbeforetoctitleskip}{-1.4\curtextsize}% Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.4\curtextsize.
-\setlength{\cftaftertoctitleskip}{3\curtextsize}    % Если считаем Оглавление заголовком, то выставляем после него тройной интервал через наше определённое значение
+\setlength{\cftaftertoctitleskip}{\theintvl\curtextsize}    % Если считаем Оглавление заголовком, то выставляем после него тройной интервал через наше определённое значение
 
 %% Ниже закомментирован вариант, несоответствующий ГОСТ 7.0.11, в котором заголовки крупнее положенного размера в 12-14 пт
 %\ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
@@ -38,16 +50,16 @@
 
 %%% Оформление названий глав %%%
 %% настройки заголовка списка рисунков
-\renewcommand{\cftloftitlefont}{\hfill\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
+\renewcommand{\cftloftitlefont}{\hdngaligni\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
 \renewcommand{\cftafterloftitle}{\hfill}                                        % устанавливает заголовок по центру.
 \setlength{\cftbeforeloftitleskip}{-1.5\curtextsize}                            % Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.5\curtextsize.
-\setlength{\cftafterloftitleskip}{3\curtextsize}                                % выставляем после него тройной интервал через наше определённое значение
+\setlength{\cftafterloftitleskip}{\theintvl\curtextsize}                                % выставляем после него тройной интервал через наше определённое значение
 
 %% настройки заголовка списка таблиц
-\renewcommand{\cftlottitlefont}{\hfill\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
+\renewcommand{\cftlottitlefont}{\hdngaligni\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
 \renewcommand{\cftafterlottitle}{\hfill}                                        % устанавливает заголовок по центру.
 \setlength{\cftbeforelottitleskip}{-1.5\curtextsize}                            % Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.5\curtextsize.
-\setlength{\cftafterlottitleskip}{3\curtextsize}                                % выставляем после него тройной интервал через наше определённое значение
+\setlength{\cftafterlottitleskip}{\theintvl\curtextsize}                                % выставляем после него тройной интервал через наше определённое значение
 
 %% Ниже закомментирован вариант, несоответствующий ГОСТ 7.0.11, в котором заголовки крупнее положенного размера в 12-14 пт
 \ifnum\curtextsize>\bigtextsize                     % Проверяем условие использования базового шрифта 14 pt
@@ -73,7 +85,7 @@
 %% Работа должна быть выполнена ... размером шрифта 12-14 пунктов (ГОСТ Р 7.0.11-2011, 5.3.8). То есть не должно быть надписей шрифтом более 14. Так и поставим.
 %% Эти установки будут давать одинаковый результат независимо от выбора базовым шрифтом 12 пт или 14 пт
 \titleformat{\chapter}[block]                                % default display;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
         {\thechapter\cftchapaftersnum}                                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Раз не фигурирует слово Глава в оглавлении, то и здесь не надо
         % Если вместо строки выше писать {\chaptername\ \thechapter}, то будет вписано слово Глава перед номером раздела  (не забыть включить аналогичное в заголовках разделов в оглавлении)
@@ -82,7 +94,7 @@
         {}%
 
 \titleformat{\section}[block]                                % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
         {\thesection\cftsecaftersnum}                                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
         % Если поставить точку после \thesection, то точка будет после номера подраздела в тексте
@@ -90,7 +102,7 @@
         {}%
 
 \titleformat{\subsection}[block]                             % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\filcenter\fontsize{14pt}{16pt}\selectfont\bfseries}%\filright - по левому краю; \filcenter - по центру. В обоих случаях, вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5) 
+        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
         %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
         {\thesubsection\cftsubsecaftersnum}                                     % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
         % Если поставить точку после \thesubsection, то точка будет после номера подподраздела в тексте
