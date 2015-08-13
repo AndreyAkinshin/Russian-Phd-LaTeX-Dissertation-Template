@@ -35,6 +35,12 @@
 ##Библиография
 * [JabRef](http://jabref.sourceforge.net/)
 * [Подборка стилевых пакетов для ГОСТов](http://www.ctan.org/tex-archive/biblio/bibtex/contrib/gost)
+* [Один из вариантов стиля библиографии для bibtex по ГОСТ 7.1-2003 / 7.82-2001](https://github.com/artptr/bibgost)
 
 ##Презентации
 * [Beamer Theme Matrix](http://www.hartwork.org/beamer-theme-matrix/)
+
+##Прочие репозитории с полезными примерами
+* [Стиль LaTeX для расчётно-пояснительной записки к курсовым и дипломным работам (ГОСТ 7.32-2001)](https://github.com/rominf/latex-g7-32)
+* [Класс TeX для оформления диссертации по требованиям ВАКа Беларуси](https://github.com/belgraviton/thesisby)
+* [Шаблон выпускной работы на Мехмате ЮФУ](https://github.com/MMCS-SFEDU/mmcs_sfedu_thesis)
