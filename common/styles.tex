@@ -74,14 +74,13 @@ justification=centering,            % Центрирование подписе�
     \newcommand{\tabtitalign}{\raggedleft}   % по правому краю страницы или аналога parbox
 }
 
+\DeclareCaptionFormat{tablenocaption}{\tabcapalign #1\strut}        % Наименование таблицы отсутствует
 \ifthenelse{\equal{\thetabcap}{0}}{%
     \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2#3}
-    \DeclareCaptionFormat{tablenocaption}{\tabcapalign #1#2}    % Наименование таблицы отсутствует
     \captionsetup[table]{labelsep=emdash}                       % тире как разделитель идентификатора с номером от наименования
 }{%
     \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2\par%  % Идентификатор таблицы на отдельной строке
         \tabtitalign{#3}}                                       % Наименование таблицы строкой ниже
-    \DeclareCaptionFormat{tablenocaption}{\tabcapalign #1#2}    % Наименование таблицы отсутствует
     \captionsetup[table]{labelsep=space}                        % пробельный разделитель идентификатора с номером от наименования
 }
 \captionsetup[table]{format=tablecaption,singlelinecheck=off,font=onehalfspacing,position=top,skip=0pt}  % многострочные наименования и прочее
