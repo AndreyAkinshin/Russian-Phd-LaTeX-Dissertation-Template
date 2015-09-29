@@ -1,17 +1,3 @@
-\appendix
-%% Правка оформления ссылок на приложения:
-%http://tex.stackexchange.com/questions/56839/chaptername-is-used-even-for-appendix-chapters-in-toc
-%http://tex.stackexchange.com/questions/59349/table-of-contents-with-chapter-and-appendix
-%% требует двойной компиляции
-\addtocontents{toc}{\def\protect\cftchappresnum{\appendixname{} }%
-\setlength{\cftchapnumwidth}{\widthof{\cftchapfont\appendixname~Ш\cftchapaftersnum}}%
-}
-%% Оформление заголовков приложений ближе к ГОСТ:
-\sectionformat{\chapter}[display]{% Параметры заголовков разделов в тексте
-    label=\chaptertitlename\ \thechapter,% (ГОСТ Р 2.105, 4.3.6)
-    labelsep=20pt,
-}
-\renewcommand\thechapter{\Asbuk{chapter}} % Чтобы приложения русскими буквами нумеровались
 \chapter{Примеры вставки листингов программного кода} \label{AppendixA}
 
 Для крупных листингов есть два способа. Первый красивый, но в нём могут быть проблемы с поддержкой кириллицы (у вас может встречаться в комментариях и
