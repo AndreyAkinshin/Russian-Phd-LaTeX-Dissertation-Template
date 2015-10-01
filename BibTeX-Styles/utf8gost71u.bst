@@ -83,6 +83,11 @@ ENTRY
     language
     booklanguage
     url
+    urldate
+    eprint
+    eprinttype   % = archivePrefix
+    eprintclass  % = primaryClass
+    doi
   }
   {}
   { label }
@@ -510,10 +515,130 @@ FUNCTION {bbl.ppage}  %   { "\bblP." }
   if$
 }
 
+FUNCTION {new.dblslash.checka}
+{ empty$
+    'skip$
+    'new.dblslash
+  if$
+}
+
+FUNCTION {output.address.publisher}
+{
+  address empty$
+    'skip$
+    { address output
+      publisher empty$
+        'skip$
+        { new.column }
+      if$
+    }
+  if$
+  publisher output
+}
+
+FUNCTION {bbl.urldate}
+{ curlanguage "english" =
+   {"online; accessed"}
+   { curlanguage "ukrainian" =
+      { "{дата звернення}" }
+      { curlanguage "russian" =
+         { "{дата обращения}" }
+         { curlanguage "german" =
+            { "{online; abgerufen}" }
+            { "language is not defined: " language "urldate" * * warning$ "online; accessed" }
+         if$}
+      if$}
+   if$}
+if$}
+
+
+FUNCTION {format.eprint}
+{ eprint empty$
+   { "" }
+   { eprinttype empty$
+       { "" }
+       { eprinttype "~: " *}
+     if$
+     eprintclass empty$
+       { }
+       { eprintclass * "/" *}
+     if$
+     url empty$
+      { eprint * }
+      { "\href{" * url * "}{" * eprint * "}" *}
+    if$
+   }
+  if$
+}
+
+
+FUNCTION {format.url}
+{ url empty$
+    { "" }
+    {
+      "URL: \BibUrl{" url * "}" *
+      urldate empty$
+        { "" }
+        { " (" bbl.urldate * ": " * urldate * ")" * }
+      if$ *
+    }
+  if$
+}
+
+
+FUNCTION {output.eprint.url}
+{
+  eprint empty$
+    { format.url output }
+    { format.eprint output }
+  if$
+}
+
+FUNCTION {add.doi}
+{ duplicate$ empty$
+    'skip$
+    { doi empty$
+        'skip$
+        { "\href{http://dx.doi.org/" doi * "}{" * swap$ * "}" * }
+      if$
+    }
+  if$
+}
+
+FUNCTION {add.medium} { }
+
+FUNCTION {enclose.square.brackets} { }
+
+FUNCTION {bbl.medium.text}
+{ curlanguage "english" =
+   { "Text" }
+   { curlanguage "russian" = curlanguage "ukrainian" = or
+      { "{Текст}" }
+      { "language is not defined: " language "medium" * * warning$ "Text" }
+   if$}
+if$}
+
+FUNCTION {bbl.medium.elres}
+{ curlanguage "english" =
+   { "Electronic resource" }
+   { curlanguage "russian" =
+      { "{Электронный ресурс}" }
+      { curlanguage "ukrainian" =
+        { "{Електронний ресурс}" }
+        { "language is not defined: " language "medium" * * warning$ "Electronic resource" }
+      if$}
+   if$}
+if$}
 
 FUNCTION {bbl.techrep}   { "Tech. Rep." }
 FUNCTION {bbl.mthesis}   { "Master's thesis" }
 FUNCTION {bbl.phdthesis} { "Ph.D. thesis" }
+
+FUNCTION {bbl.medium}
+{ type$ "online" =
+   { bbl.medium.elres }
+   { bbl.medium.text  }
+if$}
 
 INTEGERS { nameptr namesleft numnames }
 
@@ -1002,14 +1127,6 @@ FUNCTION {editor.organization.after}
   if$
 }
 
-FUNCTION {format.url}
-{ url empty$
-    { "" }
-    { after.sentence 'output.state :=
-      "\BibUrl{ " url * "}" *
-    }
-  if$
-}
 
 FUNCTION {format.annote}
 { annote empty$
@@ -1337,6 +1454,32 @@ FUNCTION {unpublished}
   format.annote output
   fin.entry
 }
+
+FUNCTION {online}
+{ output.bibitem
+  format.authors output
+  title howpublished new.sentence.checkb
+  format.title add.doi add.medium "title" output.check
+  howpublished new.dblslash.checka
+  howpublished enclose.square.brackets output
+  editor.organization.after
+  new.sentence
+  new.block
+  output.address.publisher
+  format.date output
+  new.block
+  output.eprint.url
+  new.sentence
+  note output
+  format.annote output
+  fin.entry
+}
+
+FUNCTION {internet}   {online}
+FUNCTION {www}        {online}
+FUNCTION {webpage}    {online}
+FUNCTION {electronic} {online}
+
 
 FUNCTION {default.type} { misc }
 
