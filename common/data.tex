@@ -1,14 +1,14 @@
 %%% Основные сведения %%%
 \newcommand{\thesisAuthor}             % Диссертация, ФИО автора
-{\todo{Фамилия Имя Отчество автора}}
+{\texorpdfstring{\todo{Фамилия Имя Отчество автора}}{Фамилия Имя Отчество автора}}  % \texorpdfstring takes two arguments and uses the first for (La)TeX and the second for pdf
 \newcommand{\thesisUdk}                % Диссертация, УДК
 {\todo{xxx.xxx}}
 \newcommand{\thesisTitle}              % Диссертация, название
-{\todo{\MakeUppercase{Название диссертационной работы}}}
+{\texorpdfstring{\todo{\MakeUppercase{Название диссертационной работы}}}{Название диссертационной работы}}
 \newcommand{\thesisSpecialtyNumber}    % Диссертация, специальность, номер
-{\todo{XX.XX.XX}}
+{\texorpdfstring{\todo{XX.XX.XX}}{XX.XX.XX}}
 \newcommand{\thesisSpecialtyTitle}     % Диссертация, специальность, название
-{\todo{Название специальности}}
+{\texorpdfstring{\todo{Название специальности}}{Название специальности}}
 \newcommand{\thesisDegree}             % Диссертация, научная степень
 {\todo{кандидата физико-математических наук}}
 \newcommand{\thesisCity}               % Диссертация, город защиты
@@ -62,3 +62,6 @@
 {\todo{Название библиотеки}}
 \newcommand{\synopsisDate}             % Автореферат, дата рассылки
 {\todo{DD mmmmmmmm YYYY года}}
+
+\newcommand{\keywords}%                 % Ключевые слова для метаданных PDF диссертации и автореферата
+{}

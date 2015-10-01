@@ -101,6 +101,12 @@ justification=centering,            % Центрирование подписе�
 \definecolor{urlcolor}{rgb}{0,0,1}
 
 %%% Настройки гиперссылок %%%
+\ifLuaTeX
+    \hypersetup{
+        unicode,                % Unicode encoded PDF strings
+    }
+\fi
+
 \hypersetup{
     linktocpage=true,           % ссылки с номера страницы в оглавлении, списке таблиц и списке рисунков
 %    pdfpagelabels=false,        % set PDF page labels (true|false)
@@ -109,13 +115,14 @@ justification=centering,            % Центрирование подписе�
     linkcolor={linkcolor},      % цвет ссылок типа ref, eqref и подобных
     citecolor={citecolor},      % цвет ссылок-цитат
     urlcolor={urlcolor},        % цвет гиперссылок
+    pdftitle={\thesisTitle},    % Заголовок
+    pdfauthor={\thesisAuthor},  % Автор
+    pdfsubject={\thesisSpecialtyNumber\ \thesisSpecialtyTitle},      % Тема
+%    pdfcreator={Создатель},     % Создатель, Приложение
+%    pdfproducer={Производитель},% Производитель, Производитель PDF
+    pdfkeywords={\keywords},    % Ключевые слова
+    pdflang={ru},
 }
-
-\ifLuaTeX
-    \hypersetup{
-        unicode,                % Unicode encoded PDF strings
-    }
-\fi
 
 %%% Шаблон %%%
 \DeclareRobustCommand{\todo}{\textcolor{red}}       % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930/79756 , \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase
