@@ -13,20 +13,21 @@
 \input{userstyles}          % Стили для специфических пользовательских задач
 \input{../biblio/bibliopreamble}% Настройки библиографии из внешнего файла (там же выбор: встроенная или на основе biblatex)
 
+\input{inclusioncontrol}    % Управление компиляцией отдельных частей диссертации
 \begin{document}
 
-\input{names}           % Переопределение именований
+\input{names}             % Переопределение именований
 
 % Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
-\input{title}           % Титульный лист
-\input{contents}        % Оглавление
-\input{introduction}    % Введение
-\input{part1}           % Глава 1
-\input{part2}           % Глава 2
-\input{part3}           % Глава 3
-\input{conclusion}      % Заключение
-\input{references}      % Список литературы
-\input{lists}           % Списки таблиц и изображений (иллюстративный материал)
-\input{appendix}        % Приложения
+\include{title}           % Титульный лист
+\include{contents}        % Оглавление
+\include{introduction}    % Введение
+\include{part1}           % Глава 1
+\include{part2}           % Глава 2
+\include{part3}           % Глава 3
+\include{conclusion}      % Заключение
+\include{references}      % Список литературы
+\include{lists}           % Списки таблиц и изображений (иллюстративный материал)
+\include{appendix}        % Приложения
 
 \end{document}
