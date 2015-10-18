@@ -72,6 +72,10 @@ sortcites=true,% сортировать номера затекстовых сс
 %\renewcommand*{\mkgostheading}[1]{\usebibmacro{string+doi}{#1}} % ссылка на doi с авторов. стоящих впереди записи
 %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия работы
 %\DeclareFieldFormat{journaltitle}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия журнала
+% Убрать тире из разделителей элементов в библиографии:
+%\renewcommand*{\newblockpunct}{%
+%    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
+
 
 %%% Подключение файлов bib %%%
 \addbibresource{../biblio/othercites.bib}
