@@ -50,14 +50,20 @@ sortcites=true,% сортировать номера затекстовых сс
             final]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{../biblio/authorpapersVAK.bib}
-            \perdatasource{../biblio/authorpapers.bib}
-            \perdatasource{../biblio/authorconferences.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{../biblio/othercites.bib}
             \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{../biblio/authorpapersVAK.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{../biblio/authorpapers.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthornotvak,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{../biblio/authorconferences.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
         }
     }
 }
@@ -73,21 +79,6 @@ sortcites=true,% сортировать номера затекстовых сс
 %    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
 
 
-\newtotcounter{primary}
-\newtotcounter{secondary}
-\AtDataInput{%
-    \ifboolexpr{ test {\ifkeyword{biblioauthor}} }
-    {%
-        \stepcounter{primary}}
-    {}%
-    \ifboolexpr{ test {\ifkeyword{biblioother}} }
-    {%
-        \stepcounter{secondary}}
-    {}
-}
-
-
-
 %%% Подключение файлов bib %%%
 \addbibresource{../biblio/othercites.bib}
 \addbibresource{../biblio/authorpapersVAK.bib}
@@ -100,24 +91,74 @@ sortcites=true,% сортировать номера затекстовых сс
 %\newcounter{citenum}
 \newtotcounter{citenum}
 \makeatletter
-\defbibenvironment{counter}
-  {\setcounter{citenum}{0}
-  \renewcommand{\blx@driver}[1]{}
-  }
-  {} %\thecitenum сюда писать не надо
-  {\stepcounter{citenum}}
+\defbibenvironment{counter} %Env of bibliography
+  {\setcounter{citenum}{0}%
+  \renewcommand{\blx@driver}[1]{}%
+  } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+  {} %Здесь то, что будет выводиться командой \printbibliography. \thecitenum сюда писать не надо
+  {\stepcounter{citenum}} %What is printing / executed at each entry.
 \makeatother
 \defbibheading{counter}{}
 
+
+
+\newtotcounter{citeauthorvak}
+\makeatletter
+\defbibenvironment{countauthorvak} %Env of bibliography
+{\setcounter{citeauthorvak}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorvak в нашей реализации
+{\stepcounter{citeauthorvak}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorvak}{}
+
+\newtotcounter{citeauthornotvak}
+\makeatletter
+\defbibenvironment{countauthornotvak} %Env of bibliography
+{\setcounter{citeauthornotvak}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthornotvak в нашей реализации
+{\stepcounter{citeauthornotvak}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthornotvak}{}
+
+\newtotcounter{citeauthorconf}
+\makeatletter
+\defbibenvironment{countauthorconf} %Env of bibliography
+{\setcounter{citeauthorconf}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorconf в нашей реализации
+{\stepcounter{citeauthorconf}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorconf}{}
+
+\newtotcounter{citeauthor}
+\makeatletter
+\defbibenvironment{countauthor} %Env of bibliography
+{\setcounter{citeauthor}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthor в нашей реализации
+{\stepcounter{citeauthor}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthor}{}
+
+
+
+
+
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
-\printbibliography[keyword=bibliofull]
-\printbibliography[heading=counter,env=counter,keyword=bibliofull]
+\printbibliography[keyword=bibliofull,section=0]
+\printbibliography[heading=counter,env=counter,keyword=bibliofull,section=0]
 }
 
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[keyword=biblioauthor]
-\printbibliography[heading=counter,env=counter,keyword=biblioauthor]
+\printbibliography[keyword=biblioauthor,section=1]
+\printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
 }
 
 \newcommand*{\insertbiblioother}{
@@ -125,8 +166,3 @@ sortcites=true,% сортировать номера затекстовых сс
 \printbibliography[heading=counter,env=counter,keyword=biblioother]
 }
 
-
-\newtotcounter{reports}
-\renewbibmacro*{finentry}{\stepcounter{reports}\finentry}
-\newtotcounter{reportsii}
-\renewbibmacro*{finentry}{\stepcounter{reportsii}\finentry}
