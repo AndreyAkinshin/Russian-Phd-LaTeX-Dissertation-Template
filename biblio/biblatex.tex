@@ -53,11 +53,7 @@ sortcites=true,% сортировать номера затекстовых сс
             \perdatasource{../biblio/authorpapersVAK.bib}
             \perdatasource{../biblio/authorpapers.bib}
             \perdatasource{../biblio/authorconferences.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthor}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{../biblio/othercites.bib}
-            \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
+            \step[fieldset=keywords, fieldvalue={biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{../biblio/othercites.bib}
@@ -75,6 +71,21 @@ sortcites=true,% сортировать номера затекстовых сс
 % Убрать тире из разделителей элементов в библиографии:
 %\renewcommand*{\newblockpunct}{%
 %    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
+
+
+\newtotcounter{primary}
+\newtotcounter{secondary}
+\AtDataInput{%
+    \ifboolexpr{ test {\ifkeyword{biblioauthor}} }
+    {%
+        \stepcounter{primary}}
+    {}%
+    \ifboolexpr{ test {\ifkeyword{biblioother}} }
+    {%
+        \stepcounter{secondary}}
+    {}
+}
+
 
 
 %%% Подключение файлов bib %%%
@@ -115,3 +126,7 @@ sortcites=true,% сортировать номера затекстовых сс
 }
 
 
+\newtotcounter{reports}
+\renewbibmacro*{finentry}{\stepcounter{reports}\finentry}
+\newtotcounter{reportsii}
+\renewbibmacro*{finentry}{\stepcounter{reportsii}\finentry}
