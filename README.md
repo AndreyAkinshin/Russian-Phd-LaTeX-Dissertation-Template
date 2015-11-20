@@ -1,11 +1,12 @@
 LaTeX-шаблон для русской кандидатской диссертации и её автореферата.
 
 ## Особенности
-
-[![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 * Кодировка: UTF-8
 * Стандарт: ГОСТ Р 7.0.11-2011
 * Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX
+
+## Обсуждение
+[![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Online
 * Шаблон [выставлен](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template) в галерее шаблонов ShareLaTeX.
