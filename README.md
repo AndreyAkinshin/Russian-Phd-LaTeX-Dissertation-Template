@@ -5,6 +5,9 @@ LaTeX-шаблон для русской кандидатской диссерт
 * Стандарт: ГОСТ Р 7.0.11-2011
 * Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX
 
+## Обсуждение
+[![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Online
 * Шаблон [выставлен](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template) в галерее шаблонов ShareLaTeX.
 
@@ -26,53 +29,9 @@ LaTeX-шаблон для русской кандидатской диссерт
 * **listings:** Общие файлы листингов.
 * **assets:** Прочие файлы общих ресурсов шаблонов.
 
-## Шрифты
-
-### LaTeX + PSCyr
-PSCyr — это пакет красивых русских шрифтов для LaTeX. К сожалению, его нужно устанавливать отдельно. Если он у вас не установлен, то ничего страшного — шаблон заработает и без него. Ну лучше бы его всё-таки поставить. Инструкции по установке PSCyr для различных конфигураций приведены [тут](PSCyr/README.md). Если вы не нашли подходящую вам инструкцию, но смогли выполнить установку самостоятельно, то большая просьба [поделиться](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/pulls) вашими наработками.
-
-### Linux + XeTeX
-
-Для установки XeTeX в Ubuntu и необходимых дополнительных пакетов
-можно использовать команду:
-
-```
-$ sudo apt-get install texlive-xetex texlive-generic-extra latexmk
-```
-
-Для нормальной работы в системе должны быть установлены нужные шрифты. Например, для Ubuntu это можно сделать так:
-
-```
-$ sudo apt-get install ttf-mscorefonts-installer
-$ sudo fc-cache -fv
-```
-
-Сборку можно производить следующими командами:
-
-* диссертация: `latexmk -pdf -pdflatex="xelatex %O %S" dissertation`
-* автореферат: `latexmk -pdf -pdflatex="xelatex %O %S" synopsis`
-
-Либо можно использовать make-файлы: из корневого каталога
-выполнять
-
-* `make` для сборки всего
-* `make dissertation` для сборки диссертации,
-* `make synopsis` для сборки автореферата,
-* `make release` для сборки всего и внесения финальных *.pdf файлов в
-  систему контроля версий git
-
-либо в соответствующем каталоге (`Dissertation` или `Synopsis`) просто выполнять `make`.
-Аналогично есть возможность вызвать `make clean` в указанных каталогах
-для удаления в них результатов сборки и промежуточных файлов.
-
+## [Установка и сборка](Installation.md)
 
 ## [Библиография](Bibliography.md)
-
-
-## Пакеты и версии LaTeX
-* Шаблон по умолчанию включает ряд распространённых пакетов, чтобы вы могли сразу ими пользоваться. Однако, на вашей машине какие-то пакеты могут быть не установлены. Если вам они не нужны, то вы можете их просто удалить (команда *\usepackage{<имя пакета>}*).
-* Лучше всего использовать актуальные и полные версии LaTeX-дистрибутивов, это поможет избежать многих проблем. Например, [MikTeX](http://miktex.org/download) 2.9.4503+ для Windows или [TeXLive](http://www.tug.org/texlive/acquire.html) 2015+ для множества ОС.
-* Если у вас ещё не сформировались предпочтения по LaTeX-редактору, то обратите внимание на [TeXStudio](http://texstudio.sourceforge.net/#download), существующий для всех основных платформ.
 
 ## Благодарности
 * Большое спасибо Юлии Мартыновой за [оригинальный вариант шаблона](http://alessia-lano.livejournal.com/4267.html).
