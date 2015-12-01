@@ -6,10 +6,10 @@ LaTeX-шаблон для русской кандидатской диссерт
 * Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX
 
 ## Обсуждение
+Общие вопросы лучше всего писать в gitter-канал:
 [![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Online
-* Шаблон [выставлен](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template) в галерее шаблонов ShareLaTeX.
+Для отчётов об ошибках и для конкретных пожеланий/преложений лучше всего использовать раздел [Issues](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues).
 
 ## Структура
 * **[Dissertation](Dissertation/):** Структурированная система файлов с шаблоном диссертации.
@@ -29,9 +29,13 @@ LaTeX-шаблон для русской кандидатской диссерт
 * **listings:** Общие файлы листингов.
 * **assets:** Прочие файлы общих ресурсов шаблонов.
 
-## [Установка и сборка](Installation.md)
+## Дополнительная полезная информация
 
-## [Библиография](Bibliography.md)
+* [Установка и сборка](Installation.md)
+* [Оформление библиографии](Bibliography.md)
+* [Как вносить правки в проект](CONTRIBUTING.md)
+* [Полезные ссылки](LINKS.md)
+* [Шаблон в галерее шаблонов ShareLaTeX](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template).
 
 ## Благодарности
 * Большое спасибо Юлии Мартыновой за [оригинальный вариант шаблона](http://alessia-lano.livejournal.com/4267.html).
