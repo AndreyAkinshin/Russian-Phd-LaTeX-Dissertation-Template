@@ -47,6 +47,32 @@ $ sudo fc-cache -fv
 ### Установка шрифтов PSCyr
 PSCyr — это пакет красивых русских шрифтов для LaTeX. К сожалению, его нужно устанавливать отдельно. Если он у вас не установлен, то ничего страшного — шаблон заработает и без него. Ну лучше бы его всё-таки поставить. Инструкции по установке PSCyr для различных конфигураций приведены [тут](PSCyr/README.md). Если вы не нашли подходящую вам инструкцию, но смогли выполнить установку самостоятельно, то большая просьба [поделиться](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/pulls) вашими наработками.
 
+#### Рабочий способ установки в Ubuntu 15.10
+(компиляция из [инструкции на welinux](http://welinux.ru/post/3200/) и файлов, которые есть в [шаблоне](https://ru.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template))
+
+Нужно скачать шаблон, найти в папке PSCyr файл pscyr0.4d.zip и распаковать его содержимое куда угодно. Чтобы не переписывать пути, папка с содержимым должна называться PSCyr, а не pscyr, как в архиве. Затем надо зайти в 
+терминал, перейти к тому каталогу, где лежит папка PSCyr с содержимым, и выполнить команды из вышеупомянутого руководства:
+```
+$ mkdir ./PSCyr/fonts/map ./PSCyr/fonts/enc
+$ cp ./PSCyr/dvips/pscyr/.map ./PSCyr/fonts/map/
+$ cp ./PSCyr/dvips/pscyr/.enc ./PSCyr/fonts/enc/
+$ echo "fadr6t AdvertisementPSCyr \"T2AEncoding ReEncodeFont\" > ./PSCyr/fonts/map/pscyr.map
+```
+Дальше надо узнать, где у вас локальный каталог texmf. Для этого выполняем
+```
+$ kpsewhich -expand-var='$TEXMFLOCAL'
+```
+С вероятностью около единицы результат будет /usr/local/share/texmf/. Копируем всё туда:
+```
+$ sudo cp -R ./PSCyr/* /usr/local/share/texmf/
+```
+Ну и подключаем:
+```
+$ sudo texhash
+$ updmap --enable Map=pscyr.map
+$ sudo mktexlsr
+```
+
 ## Сборка
 
 Сборку можно производить следующими командами:
