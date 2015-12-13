@@ -37,6 +37,7 @@
 \else
     \RequirePDFTeX                                  % tests for PDFTEX use and throws an error if a different engine is being used
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
+    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
     \usepackage[T2A]{fontenc}                       % Поддержка русских букв
     \usepackage[utf8]{inputenc}                     % Кодировка utf8
     \usepackage[english, russian]{babel}            % Языки: русский, английский
