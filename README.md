@@ -1,19 +1,22 @@
 LaTeX-шаблон для русской кандидатской диссертации и её автореферата.
 
 ## Особенности
-* Кодировка: UTF-8
-* Стандарт: ГОСТ Р 7.0.11-2011
-* Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX
+* Кодировка: UTF-8.
+* Стандарт: ГОСТ Р 7.0.11-2011.
+* Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX.
+* Поддерживаемые реализации библиографии: встроенная на движке BibTeX, BibLaTeX на движке Biber.
 
 ## Обсуждение
 Общие вопросы лучше всего писать в gitter-канал:
 [![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Для отчётов об ошибках и для конкретных пожеланий/преложений лучше всего использовать раздел [Issues](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues).
+Для отчётов об ошибках и для конкретных пожеланий/предложений лучше всего использовать раздел [Issues](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues).
 
 ## Структура
 * **[Dissertation](Dissertation/):** Структурированная система файлов с шаблоном диссертации.
+  * [setup.tex](Dissertation/setup.tex): Файл упрощённой настройки оформления диссертации. В нём же настраивается выбор реализации библиографии.
 * **[Synopsis](Synopsis/):** Структурированная система файлов с шаблоном автореферата.
+  * [setup.tex](Synopsis/setup.tex): Файл упрощённой настройки оформления автореферата. В нём же настраивается выбор реализации библиографии.
 * **[Presentation](Presentation/):** Шаблон презентации.
 * **[Documents](Documents/):** Полезные документы (ГОСТ-ы и постановления).
 * **[PSCyr](PSCyr/):** Пакет PSCyr + инструкции по установке.
