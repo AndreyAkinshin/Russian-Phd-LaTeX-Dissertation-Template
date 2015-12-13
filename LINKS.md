@@ -33,7 +33,7 @@
 * [Конвертер OpenOffice->latex](http://writer2latex.sourceforge.net/)
 
 ##Библиография
-* [JabRef](http://jabref.sourceforge.net/)
+* [JabRef](http://www.jabref.org/)
 * [Подборка стилевых пакетов для ГОСТов](http://www.ctan.org/tex-archive/biblio/bibtex/contrib/gost)
 * [Один из вариантов стиля библиографии для bibtex по ГОСТ 7.1-2003 / 7.82-2001](https://github.com/artptr/bibgost)
 
@@ -44,3 +44,14 @@
 * [Стиль LaTeX для расчётно-пояснительной записки к курсовым и дипломным работам (ГОСТ 7.32-2001)](https://github.com/rominf/latex-g7-32)
 * [Класс TeX для оформления диссертации по требованиям ВАКа Беларуси](https://github.com/belgraviton/thesisby)
 * [Шаблон выпускной работы на Мехмате ЮФУ](https://github.com/MMCS-SFEDU/mmcs_sfedu_thesis)
+
+##Подборка ссылок про важность применения систем контроля версий
+* [Why Use a Version Control System?](http://www.git-tower.com/learn/git/ebook/mac/basics/why-use-version-control)
+* [Why use version control systems for writing a paper](http://academia.stackexchange.com/questions/5277/why-use-version-control-systems-for-writing-a-paper/5286#5286)
+* [git + LaTeX workflow](http://stackoverflow.com/questions/6188780/git-latex-workflow)
+
+##Прочие полезные программы и ссылки
+* [Docear](http://www.docear.org/) — бесплатный Reference Management Software, заточенный под научную деятельность — в основном написание курсовых, диссертационных и прочих научных работ. Комбинирует процесс накопления списка литературных источников с процессом построения MindMaps по автоматически извлеченной из документов разметке, есть возможность ручного изменения получившейся структуры, и в итоге генерирует документ в формате PDF, DOC и т. д. на основе получившихся MindMaps.
+* [texblog.org](http://texblog.org/) — блог с некоторыми интересными заметками про применение ЛаТеХа.
+
+

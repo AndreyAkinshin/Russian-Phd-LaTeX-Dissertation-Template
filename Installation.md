@@ -73,6 +73,9 @@ $ updmap --enable Map=pscyr.map
 $ sudo mktexlsr
 ```
 
+### TeXLive на Linux в обход привязанных к конкретному линуксу пакетам
+[How to install “vanilla” TeXLive on Debian or Ubuntu?](http://tex.stackexchange.com/a/95373/79756) — инструкция на английском языке, как ставить TeXLive на Linux в обход привязанных к конкретному линуксу пакетам (на примере Debian и Ubuntu).
+
 ## Сборка
 
 Сборку можно производить следующими командами:
