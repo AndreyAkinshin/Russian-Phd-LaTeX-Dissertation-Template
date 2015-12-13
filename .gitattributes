@@ -1,0 +1,4 @@
+images/* linguist-vendored
+PSCyr/pscyr0.4d.zip linguist-vendored
+Documents/* linguist-documentation
+*.md linguist-documentation
