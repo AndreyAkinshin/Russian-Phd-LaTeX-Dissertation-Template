@@ -8,11 +8,13 @@ backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
 sorting=none,% настройка сортировки списка литературы
 style=gost-numeric,% стиль цитирования и библиографии (по ГОСТ)
-language=auto,% получение языка из babel/polyglossia
+language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
 autolang=other,% многоязычная библиография
 clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
 defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
 sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
+%doi=false,% Показывать или нет ссылки на DOI
+%isbn=false,% Показывать или нет ISBN
 ]{biblatex}
 
 
@@ -65,8 +67,53 @@ sortcites=true,% сортировать номера затекстовых сс
             \perdatasource{../biblio/authorconferences.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
         }
+%        \map[overwrite]{% стираем значения всех полей series
+%            \step[fieldset=series, null]
+%        }
+        \map[overwrite]{% перекидываем значения полей howpublished в поля organization для типа online
+            \step[typesource=online, fieldsource=howpublished, fieldset=organization, origfieldval, final]
+            \step[fieldset=howpublished, null]
+        }
+        % Так отключаем [Электронный ресурс]
+%        \map[overwrite]{% стираем значения всех полей media=eresource
+%            \step[fieldsource=media,
+%            match={eresource},
+%            final]
+%            \step[fieldset=media, null]
+%        }
     }
 }
+
+%%% Правка записей типа thesis, чтобы дважды не писался автор
+%\DeclareBibliographyDriver{thesis}{%
+%  \usebibmacro{bibindex}%
+%  \usebibmacro{begentry}%
+%  \usebibmacro{heading}%
+%  \newunit
+%  \usebibmacro{author}%
+%  \setunit*{\labelnamepunct}%
+%  \usebibmacro{thesistitle}%
+%  \setunit{\respdelim}%
+%  %\printnames[last-first:full]{author}%Вот эту строчку нужно убрать, чтобы автор диссертации не дублировался
+%  \newunit\newblock
+%  \printlist[semicolondelim]{specdata}%
+%  \newunit
+%  \usebibmacro{institution+location+date}%
+%  \newunit\newblock
+%  \usebibmacro{chapter+pages}%
+%  \newunit
+%  \printfield{pagetotal}%
+%  \newunit\newblock
+%  \usebibmacro{doi+eprint+url+note}%
+%  \newunit\newblock
+%  \usebibmacro{addendum+pubstate}%
+%  \setunit{\bibpagerefpunct}\newblock
+%  \usebibmacro{pageref}%
+%  \newunit\newblock
+%  \usebibmacro{related:init}%
+%  \usebibmacro{related}%
+%  \usebibmacro{finentry}}
+
 
 %\newbibmacro{string+doi}[1]{% новая макрокоманда на простановку ссылки на doi
 %    \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
@@ -77,6 +124,10 @@ sortcites=true,% сортировать номера затекстовых сс
 % Убрать тире из разделителей элементов в библиографии:
 %\renewcommand*{\newblockpunct}{%
 %    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
+
+%%% Set low penalties for breaks at uppercase letters and lowercase letters
+%\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty
+%\setcounter{biburlucpenalty}{3000} %управляет разрывами ссылок после больших букв, RTFM biburlucpenalty
 
 
 %%% Подключение файлов bib %%%
