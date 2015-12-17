@@ -131,9 +131,15 @@
 
 Сделать так, чтобы номер формулы стоял напротив средней строки, можно, используя окружение \verb|multlined| (пакет \verb|mathtools|) вместо \verb|multline| внутри окружения \verb|equation|. Вот так:
 \begin{equation} % \tag{S} % tag - вписывает свой текст 
+  \label{eq:equation3}
     \begin{multlined}
         1+ 2+3+4+5+6+7+\dots + \\ 
         + 50+51+52+53+54+55+56+57 + \dots + \\ 
         + 96+97+98+99+100=5050 
     \end{multlined}
 \end{equation}
+
+Используя команду \verb|\labelcref| из пакета \verb|cleveref|, можно
+красиво ссылаться сразу на несколько формул
+(\labelcref{eq:equation1,eq:equation3,eq:equation2}), даже перепутав
+порядок ссылок \verb|(\labelcref{eq:equation1,eq:equation3,eq:equation2})|.
