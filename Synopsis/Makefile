@@ -17,10 +17,10 @@ distclean:
 	## Intermediate documents:
 	rm -f *.dvi
 	rm -f *-converted-to.*
-	rm -f # these rules might exclude image files for figures etc.
-	rm -f # *.ps
-	rm -f # *.eps
-	rm -f # *.pdf
+	# these rules might exclude image files for figures etc.
+	# *.ps
+	# *.eps
+	# *.pdf
 
 	## Bibliography auxiliary files (bibtex/biblatex/biber):
 	rm -f *.bbl
