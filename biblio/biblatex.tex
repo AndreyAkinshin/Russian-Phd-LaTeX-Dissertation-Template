@@ -125,6 +125,12 @@ sortcites=true,% сортировать номера затекстовых сс
 %\renewcommand*{\newblockpunct}{%
 %    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
 
+%%% Возвращаем запись «Режим доступа» %%%
+%\DefineBibliographyStrings{english}{%
+%    urlfrom = {Mode of access}
+%}
+%\DeclareFieldFormat{url}{\bibstring{urlfrom}\addcolon\space\url{#1}}
+
 %%% Set low penalties for breaks at uppercase letters and lowercase letters
 %\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty
 %\setcounter{biburlucpenalty}{3000} %управляет разрывами ссылок после больших букв, RTFM biburlucpenalty
