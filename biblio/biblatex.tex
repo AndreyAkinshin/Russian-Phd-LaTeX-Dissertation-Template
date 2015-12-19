@@ -135,6 +135,26 @@ sortcites=true,% сортировать номера затекстовых сс
 %\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty
 %\setcounter{biburlucpenalty}{3000} %управляет разрывами ссылок после больших букв, RTFM biburlucpenalty
 
+%%% Список литературы с красной строки (без висячего отступа) %%%
+%\defbibenvironment{bibliography} % переопределяем окружение библиографии из gost-numeric.bbx пакета biblatex-gost
+%  {\list
+%     {\printtext[labelnumberwidth]{%
+%	\printfield{prefixnumber}%
+%	\printfield{labelnumber}}}
+%     {%
+%      \setlength{\labelwidth}{\labelnumberwidth}%
+%      \setlength{\leftmargin}{0pt}% default is \labelwidth
+%      \setlength{\labelsep}{\widthof{\ }}% Управляет длиной отступа после точки % default is \biblabelsep
+%      \setlength{\itemsep}{\bibitemsep}% Управление дополнительным вертикальным разрывом между записями. \bibitemsep по умолчанию соответствует \itemsep списков в документе.
+%      \setlength{\itemindent}{\bibhang}% Пользуемся тем, что \bibhang по умолчанию принимает значение \parindent (абзацного отступа), который переназначен в styles.tex
+%      \addtolength{\itemindent}{\labelwidth}% Сдвигаем правее на величину номера с точкой
+%      \addtolength{\itemindent}{\labelsep}% Сдвигаем ещё правее на отступ после точки
+%      \setlength{\parsep}{\bibparsep}%
+%     }%
+%      \renewcommand*{\makelabel}[1]{\hss##1}%
+%  }
+%  {\endlist}
+%  {\item}
 
 %%% Подключение файлов bib %%%
 \addbibresource{../biblio/othercites.bib}
