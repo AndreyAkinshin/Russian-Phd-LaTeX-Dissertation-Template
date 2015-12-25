@@ -2,6 +2,8 @@
 
 %\usepackage{csquotes} % biblatex рекомендует его подключать. Пакет для оформления сложных блоков цитирования.
 
+%\input{../common/names}             % Переопределение именований
+
 %%% Загрузка пакета с основными настройками %%%
 \usepackage[%
 backend=biber,% движок
@@ -234,7 +236,7 @@ sortcites=true,% сортировать номера затекстовых сс
 }
 
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[keyword=biblioauthor,section=1,title={Публикации автора по теме диссертации}]
+\printbibliography[keyword=biblioauthor,section=1,title=\authorbibtitle]
 \printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
 }
 
