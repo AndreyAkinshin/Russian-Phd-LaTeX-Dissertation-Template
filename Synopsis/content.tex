@@ -48,12 +48,16 @@
 
 
 %\newpage
-\renewcommand{\refname}{\large Публикации автора по теме диссертации}
-
 \ifthenelse{\equal{\thebibliosel}{0}}{% Встроенная реализация с загрузкой файла через движок bibtex8
-    \nocite{*}
+  \renewcommand{\refname}{\large Публикации автора по теме диссертации}
+  \nocite{*}
 }{% Реализация пакетом biblatex через движок biber
 }
 
 \insertbiblioauthor                          % Подключаем Bib-базы
+\ifthenelse{\equal{\thebibliosel}{0}}{% Встроенная реализация с загрузкой файла через движок bibtex8
+  \renewcommand{\refname}{\large Список литературы}
+}{% Реализация пакетом biblatex через движок biber
+}
+\insertbiblioother
 %\insertbibliofull
