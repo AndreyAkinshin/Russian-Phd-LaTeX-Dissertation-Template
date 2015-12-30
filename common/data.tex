@@ -1,6 +1,12 @@
 %%% Основные сведения %%%
 \newcommand{\thesisAuthor}             % Диссертация, ФИО автора
-{\texorpdfstring{\todo{Фамилия Имя Отчество автора}}{Фамилия Имя Отчество автора}}  % \texorpdfstring takes two arguments and uses the first for (La)TeX and the second for pdf
+{%
+    \texorpdfstring{% \texorpdfstring takes two arguments and uses the first for (La)TeX and the second for pdf
+        \todo{Фамилия Имя Отчество автора}% так будет отображаться на титульном листе или в тексте, где будет использоваться переменная
+    }{%
+        Фамилия, Имя Отчество% эта запись для свойств pdf-файла. В таком виде, если pdf будет обработан программами для сбора библиографических сведений, будет правильно представлена фамилия.
+    }%
+}
 \newcommand{\thesisUdk}                % Диссертация, УДК
 {\todo{xxx.xxx}}
 \newcommand{\thesisTitle}              % Диссертация, название
