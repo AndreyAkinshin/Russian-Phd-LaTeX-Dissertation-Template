@@ -106,7 +106,6 @@ $ sudo mktexlsr
 команды:
 
 * `make draft` самая быстрая сборка с помощью `pdflatex+biber`
-* `make xedraft` сборка черновика с помощью `xelatex+biber`
 * `make pdf` сборка полной версии с движком `pdflatex` (несколько
   быстрее, чем `xelatex`, движок для библиографии в соответствии с
   настройками [`setup.tex`](Bibliography.md#В-случае-проблем)).
