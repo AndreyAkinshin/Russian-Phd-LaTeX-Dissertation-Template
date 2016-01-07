@@ -3,9 +3,11 @@ all:
 
 pdf:
 	latexmk -pdf -jobname=synopsis_pdf -silent  synopsis.tex
-xedraft:
-	latexmk -pdf -pdflatex="xelatex %O %S" draft
+# xedraft:
+# 	xelatex -ini "&pdflatex draft-preamble.tex\dump"
+# 	latexmk -pdf -pdflatex="xelatex %O %S" draft
 draft:
+	pdflatex -ini "&pdflatex draft-preamble.tex\dump"
 	latexmk -pdf -jobname=draft -silent  draft.tex
 
 clean:
