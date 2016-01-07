@@ -1,5 +1,13 @@
 all:
 	latexmk -pdf -pdflatex="xelatex %O %S" synopsis
+
+pdf:
+	latexmk -pdf -jobname=synopsis_pdf -silent  synopsis.tex
+xedraft:
+	latexmk -pdf -pdflatex="xelatex %O %S" draft
+draft:
+	latexmk -pdf -jobname=draft -silent  draft.tex
+
 clean:
 	latexmk -C synopsis
 	rm -f synopsis.bbl
