@@ -9,7 +9,7 @@
 Для установки XeTeX в Ubuntu и необходимых дополнительных пакетов можно использовать команду:
 
 ```
-$ sudo apt-get install texlive-xetex texlive-generic-extra latexmk biber
+$ sudo apt-get install texlive-xetex texlive-generic-extra texlive-lang-cyrillic latexmk biber
 ```
 
 Для нормальной работы в системе должны быть установлены нужные шрифты. Например, для Ubuntu это можно сделать так:
