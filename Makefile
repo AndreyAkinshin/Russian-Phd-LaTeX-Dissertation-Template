@@ -6,6 +6,9 @@ dissertation:
 synopsis:
 	$(MAKE) -C Synopsis
 
+draft:
+	$(MAKE) draft -C Dissertation
+	$(MAKE) draft -C Synopsis
 clean:
 	$(MAKE) clean -C Dissertation
 	$(MAKE) clean -C Synopsis
