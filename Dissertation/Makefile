@@ -1,5 +1,8 @@
 all:
 	latexmk -pdf -pdflatex="xelatex %O %S" dissertation
+draft:
+	pdflatex -ini "&pdflatex draft-preamble.tex\dump"
+	latexmk -pdf -jobname=draft -silent  draft.tex
 clean:
 	latexmk -C dissertation
 	rm -f dissertation.bbl
