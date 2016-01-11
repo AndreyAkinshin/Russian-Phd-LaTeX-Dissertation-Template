@@ -2,7 +2,7 @@
 * [LaTeX](http://www.latex-project.org/)
 * [TeXLive](http://www.tug.org/texlive/index.html)
 * [MiKTeX](http://www.miktex.org/)
-* [TeX в ЯрГУ](http://www.tex.uniyar.ac.ru/soft.htm)
+* [TeX в ЯрГУ](http://www.tex.uniyar.ac.ru/soft.html)
 
 #Аспирантура и защита
 * [Я аспирант — сайт для аспирантов](http://yaaspirant.ru/)
@@ -54,5 +54,6 @@
 * [Docear](http://www.docear.org/) — бесплатный Reference Management Software, заточенный под научную деятельность — в основном написание курсовых, диссертационных и прочих научных работ. Комбинирует процесс накопления списка литературных источников с процессом построения MindMaps по автоматически извлеченной из документов разметке, есть возможность ручного изменения получившейся структуры, и в итоге генерирует документ в формате PDF, DOC и т. д. на основе получившихся MindMaps.
 * [texblog.org](http://texblog.org/) — блог с некоторыми интересными заметками про применение ЛаТеХа.
 * [ГОСТ 8.417-2002](http://hoster.bmstu.ru/~ms/normocontrol/gosts/8.417-2002.pdf) «Государственная система обеспечения единства измерений. Единицы величин». Особенно полезен раздел 8.
+* [LaTeX: More Than Just Academic Papers and Theses](http://www.overleaf.com/articles/latex-more-than-just-academic-papers-and-theses/cyfvvyfrpmyn#.VpPt_h5hUlh) — презентация о разных применениях ЛаТеХа.
 
 
