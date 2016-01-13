@@ -7,8 +7,8 @@ pdf:
 # 	xelatex -ini "&pdflatex draft-preamble.tex\dump"
 # 	latexmk -pdf -pdflatex="xelatex %O %S" draft
 draft:
-	#pdflatex -ini "&pdflatex draft-preamble.tex\dump"
-	latexmk -pdf -jobname=draft -silent  draft.tex
+	pdflatex -ini -jobname="draft-preamble" "&pdflatex draft-preamble.tex\dump"
+	latexmk -pdf -jobname=draft -silent --shell-escape draft.tex
 
 clean:
 	latexmk -C synopsis
