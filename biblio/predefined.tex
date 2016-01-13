@@ -5,7 +5,7 @@
 
 
 %%% Стили %%%
-\bibliographystyle{BibTeX-Styles/utf8gost71u}    % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
+\bibliographystyle{\RootPath/BibTeX-Styles/utf8gost71u}    % Оформляем библиографию по ГОСТ 7.1 (ГОСТ Р 7.0.11-2011, 5.6.7)
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.}   % Заменяем библиографию с квадратных скобок на точку
@@ -26,15 +26,15 @@
 
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
-\bibliography{biblio/othercites,biblio/authorpapersVAK,biblio/authorpapers,biblio/authorconferences}         % Подключаем BibTeX-базы % После запятых не должно быть лишних пробелов — он "думает", что это тоже имя пути
+\bibliography{\RootPath/biblio/othercites,\RootPath/biblio/authorpapersVAK,\RootPath/biblio/authorpapers,\RootPath/biblio/authorconferences}         % Подключаем BibTeX-базы % После запятых не должно быть лишних пробелов — он "думает", что это тоже имя пути
 }
 
 \newcommand*{\insertbiblioauthor}{
-\bibliography{biblio/authorpapersVAK,biblio/authorpapers,biblio/authorconferences}         % Подключаем BibTeX-базы % После запятых не должно быть лишних пробелов — он "думает", что это тоже имя пути
+\bibliography{\RootPath/biblio/authorpapersVAK,\RootPath/biblio/authorpapers,\RootPath/biblio/authorconferences}         % Подключаем BibTeX-базы % После запятых не должно быть лишних пробелов — он "думает", что это тоже имя пути
 }
 
 \newcommand*{\insertbiblioother}{
-\bibliography{biblio/othercites}         % Подключаем BibTeX-базы
+\bibliography{\RootPath/biblio/othercites}         % Подключаем BibTeX-базы
 }
 
 
