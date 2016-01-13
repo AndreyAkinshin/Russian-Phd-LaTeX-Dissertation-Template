@@ -52,19 +52,19 @@ sortcites=true,% сортировать номера затекстовых сс
             final]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/othercites.bib}
+            \perdatasource{\RootPath/biblio/othercites.bib}
             \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{\RootPath/biblio/authorpapersVAK.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapers.bib}
+            \perdatasource{\RootPath/biblio/authorpapers.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthornotvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorconferences.bib}
+            \perdatasource{\RootPath/biblio/authorconferences.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
         }
 %        \map[overwrite]{% стираем значения всех полей series
@@ -158,10 +158,10 @@ sortcites=true,% сортировать номера затекстовых сс
 %  {\item}
 
 %%% Подключение файлов bib %%%
-\addbibresource{biblio/othercites.bib}
-\addbibresource{biblio/authorpapersVAK.bib}
-\addbibresource{biblio/authorpapers.bib}
-\addbibresource{biblio/authorconferences.bib}
+\addbibresource{\RootPath/biblio/othercites.bib}
+\addbibresource{\RootPath/biblio/authorpapersVAK.bib}
+\addbibresource{\RootPath/biblio/authorpapers.bib}
+\addbibresource{\RootPath/biblio/authorconferences.bib}
 
 
 %% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
