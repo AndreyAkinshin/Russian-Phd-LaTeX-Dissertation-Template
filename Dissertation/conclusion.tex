@@ -7,9 +7,5 @@
 %% Поэтому имеет смысл сделать эту часть общей и загрузить из одного файла в автореферат и в диссертацию:
 
 Основные результаты работы заключаются в следующем.
-\ifthenelse{\isundefined{\thepathneed}}{%
-    \input{common/concl}
-}{% если собираем draft-версию
-    \input{\RootPath/common/concl} % Переменная RootPath определена в draft-preamble
-} 
+\input{common/concl}
 И какая-нибудь заключающая фраза.
