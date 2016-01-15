@@ -21,6 +21,7 @@
 * [Русский словарь для TeXstudio](http://extensions.openoffice.org/en/project/dict_ru_RU_yo)
 
 ##Утилиты
+* [Утилита make](http://gnuwin32.sourceforge.net/packages/make.htm) для Windows (выполняет команды из файлов Makefile)
 * [Online-конвертер latex->rtf](http://www.sciweavers.org/convert-latex-to-rtf)
 * [Online-конвертер изображений в eps](http://www.converthub.com/)
 * [Конвертер tiff->ps](http://www.libtiff.org/)
