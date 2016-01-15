@@ -19,6 +19,17 @@
 % {}
 % {\typeout{Couldn't patch the command}}
 
+%%% Список литературы с красной строки (без висячего отступа) %%%
+%\patchcmd{\thebibliography} %может потребовать включения пакета etoolbox
+%  {\advance\leftmargin\labelsep}
+%  {\leftmargin=0pt%
+%   \setlength{\labelsep}{\widthof{\ }}% Управляет длиной отступа после точки
+%   \itemindent=\parindent%
+%   \addtolength{\itemindent}{\labelwidth}% Сдвигаем правее на величину номера с точкой
+%   \advance\itemindent\labelsep%
+%  }
+%  {}{}
+
 %%% Цитирование %%%
 \renewcommand\citepunct{;\penalty\citepunctpenalty%
     \hskip.13emplus.1emminus.1em\relax}                % Разделение ; при перечислении ссылок (ГОСТ Р 7.0.5-2008)
