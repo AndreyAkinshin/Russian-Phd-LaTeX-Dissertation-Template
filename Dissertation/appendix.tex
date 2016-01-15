@@ -1,4 +1,4 @@
-\input{appendixsetup}   % Предварительные настройки для правильного подключения Приложений
+\input{Dissertation/appendixsetup}   % Предварительные настройки для правильного подключения Приложений
 \chapter{Примеры вставки листингов программного кода} \label{AppendixA}
 
 Для крупных листингов есть два способа. Первый красивый, но в нём могут быть проблемы с поддержкой кириллицы (у вас может встречаться в комментариях и
@@ -104,10 +104,11 @@ cacheSolve <- function(x, ...) {
     x$setSolved(i)
     i  
 }
-\end{lstlisting}
+\end{lstlisting} %$ %Комментарий для корректной подсветки синтаксиса
+                 %вне листинга
 
 Листинг~\ref{list:external1} подгружается из внешнего файла. Приходится загружать без окружения дополнительного. Иначе по страницам не переносится.
-    \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={list:external1}]{../listings/run_analysis.R}
+    \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={list:external1}]{listings/run_analysis.R}
 
 
 

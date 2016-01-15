@@ -1,0 +1,21 @@
+\documentclass[a4paper,14pt]{extarticle} %,twoside
+
+\input{common/packages}  % Пакеты общие для диссертации и автореферата
+\input{Synopsis/synpackages}         % Пакеты для автореферата
+\input{Synopsis/userpackages}        % Пакеты для специфических пользовательских задач
+
+\input{common/newnames}  % Новые переменные, которые могут использоваться во всём проекте
+\input{Synopsis/setup}               % Упрощённые настройки шаблона 
+
+\input{common/data}      % Основные сведения
+\input{common/styles}    % Стили общие для диссертации и автореферата
+\input{Synopsis/synstyles}           % Стили для автореферата
+\input{Synopsis/userstyles}          % Стили для специфических пользовательских задач
+\input{biblio/bibliopreamble}% Настройки библиографии из внешнего файла (там же выбор: встроенная или на основе biblatex)
+
+\begin{document}
+
+\input{Synopsis/title}           % Титульный лист
+\input{Synopsis/content}         % Содержание автореферата
+
+\end{document}
