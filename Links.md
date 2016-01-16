@@ -10,6 +10,7 @@
 * [russian-post-C5-addr — Стилевой файл, позволяющий оформить конверты формата C5 приближенно к отечественным стандартам](https://github.com/nvoronchev/russian-post-C5-addr)
 
 ##Литература
+* [LaTeX vs. MiKTeX: The levels of TeX](http://www.tug.org/levels.html)
 * [Не очень краткое введение в LaTeX 2e](http://www.ccas.ru/voron/download/books/tex/oetiker99latex.pdf)
 * [Справочник по командам LaTeX 2e](http://grammarware.net/text/syutkin/TextInLaTeX.pdf)
 * [Набор математических формул в LaTeX 2e](http://grammarware.net/text/syutkin/MathInLaTeX.pdf)
