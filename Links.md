@@ -45,6 +45,7 @@
 * [Стиль LaTeX для расчётно-пояснительной записки к курсовым и дипломным работам (ГОСТ 7.32-2001)](https://github.com/rominf/latex-g7-32)
 * [Класс TeX для оформления диссертации по требованиям ВАКа Беларуси](https://github.com/belgraviton/thesisby)
 * [Шаблон выпускной работы на Мехмате ЮФУ](https://github.com/MMCS-SFEDU/mmcs_sfedu_thesis)
+* [Библиография танцевальных источников](http://github.com/georgthegreat/dancebooks-bibtex) — данный проект ставит целью собрание наиболее полной библиографии по историческим танцам в формате `.bib`.
 
 ##Подборка ссылок про важность применения систем контроля версий
 * [Why Use a Version Control System?](http://www.git-tower.com/learn/git/ebook/mac/basics/why-use-version-control)
