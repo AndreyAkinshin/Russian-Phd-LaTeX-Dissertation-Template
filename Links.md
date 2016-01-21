@@ -48,6 +48,8 @@
 * [Класс TeX для оформления диссертации по требованиям ВАКа Беларуси](https://github.com/belgraviton/thesisby)
 * [Шаблон выпускной работы на Мехмате ЮФУ](https://github.com/MMCS-SFEDU/mmcs_sfedu_thesis)
 * [Библиография танцевальных источников](http://github.com/georgthegreat/dancebooks-bibtex) — данный проект ставит целью собрание наиболее полной библиографии по историческим танцам в формате `.bib`.
+* [LaTeX template for Technische Universität München theses](https://github.com/fwalch/tum-thesis-latex)
+* A [LaTeX / XeLaTeX / LuaLaTeX PhD thesis template](https://github.com/kks32/phd-thesis-template) for Cambridge University Engineering Department.
 
 ##Подборка ссылок про важность применения систем контроля версий
 * [Why Use a Version Control System?](http://www.git-tower.com/learn/git/ebook/mac/basics/why-use-version-control)
