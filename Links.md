@@ -3,6 +3,7 @@
 * [TeXLive](http://www.tug.org/texlive/index.html)
 * [MiKTeX](http://www.miktex.org/)
 * [TeX в ЯрГУ](http://www.tex.uniyar.ac.ru/soft.html)
+* [Документы и презентации в LaTeX](http://www.coursera.org/learn/latex) — онлайн курс обучения основам LaTeX на русском языке на платформе Coursera.
 
 #Аспирантура и защита
 * [Я аспирант — сайт для аспирантов](http://yaaspirant.ru/)
