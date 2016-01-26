@@ -84,6 +84,12 @@ bibtex8.exe -B -c utf8cyrillic.csf %
 bibtex8.exe -B -c utf8cyrillic.csf dissertation.aux
 ```
 
+Если выводится в ошибка
+```
+I found no \citation commands---while reading file dissertation.aux
+```
+то, например под windows/texlive 2015/texstudio «лечится» изменением в `Параметры`-`Конфигурация TeXStudio`-`Построение` `библиография по умолчанию` на `Biber` (стоит часто `BibTeX` и не работает, если в файлах `setup.tex` настроено `\setcounter{bibliosel}{1}`).
+
 ## Черновик draft.tex
 
 Упрощённая версия шаблона, сделанная для уменьшения времени
