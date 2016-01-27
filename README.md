@@ -7,6 +7,7 @@ LaTeX-шаблон для русской кандидатской диссерт
 * Поддерживаемые реализации библиографии: встроенная на движке BibTeX, BibLaTeX на движке Biber.
 
 [**Примеры компиляции шаблона**](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/releases/latest).
+
 [**Установка программного обеспечения и сборка диссертации в файлы PDF**](Installation.md).
 
 ## Обсуждение
