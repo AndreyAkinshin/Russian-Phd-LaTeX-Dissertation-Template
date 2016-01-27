@@ -1,3 +1,10 @@
+## Формулирование проблем
+Если возникают какие-то проблемы, то можете писать в gitter-чат.
+
+[![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+Желательно описывать проблемы с предоставлением [минимального рабочего примера](http://meta.tex.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-example-what-is-that "Producing a concise Minimal Working Example"), чтобы желающие вам помочь могли скопировать предоставленный вами код и скомпилировать его, увидев то же, что видите вы. Формулировать желаемые результаты стоит конкретным примером вида «вот что получаю, а вот что хочу получить на выходе».
+
 ## Простые правки
 
 Если вы хотите сделать простую правку (исправить опечатку или дописать что-нибудь полезное в инструкцию по установке), то это можно сделать непосредственно через GitHub. Краткая инструкция:
@@ -5,11 +12,7 @@
 1. Форкаете репозиторий: для этого нужно нажать кнопку Fork в правом верхнем углу с любой страницы репозитория.
 2. Переходите к себе в профиль, там у вас будет форк репозитория с диссертацией. Переходите в него, выбираете нужную страничку с инструкцией и тыкаете на карандаш вверху справа (edit this file).
 3. Редактируете файл, сохраняете изменения.
-4. На станице с вашим форком появится большая зелёная кнопка "New Pull Request". Нажимаете её и создаёте Pull Request.
-
-Если возникают какие-то проблемы, то можете писать в gitter-чат.
-
-[![Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+4. На странице с вашим форком появится большая зелёная кнопка "New Pull Request". Нажимаете её и создаёте Pull Request.
 
 ## Сложные правки
 
