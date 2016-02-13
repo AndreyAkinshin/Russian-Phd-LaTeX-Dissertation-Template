@@ -84,8 +84,8 @@ PSCyr — это пакет красивых русских шрифтов дл�
 терминал, перейти к тому каталогу, где лежит папка PSCyr с содержимым, и выполнить команды из вышеупомянутого руководства:
 ```
 $ mkdir ./PSCyr/fonts/map ./PSCyr/fonts/enc
-$ cp ./PSCyr/dvips/pscyr/.map ./PSCyr/fonts/map/
-$ cp ./PSCyr/dvips/pscyr/.enc ./PSCyr/fonts/enc/
+$ cp ./PSCyr/dvips/pscyr/*.map ./PSCyr/fonts/map/
+$ cp ./PSCyr/dvips/pscyr/*.enc ./PSCyr/fonts/enc/
 $ echo "fadr6t AdvertisementPSCyr \"T2AEncoding ReEncodeFont\" > ./PSCyr/fonts/map/pscyr.map
 ```
 Дальше надо узнать, где у вас локальный каталог texmf. Для этого выполняем
