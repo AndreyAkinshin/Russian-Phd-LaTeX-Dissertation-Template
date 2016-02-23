@@ -6,6 +6,8 @@
 \ifxetexorluatex
     \setmainlanguage[babelshorthands=true]{russian}  % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
     \setotherlanguage{english}                       % Дополнительный язык = английский (в американской вариации по-умолчанию)
+    \setmonofont{Courier New}
+    \newfontfamily\cyrillicfonttt{Courier New}
     \ifXeTeX
         \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
     \else
@@ -15,8 +17,6 @@
     \newfontfamily\cyrillicfont{Times New Roman}
     \setsansfont{Arial}
     \newfontfamily\cyrillicfontsf{Arial}
-    \setmonofont{Courier New}
-    \newfontfamily\cyrillicfonttt{Courier New}
 \else
     \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 \fi
