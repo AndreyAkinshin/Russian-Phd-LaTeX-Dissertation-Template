@@ -20,7 +20,7 @@
 
 ##Редакторы
 * [TeXstudio](http://texstudio.sourceforge.net/)
-* [Русский словарь для TeXstudio](http://extensions.openoffice.org/en/project/dict_ru_RU_yo)
+* [Русский словарь для TeXstudio](http://extensions.openoffice.org/en/project/dict_ru_RU_yo) - распакуйте файлы .dic и .aff из архива в папку, выбранную в настройках TeXstudio в закладке "Грамматика" (**/usr/share/texstudio** для Debian)
 
 ##Утилиты
 * [Утилита make](http://gnuwin32.sourceforge.net/packages/make.htm) для Windows (выполняет команды из файлов Makefile)
