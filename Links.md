@@ -20,7 +20,7 @@
 
 ##Редакторы
 * [TeXstudio](http://texstudio.sourceforge.net/)
-* [Русский словарь для TeXstudio](http://extensions.openoffice.org/en/project/dict_ru_RU_yo)
+* [Русский словарь для TeXstudio](http://extensions.openoffice.org/en/project/dict_ru_RU_yo) - распакуйте файлы .dic и .aff из архива в любую папку, выбранную в настройках TeXstudio в закладке "General", пункт "Spelling Dictionary Directories", далее выберите ниже язык по умолчанию "russian_english".
 
 ##Утилиты
 * [Утилита make](http://gnuwin32.sourceforge.net/packages/make.htm) для Windows (выполняет команды из файлов Makefile)
