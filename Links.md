@@ -17,6 +17,8 @@
 * [Набор математических формул в LaTeX 2e](http://grammarware.net/text/syutkin/MathInLaTeX.pdf)
 * [Памятка полному новичку системы LaTeX](http://kostyrka.ru/blog/archives/837)
 * [What are the most common mistakes that beginners of (La)TeX and Friends make?](http://tex.stackexchange.com/questions/139873/what-are-the-most-common-mistakes-that-beginners-of-latex-and-friends-make)
+* [Why is \\[ … \\] preferable to $$ … $$?](http://tex.stackexchange.com/q/503)
+* [Are \\( and \\) preferable to dollar signs for math mode?](http://tex.stackexchange.com/q/510)
 
 ##Редакторы
 * [TeXstudio](http://texstudio.sourceforge.net/)
