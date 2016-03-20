@@ -32,7 +32,7 @@ sortcites=true,% сортировать номера затекстовых сс
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
             \step[fieldset=pagestotal, null]
         }
-        \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media. которым пользуется biblatex в значение eresource
+        \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media, которым пользуется biblatex, в значение eresource.
             \step[fieldsource=medium,
             match=\regexp{Электронный\s+ресурс},
             final]
@@ -71,7 +71,8 @@ sortcites=true,% сортировать номера затекстовых сс
 %            \step[fieldset=series, null]
 %        }
         \map[overwrite]{% перекидываем значения полей howpublished в поля organization для типа online
-            \step[typesource=online, fieldsource=howpublished, fieldset=organization, origfieldval, final]
+            \step[typesource=online, typetarget=online, final]
+            \step[fieldsource=howpublished, fieldset=organization, origfieldval]
             \step[fieldset=howpublished, null]
         }
         % Так отключаем [Электронный ресурс]
