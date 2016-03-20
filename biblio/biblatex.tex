@@ -153,6 +153,12 @@ sortcites=true,% сортировать номера затекстовых сс
 %}
 %\DeclareFieldFormat{url}{\bibstring{urlfrom}\addcolon\space\url{#1}}
 
+%%% Исправление длины тире в диапазонах %%%
+%\DefineBibliographyExtras{russian}{%
+%  \protected\def\bibrangedash{%
+%    \textendash\penalty\hyphenpenalty}% breakable dash, такой же как для английского языка
+%}
+
 %%% Set low penalties for breaks at uppercase letters and lowercase letters
 %\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty
 %\setcounter{biburlucpenalty}{3000} %управляет разрывами ссылок после больших букв, RTFM biburlucpenalty
