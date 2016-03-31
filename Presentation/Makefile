@@ -1,32 +1,19 @@
-all: synopsis dissertation talk
+all:	talk
 
-dissertation:
-	#	$(MAKE) -C Dissertation
-	latexmk -pdf -pdflatex="xelatex %O %S" dissertation
+talk:	pdf
+	#	latexmk -pdf -pdflatex="xelatex %O %S" presentation.tex
 
-synopsis:
-	#	$(MAKE) -C Synopsis
-	latexmk -pdf -pdflatex="xelatex %O %S" synopsis
-talk:
-	$(MAKE) talk -C Presentation
-
-draft:
-	$(MAKE) draft -C Synopsis
-	$(MAKE) draft -C Dissertation
+pdf:
+	latexmk -pdf -jobname=presentation -silent  presentation.tex
+# xedraft:
+# 	xelatex -ini "&pdflatex draft-preamble.tex\dump"
+# 	latexmk -pdf -pdflatex="xelatex %O %S" draft
 
 clean:
-	#	$(MAKE) clean -C Dissertation
-	latexmk -C dissertation
-	rm -f dissertation.bbl
-	#	$(MAKE) clean -C Synopsis
-	latexmk -C synopsis
+	latexmk -C presentation
 	rm -f synopsis.bbl
-	$(MAKE) clean -C Presentation
 
 distclean:
-	$(MAKE) distclean -C Dissertation
-	$(MAKE) distclean -C Synopsis
-	$(MAKE) distclean -C Presentation
 	## Core latex/pdflatex auxiliary files:
 	rm -f *.aux
 	rm -f *.lof
@@ -48,6 +35,8 @@ distclean:
 	rm -f *.bbl
 	rm -f *.bcf
 	rm -f *.blg
+
+
 	rm -f *-blx.aux
 	rm -f *-blx.bib
 	rm -f *.brf
@@ -208,7 +197,3 @@ distclean:
 	rm -f *.bak
 	rm -f *.bcf
 	rm -f *.run.xml
-
-release: all
-	git add dissertation.pdf
-	git add synopsis.pdf
