@@ -4,7 +4,7 @@ talk:	pdf
 	#	latexmk -pdf -pdflatex="xelatex %O %S" presentation.tex
 
 pdf:
-	latexmk -pdf -jobname=presentation_pdf -silent  presentation.tex
+	latexmk -pdf -jobname=presentation -silent  presentation.tex
 # xedraft:
 # 	xelatex -ini "&pdflatex draft-preamble.tex\dump"
 # 	latexmk -pdf -pdflatex="xelatex %O %S" draft

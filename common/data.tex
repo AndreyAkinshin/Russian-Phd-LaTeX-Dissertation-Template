@@ -7,6 +7,9 @@
         Фамилия, Имя Отчество% эта запись для свойств pdf-файла. В таком виде, если pdf будет обработан программами для сбора библиографических сведений, будет правильно представлена фамилия.
     }%
 }
+\newcommand{\thesisAuthorShort}             % Диссертация, ФИО автора инициалами
+{\todo{И.О.~Фамилия}}
+
 \newcommand{\thesisUdk}                % Диссертация, УДК
 {\todo{xxx.xxx}}
 \newcommand{\thesisTitle}              % Диссертация, название
@@ -23,6 +26,8 @@
 {\todo{20XX}}
 \newcommand{\thesisOrganization}       % Диссертация, организация
 {\todo{Название учреждения, в~котором выполнялась данная диссертационная работа}}
+\newcommand{\thesisOrganizationShort}  % Диссертация, краткое название организации для доклада
+{\todo{НазУчДисРаб}}
 
 \newcommand{\thesisInOrganization}       % Диссертация, организация в предложном падеже: Работа выполнена в ...
 {\todo{учреждении, в~котором выполнялась данная диссертационная работа}}
@@ -31,6 +36,11 @@
 {\todo{Фамилия Имя Отчество}}
 \newcommand{\supervisorRegalia}        % Научный руководитель, регалии
 {\todo{уч. степень, уч. звание}}
+\newcommand{\supervisorFioShort}            % Научный руководитель, ФИО
+{\todo{И.О.~Фамилия}}
+\newcommand{\supervisorRegaliaShort}        % Научный руководитель, регалии
+{\todo{уч.~ст.,~уч.~зв.}}
+
 
 \newcommand{\opponentOneFio}           % Оппонент 1, ФИО
 {\todo{Фамилия Имя Отчество}}
@@ -72,5 +82,6 @@
 \newcommand{\synopsisDate}             % Автореферат, дата рассылки
 {\todo{DD mmmmmmmm YYYY года}}
 
-\newcommand{\keywords}%                 % Ключевые слова для метаданных PDF диссертации и автореферата
+% To avoid conflict with beamer class use \providecommand
+\providecommand{\keywords}%                 % Ключевые слова для метаданных PDF диссертации и автореферата
 {}
