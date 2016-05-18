@@ -45,12 +45,18 @@
   \displaystyle\frac{1}{\sqrt{2}+\cdots}}}
 \]
 
+
 В формулах можно использовать греческие буквы:
 \[
 \alpha\beta\gamma\delta\epsilon\varepsilon\zeta\eta\theta\vartheta\iota\kappa\lambda\\mu\nu\xi\pi\varpi\rho\varrho\sigma\varsigma\tau\upsilon\phi\varphi\chi\psi\omega\Gamma\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega
 \]
 
-%\newpage
+\def\slantfrac#1#2{ \hspace{3pt}\!^{#1}\!\!\hspace{1pt}/
+  \hspace{2pt}\!\!_{#2}\!\hspace{3pt}
+} %Макрос для красивых дробей в строчку (например, 1/2)
+Для красивых дробей (например, в индексах) можно добавить макрос
+\verb+\slantfrac+ и писать $\slantfrac{1}{2}$ вместо $1/2$.
+ %\newpage
 %============================================================================================================================
 
 \subsection{Ненумерованные многострочные формулы} \label{subsect1_3_2}
@@ -92,14 +98,14 @@
          \frac{
                z_n^{(j)}\!\left( \rho \right)
               }{\rho}\,
-           &{\rm \mathbf{ \^e}}_{r}   \\
+           &{\rm \mathbf{ \^e}}_{r}\,+   \\
 +\,
 {\rm sin} \phi\,
          \tau_n\!\left({\rm  cos} \theta\right)
          \frac{
             \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
               }{\rho}\,
-            &{\rm \mathbf{ \^e}}_{\theta}   \\
+            &{\rm \mathbf{ \^e}}_{\theta}\,+   \\
 +\,
 {\rm cos} \phi\,
          \pi_n\!\left({\rm  cos} \theta\right)
@@ -109,6 +115,22 @@
             &{\rm \mathbf{ \^e}}_{\phi}\:.
 \end{alignedat}
 \end{equation}
+
+Ещё об отступах. Иногда для лучшей <<читаемости>> формул полезно
+немного исправить стандартные интервалы \LaTeX с учётом логической
+структуры самой формулы. Например в формуле~\ref{eq:2p3} добавлен
+небольшой отступ \verb+\,+ между основными сомножителями, ниже
+результат применения всех вариантов отступа:
+\begin{align*}
+\backslash! &\quad f(x) = x^2\! +3x\! +2 \\
+  \mbox{по-умолчанию} &\quad f(x) = x^2+3x+2 \\
+\backslash, &\quad f(x) = x^2\, +3x\, +2 \\
+\backslash: &\quad f(x) = x^2\: +3x\: +2 \\
+\backslash; &\quad f(x) = x^2\; +3x\; +2 \\
+\backslash \mbox{space} &\quad f(x) = x^2\ +3x\ +2 \\
+\backslash \mbox{quad} &\quad f(x) = x^2\quad +3x\quad +2 \\
+\backslash \mbox{qquad} &\quad f(x) = x^2\qquad +3x\qquad +2
+\end{align*}
 
 
 Можно использовать разные математические алфавиты:
