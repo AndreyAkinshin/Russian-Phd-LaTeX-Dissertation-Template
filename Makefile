@@ -4,6 +4,9 @@ dissertation:
 	#	$(MAKE) -C Dissertation
 	latexmk -pdf -pdflatex="xelatex %O %S" dissertation
 
+pdflatex:
+	latexmk -pdf -pdflatex="pdflatex %O %S" dissertation
+
 synopsis:
 	#	$(MAKE) -C Synopsis
 	latexmk -pdf -pdflatex="xelatex %O %S" synopsis
