@@ -1,3 +1,5 @@
+.PHONY: synopsis dissertation talk draft clean distclean release
+
 all: synopsis dissertation talk
 
 dissertation:
