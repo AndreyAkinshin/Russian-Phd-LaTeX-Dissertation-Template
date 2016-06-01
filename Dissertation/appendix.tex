@@ -269,7 +269,7 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
 Нужно больше подразделов приложения!
 
 Пример длинной таблицы с записью продолжения по ГОСТ 2.105
-
+\begingroup
     \centering
 	\small
     \begin{longtable}[c]{|l|c|l|l|}
@@ -419,6 +419,161 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
 %     \hline 
     \end{longtable}
 \normalsize% возвращаем шрифт к нормальному
+\endgroup
+\section{Использование длинных таблиц с окружением \textit{longtabu}} \label{AppendixB2a}
+
+В таблице~\ref{tbl:test-functions} более книжный вариант 
+ длинной таблицы, используя окружение \verb!longtabu! и разнообразные
+ \verb!toprule! \verb!midrule! \verb!bottomrule! из пакета
+ \verb!booktabs!. Чтобы визуально таблица смотрелась лучше, можно
+ использовать следующие параметры: в самом начале задаётся расстояние
+ между строчками с помощью \verb!arraystretch!. Таблица задаётся на
+ всю ширину, \verb!longtabu! позволяет делить ширину колонок
+ пропорционально - тут три колонки в пропорции 1.1:1:4 - для каждой
+ колонки первый параметр в описании \verb!X[]!. Кроме того, в
+ таблице убраны отступы слева и справа с помощью \verb!@{}! в
+ преамбуле таблицы. К первому и второму столбцу применяется
+ модификатор 
+
+\verb!>{\setlength{\baselineskip}{0.7\baselineskip}}!
+
+который уменьшает межстрочный интервал в для текста таблиц (иначе
+заголовок второго столбца значительно шире, а двухстрочное имя
+сливается с окружающими). Для первой и второй колонки текст в ячейках
+выравниваются по центру как по вертикали, так и по горизонтали -
+задаётся буквами \verb!m! и \verb!c! в описании столбца \verb!X[]!. 
+
+Так как формулы большие - используется окружение \verb!alignedat!,
+чтобы отступ был одинаковый у всех формул - он сделан для всех, хотя
+для большей части можно было и не использовать.  Чтобы формулы
+занимали поменьше места в каждом столбце формулы (где надо)
+используется \verb!\textstyle! - он делает дроби меньше, у знаков
+суммы и произведения - индексы сбоку. Иногда формулы слишком большая,
+сливается со следующей, поэтому после неё ставится небольшой
+дополнительный отступ \verb!\vspace*{2ex}!  Для штрафных функций -
+размер фигурных скобок задан вручную \verb!\Big\{!, т.к. не умеет
+\verb!alignedat! работать с \verb!\left! и \verb!\right! через
+несколько строк/колонок.
+
+
+В примечании к таблице наоборот, окружение \verb!cases! даёт слишком
+большие промежутки между вариантами, чтобы их уменьшить, в конце
+каждой строчки окружения использовался отрицательный дополнительный
+отступ \verb!\\[-0.5em]!.
+
+
+
+\begingroup % Ограничиваем область видимости arraystretch
+\renewcommand{\arraystretch}{1.6}%% Увеличение расстояния между рядами, для улучшения восприятия.
+\begin{longtabu} to \textwidth {@{}>{\setlength{\baselineskip}{0.7\baselineskip}}X[1.1mc]>{\setlength{\baselineskip}{0.7\baselineskip}}X[mc]X[4]@{}}
+        \caption{Тестовые функции для оптимизации, $D$ -
+          размерность. Для всех функций значение в точке глобального
+          минимума равно нулю.\label{tbl:test-functions}}\\% label всегда желательно идти после caption 
+        
+        \toprule     %%% верхняя линейка
+        Имя           &Стартовый диапазон параметров &Функция  \\ 
+        \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
+        \endfirsthead
+
+        \multicolumn{3}{c}{\small\slshape (продолжение)}        \\ 
+        \toprule     %%% верхняя линейка
+        Имя           &Стартовый диапазон параметров &Функция  \\ 
+        \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
+        \endhead
+        
+        \multicolumn{3}{c}{\small\slshape (окончание)}        \\ 
+        \toprule     %%% верхняя линейка
+        Имя           &Стартовый диапазон параметров &Функция  \\ 
+        \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5 
+        \endlasthead
+
+        \bottomrule %%% нижняя линейка
+        \multicolumn{3}{r}{\small\slshape продолжение следует}  \\ 
+        \endfoot   
+        \endlastfoot
+
+        сфера         &$\left[-100,\,100\right]^D$   &
+        $\begin{aligned}\textstyle f_1(x)=\sum_{i=1}^Dx_i^2\end{aligned}$                                                        \\
+        Schwefel 2.22 &$\left[-10,\,10\right]^D$     &
+        $\begin{aligned}\textstyle f_2(x)=\sum_{i=1}^D|x_i|+\prod_{i=1}^D|x_i|\end{aligned}$                                     \\
+        Schwefel 1.2  &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_3(x)=\sum_{i=1}^D\left(\sum_{j=1}^ix_j\right)^2\end{aligned}$                               \\
+        Schwefel 2.21 &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_4(x)={\rm max}_i\!\left\{\left|x_i\right|\right\}\end{aligned}$                             \\
+        Rosenbrock    &$\left[-30,\,30\right]^D$     &$\begin{aligned}\textstyle f_5(x)=\sum_{i=1}^{D-1}\left[100\!\left(x_{i+1}-x_i^2\right)^2+(x_i-1)^2\right]\end{aligned}$ \\
+        ступенчатая   &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_6(x)=\sum_{i=1}^D\big\lfloor x_i+0.5\big\rfloor^2\end{aligned}$                             \\ 
+зашумлённая квартическая  &$\left[-1.28,\,1.28\right]^D$ &$\begin{aligned}\textstyle f_7(x)=\sum_{i=1}^Dix_i^4+rand[0,1)\end{aligned}$\vspace*{2ex}\\
+        Schwefel 2.26 &$\left[-500,\,500\right]^D$   &$\begin{aligned}f_8(x)= &\textstyle\sum_{i=1}^D-x_i\,{\rm sin}\sqrt{|x_i|}\,+ \\
+                    &\vphantom{\sum}+ D\cdot
+                    418.98288727243369 \end{aligned}$\\
+        Rastrigin     &$\left[-5.12,\,5.12\right]^D$ &
+        $\begin{aligned}\textstyle
+          f_9(x)=\sum_{i=1}^D\left[x_i^2-10\,{\rm cos}(2\pi
+            x_i)+10\right]\end{aligned}$\vspace*{2ex}\\
+  Ackley        &$\left[-32,\,32\right]^D$     &$\begin{aligned}f_{10}(x)= &\textstyle -20\, {\rm exp}\!\left(-0.2\sqrt{\frac{1}{D}\sum_{i=1}^Dx_i^2} \right)-\\
+                    &\textstyle - {\rm exp}\left(\frac{1}{D}\sum_{i=1}^D{\rm
+                        cos}(2\pi x_i)  \right)  + 20 + e \end{aligned}$ \\
+        Griewank      &$\left[-600,\,600\right]^D$
+        &$\begin{aligned}f_{11}(x)= &\textstyle \frac{1}{4000}
+          \sum_{i=1}^{D}x_i^2 - \prod_{i=1}^D{\rm
+            cos}\left(x_i/\sqrt{i}\right) +1     \end{aligned}$ \vspace*{3ex} \\
+        штрафная 1    &$\left[-50,\,50\right]^D$     &
+        $\begin{aligned}f_{12}(x)= &\textstyle \frac{\pi}{D}
+          \Big\{ 10\,{\rm sin}^2(\pi y_1) +\\ &+
+          \textstyle \sum_{i=1}^{D-1}(y_i-1)^2\left[1+10\,{\rm sin}^2(\pi
+              y_{i+1})\right] +\\ &+(y_D-1)^2 \Big\} +\textstyle\sum_{i=1}^D u(x_i,\,10,\,100,\,4)            \end{aligned}$ \vspace*{2ex} \\
+        штрафная 2    &$\left[-50,\,50\right]^D$     &
+        $\begin{aligned}f_{13}(x)= &\textstyle 0.1
+          \Big\{{\rm sin}^2(3\pi x_1) +\\ &+
+          \textstyle \sum_{i=1}^{D-1}(x_i-1)^2\left[1+{\rm sin}^2(3 \pi
+              x_{i+1})\right] + \\ &+(x_D-1)^2\left[1+{\rm sin}^2(2\pi
+              x_D)\right] \Big\} +\\ &+\textstyle\sum_{i=1}^D u(x_i,\,5,\,100,\,4)            \end{aligned}$               \\
+        сфера         &$\left[-100,\,100\right]^D$   &
+        $\begin{aligned}\textstyle f_1(x)=\sum_{i=1}^Dx_i^2\end{aligned}$                                                        \\
+        Schwefel 2.22 &$\left[-10,\,10\right]^D$     &
+        $\begin{aligned}\textstyle f_2(x)=\sum_{i=1}^D|x_i|+\prod_{i=1}^D|x_i|\end{aligned}$                                     \\
+        Schwefel 1.2  &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_3(x)=\sum_{i=1}^D\left(\sum_{j=1}^ix_j\right)^2\end{aligned}$                               \\
+        Schwefel 2.21 &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_4(x)={\rm max}_i\!\left\{\left|x_i\right|\right\}\end{aligned}$                             \\
+        Rosenbrock    &$\left[-30,\,30\right]^D$     &$\begin{aligned}\textstyle f_5(x)=\sum_{i=1}^{D-1}\left[100\!\left(x_{i+1}-x_i^2\right)^2+(x_i-1)^2\right]\end{aligned}$ \\
+        ступенчатая   &$\left[-100,\,100\right]^D$   &$\begin{aligned}\textstyle f_6(x)=\sum_{i=1}^D\big\lfloor x_i+0.5\big\rfloor^2\end{aligned}$                             \\ 
+зашумлённая квартическая  &$\left[-1.28,\,1.28\right]^D$ &$\begin{aligned}\textstyle f_7(x)=\sum_{i=1}^Dix_i^4+rand[0,1)\end{aligned}$\vspace*{2ex}\\
+        Schwefel 2.26 &$\left[-500,\,500\right]^D$   &$\begin{aligned}f_8(x)= &\textstyle\sum_{i=1}^D-x_i\,{\rm sin}\sqrt{|x_i|}\,+ \\
+                    &\vphantom{\sum}+ D\cdot
+                    418.98288727243369 \end{aligned}$\\
+        Rastrigin     &$\left[-5.12,\,5.12\right]^D$ &
+        $\begin{aligned}\textstyle
+          f_9(x)=\sum_{i=1}^D\left[x_i^2-10\,{\rm cos}(2\pi
+            x_i)+10\right]\end{aligned}$\vspace*{2ex}\\
+  Ackley        &$\left[-32,\,32\right]^D$     &$\begin{aligned}f_{10}(x)= &\textstyle -20\, {\rm exp}\!\left(-0.2\sqrt{\frac{1}{D}\sum_{i=1}^Dx_i^2} \right)-\\
+                    &\textstyle - {\rm exp}\left(\frac{1}{D}\sum_{i=1}^D{\rm
+                        cos}(2\pi x_i)  \right)  + 20 + e \end{aligned}$ \\
+        Griewank      &$\left[-600,\,600\right]^D$
+        &$\begin{aligned}f_{11}(x)= &\textstyle \frac{1}{4000}
+          \sum_{i=1}^{D}x_i^2 - \prod_{i=1}^D{\rm
+            cos}\left(x_i/\sqrt{i}\right) +1     \end{aligned}$ \vspace*{3ex} \\
+        штрафная 1    &$\left[-50,\,50\right]^D$     &
+        $\begin{aligned}f_{12}(x)= &\textstyle \frac{\pi}{D}
+          \Big\{ 10\,{\rm sin}^2(\pi y_1) +\\ &+
+          \textstyle \sum_{i=1}^{D-1}(y_i-1)^2\left[1+10\,{\rm sin}^2(\pi
+              y_{i+1})\right] +\\ &+(y_D-1)^2 \Big\} +\textstyle\sum_{i=1}^D u(x_i,\,10,\,100,\,4)            \end{aligned}$ \vspace*{2ex} \\
+        штрафная 2    &$\left[-50,\,50\right]^D$     &
+        $\begin{aligned}f_{13}(x)= &\textstyle 0.1
+          \Big\{{\rm sin}^2(3\pi x_1) +\\ &+
+          \textstyle \sum_{i=1}^{D-1}(x_i-1)^2\left[1+{\rm sin}^2(3 \pi
+              x_{i+1})\right] + \\ &+(x_D-1)^2\left[1+{\rm sin}^2(2\pi
+              x_D)\right] \Big\} +\\ &+\textstyle\sum_{i=1}^D u(x_i,\,5,\,100,\,4)            \end{aligned}$               \\
+        \midrule%%% тонкий разделитель
+        \multicolumn{3}{@{}p{\textwidth}}{%
+            \vspace*{-3.5ex}% этим подтягиваем повыше
+            \hspace*{2.5em}% абзацный отступ - требование ГОСТ 2.105
+            Примечание "---  Для функций $f_{12}$ и $f_{13}$
+            используется $y_i = 1 + \frac{1}{4}(x_i+1)$ и
+            $u(x_i,\,a,\,k,\,m)=\begin{cases}
+k(x_i-a)^m,\quad &x_i >a\\[-0.5em]
+0,\quad &-a\leq x_i \leq a\\[-0.5em]
+k(-x_i-a)^m,\quad &x_i <-a
+\end{cases}$  }   \\        \bottomrule %%% нижняя линейка 
+\end{longtabu} 
+\endgroup
+
 \section{Очередной подраздел приложения} \label{AppendixB3}
 
 Нужно больше подразделов приложения!
