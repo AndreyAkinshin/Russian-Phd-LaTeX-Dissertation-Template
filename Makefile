@@ -1,4 +1,4 @@
-.PHONY: synopsis dissertation pdflatex talk draft clean distclean release
+.PHONY: synopsis dissertation pdflatex talk dissertation-preload clean distclean release
 
 all: synopsis dissertation talk
 
@@ -15,9 +15,9 @@ synopsis:
 talk:
 	$(MAKE) talk -C Presentation
 
-draft:
-	$(MAKE) draft -C Synopsis
-	$(MAKE) draft -C Dissertation
+dissertation-preload:
+	etex -ini "&latex" mylatexformat.ltx """dissertation.tex"""
+	latexmk -pdf -jobname=dissertation -silent --shell-escape dissertation.tex
 
 clean:
 	#	$(MAKE) clean -C Dissertation
