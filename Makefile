@@ -1,6 +1,8 @@
-.PHONY: synopsis dissertation pdflatex talk dissertation-preload clean distclean release
+.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat clean distclean release
 
 all: synopsis dissertation talk
+
+preformat: synopsis-preformat dissertation-preformat
 
 dissertation:
 	#	$(MAKE) -C Dissertation
@@ -15,9 +17,16 @@ synopsis:
 talk:
 	$(MAKE) talk -C Presentation
 
-dissertation-preload:
+dissertation-preformat:
 	etex -ini "&latex" mylatexformat.ltx """dissertation.tex"""
 	latexmk -pdf -jobname=dissertation -silent --shell-escape dissertation.tex
+
+dissertation-formated:
+	latexmk -pdf -jobname=dissertation -silent --shell-escape dissertation.tex
+
+synopsis-preformat:
+	etex -ini "&latex" mylatexformat.ltx """synopsis.tex"""
+	latexmk -pdf -jobname=synopsis -silent --shell-escape synopsis.tex
 
 clean:
 	#	$(MAKE) clean -C Dissertation
