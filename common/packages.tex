@@ -95,3 +95,8 @@
 \fi
 \creflabelformat{equation}{#2#1#3}                  % Формат по умолчанию ставил круглые скобки вокруг каждого номера ссылки, теперь просто номера ссылок без какого-либо дополнительного оформления
 
+\ifxetexorluatex  % pdflatex ругается на непомерный размер шрифта
+    \usepackage[firstpage]{draftwatermark}
+    \SetWatermarkText{DRAFT}
+    \SetWatermarkAngle{45}
+\fi
