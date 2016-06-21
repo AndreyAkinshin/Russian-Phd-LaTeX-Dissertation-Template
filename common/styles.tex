@@ -117,6 +117,11 @@ justification=centering,            % Центрирование подписе�
     pdfkeywords={\keywords},    % Ключевые слова
     pdflang={ru},
 }
+\ifthenelse{\equal{\thedraft}{1}}{% Черновик
+    \hypersetup{
+        draft,
+    }
+}
 
 %%% Шаблон %%%
 \DeclareRobustCommand{\todo}{\textcolor{red}}       % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930/79756 , \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase
