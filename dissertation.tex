@@ -1,7 +1,9 @@
+%&preformat-disser
 \RequirePackage[l2tabu,orthodox]{nag} % Раскомментировав, можно в логе получать рекомендации относительно правильного использования пакетов и предупреждения об устаревших и нерекомендуемых пакетах
 % Формат А4, 14pt (ГОСТ Р 7.0.11-2011, 5.3.6)
 \documentclass[a4paper,14pt]{extreport}
 
+\input{common/setup}               % общие настройки шаблона
 \input{common/packages}  % Пакеты общие для диссертации и автореферата
 \input{Dissertation/dispackages}         % Пакеты для диссертации
 \input{Dissertation/userpackages}        % Пакеты для специфических пользовательских задач
@@ -18,6 +20,7 @@
 \input{biblio/bibliopreamble}% Настройки библиографии из внешнего файла (там же выбор: встроенная или на основе biblatex)
 
 \input{Dissertation/inclusioncontrol}    % Управление компиляцией отдельных частей диссертации
+
 \begin{document}
 
 \input{common/renames}                   % Переопределение именований
