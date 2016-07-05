@@ -105,6 +105,8 @@
 \setsubsubsecheadstyle{\basegostsectionfont\hdngalign}
 \setsubsubsecindent{\otstuplen}
 
+\sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block 
+
 \ifthenelse{\equal{\thechapstyle}{1}}{%
     \chapterstyle{thesisgostchapname}
     \renewcommand*{\cftchaptername}{\chaptername\space} % будет вписано слово Глава перед каждым номером раздела в оглавлении
