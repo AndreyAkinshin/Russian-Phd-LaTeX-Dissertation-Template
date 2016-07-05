@@ -6,10 +6,8 @@
 
 \begin{table} [htbp]
   \centering
-  \parbox{15cm}{%
-      \caption{Название таблицы}\label{Ts0Sib}%
-  }
-%  \begin{center}
+  \captionsetup{width=15cm}
+  \caption{Название таблицы}\label{Ts0Sib}%
   \begin{tabular}{| p{3cm} || p{3cm} | p{3cm} | p{4cm}l |}
   \hline
   \hline
@@ -21,7 +19,6 @@
   \hline
   \hline
   \end{tabular}
-%  \end{center}
 \end{table}
 
 \begin{table} [htbp]% Пример записи таблицы с номером, но без отображаемого наименования
@@ -30,6 +27,7 @@
         \captionsetup{format=tablenocaption}% должен стоять до самого caption
         \caption{}%
         \label{tbl:test1}%
+        \begin{SingleSpace}
     	\begin{tabular}{ | c | c | c | c |}
     	\hline
     	Оконная функция	& ${2N}$ & ${4N}$	& ${8N}$	\\ \hline
@@ -38,6 +36,7 @@
     	Хэмминга	& 8.72 	 & 8.77		& 8.77		\\ \hline
     	Блэкмана	& 8.72 	 & 8.77		& 8.77		\\ \hline
     	\end{tabular}%
+    	\end{SingleSpace}
 	}
 \end{table}
 
@@ -48,6 +47,7 @@
 	\caption{Наименование таблицы, очень длинное наименование таблицы, чтобы посмотреть как оно будет располагаться на~нескольких строках и~переноситься}%
 	\label{tbl:test2}% label всегда желательно идти после caption
     \renewcommand{\arraystretch}{1.5}%% Увеличение расстояния между рядами, для улучшения восприятия.
+    \begin{SingleSpace}
 	\begin{tabular}{@{}@{\extracolsep{20pt}}llll@{}} %Вертикальные полосы не используются принципиально, как и лишние горизонтальные (допускается по ГОСТ 2.105 пункт 4.4.5) % @{} позволяет прижиматься к краям
         \toprule     %%% верхняя линейка
     	Оконная функция	& ${2N}$ & ${4N}$	& ${8N}$	\\
@@ -58,6 +58,7 @@
     	Блэкмана	& 8.72 	 & 8.77		& 8.77		\\
         \bottomrule %%% нижняя линейка
 	\end{tabular}%
+   	\end{SingleSpace}
 \end{table}
 
 \section{Таблица с многострочными ячейками и примечанием}
@@ -66,6 +67,7 @@
 \begin{table} [ht]%
 	\caption{Нэ про натюм фюйзчыт квюальизквюэ}%
 	\label{tbl:test3}% label всегда желательно идти после caption
+    \begin{SingleSpace}
     \setlength\extrarowheight{6pt} %вот этим управляем расстоянием между рядами, \arraystretch даёт неудачный результат
     \setlength{\tymin}{1.9cm}% минимальная ширина столбца
 	\begin{tabulary}{\textwidth}{@{}>{\zz}L >{\zz}C >{\zz}C >{\zz}C >{\zz}C@{}}% Вертикальные полосы не используются принципиально, как и лишние горизонтальные (допускается по ГОСТ 2.105 пункт 4.4.5) % @{} позволяет прижиматься к краям
@@ -109,6 +111,7 @@
         \\
         \bottomrule %%% нижняя линейка
 	\end{tabulary}%
+    \end{SingleSpace}
 \end{table}
 
 Из-за того, что таблица \ref{tbl:test3} не помещается на той же странице (при компилировании pdflatex), всё её содержимое переносится на следующую, ближайшую, а этот текст идёт перед ней.

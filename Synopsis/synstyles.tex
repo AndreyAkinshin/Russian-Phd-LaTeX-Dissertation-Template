@@ -2,29 +2,29 @@
 \graphicspath{{images/}{Synopsis/images/}}         % Пути к изображениям
 
 %%% Макет страницы %%%
-\oddsidemargin=-13pt
-\topmargin=-66pt
-\headheight=12pt
-\headsep=38pt
-\textheight=732pt
-\textwidth=484pt
-\marginparsep=14pt
-\marginparwidth=43pt
-\footskip=14pt
-\marginparpush=7pt
-\hoffset=0pt
-\voffset=0pt
-%\paperwidth=597pt
-%\paperheight=845pt
-\parindent=1.5cm                  % Размер табуляции (для красной строки) в начале каждого абзаца
-\renewcommand{\baselinestretch}{1.25}
+\geometry{a4paper, text={484pt, 732pt}, centering, footskip=14pt} %,showframe
+
+%%% Интервалы %%%
+%linespread-реализация ближе к реализации полуторного интервала в ворде.
+%Она не правит интервал внутри таблиц и подобного.
+%\linespread{1.42}                 % Полуторный интервал (ГОСТ Р 7.0.11-2011, 5.3.6)
+%Реализация средствами класса (на основе setspace) реализация ближе к типографской классике.
+%И правит сразу и в таблицах (если со звёздочкой) 
+%\DoubleSpacing*
+\OnehalfSpacing*                  % Полуторный интервал (ГОСТ Р 7.0.11-2011, 5.3.6)
+
+\parindent=1.5cm                  % Абзацный отступ
 
 \newcommand{\sfs}{\fontsize{14pt}{15pt}\selectfont}
 \sfs % размер шрифта и расстояния между строками
 
-\titleformat{\section}[hang]                                % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\normalfont\large\bfseries}% 
-        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thesection}                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
-        {1em}% отступ от номера до текста
-        {}%
+%%% Колонтитулы %%%
+\makeevenhead{plain}{}{}{}
+\makeoddhead{plain}{}{}{}
+\makeevenfoot{plain}{}{\thepage}{}
+\makeoddfoot{plain}{}{\thepage}{}
+\pagestyle{plain}
+
+%%% Размеры заголовков %%%
+\setsecheadstyle{\normalfont\large\bfseries}
+\renewcommand*{\chaptitlefont}{\normalfont\large\bfseries}
