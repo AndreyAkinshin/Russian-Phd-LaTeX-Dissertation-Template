@@ -36,18 +36,13 @@
 
 \ifthenelse{\theheadingdelim > 0}{%
     \renewcommand\cftchapteraftersnum{.\space}       % добавляет точку с пробелом после номера раздела в оглавлении
-}{%
-    \renewcommand\cftchapteraftersnum{\quad}         % добавляет \quad после номера раздела в оглавлении
-}
+}{}
 \ifthenelse{\theheadingdelim > 1}{%
     \renewcommand\cftsectionaftersnum{.\space}       % добавляет точку с пробелом после номера подраздела в оглавлении
     \renewcommand\cftsubsectionaftersnum{.\space}    % добавляет точку с пробелом после номера подподраздела в оглавлении
     \renewcommand\cftsubsubsectionaftersnum{.\space} % добавляет точку с пробелом после номера подподподраздела в оглавлении
     \setsecnumformat{\csname the#1\endcsname.\space}
 }{%
-    \renewcommand\cftsectionaftersnum{\quad}         % добавляет \quad после номера подраздела в оглавлении
-    \renewcommand\cftsubsectionaftersnum{\quad}      % добавляет \quad после номера подподраздела в оглавлении
-    \renewcommand\cftsubsubsectionaftersnum{\quad}   % добавляет \quad после номера подподподраздела в оглавлении
     \setsecnumformat{\csname the#1\endcsname\quad}
 }
 
@@ -71,25 +66,29 @@
 \newcommand{\basegostsectionfont}{\fontsize{14pt}{16pt}\selectfont\bfseries}
 
 \makechapterstyle{thesisgost}{%
-\chapterstyle{default}
-\setlength{\beforechapskip}{0pt}
-\setlength{\midchapskip}{0pt}
-\setlength{\afterchapskip}{\theintvl\curtextsize}
-\renewcommand*{\chapnamefont}{\basegostsectionfont}
-\renewcommand*{\chapnumfont}{\basegostsectionfont}
-\renewcommand*{\chaptitlefont}{\basegostsectionfont}
-\renewcommand*{\chapterheadstart}{}
-\renewcommand*{\afterchapternum}{\cftchapteraftersnum}
-\renewcommand*{\printchapternum}{\hdngaligni\hdngalign\chapnumfont \thechapter}
-\renewcommand*{\printchaptername}{}
-\renewcommand*{\printchapternonum}{\hdngaligni\hdngalign}
+    \chapterstyle{default}
+    \setlength{\beforechapskip}{0pt}
+    \setlength{\midchapskip}{0pt}
+    \setlength{\afterchapskip}{\theintvl\curtextsize}
+    \renewcommand*{\chapnamefont}{\basegostsectionfont}
+    \renewcommand*{\chapnumfont}{\basegostsectionfont}
+    \renewcommand*{\chaptitlefont}{\basegostsectionfont}
+    \renewcommand*{\chapterheadstart}{}
+    \ifthenelse{\theheadingdelim > 0}{%
+        \renewcommand*{\afterchapternum}{.\space}   % добавляет точку с пробелом после номера раздела
+    }{%
+        \renewcommand*{\afterchapternum}{\quad}     % добавляет \quad после номера раздела
+    }
+    \renewcommand*{\printchapternum}{\hdngaligni\hdngalign\chapnumfont \thechapter}
+    \renewcommand*{\printchaptername}{}
+    \renewcommand*{\printchapternonum}{\hdngaligni\hdngalign}
 }
 
 \makeatletter
 \makechapterstyle{thesisgostchapname}{%
-\chapterstyle{thesisgost}
-\renewcommand*{\printchapternum}{\chapnumfont \thechapter}
-\renewcommand*{\printchaptername}{\hdngaligni\hdngalign\chapnamefont \@chapapp} %
+    \chapterstyle{thesisgost}
+    \renewcommand*{\printchapternum}{\chapnumfont \thechapter}
+    \renewcommand*{\printchaptername}{\hdngaligni\hdngalign\chapnamefont \@chapapp} %
 }
 \makeatother
 
