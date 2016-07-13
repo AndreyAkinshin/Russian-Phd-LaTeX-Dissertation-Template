@@ -41,9 +41,13 @@
     \renewcommand\cftsectionaftersnum{.\space}       % добавляет точку с пробелом после номера подраздела в оглавлении
     \renewcommand\cftsubsectionaftersnum{.\space}    % добавляет точку с пробелом после номера подподраздела в оглавлении
     \renewcommand\cftsubsubsectionaftersnum{.\space} % добавляет точку с пробелом после номера подподподраздела в оглавлении
-    \setsecnumformat{\csname the#1\endcsname.\space}
+    \AtBeginDocument{% без этого polyglossia сама всё переопределяет
+        \setsecnumformat{\csname the#1\endcsname.\space}
+    }
 }{%
-    \setsecnumformat{\csname the#1\endcsname\quad}
+    \AtBeginDocument{% без этого polyglossia сама всё переопределяет
+        \setsecnumformat{\csname the#1\endcsname\quad}
+    }
 }
 
 \ifthenelse{\equal{\thepgnum}{1}}{%
