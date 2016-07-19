@@ -1,6 +1,6 @@
-.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat clean distclean release
+.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat clean distclean release draft
 
-all: synopsis dissertation talk
+all: synopsis dissertation
 
 preformat: synopsis-preformat dissertation-preformat
 
@@ -14,6 +14,10 @@ pdflatex:
 synopsis:
 	#	$(MAKE) -C Synopsis
 	latexmk -pdf -pdflatex="xelatex %O %S" synopsis
+draft:	
+	latexmk -pdf -pdflatex="xelatex %O '\newcounter{draft}\setcounter{draft}{1}\input{%S}'" dissertation
+	latexmk -pdf -pdflatex="xelatex %O '\newcounter{draft}\setcounter{draft}{1}\input{%S}'" synopsis
+
 talk:
 	$(MAKE) talk -C Presentation
 
