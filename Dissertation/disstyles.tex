@@ -1,151 +1,133 @@
 %%% Изображения %%%
 \graphicspath{{images/}{Dissertation/images/}}         % Пути к изображениям
 
-\LoadInterface {titlesec}                   % Подгружаем интерфейсы для дополнительных опций управления некоторыми пакетами
+%%% Макет страницы %%%
+% Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
+\geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm} %,showframe
+
+%%% Интервалы %%%
+%% По ГОСТ Р 7.0.11-2011, пункту 5.3.6 требуется полуторный интервал
+%% Реализация средствами класса (на основе setspace) ближе к типографской классике.
+%% И правит сразу и в таблицах (если со звёздочкой) 
+%\DoubleSpacing*     % Двойной интервал
+\OnehalfSpacing*    % Полуторный интервал
+%\setSpacing{1.42}   % Полуторный интервал, подобный Ворду (возможно, стоит включать вместе с предыдущей строкой)
 
 %%% Блок управления параметрами для выравнивания заголовков в тексте %%%
 \newlength{\otstuplen}
 \setlength{\otstuplen}{\theotstup\parindent}
 \ifthenelse{\equal{\theheadingalign}{0}}{% выравнивание заголовков в тексте
-    \newcommand{\hdngalign}{\filcenter}                % по центру
-    \newcommand{\hdngaligni}{\hfill\hspace{\otstuplen}}% по центру
+    \newcommand{\hdngalign}{\centering}                % по центру
+    \newcommand{\hdngaligni}{}% по центру
+    \setlength{\otstuplen}{0pt}
 }{%
-    \newcommand{\hdngalign}{\filright}                 % по левому краю
+    \newcommand{\hdngalign}{}                 % по левому краю
     \newcommand{\hdngaligni}{\hspace{\otstuplen}}      % по левому краю
 } % В обоих случаях вроде бы без переноса, как и надо (ГОСТ Р 7.0.11-2011, 5.3.5)
 
 %%% Оглавление %%%
-\renewcommand{\cftchapdotsep}{\cftdotsep}                % отбивка точками до номера страницы начала главы/раздела
-\renewcommand{\cfttoctitlefont}{\hdngaligni\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
-\renewcommand{\cftaftertoctitle}{\hfill}                 % устанавливает заголовок по центру
-\setlength{\cftbeforetoctitleskip}{-1.4\curtextsize}     % Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.4\curtextsize.
-\setlength{\cftaftertoctitleskip}{\theintvl\curtextsize} % Если считаем Оглавление заголовком, то выставляем после него тройной интервал через наше определённое значение
+\renewcommand{\cftchapterdotsep}{\cftdotsep}                % отбивка точками до номера страницы начала главы/раздела
 
 %% Переносить слова в заголовке не допускается (ГОСТ Р 7.0.11-2011, 5.3.5). Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3). Прямого указания на запрет переносов в оглавлении нет, но по той же логике невнесения искажений в смысл, лучше в оглавлении не переносить:
-\cftsetrmarg{2.55em plus1fil}                       %To have the (sectional) titles in the ToC, etc., typeset ragged right with no hyphenation
-\renewcommand{\cftchappagefont}{\normalfont}        % нежирные номера страниц у глав в оглавлении
-\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}% нежирные точки до номеров страниц у глав в оглавлении
-%\renewcommand{\cftchapfont}{}                       % нежирные названия глав в оглавлении
+\setrmarg{2.55em plus1fil}                             %To have the (sectional) titles in the ToC, etc., typeset ragged right with no hyphenation
+\renewcommand{\cftchapterpagefont}{\normalfont}        % нежирные номера страниц у глав в оглавлении
+\renewcommand{\cftchapterleader}{\cftdotfill{\cftchapterdotsep}}% нежирные точки до номеров страниц у глав в оглавлении
+%\renewcommand{\cftchapterfont}{}                       % нежирные названия глав в оглавлении
 
 \ifthenelse{\theheadingdelim > 0}{%
-    \renewcommand\cftchapaftersnum{.\ }   % добавляет точку с пробелом после номера раздела в оглавлении
-}{%
-\renewcommand\cftchapaftersnum{\quad}     % добавляет \quad после номера раздела в оглавлении
-}
+    \renewcommand\cftchapteraftersnum{.\space}       % добавляет точку с пробелом после номера раздела в оглавлении
+}{}
 \ifthenelse{\theheadingdelim > 1}{%
-    \renewcommand\cftsecaftersnum{.\ }    % добавляет точку с пробелом после номера подраздела в оглавлении
-    \renewcommand\cftsubsecaftersnum{.\ } % добавляет точку с пробелом после номера подподраздела в оглавлении
+    \renewcommand\cftsectionaftersnum{.\space}       % добавляет точку с пробелом после номера подраздела в оглавлении
+    \renewcommand\cftsubsectionaftersnum{.\space}    % добавляет точку с пробелом после номера подподраздела в оглавлении
+    \renewcommand\cftsubsubsectionaftersnum{.\space} % добавляет точку с пробелом после номера подподподраздела в оглавлении
+    \AtBeginDocument{% без этого polyglossia сама всё переопределяет
+        \setsecnumformat{\csname the#1\endcsname.\space}
+    }
 }{%
-\renewcommand\cftsecaftersnum{\quad}      % добавляет \quad после номера подраздела в оглавлении
-\renewcommand\cftsubsecaftersnum{\quad}   % добавляет \quad после номера подподраздела в оглавлении
+    \AtBeginDocument{% без этого polyglossia сама всё переопределяет
+        \setsecnumformat{\csname the#1\endcsname\quad}
+    }
 }
 
 \ifthenelse{\equal{\thepgnum}{1}}{%
     \addtocontents{toc}{~\hfill{Стр.}\par}% добавить Стр. над номерами страниц
 }
 
-%%% Оформление названий глав %%%
-%% настройки заголовка списка рисунков
-\renewcommand{\cftloftitlefont}{\hdngaligni\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
-\renewcommand{\cftafterloftitle}{\hfill}                                             % устанавливает заголовок по центру
-\setlength{\cftbeforeloftitleskip}{-1.5\curtextsize}     % Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.5\curtextsize.
-\setlength{\cftafterloftitleskip}{\theintvl\curtextsize} % выставляем после него тройной интервал через наше определённое значение
-
-%% настройки заголовка списка таблиц
-\renewcommand{\cftlottitlefont}{\hdngaligni\fontsize{14pt}{16pt}\selectfont\bfseries}% вместе со следующей строкой
-\renewcommand{\cftafterlottitle}{\hfill}                                             % устанавливает заголовок по центру
-\setlength{\cftbeforelottitleskip}{-1.5\curtextsize}     % Поскольку этот заголовок всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление (почти) происходит при -1.5\curtextsize.
-\setlength{\cftafterlottitleskip}{\theintvl\curtextsize} % выставляем после него тройной интервал через наше определённое значение
-
-\ifnum\curtextsize>\bigtextsize     % Проверяем условие использования базового шрифта 14 pt
-\setlength{\headheight}{17pt}       % Исправляем высоту заголовка
-\else
-\setlength{\headheight}{15pt}       % Исправляем высоту заголовка
-\fi
+\renewcommand*{\cftappendixname}{\appendixname\space} % Слово Приложение в оглавлении
 
 %%% Колонтитулы %%%
 % Порядковый номер страницы печатают на середине верхнего поля страницы (ГОСТ Р 7.0.11-2011, 5.3.8)
-\makeatletter
-\let\ps@plain\ps@fancy              % Подчиняем первые страницы каждой главы общим правилам
-\makeatother
-\pagestyle{fancy}                   % Меняем стиль оформления страниц
-\fancyhf{}                          % Очищаем текущие значения
-\fancyhead[C]{\thepage}             % Печатаем номер страницы на середине верхнего поля
-\renewcommand{\headrulewidth}{0pt}  % Убираем разделительную линию
+\makeevenhead{plain}{}{\thepage}{}
+\makeoddhead{plain}{}{\thepage}{}
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+\pagestyle{plain}
 
 %%% Оформление заголовков глав, разделов, подразделов %%%
 %% Работа должна быть выполнена ... размером шрифта 12-14 пунктов (ГОСТ Р 7.0.11-2011, 5.3.8). То есть не должно быть надписей шрифтом более 14. Так и поставим.
 %% Эти установки будут давать одинаковый результат независимо от выбора базовым шрифтом 12 пт или 14 пт
-\titleformat{\chapter}[block]                                % default display;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
-        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thechapter\cftchapaftersnum}                       % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
-        {0em}% отступ от номера до текста
-        {}%
+\newcommand{\basegostsectionfont}{\fontsize{14pt}{16pt}\selectfont\bfseries}
 
-\titleformat{\section}[block]                                % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
-        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thesection\cftsecaftersnum}                        % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
-        {0em}% отступ от номера до текста
-        {}%
+\makechapterstyle{thesisgost}{%
+    \chapterstyle{default}
+    \setlength{\beforechapskip}{0pt}
+    \setlength{\midchapskip}{0pt}
+    \setlength{\afterchapskip}{\theintvl\curtextsize}
+    \renewcommand*{\chapnamefont}{\basegostsectionfont}
+    \renewcommand*{\chapnumfont}{\basegostsectionfont}
+    \renewcommand*{\chaptitlefont}{\basegostsectionfont}
+    \renewcommand*{\chapterheadstart}{}
+    \ifthenelse{\theheadingdelim > 0}{%
+        \renewcommand*{\afterchapternum}{.\space}   % добавляет точку с пробелом после номера раздела
+    }{%
+        \renewcommand*{\afterchapternum}{\quad}     % добавляет \quad после номера раздела
+    }
+    \renewcommand*{\printchapternum}{\hdngaligni\hdngalign\chapnumfont \thechapter}
+    \renewcommand*{\printchaptername}{}
+    \renewcommand*{\printchapternonum}{\hdngaligni\hdngalign}
+}
 
-\titleformat{\subsection}[block]                             % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
-        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thesubsection\cftsubsecaftersnum}                  % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
-        {0em}% отступ от номера до текста
-        {}%
+\makeatletter
+\makechapterstyle{thesisgostchapname}{%
+    \chapterstyle{thesisgost}
+    \renewcommand*{\printchapternum}{\chapnumfont \thechapter}
+    \renewcommand*{\printchaptername}{\hdngaligni\hdngalign\chapnamefont \@chapapp} %
+}
+\makeatother
 
-\titleformat{\subsubsection}[block]                             % default hang;  hang = with a hanging label. (Like the standard \section.); block = typesets the whole title in a block (a paragraph) without additional formatting. Useful in centered titles
-        {\hdngalign\fontsize{14pt}{16pt}\selectfont\bfseries}% 
-        %\fontsize{<size>}{<skip>} % второе число ставим 1.2*первое, чтобы адекватно отрабатывали команды по расчету полуторного интервала (домножая разные комбинации коэффициентов на этот)
-        {\thesubsubsection\cftsubsecaftersnum}                  % Заголовки в оглавлении должны точно повторять заголовки в тексте (ГОСТ Р 7.0.11-2011, 5.2.3).
-        {0em}% отступ от номера до текста
-        {}%
+\chapterstyle{thesisgost}
+
+\setsecheadstyle{\basegostsectionfont\hdngalign}
+\setsecindent{\otstuplen}
+
+\setsubsecheadstyle{\basegostsectionfont\hdngalign}
+\setsubsecindent{\otstuplen}
+
+\setsubsubsecheadstyle{\basegostsectionfont\hdngalign}
+\setsubsubsecindent{\otstuplen}
+
+\sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block 
 
 \ifthenelse{\equal{\thechapstyle}{1}}{%
-    \sectionformat{\chapter}{% Параметры заголовков разделов в тексте
-        label=\chaptername\ \thechapter\cftchapaftersnum,
-        labelsep=0em,
-    }
-    %% Следующие две строки: будет вписано слово Глава перед каждым номером раздела в оглавлении   
-    \renewcommand{\cftchappresnum}{\chaptername\ }
-    \setlength{\cftchapnumwidth}{\widthof{\cftchapfont\cftchappresnum\thechapter\cftchapaftersnum}}
+    \chapterstyle{thesisgostchapname}
+    \renewcommand*{\cftchaptername}{\chaptername\space} % будет вписано слово Глава перед каждым номером раздела в оглавлении
 }%
 
-%% Интервалы между заголовками
-% На эти величины titlespacing множит через *
-\beforetitleunit=\curtextsize% привязались к нашему размеру шрифта
-\aftertitleunit=\curtextsize% привязались к нашему размеру шрифта
-
-% Счётчик intvl и длина \otstup определены в файле setup
-\titlespacing{\chapter}{\theotstup\parindent}{-1.7em}{*\theintvl}       % Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5). Поскольку название главы всегда является первым на странице, то перед ним отделять пустым тройным интервалом не следует. Независимо от основного шрифта, в этом случае зануление происходит при -1.7em.
-\titlespacing{\section}{\theotstup\parindent}{*\theintvl}{*\theintvl}
-\titlespacing{\subsection}{\theotstup\parindent}{*\theintvl}{*\theintvl}
-\titlespacing{\subsubsection}{\theotstup\parindent}{*\theintvl}{*\theintvl}
+%%% Интервалы между заголовками
+\setbeforesecskip{\theintvl\curtextsize}% Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5).
+\setaftersecskip{\theintvl\curtextsize}
+\setbeforesubsecskip{\theintvl\curtextsize}
+\setaftersubsecskip{\theintvl\curtextsize}
+\setbeforesubsubsecskip{\theintvl\curtextsize}
+\setaftersubsubsecskip{\theintvl\curtextsize}
 
 %%% Блок дополнительного управления размерами заголовков
 \ifthenelse{\equal{\theheadingsize}{1}}{% Пропорциональные заголовки и базовый шрифт 14 пт
-    \renewcommand{\cfttoctitlefont}{\hdngaligni\Large\bfseries} % Исправляем размер заголовка оглавления
-    \setlength{\cftbeforetoctitleskip}{-1.2\curtextsize}        % Исправляем вертикальный отступ перед заголовком оглавления
-    \renewcommand{\cftloftitlefont}{\hdngaligni\Large\bfseries} % Исправляем размер заголовка списка рисунков
-    \setlength{\cftbeforeloftitleskip}{-1.4\curtextsize}        % Исправляем вертикальный отступ перед заголовком списка рисунков
-    \renewcommand{\cftlottitlefont}{\hdngaligni\Large\bfseries} % Исправляем размер заголовка списка таблиц 
-    \setlength{\cftbeforelottitleskip}{-1.4\curtextsize}        % Исправляем вертикальный отступ перед заголовком списка таблиц
-    \sectionformat{\chapter}{% Параметры заголовков разделов в тексте
-        format=\hdngalign\Large\bfseries, % Исправляем размер заголовка
-        top-=0.4em,                       % Исправляем вертикальный отступ перед заголовком
-    }
-    \sectionformat{\section}{% Параметры заголовков подразделов в тексте
-        format=\hdngalign\large\bfseries, % Исправляем размер заголовка
-    }
-}
-
-\ifthenelse{\equal{\theheadingsize}{1}\AND \curtextsize < \bigtextsize}{% Пропорциональные заголовки и базовый шрифт 14 пт
-    \sectionformat{\chapter}{% Параметры заголовков разделов в тексте
-        top-=0.2em, % Исправляем вертикальный отступ перед заголовком
-    }
+    \renewcommand{\basegostsectionfont}{\large\bfseries}
+    \renewcommand*{\chapnamefont}{\Large\bfseries}
+    \renewcommand*{\chapnumfont}{\Large\bfseries}
+    \renewcommand*{\chaptitlefont}{\Large\bfseries}
 }
 
 %%% Счётчики %%%

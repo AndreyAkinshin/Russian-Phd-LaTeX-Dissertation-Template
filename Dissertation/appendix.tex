@@ -3,17 +3,12 @@
 
 Для крупных листингов есть два способа. Первый красивый, но в нём могут быть проблемы с поддержкой кириллицы (у вас может встречаться в комментариях и
 печатаемых сообщениях), он представлен на листинге~\ref{list:hwbeauty}.
-%\renewcommand\FBbskip{-20pt} % если хотим притянуть что-то к плавающему окружению из floatrow
-\begin{ListingEnv}[H]% буква H означает Here, ставим здесь,
-    % элементы, которые нежелательно разрывать обычно не ставят
-    % посреди страницы: вместо H используется t (top, сверху страницы),
-    % или b (bottom) или p (page, на отдельной странице)
+\begin{ListingEnv}[!h]% настройки floating аналогичны окружению figure
 %    \captionsetup{format=tablenocaption}% должен стоять до самого caption
-%    \thisfloatsetup{\capposition=top}%
     \caption{Программа “Hello, world” на \protect\cpp}
     % далее метка для ссылки:
     \label{list:hwbeauty}
-    % окружение учитывает пробелы и табляции и приеняет их в сответсвии с настройкми
+    % окружение учитывает пробелы и табуляции и применяет их в сответсвии с настройками
     \begin{lstlisting}[language={[ISO]C++}]
 	#include <iostream>
 	using namespace std;
@@ -27,7 +22,9 @@
     \end{lstlisting}
 \end{ListingEnv}%
 Второй не такой красивый, но без ограничений (см.~листинг~\ref{list:hwplain}).
-\begin{ListingEnv}[H]
+\begin{ListingEnv}[!h]
+    \caption{Программа “Hello, world” без подсветки}
+    \label{list:hwplain}
     \begin{Verb}
         
         #include <iostream>
@@ -38,8 +35,6 @@
             cout << "Привет, мир" << endl;
         }
     \end{Verb}
-    \caption{Программа “Hello, world” без подсветки}
-    \label{list:hwplain}
 \end{ListingEnv}
 
 Можно использовать первый для вставки небольших фрагментов
