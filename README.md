@@ -8,7 +8,9 @@ LaTeX-шаблон для русской кандидатской диссерт
 
 [**Примеры компиляции шаблона**](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/releases/latest).
 
-[**Установка программного обеспечения и сборка диссертации в файлы PDF**](Installation.md).
+[**Установка программного обеспечения и сборка диссертации в файлы PDF**](Readme/Installation.md).
+
+[**Как писать диссертацию на GitHub?**](Readme/github.md)
 
 ## Обсуждение
 Общие вопросы лучше всего писать в gitter-канал:
@@ -40,9 +42,9 @@ LaTeX-шаблон для русской кандидатской диссерт
 
 ## Дополнительная полезная информация
 
-* [Оформление библиографии](Bibliography.md)
+* [Оформление библиографии](Readme/Bibliography.md)
 * [Как вносить правки в проект](CONTRIBUTING.md)
-* [Полезные ссылки](Links.md)
+* [Полезные ссылки](Readme/Links.md)
 * [Шаблон в галерее шаблонов ShareLaTeX](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template).
 
 ## Благодарности
