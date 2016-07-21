@@ -51,15 +51,21 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 для файлов partX.txt это как правило удалить строчку
 
+``` tex
 '<<<<<<< HEAD'
+```
 в начале файла, найти строчку 
+``` tex
 =======
+```
 и удалить от неё до строчки
+``` tex
 >>>>>>> master
+``` 
 
 Чаще всего хочется оставить HEAD, но могут быть варианты. Например:
 
-```
+``` tex
 <<<<<<< HEAD
 %%% Макет страницы %%%
 % Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
@@ -73,7 +79,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 Ещё пример:
 
-'''
+``` tex
 <<<<<<< HEAD
 %%% Интервалы %%%
 \usepackage[onehalfspacing]{setspace}               % Опция запуска пакета правит не только интервалы в обычном тексте, но и формульные
@@ -90,14 +96,15 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 =======
 >>>>>>> master
-'''
+``` tex
+
 Объявления \usepackage перехали в другой файл, их тут удаляем, блок про разрыв страниц оставляем. Служебные 
 
-'''
+``` tex
 <<<<<<< HEAD
 =======
 >>>>>>> master
-'''
+``` 
 
 разумеется, удаляем.
 
