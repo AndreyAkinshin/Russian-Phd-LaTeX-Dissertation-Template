@@ -7,7 +7,7 @@
         Фамилия, Имя Отчество% эта запись для свойств pdf-файла. В таком виде, если pdf будет обработан программами для сбора библиографических сведений, будет правильно представлена фамилия.
     }%
 }
-\newcommand{\thesisAuthorShort}             % Диссертация, ФИО автора инициалами
+\newcommand{\thesisAuthorShort}        % Диссертация, ФИО автора инициалами
 {\todo{И.О.~Фамилия}}
 
 \newcommand{\thesisUdk}                % Диссертация, УДК
@@ -18,8 +18,10 @@
 {\texorpdfstring{\todo{XX.XX.XX}}{XX.XX.XX}}
 \newcommand{\thesisSpecialtyTitle}     % Диссертация, специальность, название
 {\texorpdfstring{\todo{Название специальности}}{Название специальности}}
-\newcommand{\thesisDegree}             % Диссертация, научная степень
+\newcommand{\thesisDegree}             % Диссертация, ученая степень
 {\todo{кандидата физико-математических наук}}
+\newcommand{\thesisDegreeShort}        % Диссертация, ученая степень, краткая запись
+{\todo{канд. физ.-мат. наук}}
 \newcommand{\thesisCity}               % Диссертация, город защиты
 {\todo{Город}}
 \newcommand{\thesisYear}               % Диссертация, год защиты
@@ -29,16 +31,16 @@
 \newcommand{\thesisOrganizationShort}  % Диссертация, краткое название организации для доклада
 {\todo{НазУчДисРаб}}
 
-\newcommand{\thesisInOrganization}       % Диссертация, организация в предложном падеже: Работа выполнена в ...
+\newcommand{\thesisInOrganization}     % Диссертация, организация в предложном падеже: Работа выполнена в ...
 {\todo{учреждении, в~котором выполнялась данная диссертационная работа}}
 
 \newcommand{\supervisorFio}            % Научный руководитель, ФИО
 {\todo{Фамилия Имя Отчество}}
 \newcommand{\supervisorRegalia}        % Научный руководитель, регалии
 {\todo{уч. степень, уч. звание}}
-\newcommand{\supervisorFioShort}            % Научный руководитель, ФИО
+\newcommand{\supervisorFioShort}       % Научный руководитель, ФИО
 {\todo{И.О.~Фамилия}}
-\newcommand{\supervisorRegaliaShort}        % Научный руководитель, регалии
+\newcommand{\supervisorRegaliaShort}   % Научный руководитель, регалии
 {\todo{уч.~ст.,~уч.~зв.}}
 
 
@@ -66,11 +68,13 @@
 \newcommand{\defenseDate}              % Защита, дата
 {\todo{DD mmmmmmmm YYYY~г.~в~XX часов}}
 \newcommand{\defenseCouncilNumber}     % Защита, номер диссертационного совета
-{\todo{NN}}
+{\todo{Д\,123.456.78}}
 \newcommand{\defenseCouncilTitle}      % Защита, учреждение диссертационного совета
 {\todo{Название учреждения}}
 \newcommand{\defenseCouncilAddress}    % Защита, адрес учреждение диссертационного совета
 {\todo{Адрес}}
+\newcommand{\defenseCouncilPhone}      % Телефон для справок
+{\todo{+7~(0000)~00-00-00}}
 
 \newcommand{\defenseSecretaryFio}      % Секретарь диссертационного совета, ФИО
 {\todo{Фамилия Имя Отчество}}
@@ -83,5 +87,5 @@
 {\todo{DD mmmmmmmm YYYY года}}
 
 % To avoid conflict with beamer class use \providecommand
-\providecommand{\keywords}%                 % Ключевые слова для метаданных PDF диссертации и автореферата
+\providecommand{\keywords}%            % Ключевые слова для метаданных PDF диссертации и автореферата
 {}

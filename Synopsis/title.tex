@@ -34,56 +34,53 @@
 \noindent Работа выполнена в \thesisInOrganization
 
 \par\bigskip
-%\begin{table}[h] % считается не очень правильным использовать окружение table, не задавая caption
-    \noindent%
-    \begin{tabular}{@{}lp{0.637\textwidth}}
-        \sfs Научный руководитель: & \sfs \supervisorRegalia \par
-                                      \textbf{\supervisorFio}
-        \vspace{0.013\paperheight} \\
-        {\sfs Официальные оппоненты:} &
-        {\sfs \textbf{\opponentOneFio,}\par
-                  \opponentOneRegalia,\par
-                  \opponentOneJobPlace,\par
-                  \opponentOneJobPost\par \vspace{0.01\paperheight}
-                  \textbf{\opponentTwoFio,}\par \vspace{0.0034\paperheight}
-                  \opponentTwoRegalia,\par
-                  \opponentTwoJobPlace,\par
-                  \opponentTwoJobPost
-        }
-        \vspace{0.013\paperheight} \\
-        {\sfs Ведущая организация:} & {\sfs \leadingOrganizationTitle }
-    \end{tabular}  
-%\end{table}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+    Научный руководитель:   & \supervisorRegalia\par
+                              \textbf{\supervisorFio}
+    \vspace{0.013\paperheight}\\
+    Официальные оппоненты:  &
+        \textbf{\opponentOneFio,}\par
+        \opponentOneRegalia,\par
+        \opponentOneJobPlace,\par
+        \opponentOneJobPost\par
+            \vspace{0.01\paperheight}
+        \textbf{\opponentTwoFio,}\par
+        \opponentTwoRegalia,\par
+        \opponentTwoJobPlace,\par
+        \opponentTwoJobPost
+    \vspace{0.013\paperheight} \\
+    Ведущая организация:    & \leadingOrganizationTitle
+\end{tabularx}  
 \par\bigskip
 
-\noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~на базе \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
+\noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~при \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
 
 \vspace{0.017\paperheight}
 \noindent С диссертацией можно ознакомиться в библиотеке \synopsisLibrary.
 
 \vspace{0.017\paperheight}
-\noindent{Автореферат разослан \synopsisDate.}
+\noindent Отзывы на автореферат в двух экземплярах, заверенные печатью учреждения, просьба направлять по адресу: \defenseCouncilAddress, ученому секретарю диссертационного совета~\defenseCouncilNumber.
 
 \vspace{0.017\paperheight}
-%\begin{table} [h] % считается не очень правильным использовать окружение table, не задавая caption
+\noindent{Автореферат разослан \synopsisDate.}
+
+\noindent Телефон для справок: \defenseCouncilPhone.
+
+\vspace{0.017\paperheight}
 \par\bigskip
-    \noindent%
-    \begin{tabular}{p{0.47\textwidth}cr}
-        \begin{tabular}{p{0.34\textwidth}}
-            \sfs Ученый секретарь  \\
-            \sfs диссертационного совета  \\
-            \sfs \defenseCouncilNumber, \defenseSecretaryRegalia
-        \end{tabular} 
+\noindent%
+\begin{tabularx}{\textwidth}{@{}%
+>{\raggedright\arraybackslash}b{18em}
+>{\centering\arraybackslash}X
+r
+@{}}
+    Ученый секретарь\par
+    диссертационного совета\par
+    \defenseCouncilNumber,\par
+    \defenseSecretaryRegalia
     &
-        \begin{tabular}{c}
-            \includegraphics[height=0.034\paperheight]{secretary-signature} 
-        \end{tabular} 
+    \includegraphics[width=2cm]{secretary-signature}
     &
-        \begin{tabular}{r}
-            \\
-            \\
-            \sfs \defenseSecretaryFio
-        \end{tabular} 
-    \end{tabular}
-%\end{table}
-\newpage
+    \defenseSecretaryFio
+\end{tabularx} 

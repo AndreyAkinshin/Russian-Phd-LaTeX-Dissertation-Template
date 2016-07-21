@@ -258,8 +258,8 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 \defbibheading{countauthor}{}
 
-
-
+\defbibheading{authorpublications}[\authorbibtitle]{\section*{#1}}
+\defbibheading{otherpublications}{\section*{#1}}
 
 
 %%% Создание команд для вывода списка литературы %%%
@@ -269,12 +269,12 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[keyword=biblioauthor,section=1,title=\authorbibtitle]
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
 \printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
 }
 
 \newcommand*{\insertbiblioother}{
-\printbibliography[keyword=biblioother]
+\printbibliography[heading=otherpublications,keyword=biblioother]
 \printbibliography[heading=counter,env=counter,keyword=biblioother]
 }
 

@@ -43,7 +43,7 @@ LaTeX-шаблон для русской кандидатской диссерт
 ## Дополнительная полезная информация
 
 * [Оформление библиографии](Readme/Bibliography.md)
-* [Как вносить правки в проект](Readme/CONTRIBUTING.md)
+* [Как вносить правки в проект](CONTRIBUTING.md)
 * [Полезные ссылки](Readme/Links.md)
 * [Шаблон в галерее шаблонов ShareLaTeX](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template).
 
