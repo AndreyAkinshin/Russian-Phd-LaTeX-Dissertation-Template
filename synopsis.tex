@@ -18,8 +18,10 @@
 
 \begin{document}
 
-\input{Synopsis/title}           % Титульный лист
-\input{Synopsis/content}         % Содержание автореферата
+\input{Synopsis/title}          % Титульный лист
+%\mainmatter                     % В том числе начинает нумерацию страниц арабскими цифрами с единицы
+\mainmatter*                    % Нумерация страниц не изменится, но начнётся с новой страницы
+\input{Synopsis/content}        % Содержание автореферата
 
 %%% Выходные сведения типографии
 \newpage\thispagestyle{empty}
