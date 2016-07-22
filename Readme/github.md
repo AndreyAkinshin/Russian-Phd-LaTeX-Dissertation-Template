@@ -41,22 +41,22 @@ Winodows\Mac есть программы для работы с git... в кот
 должна получать обновления. Это делается один раз для каждой локальной
 копии.
 
-'git remote add upstream https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template'
+`git remote add upstream https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template`
 
 2) Теперь в любой момент можно обновить свою локальную копию и свою
 копию на сайте GitHub следующим набором команд.
 
-Переключаемся в master ветку: 'git checkout master'
+Переключаемся в master ветку: `git checkout master`
 
-Синхронизируем локальную копию с своей копией на сайте: 'git pull'
+Синхронизируем локальную копию с своей копией на сайте: `git pull`
 
-Получаем актуальные обновления: 'git fetch upstream'
+Получаем актуальные обновления: `git fetch upstream`
 
-Смотрим что поменялось: 'git diff upstream/master'
+Смотрим что поменялось: `git diff upstream/master`
 
-Сливаем изменения в свою локальную копию: 'git merge upstream/master'
+Сливаем изменения в свою локальную копию: `git merge upstream/master`
 
-Отправляем их в свою копию на сайте: 'git push'
+Отправляем их в свою копию на сайте: `git push`
 
 Для Linux пользователей есть скрипт merge-with-upstream.sh, который
 это всё делает скопом. Если вы свои master копии не трогали - никакого
@@ -64,13 +64,40 @@ Winodows\Mac есть программы для работы с git... в кот
 
 3) Не сложно подтянуть обновления уже непосредственно в свой дисер. Для этого
 
-'git checkout disser-Ladutenko'
+`git checkout disser-Ladutenko`
 
-по желанию: 'git diff master'
+по желанию: `git diff master`
 
-'git merge master'
+`git merge master`
 
-Если изменения были не очень конфликтующие (кто-то подправил файлы шаблона, которые вы и не трогали, например Readme или какие-то внутренние опции) всё тоже пройдёт без дополнительных вопросов.
+Если изменения были не очень конфликтующие (кто-то подправил файлы
+шаблона, которые вы и не трогали, например Readme или какие-то
+внутренние опции) всё тоже пройдёт без дополнительных вопросов, а
+состояние репозиторие сразу перематается вперёд через все новые комиты
+(fast-forward). 
+
+```
+Updating 22ca047..112b54a
+Fast-forward
+ Dissertation/disstyles.tex                |  16 +++++++++-
+ README.md                                 |   8 +++--
+ Bibliography.md => Readme/Bibliography.md |   0
+ Installation.md => Readme/Installation.md |   6 ++--
+ Links.md => Readme/Links.md               |   0
+ Readme/github.md                          | 163 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Synopsis/synstyles.tex                    |  19 ++++++++---
+ Synopsis/title.tex                        |  77 ++++++++++++++++++++++-----------------------
+ Synopsis/userstyles.tex                   |   1 +
+ biblio/biblatex.tex                       |   8 ++---
+ common/data.tex                           |  18 ++++++-----
+ common/styles.tex                         |   6 ----
+ synopsis.tex                              |  33 ++++++++++++++++++--
+ 13 files changed, 284 insertions(+), 71 deletions(-)
+ rename Bibliography.md => Readme/Bibliography.md (100%)
+ rename Installation.md => Readme/Installation.md (96%)
+ rename Links.md => Readme/Links.md (100%)
+ create mode 100644 Readme/github.md
+```
 
 4) В противном случае может потребоваться ручное разрешение конфликтов. Например,
 
@@ -97,7 +124,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 Для файлов partX.txt это, как правило, означает, что надо удалить строчку
 
 ``` tex
-'<<<<<<< HEAD'
+<<<<<<< HEAD
 ```
 в начале файла, найти строчку
 ``` tex
@@ -152,6 +179,9 @@ Automatic merge failed; fix conflicts and then commit the result.
 ``` 
 
 разумеется, удаляем.
+
+После того как все конфликты разрешены - не забудьте сделать финальный
+коммит, который я обычно называю merge.
 
 Собственно всё, ничего другого, чтобы поддерживать уже частично написанный диссер в соответствии с усилиями авторов шаблона достичь идеала не требуется.
 
