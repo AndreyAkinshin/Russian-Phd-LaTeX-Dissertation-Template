@@ -66,7 +66,7 @@
 
 \ifthenelse{\equal{\thepgnum}{1}}{%
     \addtocontents{toc}{~\hfill{Стр.}\par}% добавить Стр. над номерами страниц
-}
+}{}
 
 \renewcommand*{\cftappendixname}{\appendixname\space} % Слово Приложение в оглавлении
 
@@ -126,7 +126,7 @@
 \ifthenelse{\equal{\thechapstyle}{1}}{%
     \chapterstyle{thesisgostchapname}
     \renewcommand*{\cftchaptername}{\chaptername\space} % будет вписано слово Глава перед каждым номером раздела в оглавлении
-}%
+}{}%
 
 %%% Интервалы между заголовками
 \setbeforesecskip{\theintvl\curtextsize}% Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5).
@@ -142,20 +142,20 @@
     \renewcommand*{\chapnamefont}{\Large\bfseries}
     \renewcommand*{\chapnumfont}{\Large\bfseries}
     \renewcommand*{\chaptitlefont}{\Large\bfseries}
-}
+}{}
 
 %%% Счётчики %%%
 
 %% Упрощённые настройки шаблона диссертации: нумерация формул, таблиц, рисунков
 \ifthenelse{\equal{\thecontnumeq}{1}}{%
     \counterwithout{equation}{chapter} % Убираем связанность номера формулы с номером главы/раздела
-}
+}{}
 \ifthenelse{\equal{\thecontnumfig}{1}}{%
     \counterwithout{figure}{chapter}   % Убираем связанность номера рисунка с номером главы/раздела
-}
+}{}
 \ifthenelse{\equal{\thecontnumtab}{1}}{%
     \counterwithout{table}{chapter}    % Убираем связанность номера таблицы с номером главы/раздела
-}
+}{}
 
 
 %%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)

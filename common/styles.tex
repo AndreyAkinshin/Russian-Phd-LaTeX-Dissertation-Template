@@ -31,31 +31,31 @@ justification=centering,            % Центрирование подписе�
 %%% Таблицы %%%
 \ifthenelse{\equal{\thetabcap}{0}}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-}
+}{}
 
 \ifthenelse{\equal{\thetablaba}{0} \AND \equal{\thetabcap}{1}}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-}
+}{}
 
 \ifthenelse{\equal{\thetablaba}{1} \AND \equal{\thetabcap}{1}}{%
     \newcommand{\tabcapalign}{\centering}    % по центру страницы или аналога parbox
-}
+}{}
 
 \ifthenelse{\equal{\thetablaba}{2} \AND \equal{\thetabcap}{1}}{%
     \newcommand{\tabcapalign}{\raggedleft}   % по правому краю страницы или аналога parbox
-}
+}{}
 
 \ifthenelse{\equal{\thetabtita}{0} \AND \equal{\thetabcap}{1}}{%
     \newcommand{\tabtitalign}{\raggedright}  % по левому краю страницы или аналога parbox
-}
+}{}
 
 \ifthenelse{\equal{\thetabtita}{1} \AND \equal{\thetabcap}{1}}{%
     \newcommand{\tabtitalign}{\centering}    % по центру страницы или аналога parbox
-}
+}{}
 
 \ifthenelse{\equal{\thetabtita}{2} \AND \equal{\thetabcap}{1}}{%
     \newcommand{\tabtitalign}{\raggedleft}   % по правому краю страницы или аналога parbox
-}
+}{}
 
 \DeclareCaptionFormat{tablenocaption}{\tabcapalign #1\strut}        % Наименование таблицы отсутствует
 \ifthenelse{\equal{\thetabcap}{0}}{%
@@ -107,7 +107,7 @@ justification=centering,            % Центрирование подписе�
     \hypersetup{
         draft,
     }
-}
+}{}
 
 %%% Шаблон %%%
 \DeclareRobustCommand{\todo}{\textcolor{red}}       % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930/79756 , \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase
