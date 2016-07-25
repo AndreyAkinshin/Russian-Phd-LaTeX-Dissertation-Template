@@ -2,17 +2,47 @@
 \ifxetexorluatex
     \setmainlanguage[babelshorthands=true]{russian}  % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
     \setotherlanguage{english}                       % Дополнительный язык = английский (в американской вариации по-умолчанию)
-    \setmonofont{Courier New}
-    \newfontfamily\cyrillicfonttt{Courier New}
+    \setmonofont{cour}[                     % Courier New
+        Extension = .ttf,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \newfontfamily\cyrillicfonttt{cour}[    % Courier New
+        Extension = .ttf ,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
     \ifXeTeX
         \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
     \else
         \defaultfontfeatures{Ligatures=TeX}
     \fi
-    \setmainfont{Times New Roman}
-    \newfontfamily\cyrillicfont{Times New Roman}
-    \setsansfont{Arial}
-    \newfontfamily\cyrillicfontsf{Arial}
+    \setmainfont{times}[                    % Times New Roman
+        Extension = .ttf,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \newfontfamily\cyrillicfont{times}[     % Times New Roman
+        Extension = .ttf ,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \setsansfont{arial}[                    % Arial
+        Extension = .ttf,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
+    \newfontfamily\cyrillicfontsf{arial}[   % Arial
+        Extension = .ttf ,
+        UprightFont = *,
+        BoldFont = *bd,
+        ItalicFont = *i,
+        BoldItalicFont = *bi]
 \else
     \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 \fi
