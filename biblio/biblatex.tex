@@ -2,7 +2,7 @@
 
 %\usepackage{csquotes} % biblatex рекомендует его подключать. Пакет для оформления сложных блоков цитирования.
 %%% Загрузка пакета с основными настройками %%%
-\ifthenelse{\equal{\thedraft}{0}}{% Чистовик
+\ifthenelse{\thedraft = 0}{% Чистовик
 \usepackage[%
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла

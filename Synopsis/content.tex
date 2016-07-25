@@ -56,7 +56,7 @@
 \verb!../common/characteristic.tex!  при помощи команды \verb!\nocite! 
 
 \ifthenelse{\NOT \isundefined{\microtypesetup}}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому списку литературы
-\ifthenelse{\equal{\thebibliosel}{0}}{% Встроенная реализация с загрузкой файла через движок bibtex8
+\ifthenelse{\thebibliosel = 0}{% Встроенная реализация с загрузкой файла через движок bibtex8
   \renewcommand{\refname}{\large \authorbibtitle}
   \nocite{*}
   \insertbiblioauthor                          % Подключаем Bib-базы

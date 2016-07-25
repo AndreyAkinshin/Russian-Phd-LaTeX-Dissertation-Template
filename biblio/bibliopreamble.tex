@@ -2,7 +2,7 @@
 
 
 %%% Выбор реализации %%%
-\ifthenelse{\equal{\thebibliosel}{0}}{%
+\ifthenelse{\thebibliosel = 0}{%
     \input{biblio/predefined}  % Встроенная реализация с загрузкой файла через движок bibtex8
 }{
     \input{biblio/biblatex}    % Реализация пакетом biblatex через движок biber

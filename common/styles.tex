@@ -29,36 +29,36 @@ justification=centering,            % Центрирование подписе�
 \captionsetup[figure]{labelsep=emdash,position=bottom}
 
 %%% Таблицы %%%
-\ifthenelse{\equal{\thetabcap}{0}}{%
+\ifthenelse{\thetabcap = 0}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
 }{}
 
-\ifthenelse{\equal{\thetablaba}{0} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetablaba = 0 \AND \thetabcap = 1}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
 }{}
 
-\ifthenelse{\equal{\thetablaba}{1} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetablaba = 1 \AND \thetabcap = 1}{%
     \newcommand{\tabcapalign}{\centering}    % по центру страницы или аналога parbox
 }{}
 
-\ifthenelse{\equal{\thetablaba}{2} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetablaba = 2 \AND \thetabcap = 1}{%
     \newcommand{\tabcapalign}{\raggedleft}   % по правому краю страницы или аналога parbox
 }{}
 
-\ifthenelse{\equal{\thetabtita}{0} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetabtita = 0 \AND \thetabcap = 1}{%
     \newcommand{\tabtitalign}{\raggedright}  % по левому краю страницы или аналога parbox
 }{}
 
-\ifthenelse{\equal{\thetabtita}{1} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetabtita = 1 \AND \thetabcap = 1}{%
     \newcommand{\tabtitalign}{\centering}    % по центру страницы или аналога parbox
 }{}
 
-\ifthenelse{\equal{\thetabtita}{2} \AND \equal{\thetabcap}{1}}{%
+\ifthenelse{\thetabtita = 2 \AND \thetabcap = 1}{%
     \newcommand{\tabtitalign}{\raggedleft}   % по правому краю страницы или аналога parbox
 }{}
 
 \DeclareCaptionFormat{tablenocaption}{\tabcapalign #1\strut}        % Наименование таблицы отсутствует
-\ifthenelse{\equal{\thetabcap}{0}}{%
+\ifthenelse{\thetabcap = 0}{%
     \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2#3}
     \captionsetup[table]{labelsep=emdash}                       % тире как разделитель идентификатора с номером от наименования
 }{%
@@ -103,7 +103,7 @@ justification=centering,            % Центрирование подписе�
     pdfkeywords={\keywords},    % Ключевые слова
     pdflang={ru},
 }
-\ifthenelse{\equal{\thedraft}{1}}{% Черновик
+\ifthenelse{\thedraft = 1}{% Черновик
     \hypersetup{
         draft,
     }
