@@ -30,7 +30,7 @@
 %%% Блок управления параметрами для выравнивания заголовков в тексте %%%
 \newlength{\otstuplen}
 \setlength{\otstuplen}{\theotstup\parindent}
-\ifthenelse{\equal{\theheadingalign}{0}}{% выравнивание заголовков в тексте
+\ifthenelse{\theheadingalign = 0}{% выравнивание заголовков в тексте
     \newcommand{\hdngalign}{\centering}                % по центру
     \newcommand{\hdngaligni}{}% по центру
     \setlength{\otstuplen}{0pt}
@@ -64,9 +64,9 @@
     }
 }
 
-\ifthenelse{\equal{\thepgnum}{1}}{%
+\ifthenelse{\thepgnum = 1}{%
     \addtocontents{toc}{~\hfill{Стр.}\par}% добавить Стр. над номерами страниц
-}
+}{}
 
 \renewcommand*{\cftappendixname}{\appendixname\space} % Слово Приложение в оглавлении
 
@@ -123,10 +123,10 @@
 
 \sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block 
 
-\ifthenelse{\equal{\thechapstyle}{1}}{%
+\ifthenelse{\thechapstyle = 1}{%
     \chapterstyle{thesisgostchapname}
     \renewcommand*{\cftchaptername}{\chaptername\space} % будет вписано слово Глава перед каждым номером раздела в оглавлении
-}%
+}{}%
 
 %%% Интервалы между заголовками
 \setbeforesecskip{\theintvl\curtextsize}% Заголовки отделяют от текста сверху и снизу тремя интервалами (ГОСТ Р 7.0.11-2011, 5.3.5).
@@ -137,25 +137,25 @@
 \setaftersubsubsecskip{\theintvl\curtextsize}
 
 %%% Блок дополнительного управления размерами заголовков
-\ifthenelse{\equal{\theheadingsize}{1}}{% Пропорциональные заголовки и базовый шрифт 14 пт
+\ifthenelse{\theheadingsize = 1}{% Пропорциональные заголовки и базовый шрифт 14 пт
     \renewcommand{\basegostsectionfont}{\large\bfseries}
     \renewcommand*{\chapnamefont}{\Large\bfseries}
     \renewcommand*{\chapnumfont}{\Large\bfseries}
     \renewcommand*{\chaptitlefont}{\Large\bfseries}
-}
+}{}
 
 %%% Счётчики %%%
 
 %% Упрощённые настройки шаблона диссертации: нумерация формул, таблиц, рисунков
-\ifthenelse{\equal{\thecontnumeq}{1}}{%
+\ifthenelse{\thecontnumeq = 1}{%
     \counterwithout{equation}{chapter} % Убираем связанность номера формулы с номером главы/раздела
-}
-\ifthenelse{\equal{\thecontnumfig}{1}}{%
+}{}
+\ifthenelse{\thecontnumfig = 1}{%
     \counterwithout{figure}{chapter}   % Убираем связанность номера рисунка с номером главы/раздела
-}
-\ifthenelse{\equal{\thecontnumtab}{1}}{%
+}{}
+\ifthenelse{\thecontnumtab = 1}{%
     \counterwithout{table}{chapter}    % Убираем связанность номера таблицы с номером главы/раздела
-}
+}{}
 
 
 %%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
@@ -186,3 +186,53 @@
     \regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
     \regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
 }
+
+%%% Правильная нумерация приложений %%%
+%% По ГОСТ 2.105, п. 4.3.8 Приложения обозначают заглавными буквами русского алфавита,
+%% начиная с А, за исключением букв Ё, З, Й, О, Ч, Ь, Ы, Ъ.
+%% Здесь также переделаны все нумерации русскими буквами.
+\ifxetexorluatex
+    \makeatletter
+    \def\russian@Alph#1{\ifcase#1\or
+       А\or Б\or В\or Г\or Д\or Е\or Ж\or
+       И\or К\or Л\or М\or Н\or
+       П\or Р\or С\or Т\or У\or Ф\or Х\or
+       Ц\or Ш\or Щ\or Э\or Ю\or Я\else\xpg@ill@value{#1}{russian@Alph}\fi}
+    \def\russian@alph#1{\ifcase#1\or
+       а\or б\or в\or г\or д\or е\or ж\or
+       и\or к\or л\or м\or н\or
+       п\or р\or с\or т\or у\or ф\or х\or
+       ц\or ш\or щ\or э\or ю\or я\else\xpg@ill@value{#1}{russian@alph}\fi}
+    \makeatother
+\else
+    \makeatletter
+    \if@uni@ode
+      \def\russian@Alph#1{\ifcase#1\or
+        А\or Б\or В\or Г\or Д\or Е\or Ж\or
+        И\or К\or Л\or М\or Н\or
+        П\or Р\or С\or Т\or У\or Ф\or Х\or
+        Ц\or Ш\or Щ\or Э\or Ю\or Я\else\@ctrerr\fi}
+    \else
+      \def\russian@Alph#1{\ifcase#1\or
+        \CYRA\or\CYRB\or\CYRV\or\CYRG\or\CYRD\or\CYRE\or\CYRZH\or
+        \CYRI\or\CYRK\or\CYRL\or\CYRM\or\CYRN\or
+        \CYRP\or\CYRR\or\CYRS\or\CYRT\or\CYRU\or\CYRF\or\CYRH\or
+        \CYRC\or\CYRSH\or\CYRSHCH\or\CYREREV\or\CYRYU\or
+        \CYRYA\else\@ctrerr\fi}
+    \fi
+    \if@uni@ode
+      \def\russian@alph#1{\ifcase#1\or
+        а\or б\or в\or г\or д\or е\or ж\or
+        и\or к\or л\or м\or н\or
+        п\or р\or с\or т\or у\or ф\or х\or
+        ц\or ш\or щ\or э\or ю\or я\else\@ctrerr\fi}
+    \else
+      \def\russian@alph#1{\ifcase#1\or
+        \cyra\or\cyrb\or\cyrv\or\cyrg\or\cyrd\or\cyre\or\cyrzh\or
+        \cyri\or\cyrk\or\cyrl\or\cyrm\or\cyrn\or
+        \cyrp\or\cyrr\or\cyrs\or\cyrt\or\cyru\or\cyrf\or\cyrh\or
+        \cyrc\or\cyrsh\or\cyrshch\or\cyrerev\or\cyryu\or
+        \cyrya\else\@ctrerr\fi}
+    \fi
+    \makeatother
+\fi

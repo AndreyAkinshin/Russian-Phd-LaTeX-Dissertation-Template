@@ -1,9 +1,10 @@
 \clearpage
-\listoffigures									% Список изображений
-
+\ifthenelse{\NOT \isundefined{\microtypesetup}}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемым спискам
+\listoffigures  % Список изображений
 
 %%% Список таблиц %%%
 % (ГОСТ Р 7.0.11-2011, 5.3.10)
 \clearpage
-\listoftables									% Список таблиц
+\listoftables   % Список таблиц
+\ifthenelse{\NOT \isundefined{\microtypesetup}}{\microtypesetup{protrusion=true}}{}
 \newpage
