@@ -5,7 +5,7 @@ services:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install docker-engine
+  - sudo apt-get install docker-engine -y
   - docker build -t phd-latex .
 
 script:
