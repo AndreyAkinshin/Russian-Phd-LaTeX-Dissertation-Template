@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t phd-latex .
+
+script:
+  - make pdflatex
