@@ -5,7 +5,7 @@ services:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install docker-engine -y
+  - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine
   - docker build -t phd-latex .
 
 script:
