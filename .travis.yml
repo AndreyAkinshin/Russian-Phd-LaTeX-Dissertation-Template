@@ -7,9 +7,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine
   - docker build -t phd-latex .
-  - sudo chmod -R 777 *
   - sudo chmod -R 777 $(pwd)
-
 
 script:
   - docker run -v `pwd`:/data phd-latex
