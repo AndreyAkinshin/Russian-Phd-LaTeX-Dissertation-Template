@@ -9,4 +9,4 @@ before_install:
   - docker build -t phd-latex .
 
 script:
-  - make pdflatex
+  - docker run -v `pwd`:/data phd-latex
