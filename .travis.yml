@@ -10,4 +10,4 @@ before_install:
   - sudo chmod -R 666 .
 
 script:
-  - docker run -v `$PWD`:/data phd-latex
+  - docker run -v `pwd`:/data phd-latex
