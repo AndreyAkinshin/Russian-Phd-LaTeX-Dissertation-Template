@@ -94,6 +94,7 @@ sorting=none,% настройка сортировки списка литера
 
 %%% Убираем неразрывные пробелы перед двоеточем и точкой с запятой %%%
 %\makeatletter
+%\ifthenelse{\thedraft = 0}{% Чистовик
 %    \renewcommand*{\addcolondelim}{%
 %      \begingroup%
 %      \def\abx@colon{%
@@ -101,7 +102,7 @@ sorting=none,% настройка сортировки списка литера
 %        \abx@puncthook{:}\space}%
 %      \addcolon%
 %      \endgroup}
-%    
+%
 %    \renewcommand*{\addsemicolondelim}{%
 %      \begingroup%
 %      \def\abx@semicolon{%
@@ -109,10 +110,11 @@ sorting=none,% настройка сортировки списка литера
 %        \abx@puncthook{;}\space}%
 %      \addsemicolon%
 %      \endgroup}
+%}{}
 %\makeatother
 
-
 %%% Правка записей типа thesis, чтобы дважды не писался автор
+%\ifthenelse{\thedraft = 0}{% Чистовик
 %\DeclareBibliographyDriver{thesis}{%
 %  \usebibmacro{bibindex}%
 %  \usebibmacro{begentry}%
@@ -141,16 +143,18 @@ sorting=none,% настройка сортировки списка литера
 %  \usebibmacro{related:init}%
 %  \usebibmacro{related}%
 %  \usebibmacro{finentry}}
-
+%}{}
 
 %\newbibmacro{string+doi}[1]{% новая макрокоманда на простановку ссылки на doi
 %    \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
 %
+%\ifthenelse{\thedraft = 0}{% Чистовик
 %\renewcommand*{\mkgostheading}[1]{\usebibmacro{string+doi}{#1}} % ссылка на doi с авторов. стоящих впереди записи
 %\renewcommand*{\mkgostheading}[1]{#1} % только лишь убираем курсив с авторов
+%}{}
 %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия работы
 %\DeclareFieldFormat{journaltitle}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия журнала
-% Убрать тире из разделителей элементов в библиографии:
+%%% Убрать тире из разделителей элементов в библиографии:
 %\renewcommand*{\newblockpunct}{%
 %    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
 
