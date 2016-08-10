@@ -11,7 +11,7 @@
     \fi
 \fi
 
-\usepackage{ifthen}                                 % добавляет ifthenelse
+\RequirePackage{etoolbox}[2015/08/02]               % Для продвинутой проверки разных условий
 
 %%% Поля и разметка страницы %%%
 \usepackage{pdflscape}                              % Для включения альбомных страниц
@@ -94,7 +94,7 @@
 \creflabelformat{equation}{#2#1#3}                  % Формат по умолчанию ставил круглые скобки вокруг каждого номера ссылки, теперь просто номера ссылок без какого-либо дополнительного оформления
 
 
-\ifthenelse{\thedraft = 1}{% Черновик
+\ifnumequal{\value{draft}}{1}{% Черновик
     \usepackage[firstpage]{draftwatermark}
     \SetWatermarkText{DRAFT}
     \SetWatermarkFontSize{14pt}

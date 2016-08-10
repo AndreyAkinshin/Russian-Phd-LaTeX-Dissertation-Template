@@ -2,7 +2,7 @@
 
 %\usepackage{csquotes} % biblatex рекомендует его подключать. Пакет для оформления сложных блоков цитирования.
 %%% Загрузка пакета с основными настройками %%%
-\ifthenelse{\thedraft = 0}{% Чистовик
+\ifnumequal{\value{draft}}{0}{% Чистовик
 \usepackage[%
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
@@ -92,9 +92,9 @@ sorting=none,% настройка сортировки списка литера
     }
 }
 
-%%% Убираем неразрывные пробелы перед двоеточем и точкой с запятой %%%
+%%% Убираем неразрывные пробелы перед двоеточием и точкой с запятой %%%
 %\makeatletter
-%\ifthenelse{\thedraft = 0}{% Чистовик
+%\ifnumequal{\value{draft}}{0}{% Чистовик
 %    \renewcommand*{\addcolondelim}{%
 %      \begingroup%
 %      \def\abx@colon{%
@@ -114,7 +114,7 @@ sorting=none,% настройка сортировки списка литера
 %\makeatother
 
 %%% Правка записей типа thesis, чтобы дважды не писался автор
-%\ifthenelse{\thedraft = 0}{% Чистовик
+%\ifnumequal{\value{draft}}{0}{% Чистовик
 %\DeclareBibliographyDriver{thesis}{%
 %  \usebibmacro{bibindex}%
 %  \usebibmacro{begentry}%
@@ -147,8 +147,8 @@ sorting=none,% настройка сортировки списка литера
 
 %\newbibmacro{string+doi}[1]{% новая макрокоманда на простановку ссылки на doi
 %    \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
-%
-%\ifthenelse{\thedraft = 0}{% Чистовик
+
+%\ifnumequal{\value{draft}}{0}{% Чистовик
 %\renewcommand*{\mkgostheading}[1]{\usebibmacro{string+doi}{#1}} % ссылка на doi с авторов. стоящих впереди записи
 %\renewcommand*{\mkgostheading}[1]{#1} % только лишь убираем курсив с авторов
 %}{}

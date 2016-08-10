@@ -30,7 +30,7 @@
 %%% Блок управления параметрами для выравнивания заголовков в тексте %%%
 \newlength{\otstuplen}
 \setlength{\otstuplen}{\theotstup\parindent}
-\ifthenelse{\theheadingalign = 0}{% выравнивание заголовков в тексте
+\ifnumequal{\value{headingalign}}{0}{% выравнивание заголовков в тексте
     \newcommand{\hdngalign}{\centering}                % по центру
     \newcommand{\hdngaligni}{}% по центру
     \setlength{\otstuplen}{0pt}
@@ -48,10 +48,10 @@
 \renewcommand{\cftchapterleader}{\cftdotfill{\cftchapterdotsep}}% нежирные точки до номеров страниц у глав в оглавлении
 %\renewcommand{\cftchapterfont}{}                       % нежирные названия глав в оглавлении
 
-\ifthenelse{\theheadingdelim > 0}{%
+\ifnumgreater{\value{headingdelim}}{0}{%
     \renewcommand\cftchapteraftersnum{.\space}       % добавляет точку с пробелом после номера раздела в оглавлении
 }{}
-\ifthenelse{\theheadingdelim > 1}{%
+\ifnumgreater{\value{headingdelim}}{1}{%
     \renewcommand\cftsectionaftersnum{.\space}       % добавляет точку с пробелом после номера подраздела в оглавлении
     \renewcommand\cftsubsectionaftersnum{.\space}    % добавляет точку с пробелом после номера подподраздела в оглавлении
     \renewcommand\cftsubsubsectionaftersnum{.\space} % добавляет точку с пробелом после номера подподподраздела в оглавлении
@@ -64,7 +64,7 @@
     }
 }
 
-\ifthenelse{\thepgnum = 1}{%
+\ifnumequal{\value{pgnum}}{1}{%
     \addtocontents{toc}{~\hfill{Стр.}\par}% добавить Стр. над номерами страниц
 }{}
 
@@ -92,7 +92,7 @@
     \renewcommand*{\chapnumfont}{\basegostsectionfont}
     \renewcommand*{\chaptitlefont}{\basegostsectionfont}
     \renewcommand*{\chapterheadstart}{}
-    \ifthenelse{\theheadingdelim > 0}{%
+    \ifnumgreater{\value{headingdelim}}{0}{%
         \renewcommand*{\afterchapternum}{.\space}   % добавляет точку с пробелом после номера раздела
     }{%
         \renewcommand*{\afterchapternum}{\quad}     % добавляет \quad после номера раздела
@@ -123,7 +123,7 @@
 
 \sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block 
 
-\ifthenelse{\thechapstyle = 1}{%
+\ifnumequal{\value{chapstyle}}{1}{%
     \chapterstyle{thesisgostchapname}
     \renewcommand*{\cftchaptername}{\chaptername\space} % будет вписано слово Глава перед каждым номером раздела в оглавлении
 }{}%
@@ -137,7 +137,7 @@
 \setaftersubsubsecskip{\theintvl\curtextsize}
 
 %%% Блок дополнительного управления размерами заголовков
-\ifthenelse{\theheadingsize = 1}{% Пропорциональные заголовки и базовый шрифт 14 пт
+\ifnumequal{\value{headingsize}}{1}{% Пропорциональные заголовки и базовый шрифт 14 пт
     \renewcommand{\basegostsectionfont}{\large\bfseries}
     \renewcommand*{\chapnamefont}{\Large\bfseries}
     \renewcommand*{\chapnumfont}{\Large\bfseries}
@@ -147,13 +147,13 @@
 %%% Счётчики %%%
 
 %% Упрощённые настройки шаблона диссертации: нумерация формул, таблиц, рисунков
-\ifthenelse{\thecontnumeq = 1}{%
+\ifnumequal{\value{contnumeq}}{1}{%
     \counterwithout{equation}{chapter} % Убираем связанность номера формулы с номером главы/раздела
 }{}
-\ifthenelse{\thecontnumfig = 1}{%
+\ifnumequal{\value{contnumfig}}{1}{%
     \counterwithout{figure}{chapter}   % Убираем связанность номера рисунка с номером главы/раздела
 }{}
-\ifthenelse{\thecontnumtab = 1}{%
+\ifnumequal{\value{contnumtab}}{1}{%
     \counterwithout{table}{chapter}    % Убираем связанность номера таблицы с номером главы/раздела
 }{}
 
