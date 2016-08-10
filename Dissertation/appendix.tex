@@ -598,11 +598,13 @@ k(-x_i-a)^m,\quad &x_i <-a
 \begingroup % Ограничиваем область видимости arraystretch
 \renewcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
 }{
-  \ifnumodd{\value{rowcnt}}{\color{blue}}{\vspace*{-1ex}\itshape}}
+  \ifnumodd{\value{rowcnt}}{\color{blue}}{\vspace*{-0.8ex}\itshape}}
 }
 \newcolumntype{A}{ >{\altshape}X[1mc]}
 \needspace{2\baselineskip}
-%\renewcommand{\arraystretch}{1.6}%% Увеличение расстояния между рядами, для улучшения восприятия.
+\renewcommand{\arraystretch}{0.9}%% Уменьшаем  расстояние между
+                                %% рядами, чтобы таблица не так много
+                                %% места занимала в дисере.
 \begin{longtabu} to \textwidth {@{}X[0.2ml]X[0.9mc]AAAX[0.99mc]>{\setlength{\baselineskip}{0.7\baselineskip}}AA<{\stepcounter{rowcnt}}@{}}
 % \begin{longtabu} to \textwidth {@{}X[0.2ml]X[1mc]X[1mc]X[1mc]X[1mc]X[1mc]>{\setlength{\baselineskip}{0.7\baselineskip}}X[1mc]X[1mc]@{}}
   \caption{Длинная таблица с примером черезстрочного форматирования\label{tbl:other-row}}\vspace*{1ex}\\% label всегда желательно идти после caption
