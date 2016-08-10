@@ -1,13 +1,18 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 before_install:
-  - sudo apt-get update
-  - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine
-  - docker build -t phd-latex .
-  - sudo chmod -R 777 $(pwd)
-
+- sudo apt-get update
+- sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine
+- docker build -t phd-latex .
+- sudo chmod -R 777 $(pwd)
 script:
-  - docker run -v `pwd`:/data phd-latex
+- docker run -v `pwd`:/data phd-latex
+deploy:
+  provider: releases
+  api_key:
+    secure: eYTdj7sP8WkEqzcR6fW3oyc+MgKM1ofjhLh+F6rBZRgWxXJcOGxBbi8L7jCxRveRrOi4x299jgebkoE43D5NlwLDdDO1WikSbId6LSSwC4cGdxoffb03UtYx2dI5X7C+XCb960V1ieXL6g/TmGW1C91i4jl8R8+bg9BsbCZj+s0M2xynOQof1NQ9pzRrtxbAj9exPcX2cuW279W0LmNe2rrG/rI2km0GqPCf/8XJf/7G/H+HByZP+HThRP1A7d8XER7HkAXTMehbhb3P6XZ6/nspoOLbFwhBiWLtGQw+tdFRdZUuzGpVCZuHg10MWTHDGNsZf1uXSlfDabHIubW0TkeiWpSUBzck+Kh2O4jTedmS/8wc3vkST7VObj8R06xQCQEDbbelCANlr2TgdYbQtGdy3y7Zhi7ajLKEtqnlk/jc2jlmzuUQ6ziLEkvOjsCylAZaNdrXayy0kv7EBz0OKkBs0ZxAc98gWGEbASuJsIdS9uyfg9hizfyROjAK3af4lbOZmKio7KjXSNAujZNsmti5ZK2ElSwkdi5J56nR6C4g0xr8XTbHF4wgsccDghZkBRJ9/J8pOO370Y7u6fnV+WcZyOdfJsdgPKMgbISBADRsOSIpQoJPzDbUZbgvxQJv+fzIDW0qkxyWPQ3l5R4e+BdhaIN1sW/llTOa0L11aJM=
+  file: dissertation.pdf
+  on:
+    repo: tonkonogov/Russian-Phd-LaTeX-Dissertation-Template
+    branch: travis
