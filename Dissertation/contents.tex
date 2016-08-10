@@ -1,4 +1,4 @@
 % Оглавление (ГОСТ Р 7.0.11-2011, 5.2)
-\ifthenelse{\NOT \isundefined{\microtypesetup}}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому оглавлению
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому оглавлению
 \tableofcontents*
-\ifthenelse{\NOT \isundefined{\microtypesetup}}{\microtypesetup{protrusion=true}}{}
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}
