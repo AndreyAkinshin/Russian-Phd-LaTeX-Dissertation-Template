@@ -596,9 +596,16 @@ k(-x_i-a)^m,\quad &x_i <-a
 
 
 \begingroup % Ограничиваем область видимости arraystretch
-\renewcommand\altshape{\ifthenelse{\therowcnt = 0 }{%
-}{
-  \ifnumodd{\value{rowcnt}}{\color{blue}}{\vspace*{-0.8ex}\itshape}}
+\renewcommand\altshape{
+  \ifnumequal{\value{rowcnt}}{0}{
+    % Стиль для заголовка таблицы
+  }{
+    \ifnumodd{\value{rowcnt}}
+    {
+      \color{blue} % Cтиль для нечётных строк
+    }{
+      \vspace*{-0.8ex}\itshape} % Стиль для чётных строк
+  }
 }
 \newcolumntype{A}{ >{\altshape}X[1mc]}
 \needspace{2\baselineskip}
