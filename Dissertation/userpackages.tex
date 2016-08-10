@@ -12,3 +12,12 @@
 %\ifnumequal{\value{draft}}{0}{% Только если у нас режим чистовика
 %    \usepackage[final]{microtype}[2016/05/14] % улучшает представление букв и слов в строках, может помочь при наличии отдельно висящих слов
 %}{}
+
+% Отметка о версии черновика на каждой странице
+\ifnumequal{\value{draft}}{1}{% Черновик
+%   \IfFileExists{../.git/gitHeadInfo.gin}{                                        
+      \usepackage[mark,pcount]{gitinfo2}
+      \renewcommand{\gitMark}{rev.\gitAbbrevHash\quad\gitCommitterEmail\quad\gitAuthorIsoDate}
+      \renewcommand{\gitMarkFormat}{\color{Gray}\small\bfseries}
+%   }
+}{}
