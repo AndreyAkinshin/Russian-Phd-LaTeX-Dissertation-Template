@@ -1,5 +1,6 @@
 % для вертикального центрирования ячеек в tabulary
 \def\zz{\ifx\[$\else\aftergroup\zzz\fi}
+%$ \] % <-- чиним подсветку синтаксиса в некоторых редакторах
 \def\zzz{\setbox0\lastbox
 \dimen0\dimexpr\extrarowheight + \ht0-\dp0\relax
 \setbox0\hbox{\raise-.5\dimen0\box0}%
@@ -83,8 +84,8 @@
         variable,vector,Version,vi,warning,warnings,weighted,weights,%
         which,while,window,write,\%x\%,x11,X11,xedit,xemacs,xinch,xor,%
         xpdrows,xy,xyinch,yinch,zapsmall,zip},%
-    otherkeywords={!,!=,~,$,*,\%,\&,\%/\%,\%*\%,\%\%,<-,<<-},%
-    alsoother={._$},%
+    otherkeywords={!,!=,~,$,*,\%,\&,\%/\%,\%*\%,\%\%,<-,<<-},%$
+    alsoother={._$},%$
     sensitive,%
     morecomment=[l]\#,%
     morestring=[d]",%
@@ -262,6 +263,13 @@
     \raisebox{.2ex}{+}\nolinebreak\hspace{-.10em}%
     \raisebox{.2ex}{+}%
 }
+
+%%%  Чересстрочное форматирование таблиц
+%% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
+\newcounter{rowcnt}
+\newcommand\altshape{\ifnumodd{\value{rowcnt}}{\color{red}}{\vspace*{-1ex}\itshape}}
+\AtBeginEnvironment{tabular}{\setcounter{rowcnt}{1}}
+\AtEndEnvironment{tabular}{\setcounter{rowcnt}{0}}
 
 
 %%% Русская традиция начертания математических знаков
