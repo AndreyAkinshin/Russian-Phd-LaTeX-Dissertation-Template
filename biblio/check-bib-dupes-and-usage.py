@@ -58,6 +58,7 @@ for author in authors:
         prev_page = ""
         for page in authors[author]:
             if page == prev_page:
+                if page == "000": page = "No page"
                 print("\t\t with page:",page)
             prev_page = page
             
