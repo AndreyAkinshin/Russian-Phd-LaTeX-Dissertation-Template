@@ -158,33 +158,12 @@
 }{}
 
 
-%%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
-\makeatletter
-\def\formbytotal#1#2#3#4#5{%
-    \newcount\@c
-    \@c\totvalue{#1}\relax
-    \newcount\@last
-    \newcount\@pnul
-    \@last\@c\relax
-    \divide\@last 10
-    \@pnul\@last\relax
-    \divide\@pnul 10
-    \multiply\@pnul-10
-    \advance\@pnul\@last
-    \multiply\@last-10
-    \advance\@last\@c
-    \total{#1}~#2%
-    \ifnum\@pnul=1#5\else%
-    \ifcase\@last#5\or#3\or#4\or#4\or#4\else#5\fi
-    \fi
-}
-\makeatother
-
 \AtBeginDocument{
-%% регистрируем счётчики в системе totcounter
-    \regtotcounter{totalcount@figure}
-    \regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
-    \regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
+	%% регистрируем счётчики в системе totcounter
+	\regtotcounter{totalcount@figure}
+	\regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
+	\regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
+	\regtotcounter{appendixc}
 }
 
 %%% Правильная нумерация приложений %%%
