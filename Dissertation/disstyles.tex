@@ -64,10 +64,6 @@
     }
 }
 
-\ifnumequal{\value{pgnum}}{1}{%
-    \addtocontents{toc}{~\hfill{Стр.}\par}% добавить Стр. над номерами страниц
-}{}
-
 \renewcommand*{\cftappendixname}{\appendixname\space} % Слово Приложение в оглавлении
 
 %%% Колонтитулы %%%
@@ -77,6 +73,22 @@
 \makeevenfoot{plain}{}{}{}
 \makeoddfoot{plain}{}{}{}
 \pagestyle{plain}
+
+%%% добавить Стр. над номерами страниц в оглавлении
+%%% http://tex.stackexchange.com/a/306950
+\newif\ifendTOC
+
+\newcommand*{\tocheader}{
+\ifnumequal{\value{pgnum}}{1}{%
+    \ifendTOC\else\hbox to \linewidth%
+      {\noindent{}~\hfill{Стр.}}\par%
+      \ifnumless{\value{page}}{3}{}{%
+        \vspace{0.5\onelineskip}
+      }
+      \afterpage{\tocheader}
+    \fi%
+}{}%
+}%
 
 %%% Оформление заголовков глав, разделов, подразделов %%%
 %% Работа должна быть выполнена ... размером шрифта 12-14 пунктов (ГОСТ Р 7.0.11-2011, 5.3.8). То есть не должно быть надписей шрифтом более 14. Так и поставим.
@@ -158,33 +170,12 @@
 }{}
 
 
-%%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
-\makeatletter
-\def\formbytotal#1#2#3#4#5{%
-    \newcount\@c
-    \@c\totvalue{#1}\relax
-    \newcount\@last
-    \newcount\@pnul
-    \@last\@c\relax
-    \divide\@last 10
-    \@pnul\@last\relax
-    \divide\@pnul 10
-    \multiply\@pnul-10
-    \advance\@pnul\@last
-    \multiply\@last-10
-    \advance\@last\@c
-    \total{#1}~#2%
-    \ifnum\@pnul=1#5\else%
-    \ifcase\@last#5\or#3\or#4\or#4\or#4\else#5\fi
-    \fi
-}
-\makeatother
-
 \AtBeginDocument{
-%% регистрируем счётчики в системе totcounter
-    \regtotcounter{totalcount@figure}
-    \regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
-    \regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
+	%% регистрируем счётчики в системе totcounter
+	\regtotcounter{totalcount@figure}
+	\regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
+	\regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
+	\regtotcounter{appendixc}
 }
 
 %%% Правильная нумерация приложений %%%

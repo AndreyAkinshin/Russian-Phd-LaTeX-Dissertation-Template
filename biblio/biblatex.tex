@@ -164,6 +164,16 @@ sorting=none,% настройка сортировки списка литера
 %}
 %\DeclareFieldFormat{url}{\bibstring{urlfrom}\addcolon\space\url{#1}}
 
+%%% В списке литературы обозначение одной большой буквой диапазона страниц англоязычного источника %%%
+\DefineBibliographyStrings{english}{%
+    pages = {P\adddot}
+}
+
+%%% В ссылке на источник в основном тексте с указанием конкретной страницы обозначение одной большой буквой %%%
+%\DefineBibliographyStrings{russian}{%
+%    page = {C\adddot}
+%}
+
 %%% Исправление длины тире в диапазонах %%%
 %\DefineBibliographyExtras{russian}{%
 %  \protected\def\bibrangedash{%

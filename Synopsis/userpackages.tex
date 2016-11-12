@@ -2,3 +2,31 @@
 %\ifnumequal{\value{draft}}{0}{% Только если у нас режим чистовика
 %    \usepackage[final]{microtype}[2016/05/14] % улучшает представление букв и слов в строках, может помочь при наличии отдельно висящих слов
 %}{}
+
+\usepackage{zref-xr,zref-user} 
+
+\zexternaldocument[D-]{dissertation}
+
+
+%создадим счетчики, чтобы передать в них значения \zref из диссертации
+%это необходимо для последующей безопасной передаче значений в \formbytotal
+\newcounter{dtotalcount@figure}
+\newcounter{dtotalcount@table}       
+\newcounter{dTotPages}               
+\newcounter{dcitenum}
+\newcounter{dappendixc}
+\newcounter{dchapter}
+
+\makeatletter
+	\IfFileExists{dissertation.aux}{% Если существует файл dissertation.aux
+\setcounter{dtotalcount@figure}{\zref@extract{D-LastPage}{mfigure}}
+\setcounter{dtotalcount@table}{\zref@extract{D-LastPage}{mtable}}
+\setcounter{dTotPages}{\zref@extract{D-LastPage}{abspage}}
+\setcounter{dcitenum}{\zref@extract{D-LastPage}{mrefs}}
+\setcounter{dappendixc}{\zref@extract{D-LastPage}{mappendix}}
+\setcounter{dchapter}{\zref@extract{D-LastPage}{mchapter}}
+	}{}
+\makeatother
+
+% здесь записали в счетчики значения, импортируемые из диссертации
+% затем зарегистрируем счетчики в \totcount, см. Synopsis/synstyles

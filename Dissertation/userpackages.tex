@@ -43,3 +43,21 @@
       \renewcommand{\gitMarkFormat}{\color{Gray}\small\bfseries}
    }{}
 }{}
+
+%для того, чтобы считать из диссертации счеткики (кол-во страниц, ссылок и т.п.) и записать значения в dissertation.aux и позже в автореферат, решение подробно расписано на страничке:
+%http://tex.stackexchange.com/q/337263/44348
+\usepackage{zref-abspage, zref-lastpage,zref-user}
+
+\newcounter{chapterc} %for Counting chapters in dissertation % нужно заменить на работающий счетчик глав, тогда разметку \label{chapterfc} по тексту можно убрать
+\newcounter{appendixc} %for Counting appendices in dissertation % нужно заменить на работающий счетчик приложений, тогда разметку \label{appendixc} по тексту можно убрать
+
+
+%формируем значения для экспорта в synopsis
+\makeatletter
+\zref@newprop{mchapter}[0]{\thechapterc} %отдельный счетчик на главы, размеченный по тексту
+\zref@newprop{mappendix}[0]{\theappendixc} %отдельный счетчик на главы, размеченный по тексту
+\zref@newprop{mfigure}[0]{\totalfigures} %счетчик на рисунки, использует totalcount
+\zref@newprop{mtable}[0]{\totaltables}  %счетчик на таблицы, использует totalcount
+\zref@newprop{mrefs}[0]{\the\totvalue{citenum}} %счетчик на список литературы, использует totcount 
+\zref@addprops{LastPage}{mchapter,mappendix,mfigure,mtable,mrefs} %добавляем все счетчики в zref и в dissertation.aux
+\makeatother

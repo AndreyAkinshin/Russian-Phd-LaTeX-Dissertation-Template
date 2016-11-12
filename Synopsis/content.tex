@@ -4,6 +4,10 @@
 \newcommand{\actuality}{\underline{\textbf{\actualityTXT}}}
 \newcommand{\progress}{\underline{\textbf{\progressTXT}}}
 \newcommand{\aim}{\underline{{\textbf\aimTXT}}}
+\newcommand{\object}{\underline{\textbf\objectTXT}}
+\newcommand{\features}{\underline{\textbf\featuresTXT}}
+\newcommand{\scope}{\underline{\textbf\scopeTXT}}
+\newcommand{\vak}{\underline{\textbf{\vakTXT}}}
 \newcommand{\tasks}{\underline{\textbf{\tasksTXT}}}
 \newcommand{\novelty}{\underline{\textbf{\noveltyTXT}}}
 \newcommand{\influence}{\underline{\textbf{\influenceTXT}}}
@@ -13,6 +17,7 @@
 \newcommand{\probation}{\underline{\textbf{\probationTXT}}}
 \newcommand{\contribution}{\underline{\textbf{\contributionTXT}}}
 \newcommand{\publications}{\underline{\textbf{\publicationsTXT}}}
+\newcommand{\structureDiss}{\underline{\textbf{\structureTXT}}}
 
 \input{common/characteristic} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
 
@@ -20,9 +25,24 @@
 
 %\underline{\textbf{Объем и структура работы.}} Диссертация состоит из~введения, четырех глав, заключения и~приложения. Полный объем диссертации \textbf{ХХХ}~страниц текста с~\textbf{ХХ}~рисунками и~5~таблицами. Список литературы содержит \textbf{ХХX}~наименование.
 
+%Для корректной синхронизации с диссертацией раздела \structureDiss необходимо хотя бы два раза скомилировать dissertation.tex и сформировать в dissertation.pdf библиографию
+{\structureDiss.} Диссертация состоит из~введения, \thedchapter~глав, заключения и \formbytotal{dappendixc}{приложен}{ия}{ий}{}.
+Полный объём диссертации составляет
+\formbytotal{dTotPages}{страниц}{у}{ы}{}, включая
+\formbytotal{dtotalcount@figure}{рисун}{ок}{ка}{ков} и
+\formbytotal{dtotalcount@table}{таблиц}{у}{ы}{}.   Список литературы содержит  
+\formbytotal{dcitenum}{наименован}{ие}{ия}{ий}.
+
 %\newpage
 \section*{Содержание работы}
-Во \underline{\textbf{введении}} обосновывается актуальность исследований, проводимых в рамках данной диссертационной работы, приводится обзор научной литературы по изучаемой проблеме, формулируется цель, ставятся задачи работы, сформулированы научная новизна и практическая значимость представляемой работы.
+Во \underline{\textbf{введении}} обосновывается актуальность
+исследований, проводимых в рамках данной диссертационной работы,
+приводится обзор научной литературы по изучаемой проблеме,
+формулируется цель, ставятся задачи работы, излагается научная новизна
+и практическая значимость представляемой работы. В последующих главах
+сначала описывается общий принцип, позволяющий ... , а потом идёт
+апробация на частных примерах: ...  и ... .
+
 
 \underline{\textbf{Первая глава}} посвящена ...
 
