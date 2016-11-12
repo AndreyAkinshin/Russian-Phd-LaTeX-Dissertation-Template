@@ -17,14 +17,16 @@
 \newcounter{dappendixc}
 \newcounter{dchapter}
 
-% РАСКОММЕНТИРОВАТЬ для автоматической синхронизации \structureDiss с dissertation.aux
-%\makeatletter
-%\setcounter{dtotalcount@figure}{\zref@extract{D-LastPage}{mfigure}}
-%\setcounter{dtotalcount@table}{\zref@extract{D-LastPage}{mtable}}
-%\setcounter{dTotPages}{\zref@extract{D-LastPage}{abspage}}
-%\setcounter{dcitenum}{\zref@extract{D-LastPage}{mrefs}}
-%\setcounter{dappendixc}{\zref@extract{D-LastPage}{mappendix}}
-%\setcounter{dchapter}{\zref@extract{D-LastPage}{mchapter}}
-%\makeatother
+\makeatletter
+	\IfFileExists{dissertation.aux}{% Если существует файл dissertation.aux
+\setcounter{dtotalcount@figure}{\zref@extract{D-LastPage}{mfigure}}
+\setcounter{dtotalcount@table}{\zref@extract{D-LastPage}{mtable}}
+\setcounter{dTotPages}{\zref@extract{D-LastPage}{abspage}}
+\setcounter{dcitenum}{\zref@extract{D-LastPage}{mrefs}}
+\setcounter{dappendixc}{\zref@extract{D-LastPage}{mappendix}}
+\setcounter{dchapter}{\zref@extract{D-LastPage}{mchapter}}
+	}{}
+\makeatother
+
 % здесь записали в счетчики значения, импортируемые из диссертации
 % затем зарегистрируем счетчики в \totcount, см. Synopsis/synstyles
