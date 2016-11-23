@@ -271,42 +271,59 @@
 % \AtBeginEnvironment{tabular}{\setcounter{rowcnt}{1}}
 % \AtEndEnvironment{tabular}{\setcounter{rowcnt}{0}}
 
+%%% Ради примера во второй главе
+\let\originalepsilon\epsilon
+\let\originalphi\phi
+\let\originalkappa\kappa
+\let\originalle\le
+\let\originalleq\leq
+\let\originalge\ge
+\let\originalgeq\geq
+\let\originalemptyset\emptyset
+\let\originaltan\tan
+\let\originalcot\cot
+\let\originalcsc\csc
 
 %%% Русская традиция начертания математических знаков
-%\renewcommand{\le}{\ensuremath{\leqslant}}
-%\renewcommand{\leq}{\ensuremath{\leqslant}}
-%\renewcommand{\ge}{\ensuremath{\geqslant}}
-%\renewcommand{\geq}{\ensuremath{\geqslant}}
-%\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+\renewcommand{\emptyset}{\varnothing}
+
+%%% Русская традиция начертания математических функций (на случай копирования из зарубежных источников)
+\renewcommand{\tan}{\operatorname{tg}}
+\renewcommand{\cot}{\operatorname{ctg}}
+\renewcommand{\csc}{\operatorname{cosec}}
 
 %%% Русская традиция начертания греческих букв (греческие буквы вертикальные, через пакет upgreek)
-%\renewcommand{\epsilon}{\ensuremath{\upvarepsilon}}   %  русская традиция записи
-%\renewcommand{\phi}{\ensuremath{\upvarphi}}
-%%\renewcommand{\kappa}{\ensuremath{\varkappa}}
-%\renewcommand{\alpha}{\upalpha}
-%\renewcommand{\beta}{\upbeta}
-%\renewcommand{\gamma}{\upgamma}
-%\renewcommand{\delta}{\updelta}
-%\renewcommand{\varepsilon}{\upvarepsilon}
-%\renewcommand{\zeta}{\upzeta}
-%\renewcommand{\eta}{\upeta}
-%\renewcommand{\theta}{\uptheta}
-%\renewcommand{\vartheta}{\upvartheta}
-%\renewcommand{\iota}{\upiota}
-%\renewcommand{\kappa}{\upkappa}
-%\renewcommand{\lambda}{\uplambda}
-%\renewcommand{\mu}{\upmu}
-%\renewcommand{\nu}{\upnu}
-%\renewcommand{\xi}{\upxi}
-%\renewcommand{\pi}{\uppi}
-%\renewcommand{\varpi}{\upvarpi}
-%\renewcommand{\rho}{\uprho}
-%%\renewcommand{\varrho}{\upvarrho}
-%\renewcommand{\sigma}{\upsigma}
-%%\renewcommand{\varsigma}{\upvarsigma}
-%\renewcommand{\tau}{\uptau}
-%\renewcommand{\upsilon}{\upupsilon}
-%\renewcommand{\varphi}{\upvarphi}
-%\renewcommand{\chi}{\upchi}
-%\renewcommand{\psi}{\uppsi}
-%\renewcommand{\omega}{\upomega}
+\renewcommand{\epsilon}{\ensuremath{\upvarepsilon}}   %  русская традиция записи
+\renewcommand{\phi}{\ensuremath{\upvarphi}}
+%\renewcommand{\kappa}{\ensuremath{\varkappa}}
+\renewcommand{\alpha}{\upalpha}
+\renewcommand{\beta}{\upbeta}
+\renewcommand{\gamma}{\upgamma}
+\renewcommand{\delta}{\updelta}
+\renewcommand{\varepsilon}{\upvarepsilon}
+\renewcommand{\zeta}{\upzeta}
+\renewcommand{\eta}{\upeta}
+\renewcommand{\theta}{\uptheta}
+\renewcommand{\vartheta}{\upvartheta}
+\renewcommand{\iota}{\upiota}
+\renewcommand{\kappa}{\upkappa}
+\renewcommand{\lambda}{\uplambda}
+\renewcommand{\mu}{\upmu}
+\renewcommand{\nu}{\upnu}
+\renewcommand{\xi}{\upxi}
+\renewcommand{\pi}{\uppi}
+\renewcommand{\varpi}{\upvarpi}
+\renewcommand{\rho}{\uprho}
+%\renewcommand{\varrho}{\upvarrho}
+\renewcommand{\sigma}{\upsigma}
+%\renewcommand{\varsigma}{\upvarsigma}
+\renewcommand{\tau}{\uptau}
+\renewcommand{\upsilon}{\upupsilon}
+\renewcommand{\varphi}{\upvarphi}
+\renewcommand{\chi}{\upchi}
+\renewcommand{\psi}{\uppsi}
+\renewcommand{\omega}{\upomega}
