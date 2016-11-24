@@ -4,3 +4,32 @@
 
 % Этот пакет может быть полезен для печати текста брошюрой
 %\usepackage[print]{booklet}
+
+
+\usepackage{zref-xr,zref-user} 
+
+\zexternaldocument[D-]{dissertation}
+
+
+%создадим счетчики, чтобы передать в них значения \zref из диссертации
+%это необходимо для последующей безопасной передачи значений в \formbytotal
+\newcounter{dtotalcount@figure}
+\newcounter{dtotalcount@table}       
+\newcounter{dTotPages}               
+\newcounter{dcitenum}
+\newcounter{dappendix}
+\newcounter{dchapter}
+
+\makeatletter
+\IfFileExists{dissertation.aux}{% Если существует файл dissertation.aux
+	\setcounter{dtotalcount@figure}{\zref@extract{D-LastPage}{efigure}}
+	\setcounter{dtotalcount@table}{\zref@extract{D-LastPage}{etable}}
+	\setcounter{dTotPages}{\zref@extract{D-LastPage}{abspage}}
+	\setcounter{dcitenum}{\zref@extract{D-LastPage}{ecitenum}}
+	\setcounter{dappendix}{\zref@extract{D-LastPage}{eappendix}}
+	\setcounter{dchapter}{\zref@extract{D-LastPage}{echapter}}
+}{}
+\makeatother
+
+% здесь записали в счетчики значения, импортируемые из диссертации
+% затем зарегистрируем счетчики в \totcount, см. Synopsis/synstyles

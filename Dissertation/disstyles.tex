@@ -170,12 +170,27 @@
 }{}
 
 
+
+\newcounter{schapter} % счетчик глав 
+\newcounter{sappendix} % счетчик приложений
+% используем пакет assoccnt
+\DeclareAssociatedCounters{chapter}{sappendix}
+\preto\appendix{%
+	% save the number of true chapters
+	\setcounter{schapter}{\value{chapter}}%
+	% reset the number of chapters
+	\setcounter{sappendix}{0}%
+}
+
+
+
 \AtBeginDocument{
 	%% регистрируем счётчики в системе totcounter
 	\regtotcounter{totalcount@figure}
 	\regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
 	\regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
-	\regtotcounter{appendixc}
+	\regtotcounter{schapter}
+	\regtotcounter{sappendix}
 }
 
 %%% Правильная нумерация приложений %%%
