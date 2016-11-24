@@ -123,11 +123,15 @@ justification=centering,            % Центрирование подписе�
 %\renewcommand{\labelenumi}{\theenumi)} 
 
 % Перечисление строчными буквами русского алфавита (ГОСТ 2.105-95, 4.1.7)
-%\makeatletter
-%\AddEnumerateCounter{\asbuk}{\russian@alph}{щ}      % Управляем списками/перечислениями через пакет enumitem, а он 'не знает' про asbuk, потому 'учим' его
-%\makeatother
-%\renewcommand{\theenumi}{\asbuk{enumi}}
-%\renewcommand{\labelenumi}{\theenumi)} 
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ}      % Управляем списками/перечислениями через пакет enumitem, а он 'не знает' про asbuk, потому 'учим' его
+\makeatother
+%\renewcommand{\theenumi}{\asbuk{enumi}} %первый уровень нумерации
+%\renewcommand{\labelenumi}{\theenumi)} %первый уровень нумерации 
+\renewcommand{\theenumii}{\asbuk{enumii}} %второй уровень нумерации
+\renewcommand{\labelenumii}{\theenumii)} %второй уровень нумерации 
+\renewcommand{\theenumiii}{\arabic{enumiii}} %третий уровень нумерации
+\renewcommand{\labelenumiii}{\theenumiii)} %третий уровень нумерации 
 
 \setlist{nosep,%                                    % Единый стиль для всех списков (пакет enumitem), без дополнительных интервалов.
     labelindent=\parindent,leftmargin=*%            % Каждый пункт, подпункт и перечисление записывают с абзацного отступа (ГОСТ 2.105-95, 4.1.8)
