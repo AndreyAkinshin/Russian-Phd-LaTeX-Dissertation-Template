@@ -1,12 +1,19 @@
 \thispagestyle{empty}
 
 \vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-\begin{center}
-  \includegraphics[height=2.5cm]{logo}
-  \hfill
+\IfFileExists{images/logo.pdf}{
+  \begin{center}
+    \includegraphics[height=2.5cm]{logo}
+    \hfill
+    \large{На правах рукописи}
+    \includegraphics[height=1.5cm]{personal-signature}
+  \end{center}
+}{
+\begin{flushright}
   \large{На правах рукописи}
   \includegraphics[height=1.5cm]{personal-signature} 
-\end{center}
+\end{flushright}
+}
 
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
