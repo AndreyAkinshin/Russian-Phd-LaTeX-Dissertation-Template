@@ -189,7 +189,8 @@ sorting=none,% настройка сортировки списка литера
 %%% Исправление длины тире в диапазонах %%%
 %\DefineBibliographyExtras{russian}{%
 %  \protected\def\bibrangedash{%
-%    \textendash\penalty\hyphenpenalty}% breakable dash, такой же как для английского языка
+%    \textendash\penalty\value{abbrvpenalty}}% almost unbreakable dash
+%  \protected\def\bibdaterangesep{\bibrangedash}%тире для дат
 %}
 
 %%% Set low penalties for breaks at uppercase letters and lowercase letters
