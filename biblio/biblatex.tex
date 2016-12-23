@@ -291,6 +291,10 @@ sorting=none,% настройка сортировки списка литера
 \printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
 \printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
 }
+\newcommand*{\insertbiblioauthorimportant}{
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\authorbibtitle{}}}]
+\printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=2]
+}
 
 \newcommand*{\insertbiblioother}{
 \printbibliography[heading=otherpublications,keyword=biblioother]
