@@ -40,6 +40,13 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
             \step[fieldset=language, null]
         }
+        \map[overwrite, refsection=0]{% стираем значения всех полей addendum
+            \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{biblio/authorpapers.bib}
+            \perdatasource{biblio/authorconferences.bib}
+            \step[fieldsource=addendum, final]
+            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
+        }
         \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
             \step[fieldset=pagestotal, null]
