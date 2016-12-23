@@ -193,6 +193,13 @@ sorting=none,% настройка сортировки списка литера
 %  \protected\def\bibdaterangesep{\bibrangedash}%тире для дат
 %}
 
+%Set higher penalty for breaking in number, dates and pages ranges
+\setcounter{abbrvpenalty}{10000} % default is \hyphenpenalty which is 12
+
+%Set higher penalty for breaking in names
+\setcounter{highnamepenalty}{10000} % If you prefer the traditional BibTeX behavior (no linebreaks at highnamepenalty breakpoints), set it to ‘infinite’ (10 000 or higher).
+\setcounter{lownamepenalty}{10000}
+
 %%% Set low penalties for breaks at uppercase letters and lowercase letters
 %\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty
 %\setcounter{biburlucpenalty}{3000} %управляет разрывами ссылок после больших букв, RTFM biburlucpenalty
