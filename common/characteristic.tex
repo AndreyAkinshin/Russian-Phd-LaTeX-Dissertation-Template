@@ -84,14 +84,19 @@
     X "--- в тезисах докладов.%
 }{% Реализация пакетом biblatex через движок biber
 %Сделана отдельная секция, чтобы не отображались в списке цитированных материалов
-    \begin{refsection}[vak,papers,conf]%
-        \printbibliography[heading=countauthornotvak, env=countauthornotvak, keyword=biblioauthornotvak, section=1]%
+    \begin{refsection}[vak,papers,conf]% Подсчет и нумерация авторских работ. Засчитываются только те, которые были прописаны внутри \nocite{}.
         \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=1]%
         \printbibliography[heading=countauthorconf, env=countauthorconf, keyword=biblioauthorconf, section=1]%
+        \printbibliography[heading=countauthornotvak, env=countauthornotvak, keyword=biblioauthornotvak, section=1]%
         \printbibliography[heading=countauthor, env=countauthor, keyword=biblioauthor, section=1]%
-        \publications\ Основные результаты по теме диссертации изложены в \arabic{citeauthor} печатных изданиях\nocite{bib1,bib2}, 
-        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\nocite{vakbib1,vakbib2}, 
-        \arabic{citeauthorconf} "--- в тезисах докладов\nocite{confbib1,confbib2}.
+        \nocite{%Порядок перечисления в этом блоке определяет порядок вывода в несгруппированном списке публикаций автора
+                vakbib1,vakbib2,%
+                confbib1,confbib2,%
+                bib1,bib2,%
+        }
+        \publications\ Основные результаты по теме диссертации изложены в \arabic{citeauthor} печатных изданиях, 
+        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК, 
+        \arabic{citeauthorconf} "--- в тезисах докладов.
     \end{refsection}
     \begin{refsection}[vak,papers,conf]%Блок, позволяющий отобрать из всех работ автора наиболее значимые, и только их вывести в автореферате, но считать в блоке выше общее число работ
         \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=2]%

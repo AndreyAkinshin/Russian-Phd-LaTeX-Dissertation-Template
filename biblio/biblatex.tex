@@ -286,6 +286,7 @@ sorting=none,% настройка сортировки списка литера
 \defbibheading{countauthor}{}
 
 \defbibheading{authorpublications}[\authorbibtitle]{\section*{#1}}
+\defbibheading{pubsubgroup}{\noindent\textbf{#1}}
 \defbibheading{otherpublications}{\section*{#1}}
 
 
@@ -300,6 +301,12 @@ sorting=none,% настройка сортировки списка литера
 }
 \newcommand*{\insertbiblioauthorimportant}{
 \printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\authorbibtitle{}}}]
+}
+\newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
+\section*{\authorbibtitle}
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1,title=\vakbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1,title=\confbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthornotvak, section=1,title=\notvakbibtitle]%
 }
 
 \newcommand*{\insertbiblioother}{
