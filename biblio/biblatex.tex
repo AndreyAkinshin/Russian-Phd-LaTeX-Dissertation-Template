@@ -14,16 +14,21 @@ clearlang=true,% внутренний сброс поля language, если о�
 defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
 sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
 doi=false,% Показывать или нет ссылки на DOI
-isbn=false,% Показывать или нет ISBN
-]{biblatex}[2014/06/25]%
+isbn=false,% Показывать или нет ISBN, ISSN, ISRN
+]{biblatex}[2016/09/17]%
 }{%Черновик
 \usepackage[%
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
 sorting=none,% настройка сортировки списка литературы
-]{biblatex}[2014/06/25]%
+]{biblatex}[2016/09/17]%
 }
 
+%%% Подключение файлов bib %%%
+\addbibresource[label=other]{biblio/othercites.bib}
+\addbibresource[label=vak]{biblio/authorpapersVAK.bib}
+\addbibresource[label=papers]{biblio/authorpapers.bib}
+\addbibresource[label=conf]{biblio/authorconferences.bib}
 
 
 %http://tex.stackexchange.com/a/141831/79756
@@ -204,13 +209,6 @@ sorting=none,% настройка сортировки списка литера
 %  }
 %  {\endlist}
 %  {\item}
-
-%%% Подключение файлов bib %%%
-\addbibresource{biblio/othercites.bib}
-\addbibresource{biblio/authorpapersVAK.bib}
-\addbibresource{biblio/authorpapers.bib}
-\addbibresource{biblio/authorconferences.bib}
-
 
 %% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
 %http://tex.stackexchange.com/a/66851/79756
