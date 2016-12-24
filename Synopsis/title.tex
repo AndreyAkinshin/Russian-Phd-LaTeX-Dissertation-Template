@@ -43,6 +43,7 @@
                               \textbf{\supervisorFio}
     \vspace{0.013\paperheight}\\
     Официальные оппоненты:  &
+    \ifnumequal{\value{showopplead}}{0}{\vspace{13\onelineskip plus1fill}}{%
         \textbf{\opponentOneFio,}\par
         \opponentOneRegalia,\par
         \opponentOneJobPlace,\par
@@ -52,8 +53,12 @@
         \opponentTwoRegalia,\par
         \opponentTwoJobPlace,\par
         \opponentTwoJobPost
+    }%
     \vspace{0.013\paperheight} \\
-    Ведущая организация:    & \leadingOrganizationTitle
+    Ведущая организация:    &
+    \ifnumequal{\value{showopplead}}{0}{\vspace{6\onelineskip plus1fill}}{%
+        \leadingOrganizationTitle
+    }%
 \end{tabularx}
 \vspace{0.008\paperheight plus1fill}
 
