@@ -14,16 +14,21 @@ clearlang=true,% внутренний сброс поля language, если о�
 defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
 sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
 doi=false,% Показывать или нет ссылки на DOI
-isbn=false,% Показывать или нет ISBN
-]{biblatex}[2014/06/25]%
+isbn=false,% Показывать или нет ISBN, ISSN, ISRN
+]{biblatex}[2016/09/17]%
 }{%Черновик
 \usepackage[%
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
 sorting=none,% настройка сортировки списка литературы
-]{biblatex}[2014/06/25]%
+]{biblatex}[2016/09/17]%
 }
 
+%%% Подключение файлов bib %%%
+\addbibresource[label=other]{biblio/othercites.bib}
+\addbibresource[label=vak]{biblio/authorpapersVAK.bib}
+\addbibresource[label=papers]{biblio/authorpapers.bib}
+\addbibresource[label=conf]{biblio/authorconferences.bib}
 
 
 %http://tex.stackexchange.com/a/141831/79756
@@ -34,6 +39,13 @@ sorting=none,% настройка сортировки списка литера
         \map{% перекидываем значения полей language в поля langid, которыми пользуется biblatex
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
             \step[fieldset=language, null]
+        }
+        \map[overwrite, refsection=0]{% стираем значения всех полей addendum
+            \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{biblio/authorpapers.bib}
+            \perdatasource{biblio/authorconferences.bib}
+            \step[fieldsource=addendum, final]
+            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
         \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
@@ -177,8 +189,16 @@ sorting=none,% настройка сортировки списка литера
 %%% Исправление длины тире в диапазонах %%%
 %\DefineBibliographyExtras{russian}{%
 %  \protected\def\bibrangedash{%
-%    \textendash\penalty\hyphenpenalty}% breakable dash, такой же как для английского языка
+%    \textendash\penalty\value{abbrvpenalty}}% almost unbreakable dash
+%  \protected\def\bibdaterangesep{\bibrangedash}%тире для дат
 %}
+
+%Set higher penalty for breaking in number, dates and pages ranges
+\setcounter{abbrvpenalty}{10000} % default is \hyphenpenalty which is 12
+
+%Set higher penalty for breaking in names
+\setcounter{highnamepenalty}{10000} % If you prefer the traditional BibTeX behavior (no linebreaks at highnamepenalty breakpoints), set it to ‘infinite’ (10 000 or higher).
+\setcounter{lownamepenalty}{10000}
 
 %%% Set low penalties for breaks at uppercase letters and lowercase letters
 %\setcounter{biburllcpenalty}{500} %управляет разрывами ссылок после маленьких букв RTFM biburllcpenalty
@@ -204,13 +224,6 @@ sorting=none,% настройка сортировки списка литера
 %  }
 %  {\endlist}
 %  {\item}
-
-%%% Подключение файлов bib %%%
-\addbibresource{biblio/othercites.bib}
-\addbibresource{biblio/authorpapersVAK.bib}
-\addbibresource{biblio/authorpapers.bib}
-\addbibresource{biblio/authorconferences.bib}
-
 
 %% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
 %http://tex.stackexchange.com/a/66851/79756
@@ -273,6 +286,7 @@ sorting=none,% настройка сортировки списка литера
 \defbibheading{countauthor}{}
 
 \defbibheading{authorpublications}[\authorbibtitle]{\section*{#1}}
+\defbibheading{pubsubgroup}{\noindent\textbf{#1}}
 \defbibheading{otherpublications}{\section*{#1}}
 
 
@@ -284,11 +298,18 @@ sorting=none,% настройка сортировки списка литера
 
 \newcommand*{\insertbiblioauthor}{
 \printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
-\printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
+}
+\newcommand*{\insertbiblioauthorimportant}{
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\authorbibtitle{}}}]
+}
+\newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
+\section*{\authorbibtitle}
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1,title=\vakbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1,title=\confbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthornotvak, section=1,title=\notvakbibtitle]%
 }
 
 \newcommand*{\insertbiblioother}{
 \printbibliography[heading=otherpublications,keyword=biblioother]
-\printbibliography[heading=counter,env=counter,keyword=biblioother]
 }
 
