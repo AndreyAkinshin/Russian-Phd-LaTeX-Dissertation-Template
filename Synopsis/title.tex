@@ -1,21 +1,17 @@
 \thispagestyle{empty}
 
-\vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-\IfFileExists{images/logo.pdf}{
-  \begin{center}
-    \includegraphics[height=2.5cm]{logo}
-    \hfill
-    \large{На правах рукописи}
-    \includegraphics[height=1.5cm]{personal-signature}
-  \end{center}
-}{
-\begin{flushright}
-  \large{На правах рукописи}
-  \includegraphics[height=1.5cm]{personal-signature} 
-\end{flushright}
-}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}lXr@{}}%
+    & & \large{На правах рукописи}\\
+    \IfFileExists{images/logo.pdf}{\includegraphics[height=2.5cm]{logo}}{\rule[0pt]{0pt}{2.5cm}}  & &
+    \ifnumequal{\value{showperssign}}{0}{%
+        \rule[0pt]{0pt}{1.5cm}
+    }{
+        \includegraphics[height=1.5cm]{personal-signature.png}
+    }\\
+\end{tabularx}
 
-\vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
+\vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
 \textbf {\large \thesisAuthor}
 \end{center}
