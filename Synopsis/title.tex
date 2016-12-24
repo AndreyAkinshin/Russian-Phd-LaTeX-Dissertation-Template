@@ -73,7 +73,7 @@
 \vspace{0.008\paperheight plus1fill}
 \noindent%
 \begin{tabularx}{\textwidth}{@{}%
->{\raggedright\arraybackslash}b{18em}
+>{\raggedright\arraybackslash}b{18em}@{}
 >{\centering\arraybackslash}X
 r
 @{}}
@@ -82,7 +82,9 @@ r
     \defenseCouncilNumber,\par
     \defenseSecretaryRegalia
     &
-    \includegraphics[width=2cm]{secretary-signature}
+    \ifnumequal{\value{showsecrsign}}{0}{}{%
+        \includegraphics[width=2cm]{secretary-signature.png}%
+    }%
     &
     \defenseSecretaryFio
 \end{tabularx} 
