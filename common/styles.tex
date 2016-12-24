@@ -26,14 +26,14 @@ justification=centering,            % Центрирование подписе�
 
 %%% Рисунки %%%
 \DeclareCaptionLabelSeparator*{emdash}{~--- }             % (ГОСТ 2.105, 4.3.1)
-\captionsetup[figure]{labelsep=emdash,position=bottom}
+\captionsetup[figure]{labelsep=\figlabelsep,position=bottom}
 
 %%% Таблицы %%%
 \ifnumequal{\value{tabcap}}{0}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
 
     \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2#3}
-    \captionsetup[table]{labelsep=emdash}                       % тире как разделитель идентификатора с номером от наименования
+    \captionsetup[table]{labelsep=emdash}        % тире как разделитель идентификатора с номером от наименования
 }{%
     \ifnumequal{\value{tablaba}}{0}{%
         \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
@@ -61,7 +61,7 @@ justification=centering,            % Центрирование подписе�
 
     \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2\par%  % Идентификатор таблицы на отдельной строке
         \tabtitalign{#3}}                                       % Наименование таблицы строкой ниже
-    \captionsetup[table]{labelsep=space}                        % пробельный разделитель идентификатора с номером от наименования
+    \captionsetup[table]{labelsep=\tablabelsep}                 % разделитель идентификатора с номером от наименования
 }
 \DeclareCaptionFormat{tablenocaption}{\tabcapalign #1\strut}    % Наименование таблицы отсутствует
 

@@ -1,21 +1,17 @@
 \thispagestyle{empty}
 
-\vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-\IfFileExists{images/logo.pdf}{
-  \begin{center}
-    \includegraphics[height=2.5cm]{logo}
-    \hfill
-    \large{На правах рукописи}
-    \includegraphics[height=1.5cm]{personal-signature}
-  \end{center}
-}{
-\begin{flushright}
-  \large{На правах рукописи}
-  \includegraphics[height=1.5cm]{personal-signature} 
-\end{flushright}
-}
+\noindent%
+\begin{tabularx}{\textwidth}{@{}lXr@{}}%
+    & & \large{На правах рукописи}\\
+    \IfFileExists{images/logo.pdf}{\includegraphics[height=2.5cm]{logo}}{\rule[0pt]{0pt}{2.5cm}}  & &
+    \ifnumequal{\value{showperssign}}{0}{%
+        \rule[0pt]{0pt}{1.5cm}
+    }{
+        \includegraphics[height=1.5cm]{personal-signature.png}
+    }\\
+\end{tabularx}
 
-\vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
+\vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
 \textbf {\large \thesisAuthor}
 \end{center}
@@ -33,22 +29,21 @@
 \end{center}
 
 \vspace{0pt plus4fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-\begin{center}
-{\large{\thesisCity\ "--- \thesisYear}}
-\end{center}
+{\centering\thesisCity~--- \thesisYear\par}
 
 \newpage
 % оборотная сторона обложки
 \thispagestyle{empty}
-\noindent Работа выполнена в \thesisInOrganization
+\noindent Работа выполнена в {\thesisInOrganization}.
 
-\par\bigskip
+\vspace{0.008\paperheight plus1fill}
 \noindent%
 \begin{tabularx}{\textwidth}{@{}lX@{}}
     Научный руководитель:   & \supervisorRegalia\par
                               \textbf{\supervisorFio}
     \vspace{0.013\paperheight}\\
     Официальные оппоненты:  &
+    \ifnumequal{\value{showopplead}}{0}{\vspace{13\onelineskip plus1fill}}{%
         \textbf{\opponentOneFio,}\par
         \opponentOneRegalia,\par
         \opponentOneJobPlace,\par
@@ -58,29 +53,32 @@
         \opponentTwoRegalia,\par
         \opponentTwoJobPlace,\par
         \opponentTwoJobPost
+    }%
     \vspace{0.013\paperheight} \\
-    Ведущая организация:    & \leadingOrganizationTitle
-\end{tabularx}  
-\par\bigskip
+    Ведущая организация:    &
+    \ifnumequal{\value{showopplead}}{0}{\vspace{6\onelineskip plus1fill}}{%
+        \leadingOrganizationTitle
+    }%
+\end{tabularx}
+\vspace{0.008\paperheight plus1fill}
 
 \noindent Защита состоится \defenseDate~на~заседании диссертационного совета \defenseCouncilNumber~при \defenseCouncilTitle~по адресу: \defenseCouncilAddress.
 
-\vspace{0.017\paperheight}
+\vspace{0.008\paperheight plus1fill}
 \noindent С диссертацией можно ознакомиться в библиотеке \synopsisLibrary.
 
-\vspace{0.017\paperheight}
+\vspace{0.008\paperheight plus1fill}
 \noindent Отзывы на автореферат в двух экземплярах, заверенные печатью учреждения, просьба направлять по адресу: \defenseCouncilAddress, ученому секретарю диссертационного совета~\defenseCouncilNumber.
 
-\vspace{0.017\paperheight}
+\vspace{0.008\paperheight plus1fill}
 \noindent{Автореферат разослан \synopsisDate.}
 
 \noindent Телефон для справок: \defenseCouncilPhone.
 
-\vspace{0.017\paperheight}
-\par\bigskip
+\vspace{0.008\paperheight plus1fill}
 \noindent%
 \begin{tabularx}{\textwidth}{@{}%
->{\raggedright\arraybackslash}b{18em}
+>{\raggedright\arraybackslash}b{18em}@{}
 >{\centering\arraybackslash}X
 r
 @{}}
@@ -89,7 +87,9 @@ r
     \defenseCouncilNumber,\par
     \defenseSecretaryRegalia
     &
-    \includegraphics[width=2cm]{secretary-signature}
+    \ifnumequal{\value{showsecrsign}}{0}{}{%
+        \includegraphics[width=2cm]{secretary-signature.png}%
+    }%
     &
     \defenseSecretaryFio
 \end{tabularx} 
