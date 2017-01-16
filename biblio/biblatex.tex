@@ -15,13 +15,13 @@ defernumbers=true,% нумерация проставляется после д�
 sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
 doi=false,% Показывать или нет ссылки на DOI
 isbn=false,% Показывать или нет ISBN
-]{biblatex}[2014/06/25]%
+]{biblatex}[2014/03/03]%
 }{%Черновик
 \usepackage[%
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
 sorting=none,% настройка сортировки списка литературы
-]{biblatex}[2014/06/25]%
+]{biblatex}[2014/03/03]%
 }
 
 
@@ -282,10 +282,14 @@ sorting=none,% настройка сортировки списка литера
 \printbibliography[heading=counter,env=counter,keyword=bibliofull,section=0]
 }
 
+\makeatletter
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
-\printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
+  \renewcommand{\blx@maxbibnames}{99}%
+  \printbibliography[prefixnumbers=A,heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
+  \printbibliography[heading=counter,env=counter,keyword=biblioauthor,section=1]
+  \renewcommand{\blx@maxbibnames}{3}%
 }
+\makeatother
 
 \newcommand*{\insertbiblioother}{
 \printbibliography[heading=otherpublications,keyword=biblioother]

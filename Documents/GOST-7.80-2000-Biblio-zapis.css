@@ -1,0 +1,264 @@
+A {
+	COLOR: blue; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: red; TEXT-DECORATION: underline
+}
+A:active {
+	BACKGROUND: blue; COLOR: white
+}
+BODY {
+	BACKGROUND: url(/feb/common/im/bghr.gif) #f0f0ee fixed repeat-y; COLOR: #000050
+}
+BODY {
+	FONT-FAMILY: "Times New Roman"
+}
+PRE.verse {
+	FONT-FAMILY: "Times New Roman"
+}
+SPAN.old {
+	FONT-FAMILY: "Palatino Linotype"
+}
+SPAN.oldrus {
+	FONT-FAMILY: "Code2000"
+}
+DIV#PROSE {
+	TEXT-ALIGN: justify; xwidth: 40em
+}
+DIV#PROSEV {
+	WIDTH: 35em; TEXT-ALIGN: left
+}
+DIV#VERSE {
+	WIDTH: 35em; TEXT-ALIGN: left
+}
+DIV#DRAMA {
+	WIDTH: 35em; TEXT-ALIGN: left
+}
+DIV.DESCRIPTION {
+	FONT-SIZE: 80%; BORDER-BOTTOM: darkblue 8px double; BACKGROUND-COLOR: lightblue; xdisplay: none
+}
+DIV.FOOTNOTES {
+	BORDER-TOP: black 8px double; FONT-SIZE: 80%; BACKGROUND-COLOR: lightgrey; xdisplay: none
+}
+SPAN.page {
+	BORDER-TOP: darkblue 2px solid; FONT-SIZE: 80%; MARGIN: 1em 0px 0px; WIDTH: 100%; COLOR: darkblue; FONT-STYLE: italic; TEXT-ALIGN: center
+}
+H4 {
+	FONT-WEIGHT: normal; FONT-SIZE: 100%; MARGIN: 0px
+}
+H5 {
+	FONT-WEIGHT: normal; FONT-SIZE: 100%; MARGIN: 0px
+}
+EM {
+	FONT-STYLE: normal; LETTER-SPACING: 0.2em
+}
+I EM {
+	FONT-STYLE: italic; LETTER-SPACING: 0.2em
+}
+A.footnote {
+	FONT-SIZE: 80%; VERTICAL-ALIGN: super
+}
+P {
+	MARGIN: 0.2em 0px
+}
+P.p {
+	TEXT-INDENT: 2em; TEXT-ALIGN: justify
+}
+P.verse {
+	MARGIN: 0px 0px 0px 6em
+}
+PRE.verse {
+	FONT-SIZE: 100%; MARGIN-LEFT: 6em
+}
+xSPAN.verseno {
+	LEFT: -6em; POSITION: relative
+}
+SPAN.verseno {
+	FONT-SIZE: 80%; LEFT: 1em; MARGIN: 0px; WIDTH: 3em; POSITION: absolute; TEXT-ALIGN: right
+}
+TD {
+	VERTICAL-ALIGN: top
+}
+P.ACT {
+	MARGIN-TOP: 3em; FONT-WEIGHT: bold; FONT-SIZE: 120%; TEXT-ALIGN: center
+}
+P.SCENE {
+	MARGIN-TOP: 2em; FONT-WEIGHT: bold; FONT-SIZE: 100%; TEXT-ALIGN: center
+}
+P.SPEECH {
+	MARGIN-TOP: 1em; FONT-WEIGHT: normal; LETTER-SPACING: 0.2em; TEXT-ALIGN: center
+}
+SPAN.SPEECH1 {
+	DISPLAY: inline; LETTER-SPACING: 0.2em
+}
+P.Note-c0 {
+	FONT-SIZE: 80%; TEXT-ALIGN: center
+}
+P.Note1 {
+	FONT-SIZE: 80%; TEXT-ALIGN: center
+}
+P.Note-ci {
+	FONT-STYLE: italic; TEXT-ALIGN: center
+}
+P.Note2 {
+	FONT-STYLE: italic; TEXT-ALIGN: center
+}
+P.Note-li0 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: left
+}
+P.Note3 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: left
+}
+P.Note-ci0 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: center
+}
+P.Note4 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: center
+}
+SPAN.Note-i {
+	FONT-STYLE: italic; LETTER-SPACING: 0px
+}
+SPAN.Note5 {
+	FONT-STYLE: italic; LETTER-SPACING: 0px
+}
+P.Note-r0 {
+	FONT-SIZE: 80%; TEXT-ALIGN: right
+}
+P.Note6 {
+	FONT-SIZE: 80%; TEXT-ALIGN: right
+}
+P.Note-ri0 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: right
+}
+P.Note7 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: right
+}
+P.Note-c {
+	TEXT-ALIGN: center
+}
+P.Note8 {
+	TEXT-ALIGN: center
+}
+P.Note-ri {
+	FONT-STYLE: italic; TEXT-ALIGN: right
+}
+P.Note9 {
+	FONT-STYLE: italic; TEXT-ALIGN: right
+}
+P.Note-l0 {
+	FONT-SIZE: 80%; TEXT-ALIGN: left
+}
+P.Note10 {
+	FONT-SIZE: 80%; TEXT-ALIGN: left
+}
+P.Note-li {
+	FONT-STYLE: italic; TEXT-ALIGN: left
+}
+P.Note11 {
+	FONT-STYLE: italic; TEXT-ALIGN: left
+}
+.cb {
+	FONT-WEIGHT: bold; TEXT-ALIGN: center
+}
+.cb2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 120%; TEXT-ALIGN: center
+}
+.ci {
+	FONT-STYLE: italic; TEXT-ALIGN: center
+}
+.ci0 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: center
+}
+.c0 {
+	FONT-SIZE: 80%; TEXT-ALIGN: center
+}
+.cbi {
+	FONT-WEIGHT: bold; FONT-STYLE: italic; TEXT-ALIGN: center
+}
+.ce {
+	LETTER-SPACING: 0.3em; TEXT-ALIGN: center
+}
+.ri {
+	FONT-STYLE: italic; TEXT-ALIGN: right
+}
+.ri0 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: right
+}
+.r0 {
+	FONT-SIZE: 80%; TEXT-ALIGN: right
+}
+.li {
+	FONT-STYLE: italic; TEXT-ALIGN: left
+}
+.li0 {
+	FONT-SIZE: 80%; FONT-STYLE: italic; TEXT-ALIGN: left
+}
+.l0 {
+	FONT-SIZE: 80%; TEXT-ALIGN: left
+}
+.verse0 {
+	MARGIN: 0px 0px 0px 6em
+}
+.verse1 {
+	MARGIN: 0px 0px 0px 8em
+}
+.verse-1 {
+	MARGIN: 0px 0px 0px 8em
+}
+.verse2 {
+	MARGIN: 0px 0px 0px 10em
+}
+.verse-2 {
+	MARGIN: 0px 0px 0px 10em
+}
+.verse3 {
+	MARGIN: 0px 0px 0px 12em
+}
+.verse-3 {
+	MARGIN: 0px 0px 0px 12em
+}
+.verse4 {
+	MARGIN: 0px 0px 0px 14em
+}
+.verse-4 {
+	MARGIN: 0px 0px 0px 14em
+}
+.verse5 {
+	MARGIN: 0px 0px 0px 16em
+}
+.verse-5 {
+	MARGIN: 0px 0px 0px 16em
+}
+.verse6 {
+	MARGIN: 0px 0px 0px 18em
+}
+.verse-6 {
+	MARGIN: 0px 0px 0px 18em
+}
+.verse-7 {
+	MARGIN: 0px 0px 0px 20em
+}
+.verse-8 {
+	MARGIN: 0px 0px 0px 22em
+}
+.verse-9 {
+	MARGIN: 0px 0px 0px 24em
+}
+.verse-10 {
+	MARGIN: 0px 0px 0px 26em
+}
+TABLE.YxHiLite {
+	FONT-SIZE: x-small; BACKGROUND: url(/feb/common/images/ybgrnd.gif) #f5dcb3; FONT-FAMILY: "Arial"
+}
+TABLE.YxHiLite1 {
+	BACKGROUND: url(/feb/common/images/ybgrnd.gif) #f5dcb3
+}
+.desc {
+	MARGIN-TOP: 1em; xtext-align: justify
+}
+.desc1 {
+	MARGIN-TOP: 1em; FONT-WEIGHT: bold; FONT-SIZE: 120%; MARGIN-BOTTOM: 0em
+}
+.desc2 {
+	MARGIN-TOP: 1em; FONT-WEIGHT: bold; FONT-SIZE: 90%; MARGIN-BOTTOM: 1em
+}
