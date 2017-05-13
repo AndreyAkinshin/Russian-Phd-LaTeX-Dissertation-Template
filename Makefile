@@ -1,6 +1,6 @@
 .PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat clean distclean release draft
 
-all: synopsis dissertation
+all: dissertation synopsis
 
 preformat: synopsis-preformat dissertation-preformat
 

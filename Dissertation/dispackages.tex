@@ -4,3 +4,23 @@
 %%% Для добавления Стр. над номерами страниц в оглавлении
 %%% http://tex.stackexchange.com/a/306950
 \usepackage{afterpage}
+
+%для того, чтобы считать из диссертации счеткики (кол-во страниц, ссылок и т.п.) и записать значения в dissertation.aux и позже в автореферат, решение подробно расписано на страничке:
+%http://tex.stackexchange.com/q/337263/44348
+\usepackage{zref-abspage, zref-lastpage,zref-user}
+
+\usepackage{assoccnt}
+
+
+
+%формируем значения для экспорта (e-export) в synopsis
+\makeatletter
+%счетчики, использующие totcount
+\zref@newprop{echapter}[0]{\the\totvalue{schapter}} 
+\zref@newprop{eappendix}[0]{\the\totvalue{sappendix}}
+\zref@newprop{ecitenum}[0]{\the\totvalue{citenum}} 
+%счетчики, использующие totalcount 
+\zref@newprop{efigure}[0]{\totalfigures} 
+\zref@newprop{etable}[0]{\totaltables} 
+\zref@addprops{LastPage}{echapter,eappendix,efigure,etable,ecitenum} %добавляем все счетчики в zref и в dissertation.aux
+\makeatother

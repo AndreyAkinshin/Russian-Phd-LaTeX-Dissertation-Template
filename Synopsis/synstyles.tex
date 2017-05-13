@@ -42,3 +42,14 @@
 
 %%% Отступы у плавающих блоков %%%
 \setlength\textfloatsep{1ex}
+
+% в диссере аналогичные действия расположены в папке Dissertation/styles
+\AtBeginDocument{
+	%% регистрируем счётчики в системе totcounter для дальнейшего использования команды \formbytotal в тебе автореферата
+	\regtotcounter{dtotalcount@figure}
+	\regtotcounter{dtotalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
+	\regtotcounter{dTotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
+	\regtotcounter{dcitenum}
+	\regtotcounter{dappendix}
+	\regtotcounter{dchapter}
+}

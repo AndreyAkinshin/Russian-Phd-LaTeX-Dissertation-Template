@@ -3,7 +3,11 @@
 
 \newcommand{\actuality}{}
 \newcommand{\progress}{}
-\newcommand{\aim}{{\textbf\aimTXT}}
+\newcommand{\aim}{\textbf{\aimTXT}}
+\newcommand{\object}{\textbf{\objectTXT}}
+\newcommand{\features}{\textbf{\featuresTXT}}
+\newcommand{\scope}{\textbf{\scopeTXT}}
+\newcommand{\vak}{\textbf{\vakTXT}}
 \newcommand{\tasks}{\textbf{\tasksTXT}}
 \newcommand{\novelty}{\textbf{\noveltyTXT}}
 \newcommand{\influence}{\textbf{\influenceTXT}}
@@ -13,15 +17,30 @@
 \newcommand{\probation}{\textbf{\probationTXT}}
 \newcommand{\contribution}{\textbf{\contributionTXT}}
 \newcommand{\publications}{\textbf{\publicationsTXT}}
+\newcommand{\structureDiss}{\textbf{\structureTXT}}
 
 \input{common/characteristic} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
 
-\textbf{Объем и структура работы.} Диссертация состоит из~введения, четырёх глав, заключения и~двух приложений.
 %% на случай ошибок оставляю исходный кусок на месте, закомментированным
-%Полный объём диссертации составляет  \ref*{TotPages}~страницу с~\totalfigures{}~рисунками и~\totaltables{}~таблицами. Список литературы содержит \total{citenum}~наименований.
-%
+%\textbf{Объем и структура работы.} Диссертация состоит из~введения, четырёх глав, заключения и~двух приложений.Полный объём диссертации составляет  \ref*{TotPages}~страницу с~\totalfigures{}~рисунками и~\totaltables{}~таблицами. Список литературы содержит \total{citenum}~наименований.
+
+
+
+{\structureDiss.} Диссертация состоит из~введения, \formbytotal{schapter}{глав}{ы}{}{}, заключения и
+\formbytotal{sappendix}{приложен}{ия}{ий}{}.
 Полный объём диссертации составляет
 \formbytotal{TotPages}{страниц}{у}{ы}{}, включая
 \formbytotal{totalcount@figure}{рисун}{ок}{ка}{ков} и
-\formbytotal{totalcount@table}{таблиц}{у}{ы}{}.   Список литературы содержит  
+\formbytotal{totalcount@table}{таблиц}{у}{ы}{}.
+Список литературы содержит  
 \formbytotal{citenum}{наименован}{ие}{ия}{ий}.
+
+
+%\formbytotal{appendixc}
+%\zref[mchapter]{LastPage}~глав
+%There are \total{totalchapters} total chapters.
+%There are \total{appendixchapters} appendix chapters.
+%There are \total{truechapters} true chapters.
+%There are \total{chaptersAll} chapters.
+%There are \total{chapter} chapters.
+
