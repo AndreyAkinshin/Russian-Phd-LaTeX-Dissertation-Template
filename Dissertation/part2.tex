@@ -3,10 +3,10 @@
 \section{Одиночное изображение} \label{sect2_1}
 
 \begin{figure}[ht] 
-  \center
+  \centering
   \includegraphics [scale=0.27] {latex}
-  \caption{TeX.} 
-  \label{img:latex}  
+  \caption{TeX.}
+  \label{img:latex}
 \end{figure}
 
 %\newpage
@@ -15,12 +15,12 @@
 
 А это две картинки под общим номером и названием:
 \begin{figure}[ht]
-  \begin{minipage}[ht]{0.49\linewidth}
-    \center{\includegraphics[width=0.5\linewidth]{knuth1} \\ а)}
+  \begin{minipage}[ht]{0.49\linewidth}\centering
+    \includegraphics[width=0.5\linewidth]{knuth1} \\ а)
   \end{minipage}
   \hfill
-  \begin{minipage}[ht]{0.49\linewidth}
-    \center{\includegraphics[width=0.5\linewidth]{knuth2} \\ б)}
+  \begin{minipage}[ht]{0.49\linewidth}\centering
+    \includegraphics[width=0.5\linewidth]{knuth2} \\ б)
   \end{minipage}
   \caption{Очень длинная подпись к изображению, на котором представлены две фотографии Дональда Кнута}
   \label{img:knuth}  
@@ -28,7 +28,7 @@
 
 Те~же~две картинки под~общим номером и~названием, но с автоматизированной нумерацей подрисунков посредством пакета \verb|subcaption|:
 \begin{figure}[ht]
-    \center{
+    {\centering
         \hfill
         \subcaptionbox[List-of-Figures entry]{Первый подрисунок\label{img:knuth_2_1}} {\includegraphics[width=0.25\linewidth]{knuth1}}%
         \hfill       
