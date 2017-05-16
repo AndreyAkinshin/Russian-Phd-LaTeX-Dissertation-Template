@@ -1,10 +1,10 @@
 %%% Проверка используемого TeX-движка %%%
-\usepackage{iftex}[2013/04/04]
-\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579/79756)
-\ifXeTeX
+\RequirePackage{ifxetex, ifluatex}
+\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579)
+\ifxetex
     \xetexorluatextrue
 \else
-    \ifLuaTeX
+    \ifluatex
         \xetexorluatextrue
     \else
         \xetexorluatexfalse
@@ -37,7 +37,6 @@
 \ifxetexorluatex
     \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
 \else
-    \RequirePDFTeX                                  % tests for PDFTEX use and throws an error if a different engine is being used
    %%% Решение проблемы копирования текста в буфер кракозябрами
 %    \input glyphtounicode.tex
 %    \input glyphtounicode-cmr.tex %from pdfx package
