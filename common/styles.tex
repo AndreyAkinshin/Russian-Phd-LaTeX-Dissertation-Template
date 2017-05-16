@@ -2,17 +2,13 @@
 \ifxetexorluatex
     \setmainlanguage[babelshorthands=true]{russian}  % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
     \setotherlanguage{english}                       % Дополнительный язык = английский (в американской вариации по-умолчанию)
-    \setmonofont{Courier New}
-    \newfontfamily\cyrillicfonttt{Courier New}
-    \ifXeTeX
-        \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
-    \else
-        \defaultfontfeatures{Ligatures=TeX}
-    \fi
-    \setmainfont{Times New Roman}
-    \newfontfamily\cyrillicfont{Times New Roman}
-    \setsansfont{Arial}
-    \newfontfamily\cyrillicfontsf{Arial}
+    \setmonofont{Courier New}                        % моноширинный шрифт
+    \newfontfamily\cyrillicfonttt{Courier New}       % моноширинный шрифт для кириллицы
+    \defaultfontfeatures{Ligatures=TeX}              % стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки моноширинного шрифта должны идти до этой строки, чтобы при врезках кода программ в коде не применялись лигатуры и замены дефисов
+    \setmainfont{Times New Roman}                    % Шрифт с засечками
+    \newfontfamily\cyrillicfont{Times New Roman}     % Шрифт с засечками для кириллицы
+    \setsansfont{Arial}                              % Шрифт без засечек
+    \newfontfamily\cyrillicfontsf{Arial}             % Шрифт без засечек для кириллицы
 \else
     \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
 \fi
@@ -78,7 +74,7 @@ justification=centering,            % Центрирование подписе�
 %\captionsetup[subfigure]{font={font12pt}}                 % Шрифт подписи названий подрисунков (всегда 12pt)
 
 %%% Настройки гиперссылок %%%
-\ifLuaTeX
+\ifluatex
     \hypersetup{
         unicode,                % Unicode encoded PDF strings
     }
