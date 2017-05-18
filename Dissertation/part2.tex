@@ -26,21 +26,28 @@
   \label{img:knuth}  
 \end{figure}
 
-Те~же~две картинки под~общим номером и~названием, но с автоматизированной нумерацей подрисунков посредством пакета \verb|subcaption|:
+Те~же~две картинки под~общим номером и~названием, но с автоматизированной нумерацией подрисунков посредством пакета \verb|subcaption|:
 \begin{figure}[ht]
     {\centering
         \hfill
-        \subcaptionbox[List-of-Figures entry]{Первый подрисунок\label{img:knuth_2_1}} {\includegraphics[width=0.25\linewidth]{knuth1}}%
-        \hfill       
-        \subcaptionbox{Второй подрисунок\label{img:knuth_2_2}} {\includegraphics[width=0.25\linewidth]{knuth2}}
+        \subcaptionbox[List-of-Figures entry]{Первый подрисунок\label{img:knuth_2_1}} {%
+            \includegraphics[width=0.25\linewidth]{knuth1}}%
+        \hfill
+        \subcaptionbox{\label{img:knuth_2_2}} {%
+            \includegraphics[width=0.25\linewidth]{knuth2}}
+        \hfill
+        \subcaptionbox{Третий подрисунок} {%
+            \includegraphics[width=0.3\linewidth]{example-image-c}}
         \hfill
     }
 
-    Подрисуночный текст, описывающий обозначения, например. Согласно ГОСТ 2.105, пункт 4.3.1, располагается перед наименованием рисунка.
-    \caption{Очень длинная подпись к второму изображению, на котором представлены две фотографии Дональда Кнута} % Этот текст попадает в названия рисунков в списке рисунков
+    Подрисуночный текст, описывающий обозначения, например. Согласно
+    ГОСТ 2.105, пункт 4.3.1, располагается перед наименованием рисунка.
+    \caption[Этот текст попадает в названия рисунков в списке рисунков]{Очень
+    длинная подпись к второму изображению, на котором представлены две
+    фотографии Дональда Кнута}
     \label{img:knuth_2}
 \end{figure}
-
 
 На рисунке~\ref{img:knuth_2_1} показан Дональд Кнут без головного убора. На рисунке~\ref{img:knuth_2}\subref*{img:knuth_2_2}  показан Дональд Кнут в головном уборе.
 
