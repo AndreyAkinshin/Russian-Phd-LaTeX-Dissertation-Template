@@ -4,7 +4,7 @@
 Для крупных листингов есть два способа. Первый красивый, но в нём могут быть проблемы с поддержкой кириллицы (у вас может встречаться в комментариях и
 печатаемых сообщениях), он представлен на листинге~\ref{list:hwbeauty}.
 \begin{ListingEnv}[!h]% настройки floating аналогичны окружению figure
-%    \captionsetup{format=tablenocaption}% должен стоять до самого caption
+    \captiondelim{ } % разделитель идентификатора с номером от наименования
     \caption{Программа “Hello, world” на \protect\cpp}
     % далее метка для ссылки:
     \label{list:hwbeauty}
@@ -23,6 +23,7 @@
 \end{ListingEnv}%
 Второй не такой красивый, но без ограничений (см.~листинг~\ref{list:hwplain}).
 \begin{ListingEnv}[!h]
+    \captiondelim{ } % разделитель идентификатора с номером от наименования
     \caption{Программа “Hello, world” без подсветки}
     \label{list:hwplain}
     \begin{Verb}
@@ -57,6 +58,8 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 
 Пример~\ref{list:internal3}, иллюстрирующий подключение переопределённого языка. Может быть полезным, если подсветка кода работает криво. Без дополнительного окружения, с подписью и ссылкой, реализованной встроенным средством.
+\begingroup
+\captiondelim{ } % разделитель идентификатора с номером от наименования
 \begin{lstlisting}[language={Renhanced},caption={Пример листинга c подписью собственными средствами},label={list:internal3}]
 ## Caching the Inverse of a Matrix
 
@@ -101,10 +104,13 @@ cacheSolve <- function(x, ...) {
 }
 \end{lstlisting} %$ %Комментарий для корректной подсветки синтаксиса
                  %вне листинга
+\endgroup
 
 Листинг~\ref{list:external1} подгружается из внешнего файла. Приходится загружать без окружения дополнительного. Иначе по страницам не переносится.
+\begingroup
+\captiondelim{ } % разделитель идентификатора с номером от наименования
     \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={list:external1}]{listings/run_analysis.R}
-
+\endgroup
 
 
 
@@ -115,7 +121,7 @@ cacheSolve <- function(x, ...) {
  \section{Подраздел приложения}\label{AppendixB1}
 Вот размещается длинная таблица:
 \fontsize{10pt}{10pt}\selectfont
-\begin{longtable*}[c]{|l|c|l|l|} %longtable* появляется из пакета caption и даёт ненумерованную таблицу
+\begin{longtable*}[c]{|l|c|l|l|} %longtable* появляется из пакета ltcaption и даёт ненумерованную таблицу
 % \caption{Описание входных файлов модели}\label{Namelists} 
 %\\ 
  \hline
@@ -269,18 +275,17 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
 
 \begingroup
     \centering
-	\small
+    \small
     \begin{longtable}[c]{|l|c|l|l|}
-	\caption{Наименование таблицы средней длины}%
+    \caption{Наименование таблицы средней длины}%
     \label{tbl:test5}% label всегда желательно идти после caption
-    \\
+    \\[-0.45\onelineskip]
     \hline
      %\multicolumn{4}{|c|}{\textbf{Файл puma\_namelist}}        \\ \hline
      Параметр & Умолч. & Тип & Описание\\ \hline
      \endfirsthead%
 %     \multicolumn{4}{|c|}{\small\slshape (продолжение)}        \\ \hline
-    \captionsetup{format=tablenocaption,labelformat=continued}% должен стоять до самого caption
-    \caption[]{}\\
+    \caption*{\tabcapalign Продолжение таблицы~\thetable}\\[-0.45\onelineskip]
     \hline
      Параметр & Умолч. & Тип & Описание\\ \hline
       \endhead
