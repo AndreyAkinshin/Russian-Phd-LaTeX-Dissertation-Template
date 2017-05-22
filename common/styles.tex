@@ -14,22 +14,16 @@
 \fi
 
 %%% Подписи %%%
-\captionsetup{%
-singlelinecheck=off,                % Многострочные подписи, например у таблиц
-skip=2pt,                           % Вертикальная отбивка между подписью и содержимым рисунка или таблицы определяется ключом
-justification=centering,            % Центрирование подписей, заданных командой \caption
-}
-
-%%% Рисунки %%%
-\DeclareCaptionLabelSeparator*{emdash}{~--- }             % (ГОСТ 2.105, 4.3.1)
-\captionsetup[figure]{labelsep=\figlabelsep,position=bottom}
+\setlength{\abovecaptionskip}{0pt}   % Отбивка над подписью
+\setlength{\belowcaptionskip}{0pt}   % Отбивка под подписью
+\captionwidth{\linewidth}
+\normalcaptionwidth
 
 %%% Таблицы %%%
 \ifnumequal{\value{tabcap}}{0}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-
-    \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2#3}
-    \captionsetup[table]{labelsep=emdash}        % тире как разделитель идентификатора с номером от наименования
+    \renewcommand{\tablabelsep}{~--- } % тире как разделитель идентификатора с номером от наименования
+    \newcommand{\tabtitalign}{}
 }{%
     \ifnumequal{\value{tablaba}}{0}{%
         \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
@@ -44,34 +38,44 @@ justification=centering,            % Центрирование подписе�
     }{}
 
     \ifnumequal{\value{tabtita}}{0}{%
-        \newcommand{\tabtitalign}{\raggedright}  % по левому краю страницы или аналога parbox
+        \newcommand{\tabtitalign}{\par\raggedright}  % по левому краю страницы или аналога parbox
     }{}
 
     \ifnumequal{\value{tabtita}}{1}{%
-        \newcommand{\tabtitalign}{\centering}    % по центру страницы или аналога parbox
+        \newcommand{\tabtitalign}{\par\centering}    % по центру страницы или аналога parbox
     }{}
 
     \ifnumequal{\value{tabtita}}{2}{%
-        \newcommand{\tabtitalign}{\raggedleft}   % по правому краю страницы или аналога parbox
+        \newcommand{\tabtitalign}{\par\raggedleft}   % по правому краю страницы или аналога parbox
     }{}
-
-    \DeclareCaptionFormat{tablecaption}{\tabcapalign #1#2\par%  % Идентификатор таблицы на отдельной строке
-        \tabtitalign{#3}}                                       % Наименование таблицы строкой ниже
-    \captionsetup[table]{labelsep=\tablabelsep}                 % разделитель идентификатора с номером от наименования
 }
-\DeclareCaptionFormat{tablenocaption}{\tabcapalign #1\strut}    % Наименование таблицы отсутствует
 
-\captionsetup[table]{format=tablecaption,singlelinecheck=off,position=top,skip=0pt}  % многострочные наименования и прочее
-\DeclareCaptionLabelFormat{continued}{Продолжение таблицы~#2}
+\precaption{\tabcapalign} % всегда идет перед подписью или \legend
+\captionnamefont{\normalfont\normalsize} % Шрифт надписи «Таблица #»; также определяет шрифт у \legend
+\captiondelim{\tablabelsep} % разделитель идентификатора с номером от наименования
+\captionstyle[\tabtitalign]{\tabtitalign}
+\captiontitlefont{\normalfont\normalsize} % Шрифт с текстом подписи
+
+%%% Рисунки %%%
+\setfloatadjustment{figure}{%
+    \setlength{\abovecaptionskip}{0pt}   % Отбивка над подписью
+    \setlength{\belowcaptionskip}{0pt}   % Отбивка под подписью
+    \precaption{} % всегда идет перед подписью или \legend
+    \captionnamefont{\normalfont\normalsize} % Шрифт надписи «Рисунок #»; также определяет шрифт у \legend
+    \captiondelim{\figlabelsep} % разделитель идентификатора с номером от наименования
+    \captionstyle[\centering]{\centering} % Центрирование подписей, заданных командой \caption и \legend
+    \captiontitlefont{\normalfont\normalsize} % Шрифт с текстом подписи
+    \postcaption{} % всегда идет после подписи или \legend, и с новой строки
+}
 
 %%% Подписи подрисунков %%%
+\newsubfloat{figure} % Включает возможность использовать подрисунки у окружений figure
 \renewcommand{\thesubfigure}{\asbuk{subfigure}}           % Буквенные номера подрисунков
-\captionsetup[subfigure]{font={normalsize},               % Шрифт подписи названий подрисунков (не отличается от основного)
-    labelformat=brace,                                    % Формат обозначения подрисунка
-    justification=centering,                              % Выключка подписей (форматирование), один из вариантов            
-}
-%\DeclareCaptionFont{font12pt}{\fontsize{12pt}{13pt}\selectfont} % объявляем шрифт 12pt для использования в подписях, тут же надо интерлиньяж объявлять, если не наследуется
-%\captionsetup[subfigure]{font={font12pt}}                 % Шрифт подписи названий подрисунков (всегда 12pt)
+\subcaptionsize{\normalsize} % Шрифт подписи названий подрисунков (не отличается от основного)
+\subcaptionlabelfont{\normalfont}
+\subcaptionfont{\!\!) \normalfont} % Вот так тут добавили скобку после буквы.
+\subcaptionstyle{\centering}
+%\subcaptionsize{\fontsize{12pt}{13pt}\selectfont} % объявляем шрифт 12pt для использования в подписях, тут же надо интерлиньяж объявлять, если не наследуется
 
 %%% Настройки гиперссылок %%%
 \ifluatex

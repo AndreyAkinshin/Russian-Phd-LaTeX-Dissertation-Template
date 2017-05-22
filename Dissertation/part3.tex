@@ -6,7 +6,7 @@
 
 \begin{table} [htbp]
   \centering
-  \captionsetup{width=15cm}
+  \changecaptionwidth\captionwidth{15cm}
   \caption{Название таблицы}\label{Ts0Sib}%
   \begin{tabular}{| p{3cm} || p{3cm} | p{3cm} | p{4cm}l |}
   \hline
@@ -24,7 +24,7 @@
 \begin{table} [htbp]% Пример записи таблицы с номером, но без отображаемого наименования
 	\centering
 	\parbox{9cm}{% чтобы лучше смотрелось, подбирается самостоятельно
-        \captionsetup{format=tablenocaption}% должен стоять до самого caption
+        \captiondelim{}% должен стоять до самого пустого caption
         \caption{}%
         \label{tbl:test1}%
         \begin{SingleSpace}
