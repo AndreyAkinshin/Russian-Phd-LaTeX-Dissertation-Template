@@ -38,15 +38,17 @@
     \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
 \else
    %%% Решение проблемы копирования текста в буфер кракозябрами
-%    \input glyphtounicode.tex
-%    \input glyphtounicode-cmr.tex %from pdfx package
-%    \pdfgentounicode=1
+    \IfFileExists{pscyr.sty}{% вероятно, без pscyr нет необходимости в этом коде
+        \input glyphtounicode.tex
+        \input glyphtounicode-cmr.tex %from pdfx package
+        \pdfgentounicode=1
+    }{}
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
-    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
-    \usepackage[T2A]{fontenc}                       % Поддержка русских букв
+    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена 
+    \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
+    \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
     \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
     \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
-    \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
 \fi
 
 %%% Оформление абзацев %%%
