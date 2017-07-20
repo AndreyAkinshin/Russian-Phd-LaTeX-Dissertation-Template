@@ -50,6 +50,13 @@
 \underline{\textbf{Вторая глава}} посвящена исследованию 
 
 \underline{\textbf{Третья глава}} посвящена исследованию 
+Можно сослаться на свои работы в автореферате. Для этого в файле
+\verb!Synopsis/setup.tex! необходимо присвоить положительное значение
+счётчику \verb!\setcounter{usefootcite}{1}!. В таком случае ссылки на
+работы других авторов будут подстрочными.
+\ifnumgreater{\value{usefootcite}}{0}{
+Изложенные в третьей главе результаты опубликованы в~\cite{vakbib1, vakbib2}.
+}
 
 В \underline{\textbf{четвертой главе}} приведено описание 
 
@@ -69,10 +76,14 @@
   \insertbiblioauthor           % Подключаем Bib-базы
   %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
+  \ifnumgreater{\value{usefootcite}}{0}{
+  \insertbiblioauthorcited      % Вывод процитированных в автореферате работ автора
+  }{
   \insertbiblioauthor           % Вывод всех работ автора
 %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
 %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
   \insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  }
 }
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}
 
