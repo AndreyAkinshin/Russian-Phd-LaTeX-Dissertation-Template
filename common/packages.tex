@@ -29,7 +29,7 @@
 \setlength{\bigtextsize}{13.9pt}
 
 \makeatletter
-%\show\f@size                                       % неплохо для отслеживания, но вызывает стопорение процесса, если документ компилируется без команды  -interaction=nonstopmode 
+%\show\f@size                                       % неплохо для отслеживания, но вызывает стопорение процесса, если документ компилируется без команды  -interaction=nonstopmode
 \setlength{\curtextsize}{\f@size pt}
 \makeatother
 
@@ -44,11 +44,11 @@
         \pdfgentounicode=1
     }{}
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
-    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена 
+    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
     \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
     \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
     \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
-    \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
+    \usepackage[english, german, french, russian]{babel}[2014/03/24]% Языки: русский, английский
 \fi
 
 %%% Оформление абзацев %%%

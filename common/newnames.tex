@@ -8,28 +8,64 @@
 % степень ее разработанности;
 \newcommand{\progressTXT}{Степень разработанности темы.}
 % цели и задачи;
-\newcommand{\aimTXT}{Целью}
+\newcommand{\aimTXT}{цели}
 \newcommand{\tasksTXT}{задачи}
 % научную новизну;
 \newcommand{\noveltyTXT}{Научная новизна:}
 % теоретическую и практическую значимость работы;
-%\newcommand{\influenceTXT}{Теоретическая и практическая значимость}
+\newcommand{\influenceTXT}{Теоретическая и практическая значимость:}
 % или чаще используют просто
-\newcommand{\influenceTXT}{Практическая значимость}
+%\newcommand{\influenceTXT}{Практическая значимость}
 % методологию и методы исследования;
 \newcommand{\methodsTXT}{Mетодология и методы исследования.}
 % положения, выносимые на защиту;
-\newcommand{\defpositionsTXT}{Основные положения, выносимые на~защиту:}
+\newcommand{\defpositionsTXT}{основные положения, выносимые на~защиту:}
 % степень достоверности и апробацию результатов.
 \newcommand{\reliabilityTXT}{Достоверность}
 \newcommand{\probationTXT}{Апробация работы.}
 
-\newcommand{\contributionTXT}{Личный вклад.}
+\newcommand{\contributionTXT}{Личный вклад}
 \newcommand{\publicationsTXT}{Публикации.}
 
+\newcommand{\objectTXT}{Объект исследования}
+\newcommand{\subjectTXT}{предмета}
 
 \newcommand{\authorbibtitle}{Публикации автора по теме диссертации}
 \newcommand{\vakbibtitle}{В изданиях из списка ВАК РФ}
 \newcommand{\notvakbibtitle}{В прочих изданиях}
 \newcommand{\confbibtitle}{В сборниках трудов конференций}
 \newcommand{\fullbibtitle}{Список литературы} % (ГОСТ Р 7.0.11-2011, 4)
+
+% математические сокращения
+\newcommand{\Kn}{\mathrm{Kn}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\der}[2][]{\frac{\dd#1}{\dd#2}}
+\newcommand{\pder}[2][]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pderdual}[2][]{\frac{\partial^2#1}{\partial#2^2}}
+\newcommand{\pderder}[3][]{\frac{\partial^2#1}{\partial#2\partial#3}}
+\newcommand{\Pder}[2][]{\partial#1/\partial#2}
+\newcommand{\Pderder}[3][]{\partial^2#1/\partial#2\partial#3}
+\newcommand{\dzeta}{\boldsymbol{\dd\zeta}}
+\newcommand{\bzeta}{{\boldsymbol{\zeta}}}
+\newcommand{\dx}{\boldsymbol{\dd{x}}}
+\newcommand{\bx}{{\boldsymbol{x}}}
+\newcommand{\Nu}{\mathcal{N}}
+\newcommand{\OO}[1]{O(#1)}
+\newcommand{\Set}[2]{\{\,{#1}:{#2}\,\}}
+\newcommand{\inner}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\eqdef}{\overset{\mathrm{def}}{=\joinrel=}}
+
+\newcommand{\muHS}{\hat{\mu}_{\mathrm{HS}}}
+\newcommand{\QHS}{\hat{Q}_{\mathrm{HS}}}
+
+% математические сокращения для приложения
+\newcommand{\BB}{\ensuremath{\mathcal{B}^{(4)}}}
+\newcommand{\Q}{\ensuremath{\mathcal{Q}^{(0)}}}
+\newcommand{\Tn}[1]{\ensuremath{\mathcal{T}^{(#1)}}}
+\newcommand{\TT}{\ensuremath{\tilde{\mathcal{T}}^{(0)}}}
+\newcommand{\QQ}{\ensuremath{\tilde{\mathcal{Q}}^{(0)}}}
+\newcommand{\ZD}[2]{\zeta_{#1}\delta_{#2}}
+\newcommand{\ZZD}[3]{\zeta_{#1}\zeta_{#2}\delta_{#3}}
+\newcommand{\ZZZ}{\zeta_i\zeta_j\zeta_k}
+\newcommand{\ZZZZ}{\zeta_i\zeta_j\zeta_k\zeta_l}
+\newcommand{\DD}[2]{\delta_{#1}\delta_{#2}}
