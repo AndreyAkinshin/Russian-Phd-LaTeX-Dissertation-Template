@@ -28,6 +28,30 @@ sorting=none,% настройка сортировки списка литера
 }
 \makeatother
 
+\ifnumgreater{\value{usefootcite}}{0}{
+    \ExecuteBibliographyOptions{autocite=footnote}
+    \newbibmacro*{cite:full}{%
+        \printtext[bibhypertarget]{%
+            \usedriver{%
+                \DeclareNameAlias{sortname}{default}%
+            }{%
+                \thefield{entrytype}%
+            }%
+        }%
+        \usebibmacro{shorthandintro}%
+    }
+    \DeclareCiteCommand{\smartcite}[\mkbibfootnote]{%
+        \usebibmacro{prenote}%
+    }{%
+        \usebibmacro{citeindex}%
+        \usebibmacro{cite:full}%
+    }{%
+        \multicitedelim%
+    }{%
+        \usebibmacro{postnote}%
+    }
+}{}
+
 %%% Подключение файлов bib %%%
 \addbibresource[label=other]{biblio/othercites.bib}
 \addbibresource[label=vak]{biblio/authorpapersVAK.bib}
@@ -300,6 +324,9 @@ sorting=none,% настройка сортировки списка литера
 \printbibliography[heading=counter,env=counter,keyword=bibliofull,section=0]
 }
 
+\newcommand*{\insertbiblioauthorcited}{
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=0,title=\authorbibtitle]
+}
 \newcommand*{\insertbiblioauthor}{
 \printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
 }
