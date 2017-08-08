@@ -1,0 +1,1 @@
+$pdflatex = 'pdflatex %O "\newcounter{draft}\setcounter{draft}{1}\newcounter{usepscyr}\setcounter{usepscyr}{1}\newcounter{bibliosel}\setcounter{bibliosel}{1}\input{%T}"';
