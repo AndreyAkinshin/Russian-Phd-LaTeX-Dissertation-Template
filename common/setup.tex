@@ -26,3 +26,12 @@
   \setcounter{bibliosel}{1}           % 0 --- встроенная реализация с загрузкой файла через движок bibtex8; 1 --- реализация пакетом biblatex через движок biber
 }{}
 \makeatother
+
+%%% Предкомпиляция tikz рисунков для ускорения работы %%%
+\makeatletter
+\@ifundefined{c@imgprecompile}{
+  \newcounter{imgprecompile}
+  \setcounter{imgprecompile}{0}   % 0 --- без предкомпиляции;
+                                  % 1 --- пользоваться предварительно скомпилированными pdf вместо генерации заново из tikz
+}{}
+\makeatother
