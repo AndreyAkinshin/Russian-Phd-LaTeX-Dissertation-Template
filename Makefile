@@ -38,81 +38,81 @@ examples:
 	$(eval DESCR = pdflatex_pscyr_bibtex)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	#
 	$(eval RCFILE = nodraft_nopscyr_bibtex_latexmkrc)
 	$(eval DESCR = pdflatex_bibtex)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	#
 	$(eval DESCR = xelatex_bibtex)
 	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).xdv
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f synopsis_$(DESCR).xdv
 	#
 	$(eval DESCR = lualatex_bibtex)
 	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	#
 	$(eval RCFILE = draft_pscyr_bibtex_latexmkrc)
 	$(eval DESCR = pdflatex_pscyr_bibtex_draft)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	#
 	$(eval RCFILE = draft_nopscyr_bibtex_latexmkrc)
 	$(eval DESCR = pdflatex_bibtex_draft)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	#
 	$(eval DESCR = xelatex_bibtex_draft)
 	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).xdv
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f synopsis_$(DESCR).xdv
 	#
 	$(eval DESCR = lualatex_bibtex_draft)
 	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	#
 	$(eval RCFILE = nodraft_pscyr_latexmkrc)
 	$(eval DESCR = pdflatex_pscyr)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).run.xml
 	rm -f synopsis_$(DESCR).run.xml
@@ -121,9 +121,9 @@ examples:
 	$(eval DESCR = pdflatex)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).run.xml
 	rm -f synopsis_$(DESCR).run.xml
@@ -131,10 +131,10 @@ examples:
 	$(eval DESCR = xelatex)
 	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).xdv
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f synopsis_$(DESCR).xdv
 	rm -f dissertation_$(DESCR).run.xml
@@ -143,9 +143,9 @@ examples:
 	$(eval DESCR = lualatex)
 	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).run.xml
 	rm -f synopsis_$(DESCR).run.xml
@@ -154,9 +154,9 @@ examples:
 	$(eval DESCR = pdflatex_pscyr_draft)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).run.xml
 	rm -f synopsis_$(DESCR).run.xml
@@ -165,9 +165,9 @@ examples:
 	$(eval DESCR = pdflatex_draft)
 	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).run.xml
 	rm -f synopsis_$(DESCR).run.xml
@@ -175,10 +175,10 @@ examples:
 	$(eval DESCR = xelatex_draft)
 	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).xdv
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f synopsis_$(DESCR).xdv
 	rm -f dissertation_$(DESCR).run.xml
@@ -187,9 +187,9 @@ examples:
 	$(eval DESCR = lualatex_draft)
 	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
 	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -jobname="dissertation_$(DESCR)" -c dissertation
+	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
 	rm -f dissertation_$(DESCR).bbl
-	latexmk -jobname="synopsis_$(DESCR)" -c synopsis
+	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
 	rm -f synopsis_$(DESCR).bbl
 	rm -f dissertation_$(DESCR).run.xml
 	rm -f synopsis_$(DESCR).run.xml
