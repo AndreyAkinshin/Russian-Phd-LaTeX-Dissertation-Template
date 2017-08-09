@@ -6,7 +6,7 @@
 
 \begin{table} [htbp]
   \centering
-  \captionsetup{width=15cm}
+  \changecaptionwidth\captionwidth{15cm}
   \caption{Название таблицы}\label{Ts0Sib}%
   \begin{tabular}{| p{3cm} || p{3cm} | p{3cm} | p{4cm}l |}
   \hline
@@ -24,7 +24,7 @@
 \begin{table} [htbp]% Пример записи таблицы с номером, но без отображаемого наименования
 	\centering
 	\parbox{9cm}{% чтобы лучше смотрелось, подбирается самостоятельно
-        \captionsetup{format=tablenocaption}% должен стоять до самого caption
+        \captiondelim{}% должен стоять до самого пустого caption
         \caption{}%
         \label{tbl:test1}%
         \begin{SingleSpace}
@@ -114,7 +114,7 @@
     \end{SingleSpace}
 \end{table}
 
-Из-за того, что таблица \ref{tbl:test3} не помещается на той же странице (при компилировании pdflatex), всё её содержимое переносится на следующую, ближайшую, а этот текст идёт перед ней.
+Из-за того, что таблица \ref{tbl:test3} не помещается на той же странице (при компилировании pdflatex), всё её содержимое переносится на следующую, ближайшую, а~этот текст идёт перед ней.
 \begin{table} [ht]%
 	\caption{Любя, съешь щипцы, "--- вздохнёт мэр, "--- кайф жгуч}%
 	\label{tbl:test4}% label всегда желательно идти после caption

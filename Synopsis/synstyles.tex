@@ -38,7 +38,10 @@
 \renewcommand*{\chaptitlefont}{\normalfont\large\bfseries}
 
 %%% Подписи %%%
-\captionsetup[table]{skip=0pt}
+\setfloatadjustment{table}{%
+    \setlength{\abovecaptionskip}{0pt}   % Отбивка над подписью
+    \setlength{\belowcaptionskip}{0pt}   % Отбивка под подписью
+}
 
 %%% Отступы у плавающих блоков %%%
 \setlength\textfloatsep{1ex}

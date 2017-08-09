@@ -16,6 +16,7 @@
 \newcounter{tabcap}
 \newcounter{tablaba}
 \newcounter{tabtita}
+\newcounter{usefootcite}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Область упрощённого управления оформлением %%%
@@ -55,11 +56,11 @@
 %Выравнивание строк с самим названием таблицы
 \setcounter{tabtita}{1}             % 0 --- по левому краю; 1 --- по центру; 2 --- по правому краю
 %Разделитель записи «Таблица #» и названия таблицы
-\newcommand{\tablabelsep}{space}   % space = пробел, period = точка (определены в подключенных пакетах)
+\newcommand{\tablabelsep}{ }
 
 %% Подпись рисунков
 %Разделитель записи «Рисунок #» и названия рисунка
-\newcommand{\figlabelsep}{emdash}   % emdash = тире, определён в common/styles; period = точка определён в подключенных пакетах
+\newcommand{\figlabelsep}{~--- } % (ГОСТ 2.105, 4.3.1)
 
 %%% Цвета гиперссылок %%%
 % Latex color definitions: http://latexcolor.com/

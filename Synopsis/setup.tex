@@ -9,9 +9,13 @@
 \newcounter{showperssign}
 \newcounter{showsecrsign}
 \newcounter{showopplead}
+\newcounter{usefootcite}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Область упрощённого управления оформлением %%%
+
+%% Управление зазором между подрисуночной подписью и основным текстом
+\setlength{\belowcaptionskip}{10pt plus 20pt minus 2pt}
 
 
 %% Подпись таблиц
@@ -21,11 +25,11 @@
 %Выравнивание строк с самим названием таблицы
 \setcounter{tabtita}{1}             % 0 --- по левому краю; 1 --- по центру; 2 --- по правому краю
 %Разделитель записи «Таблица #» и названия таблицы
-\newcommand{\tablabelsep}{space}   % space = пробел, period = точка (определены в подключенных пакетах)
+\newcommand{\tablabelsep}{ }
 
 %% Подпись рисунков
 %Разделитель записи «Рисунок #» и названия рисунка
-\newcommand{\figlabelsep}{emdash}   % emdash = тире, определён в common/styles; period = точка определён в подключенных пакетах
+\newcommand{\figlabelsep}{~--- } % (ГОСТ 2.105, 4.3.1)
 
 %Демонстрация подписи диссертанта на автореферате
 \setcounter{showperssign}{1}        % 0 --- не показывать; 1 --- показывать
@@ -42,3 +46,6 @@
 %\definecolor{linkcolor}{rgb}{0,0,0} %black
 %\definecolor{citecolor}{rgb}{0,0,0} %black
 %\definecolor{urlcolor}{rgb}{0,0,0} %black
+
+%%% Библиография
+\setcounter{usefootcite}{0}         % 0 --- два списка литературы, 1 --- список публикаций автора + цитирование других работ в сносках

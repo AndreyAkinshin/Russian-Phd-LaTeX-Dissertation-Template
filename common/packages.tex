@@ -1,10 +1,10 @@
 %%% Проверка используемого TeX-движка %%%
-\usepackage{iftex}[2013/04/04]
-\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579/79756)
-\ifXeTeX
+\RequirePackage{ifxetex, ifluatex}
+\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579)
+\ifxetex
     \xetexorluatextrue
 \else
-    \ifLuaTeX
+    \ifluatex
         \xetexorluatextrue
     \else
         \xetexorluatexfalse
@@ -37,17 +37,22 @@
 \ifxetexorluatex
     \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
 \else
-    \RequirePDFTeX                                  % tests for PDFTEX use and throws an error if a different engine is being used
    %%% Решение проблемы копирования текста в буфер кракозябрами
-%    \input glyphtounicode.tex
-%    \input glyphtounicode-cmr.tex %from pdfx package
-%    \pdfgentounicode=1
+    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+        \IfFileExists{pscyr.sty}{% вероятно, без pscyr нет необходимости в этом коде
+            \input glyphtounicode.tex
+            \input glyphtounicode-cmr.tex %from pdfx package
+            \pdfgentounicode=1
+        }{}
+    }{}
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
-    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
-    \usepackage[T2A]{fontenc}                       % Поддержка русских букв
+    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена 
+    \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
+    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+        \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Подключение pscyr
+    }{}
     \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
     \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
-    \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Красивые русские шрифты
 \fi
 
 %%% Оформление абзацев %%%
@@ -59,7 +64,7 @@
 %\usepackage[dvipsnames, table, hyperref, cmyk]{xcolor} % Вероятно, более новый вариант, вместо предыдущих двух строк. Конвертация всех цветов в cmyk заложена как удовлетворение возможного требования типографий. Возможно конвертирование и в rgb.
 
 %%% Таблицы %%%
-\usepackage{longtable}                              % Длинные таблицы
+\usepackage{longtable,ltcaption}                    % Длинные таблицы
 \usepackage{multirow,makecell}                      % Улучшенное форматирование таблиц
 
 %%% Общее форматирование
@@ -75,10 +80,6 @@
 
 %%% Списки %%%
 \usepackage{enumitem}
-
-%%% Подписи %%%
-\usepackage{caption}[2013/05/02]                    % Для управления подписями (рисунков и таблиц) % Может управлять номерами рисунков и таблиц с caption %Иногда может управлять заголовками в списках рисунков и таблиц
-\usepackage{subcaption}[2013/02/03]                 % Работа с подрисунками и подобным
 
 %%% Счётчики %%%
 \usepackage[figure,table]{totalcount}               % Счётчик рисунков и таблиц

@@ -7,9 +7,22 @@
 }{}
 \makeatother
 
+%% Использование пакета pscyr, при его наличии
+\makeatletter
+\@ifundefined{c@usepscyr}{
+  \newcounter{usepscyr}
+  \setcounter{usepscyr}{1}  % 0 --- не использовать пакет pscyr
+                            % 1 --- использовать пакет pscyr, при его наличии 
+}{}
+\makeatother
+
 %% Библиография
 
 %% Внимание! При использовании bibtex8 необходимо удалить все
 %% цитирования из  ../common/characteristic.tex
-\newcounter{bibliosel}
-\setcounter{bibliosel}{1}           % 0 --- встроенная реализация с загрузкой файла через движок bibtex8; 1 --- реализация пакетом biblatex через движок biber
+\makeatletter
+\@ifundefined{c@bibliosel}{
+  \newcounter{bibliosel}
+  \setcounter{bibliosel}{1}           % 0 --- встроенная реализация с загрузкой файла через движок bibtex8; 1 --- реализация пакетом biblatex через движок biber
+}{}
+\makeatother
