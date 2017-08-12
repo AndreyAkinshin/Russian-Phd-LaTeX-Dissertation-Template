@@ -18,8 +18,11 @@
 \usepackage{geometry}                               % Для последующего задания полей
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
-\usepackage{mathtools}                              % Добавляет окружение multlined
+\usepackage{amsthm,amsmath,amscd}       % Математические дополнения от AMS
+%\ifnumequal{\value{usepscyr}}{0}{}{
+    \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+%}
+\usepackage{mathtools}                  % Добавляет окружение multlined
 
 %%%% Установки для размера шрифта 14 pt %%%%
 %% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
@@ -53,6 +56,11 @@
     }{}
     \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
     \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
+%    \ifnumequal{\value{usepscyr}}{0}{
+%        % http://dxdy.ru/post1238763.html#p1238763
+%        \usepackage[scaled=0.925]{XCharter}[2017/06/25]
+%        \usepackage[bitstream-charter]{mathdesign} % Согласование математических шрифтов
+%    }{}
 \fi
 
 %%% Оформление абзацев %%%
