@@ -30,7 +30,7 @@
 %%% Таблицы %%%
 \ifnumequal{\value{tabcap}}{0}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-    \renewcommand{\tablabelsep}{~--- } % тире как разделитель идентификатора с номером от наименования
+    \renewcommand{\tablabelsep}{~\cyrdash\ } % тире как разделитель идентификатора с номером от наименования
     \newcommand{\tabtitalign}{}
 }{%
     \ifnumequal{\value{tablaba}}{0}{%
