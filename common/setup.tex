@@ -7,12 +7,13 @@
 }{}
 \makeatother
 
-%% Использование пакета pscyr, при его наличии
+%% Использование в pdflatex шрифтов не по-умолчанию
 \makeatletter
-\@ifundefined{c@usepscyr}{
-  \newcounter{usepscyr}
-  \setcounter{usepscyr}{1}  % 0 --- не использовать пакет pscyr
-                            % 1 --- использовать пакет pscyr, при его наличии 
+\@ifundefined{c@usealtfont}{
+  \newcounter{usealtfont}
+  \setcounter{usealtfont}{1}    % 0 --- шрифты на базе Computer Modern
+                                % 1 --- использовать пакет pscyr, при его наличии
+                                % 2 --- использовать пакет XCharter, при наличии подходящей версии
 }{}
 \makeatother
 

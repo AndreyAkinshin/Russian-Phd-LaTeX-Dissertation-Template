@@ -16,7 +16,7 @@
     \setsansfont{Arial}                              % Шрифт без засечек
     \newfontfamily\cyrillicfontsf{Arial}             % Шрифт без засечек для кириллицы
 \else
-    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
     }{}
 \fi

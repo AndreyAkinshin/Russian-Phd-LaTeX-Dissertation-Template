@@ -19,9 +19,13 @@
 
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsmath,amscd}       % Математические дополнения от AMS
-%\ifnumequal{\value{usepscyr}}{0}{}{
+\ifxetexorluatex
     \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
-%}
+\else
+    \ifnumequal{\value{usealtfont}}{2}{}{
+        \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+    }
+\fi
 \usepackage{mathtools}                  % Добавляет окружение multlined
 
 %%%% Установки для размера шрифта 14 pt %%%%
@@ -41,7 +45,7 @@
     \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
 \else
    %%% Решение проблемы копирования текста в буфер кракозябрами
-    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{% вероятно, без pscyr нет необходимости в этом коде
             \input glyphtounicode.tex
             \input glyphtounicode-cmr.tex %from pdfx package
@@ -51,16 +55,16 @@
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
     \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена 
     \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
-    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Подключение pscyr
     }{}
     \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
     \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
-%    \ifnumequal{\value{usepscyr}}{0}{
-%        % http://dxdy.ru/post1238763.html#p1238763
-%        \usepackage[scaled=0.925]{XCharter}[2017/06/25]
-%        \usepackage[bitstream-charter]{mathdesign} % Согласование математических шрифтов
-%    }{}
+    \ifnumequal{\value{usealtfont}}{2}{
+        % http://dxdy.ru/post1238763.html#p1238763
+        \usepackage[scaled=0.925]{XCharter}[2017/06/25] % Подключение русифицированных шрифтов XCharter
+        \usepackage[bitstream-charter]{mathdesign} % Согласование математических шрифтов
+    }{}
 \fi
 
 %%% Оформление абзацев %%%
