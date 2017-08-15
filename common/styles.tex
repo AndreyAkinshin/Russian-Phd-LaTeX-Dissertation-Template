@@ -16,7 +16,7 @@
     \setsansfont{Arial}                              % Шрифт без засечек
     \newfontfamily\cyrillicfontsf{Arial}             % Шрифт без засечек для кириллицы
 \else
-    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
     }{}
 \fi
@@ -30,7 +30,7 @@
 %%% Таблицы %%%
 \ifnumequal{\value{tabcap}}{0}{%
     \newcommand{\tabcapalign}{\raggedright}  % по левому краю страницы или аналога parbox
-    \renewcommand{\tablabelsep}{~--- } % тире как разделитель идентификатора с номером от наименования
+    \renewcommand{\tablabelsep}{~\cyrdash\ } % тире как разделитель идентификатора с номером от наименования
     \newcommand{\tabtitalign}{}
 }{%
     \ifnumequal{\value{tablaba}}{0}{%

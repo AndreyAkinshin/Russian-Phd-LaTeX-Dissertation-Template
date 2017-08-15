@@ -7,12 +7,13 @@
 }{}
 \makeatother
 
-%% Использование пакета pscyr, при его наличии
+%% Использование в pdflatex шрифтов не по-умолчанию
 \makeatletter
-\@ifundefined{c@usepscyr}{
-  \newcounter{usepscyr}
-  \setcounter{usepscyr}{1}  % 0 --- не использовать пакет pscyr
-                            % 1 --- использовать пакет pscyr, при его наличии 
+\@ifundefined{c@usealtfont}{
+  \newcounter{usealtfont}
+  \setcounter{usealtfont}{1}    % 0 --- шрифты на базе Computer Modern
+                                % 1 --- использовать пакет pscyr, при его наличии
+                                % 2 --- использовать пакет XCharter, при наличии подходящей версии
 }{}
 \makeatother
 
@@ -24,5 +25,14 @@
 \@ifundefined{c@bibliosel}{
   \newcounter{bibliosel}
   \setcounter{bibliosel}{1}           % 0 --- встроенная реализация с загрузкой файла через движок bibtex8; 1 --- реализация пакетом biblatex через движок biber
+}{}
+\makeatother
+
+%%% Предкомпиляция tikz рисунков для ускорения работы %%%
+\makeatletter
+\@ifundefined{c@imgprecompile}{
+  \newcounter{imgprecompile}
+  \setcounter{imgprecompile}{0}   % 0 --- без предкомпиляции;
+                                  % 1 --- пользоваться предварительно скомпилированными pdf вместо генерации заново из tikz
 }{}
 \makeatother

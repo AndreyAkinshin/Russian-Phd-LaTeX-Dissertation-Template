@@ -194,6 +194,8 @@ sorting=none,% настройка сортировки списка литера
 %}{}
 %\DeclareFieldFormat{title}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия работы
 %\DeclareFieldFormat{journaltitle}{\usebibmacro{string+doi}{#1}} % ссылка на doi с названия журнала
+%%% Тире как разделитель в библиографии традиционной руской длины:
+\renewcommand*{\newblockpunct}{\addperiod\addnbspace\cyrdash\space\bibsentence}
 %%% Убрать тире из разделителей элементов в библиографии:
 %\renewcommand*{\newblockpunct}{%
 %    \addperiod\space\bibsentence}%block punct.,\bibsentence is for vol,etc.
@@ -215,11 +217,17 @@ sorting=none,% настройка сортировки списка литера
 %}
 
 %%% Исправление длины тире в диапазонах %%%
-%\DefineBibliographyExtras{russian}{%
-%  \protected\def\bibrangedash{%
-%    \textendash\penalty\value{abbrvpenalty}}% almost unbreakable dash
-%  \protected\def\bibdaterangesep{\bibrangedash}%тире для дат
-%}
+% \cyrdash --- тире «русской» длины, \textendash --- en-dash
+\DefineBibliographyExtras{russian}{%
+  \protected\def\bibrangedash{%
+    \cyrdash\penalty\value{abbrvpenalty}}% almost unbreakable dash
+  \protected\def\bibdaterangesep{\bibrangedash}%тире для дат
+}
+\DefineBibliographyExtras{english}{%
+  \protected\def\bibrangedash{%
+    \cyrdash\penalty\value{abbrvpenalty}}% almost unbreakable dash
+  \protected\def\bibdaterangesep{\bibrangedash}%тире для дат
+}
 
 %Set higher penalty for breaking in number, dates and pages ranges
 \setcounter{abbrvpenalty}{10000} % default is \hyphenpenalty which is 12

@@ -18,8 +18,15 @@
 \usepackage{geometry}                               % Для последующего задания полей
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
-\usepackage{mathtools}                              % Добавляет окружение multlined
+\usepackage{amsthm,amsmath,amscd}       % Математические дополнения от AMS
+\ifxetexorluatex
+    \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+\else
+    \ifnumequal{\value{usealtfont}}{2}{}{
+        \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+    }
+\fi
+\usepackage{mathtools}                  % Добавляет окружение multlined
 
 %%%% Установки для размера шрифта 14 pt %%%%
 %% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
@@ -38,7 +45,7 @@
     \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
 \else
    %%% Решение проблемы копирования текста в буфер кракозябрами
-    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{% вероятно, без pscyr нет необходимости в этом коде
             \input glyphtounicode.tex
             \input glyphtounicode-cmr.tex %from pdfx package
@@ -48,20 +55,23 @@
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
     \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена 
     \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
-    \ifnumequal{\value{usepscyr}}{1}{% Используется pscyr, при наличии
+    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Подключение pscyr
     }{}
     \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
     \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
+    \ifnumequal{\value{usealtfont}}{2}{
+        % http://dxdy.ru/post1238763.html#p1238763
+        \usepackage[scaled=0.925]{XCharter}[2017/06/25] % Подключение русифицированных шрифтов XCharter
+        \usepackage[bitstream-charter]{mathdesign} % Согласование математических шрифтов
+    }{}
 \fi
 
 %%% Оформление абзацев %%%
 \usepackage{indentfirst}                            % Красная строка
 
 %%% Цвета %%%
-\usepackage[dvipsnames,usenames]{color}
-\usepackage{colortbl}
-%\usepackage[dvipsnames, table, hyperref, cmyk]{xcolor} % Вероятно, более новый вариант, вместо предыдущих двух строк. Конвертация всех цветов в cmyk заложена как удовлетворение возможного требования типографий. Возможно конвертирование и в rgb.
+\usepackage[dvipsnames, table, hyperref, cmyk]{xcolor} % Совместимо с tikz. Конвертация всех цветов в cmyk заложена как удовлетворение возможного требования типографий. Возможно конвертирование и в rgb.
 
 %%% Таблицы %%%
 \usepackage{longtable,ltcaption}                    % Длинные таблицы
@@ -70,7 +80,7 @@
 %%% Общее форматирование
 \usepackage{soulutf8}                               % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
 \usepackage{icomma}                                 % Запятая в десятичных дробях
-
+\usepackage[hyphenation, lastparline]{impnattypo}   % Оптимизация расстановки переносов и длины последней строки абзаца
 
 %%% Гиперссылки %%%
 \usepackage{hyperref}[2012/11/06]
@@ -93,6 +103,7 @@
     \usepackage[russian]{cleveref}                  % cleveref имеет сложности со считыванием языка из babel. Такое решение русификации вывода выбрано вместо определения в documentclass из опасности что-то лишнее передать во все остальные пакеты, включая библиографию.
 \fi
 \creflabelformat{equation}{#2#1#3}                  % Формат по умолчанию ставил круглые скобки вокруг каждого номера ссылки, теперь просто номера ссылок без какого-либо дополнительного оформления
+\crefrangelabelformat{equation}{#3#1#4\cyrdash#5#2#6}   % Интервалы в русском языке принято делать через тире, если иное не оговорено
 
 
 \ifnumequal{\value{draft}}{1}{% Черновик
