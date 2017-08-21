@@ -79,6 +79,7 @@
   %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
   \ifnumgreater{\value{usefootcite}}{0}{
+%  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
   \insertbiblioauthorcited      % Вывод процитированных в автореферате работ автора
   }{
   \insertbiblioauthor           % Вывод всех работ автора
