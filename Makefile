@@ -32,6 +32,28 @@ synopsis-preformat:
 	etex -ini "&latex" mylatexformat.ltx """synopsis.tex"""
 	latexmk -pdf -jobname=synopsis -silent --shell-escape synopsis.tex
 
+pdflatex-examples:
+	#
+	$(eval RCFILE = nodraft_nopscyr_bibtex_latexmkrc)
+	$(eval DESCR = pdflatex_bibtex)
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
+	rm -f dissertation_$(DESCR).bbl
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
+	rm -f synopsis_$(DESCR).bbl
+	#
+	$(eval RCFILE = nodraft_nopscyr_latexmkrc)
+	$(eval DESCR = pdflatex)
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
+	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
+	rm -f dissertation_$(DESCR).bbl
+	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
+	rm -f synopsis_$(DESCR).bbl
+	rm -f dissertation_$(DESCR).run.xml
+	rm -f synopsis_$(DESCR).run.xml
+
 examples:
 	#
 	$(eval RCFILE = nodraft_pscyr_bibtex_latexmkrc)
