@@ -80,7 +80,8 @@ $ sudo dnf install texlive-xetex latexmk texlive-hyphen-russian biber \
                     texlive-totcount texlive-totpages texlive-interfaces \
                     texlive-tocloft texlive-tabulary texlive-floatrow \
                     texlive-biblatex texlive-biblatex-gost texlive-cite \
-                    texlive-bibtex texlive-impnattypo texlive-cleveref texlive-tabu
+                    texlive-bibtex texlive-impnattypo texlive-cleveref \
+                    texlive-tabu texlive-mwe
 ```
 
 Далее необходимо установить необходимые шрифты из набора [Microsoft's Core Fonts](http://mscorefonts2.sourceforge.net/). Например, так:
