@@ -68,18 +68,20 @@ $ sudo fc-cache -fv
 
 ### В Fedora
 
-> Протестировано на Fedora 23.
+> Протестировано на Fedora 27.
 
 Для установки XeTeX необходимо установить следующие пакеты:
 
 ```
 $ sudo dnf install texlive-xetex latexmk texlive-hyphen-russian biber \
-                    texlive-extsizes texlive-cm texlive-amscls texlive-mh \
+                    texlive-extsizes texlive-cm texlive-amscls texlive-nag \
                     texlive-polyglossia texlive-euenc texlive-multirow \
                     texlive-makecell texlive-ec texlive-was texlive-zapfding \
                     texlive-totcount texlive-totpages texlive-interfaces \
                     texlive-tocloft texlive-tabulary texlive-floatrow \
-                    texlive-biblatex texlive-biblatex-gost texlive-cite texlive-bibtex
+                    texlive-biblatex texlive-biblatex-gost texlive-cite \
+                    texlive-bibtex texlive-impnattypo texlive-cleveref \
+                    texlive-tabu texlive-mwe
 ```
 
 Далее необходимо установить необходимые шрифты из набора [Microsoft's Core Fonts](http://mscorefonts2.sourceforge.net/). Например, так:
