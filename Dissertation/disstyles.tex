@@ -27,6 +27,7 @@
 %\sloppy                 % Избавляемся от переполнений
 \clubpenalty=10000      % Запрещаем разрыв страницы после первой строки абзаца
 \widowpenalty=10000     % Запрещаем разрыв страницы после последней строки абзаца
+\brokenpenalty=4991     % Ограничение на разрыв страницы, если строка заканчивается переносом
 
 %%% Блок управления параметрами для выравнивания заголовков в тексте %%%
 \newlength{\otstuplen}
@@ -134,7 +135,7 @@
 \setsubsubsecheadstyle{\basegostsectionfont\hdngalign}
 \setsubsubsecindent{\otstuplen}
 
-\sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block 
+\sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block
 
 \ifnumequal{\value{chapstyle}}{1}{%
     \chapterstyle{thesisgostchapname}
