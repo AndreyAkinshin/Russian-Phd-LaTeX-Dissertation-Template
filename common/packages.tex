@@ -20,15 +20,9 @@
 \usepackage{geometry}                               % Для последующего задания полей
 
 %%% Математические пакеты %%%
-\usepackage{amsthm,amsmath,amscd}       % Математические дополнения от AMS
-\ifxetexorluatex
-    \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
-\else
-    \ifnumequal{\value{usealtfont}}{2}{}{
-        \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
-    }
-\fi
-\usepackage{mathtools}                  % Добавляет окружение multlined
+\usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
+\usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+\usepackage{mathtools}              % Добавляет окружение multlined
 
 %%%% Установки для размера шрифта 14 pt %%%%
 %% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
@@ -47,15 +41,16 @@
     \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
 \else
    %%% Решение проблемы копирования текста в буфер кракозябрами
-    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
-        \IfFileExists{pscyr.sty}{% вероятно, без pscyr нет необходимости в этом коде
-            \input glyphtounicode.tex
-            \input glyphtounicode-cmr.tex %from pdfx package
-            \pdfgentounicode=1
-        }{}
-    }{}
+    \ifnumequal{\value{usealtfont}}{0}{}{
+        \input glyphtounicode.tex
+        \input glyphtounicode-cmr.tex %from pdfx package
+        \pdfgentounicode=1
+    }
     \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
-    \defaulthyphenchar=127                          % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена 
+    \ifnumequal{\value{usealtfont}}{2}{}{
+        \defaulthyphenchar=127                      % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
+    }
+    \usepackage{textcomp}
     \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
     \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Подключение pscyr
@@ -64,8 +59,9 @@
     \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
     \ifnumequal{\value{usealtfont}}{2}{
         % http://dxdy.ru/post1238763.html#p1238763
-        \usepackage[scaled=0.925]{XCharter}[2017/06/25] % Подключение русифицированных шрифтов XCharter
-        \usepackage[bitstream-charter]{mathdesign} % Согласование математических шрифтов
+        \usepackage[scaled=0.960]{XCharter}[2017/12/19] % Подключение русифицированных шрифтов XCharter
+        \usepackage[charter, vvarbb, scaled=1.048]{newtxmath}[2017/12/14]
+        \setDisplayskipStretch{-0.078}
     }{}
 \fi
 

@@ -1,19 +1,19 @@
 %%% Изображения %%%
 \graphicspath{{images/}{Dissertation/images/}}         % Пути к изображениям
 
-%%% Макет страницы %%%
-% Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
-\geometry{a4paper,top=2cm,bottom=2cm,left=2.5cm,right=1cm,nofoot,nomarginpar} %,showframe
-\setlength{\topskip}{0pt}   %размер дополнительного верхнего поля
-\setlength{\footskip}{12.3pt} % снимет warning, согласно https://tex.stackexchange.com/a/334346
-
 %%% Интервалы %%%
 %% По ГОСТ Р 7.0.11-2011, пункту 5.3.6 требуется полуторный интервал
 %% Реализация средствами класса (на основе setspace) ближе к типографской классике.
-%% И правит сразу и в таблицах (если со звёздочкой) 
+%% И правит сразу и в таблицах (если со звёздочкой)
 %\DoubleSpacing*     % Двойной интервал
 \OnehalfSpacing*    % Полуторный интервал
 %\setSpacing{1.42}   % Полуторный интервал, подобный Ворду (возможно, стоит включать вместе с предыдущей строкой)
+
+%%% Макет страницы %%%
+% Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
+\geometry{a4paper, top=2cm, bottom=2cm, left=2.5cm, right=1cm, nofoot, nomarginpar} %, heightrounded, showframe
+\setlength{\topskip}{0pt}   %размер дополнительного верхнего поля
+\setlength{\footskip}{12.3pt} % снимет warning, согласно https://tex.stackexchange.com/a/334346
 
 %%% Выравнивание и переносы %%%
 %% http://tex.stackexchange.com/questions/241343/what-is-the-meaning-of-fussy-sloppy-emergencystretch-tolerance-hbadness
@@ -27,6 +27,7 @@
 %\sloppy                 % Избавляемся от переполнений
 \clubpenalty=10000      % Запрещаем разрыв страницы после первой строки абзаца
 \widowpenalty=10000     % Запрещаем разрыв страницы после последней строки абзаца
+\brokenpenalty=4991     % Ограничение на разрыв страницы, если строка заканчивается переносом
 
 %%% Блок управления параметрами для выравнивания заголовков в тексте %%%
 \newlength{\otstuplen}
@@ -134,7 +135,7 @@
 \setsubsubsecheadstyle{\basegostsectionfont\hdngalign}
 \setsubsubsecindent{\otstuplen}
 
-\sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block 
+\sethangfrom{\noindent #1} %все заголовки подразделов центрируются с учетом номера, как block
 
 \ifnumequal{\value{chapstyle}}{1}{%
     \chapterstyle{thesisgostchapname}
