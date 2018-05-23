@@ -3,30 +3,44 @@
 % Формат А4, 14pt (ГОСТ Р 7.0.11-2011, 5.3.6)
 \documentclass[a4paper,14pt,oneside,openany]{memoir}
 
-\input{common/setup}               % общие настройки шаблона
-\input{common/packages}  % Пакеты общие для диссертации и автореферата
-\synopsisfalse                           % Этот документ --- не автореферат
-\input{Dissertation/dispackages}         % Пакеты для диссертации
-\input{Dissertation/userpackages}        % Пакеты для специфических пользовательских задач
+\input{common/setup}            % общие настройки шаблона
+\input{common/packages}         % Пакеты общие для диссертации и автореферата
+\synopsisfalse                      % Этот документ --- не автореферат
+\input{Dissertation/dispackages}    % Пакеты для диссертации
+\input{Dissertation/userpackages}   % Пакеты для специфических пользовательских задач
 
-\input{Dissertation/setup}               % Упрощённые настройки шаблона
+\input{Dissertation/setup}      % Упрощённые настройки шаблона
 
-\input{Dissertation/preamblenames}       % Переопределение именований, чтобы можно было и в преамбуле использовать
-\input{common/newnames}  % Новые переменные, которые могут использоваться во всём проекте
+\input{common/newnames}         % Новые переменные, для всего проекта
 
-\input{common/data}      % Основные сведения
-\input{common/styles}    % Стили общие для диссертации и автореферата
-\input{Dissertation/disstyles}           % Стили для диссертации
-\input{Dissertation/userstyles}          % Стили для специфических пользовательских задач
-\input{biblio/bibliopreamble}% Настройки библиографии из внешнего файла (там же выбор: встроенная или на основе biblatex)
+\input{common/data}             % Основные сведения
+\input{common/styles}           % Стили общие для диссертации и автореферата
+\input{Dissertation/disstyles}  % Стили для диссертации
+\input{Dissertation/userstyles} % Стили для специфических пользовательских задач
 
-\input{Dissertation/inclusioncontrol}    % Управление компиляцией отдельных частей диссертации
+%%% Библиография. Выбор движка для реализации %%%
+\ifnumequal{\value{bibliosel}}{0}{%
+    \input{biblio/predefined}   % Встроенная реализация с загрузкой файла через движок bibtex8
+}{
+    \input{biblio/biblatex}     % Реализация пакетом biblatex через движок biber
+}
+
+%%% Управление компиляцией отдельных частей диссертации %%%
+% Необходимо сначала иметь полностью скомпилированный документ, чтобы все
+% промежуточные файлы были в наличии
+% Затем, для вывода отдельных частей можно воспользоваться командой \includeonly
+% Ниже примеры использования команды:
+%
+%\includeonly{Dissertation/part2}
+%\includeonly{Dissertation/contents,Dissertation/appendix,Dissertation/conclusion}
+%
+% Если все команды закомментированы, то документ будет выведен в PDF файл полностью
 
 \begin{document}
 
-\input{common/renames}                   % Переопределение именований
+\input{common/renames}                 % Переопределение именований
 
-% Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
+%%% Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
 \include{Dissertation/title}           % Титульный лист
 \include{Dissertation/contents}        % Оглавление
 \include{Dissertation/introduction}    % Введение
@@ -38,6 +52,14 @@
 \include{Dissertation/dictionary}      % Словарь терминов
 \include{Dissertation/references}      % Список литературы
 \include{Dissertation/lists}           % Списки таблиц и изображений (иллюстративный материал)
+
+%%% Настройки для приложений
+\appendix
+% Оформление заголовков приложений ближе к ГОСТ:
+\setlength{\midchapskip}{20pt}
+\renewcommand*{\afterchapternum}{\par\nobreak\vskip \midchapskip}
+\renewcommand\thechapter{\Asbuk{chapter}} % Чтобы приложения русскими буквами нумеровались
+
 \include{Dissertation/appendix}        % Приложения
 
 \end{document}
