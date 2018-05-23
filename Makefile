@@ -1,4 +1,4 @@
-.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat pdflatex-examples altfont2-examples pscyr-examples xelatex-examples lualatex-examples examples spell-check clean distclean release draft
+.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat pdflatex-examples altfont2-examples pscyr-examples xelatex-examples lualatex-examples examples spell-check indent clean distclean release draft
 
 all: synopsis dissertation
 
@@ -272,9 +272,15 @@ ifdef DICT_EXTRA
 endif
 
 spell-check:
-	@for file in $(SPELLCHECK_FILES); do \
-		aspell --lang=$(LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $$file; \
-	done;
+	@$(foreach file, $(SPELLCHECK_FILES),\
+	aspell --lang=$(SPELLCHECK_LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $(file);)
+
+INDENT_SETTIGNS ?= indent.yaml
+INDENT_DIRS ?= Dissertation Presentation Synopsis
+INDENT_FILES ?= $(foreach dir,$(INDENT_DIRS),$(wildcard $(dir)/*.tex))
+indent:
+	@$(foreach file, $(INDENT_FILES),\
+	latexindent -l=$(INDENT_SETTIGNS) -s -w $(file);)
 
 clean:
 	#	$(MAKE) clean -C Dissertation
@@ -470,6 +476,9 @@ distclean:
 	rm -f *.bak
 	rm -f *.bcf
 	rm -f *.run.xml
+
+	# latexindent backup
+	rm -f *.bak[0-9]
 
 release: all
 	git add dissertation.pdf
