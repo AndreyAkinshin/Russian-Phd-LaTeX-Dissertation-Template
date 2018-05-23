@@ -8,13 +8,13 @@
 \ifxetexorluatex
     \setmainlanguage[babelshorthands=true]{russian}  % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
     \setotherlanguage{english}                       % Дополнительный язык = английский (в американской вариации по-умолчанию)
-    \setmonofont{Courier New}                        % моноширинный шрифт
-    \newfontfamily\cyrillicfonttt{Courier New}       % моноширинный шрифт для кириллицы
+    \setmonofont{LiberationMono}                     % моноширинный шрифт
+    \newfontfamily\cyrillicfonttt{LiberationMono}    % моноширинный шрифт для кириллицы
     \defaultfontfeatures{Ligatures=TeX}              % стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки моноширинного шрифта должны идти до этой строки, чтобы при врезках кода программ в коде не применялись лигатуры и замены дефисов
-    \setmainfont{Times New Roman}                    % Шрифт с засечками
-    \newfontfamily\cyrillicfont{Times New Roman}     % Шрифт с засечками для кириллицы
-    \setsansfont{Arial}                              % Шрифт без засечек
-    \newfontfamily\cyrillicfontsf{Arial}             % Шрифт без засечек для кириллицы
+    \setmainfont{LiberationSerif}                    % Шрифт с засечками
+    \newfontfamily\cyrillicfont{LiberationSerif}     % Шрифт с засечками для кириллицы
+    \setsansfont{LiberationSans}                     % Шрифт без засечек
+    \newfontfamily\cyrillicfontsf{LiberationSans}    % Шрифт без засечек для кириллицы
 \else
     \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
         \IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
