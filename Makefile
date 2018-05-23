@@ -261,6 +261,32 @@ clean:
 	rm -f synopsis.bbl
 	$(MAKE) clean -C Presentation
 
+
+SPELLCHECK_DIRS ?= Dissertation Presentation Synopsis
+SPELLCHECK_FILES ?= $(foreach dir,$(SPELLCHECK_DIRS),$(wildcard $(dir)/*.tex))
+SPELLCHECK_LANG ?= ru
+DICT_DIR ?=
+DICT_MAIN ?=
+DICT_EXTRA ?=
+
+ifdef DICT_DIR
+    SDICT_DIR := --dict-dir=$(DICT_DIR)
+endif
+
+ifdef DICT_MAIN
+    SDICT_MAIN := --master=$(DICT_MAIN)
+endif
+
+ifdef DICT_EXTRA
+    SDICT_EXTRA := --extra-dicts=$(DICT_EXTRA)
+endif
+
+spell-check:
+	for file in $(SPELLCHECK_FILES); do \
+		aspell --lang=$(LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $$file; \
+	done;
+
+
 distclean:
 	$(MAKE) distclean -C Dissertation
 	$(MAKE) distclean -C Synopsis
