@@ -282,7 +282,7 @@ ifdef DICT_EXTRA
 endif
 
 spell-check:
-	for file in $(SPELLCHECK_FILES); do \
+	@for file in $(SPELLCHECK_FILES); do \
 		aspell --lang=$(LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $$file; \
 	done;
 
