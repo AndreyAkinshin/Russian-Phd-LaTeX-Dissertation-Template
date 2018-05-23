@@ -1,4 +1,4 @@
-.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat pdflatex-examples altfont2-examples pscyr-examples xelatex-examples lualatex-examples examples clean distclean release draft
+.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat pdflatex-examples altfont2-examples pscyr-examples xelatex-examples lualatex-examples examples spell-check clean distclean release draft
 
 all: synopsis dissertation
 
@@ -252,16 +252,6 @@ pscyr-examples:
 
 examples: pdflatex-examples altfont2-examples pscyr-examples xelatex-examples lualatex-examples
 
-clean:
-	#	$(MAKE) clean -C Dissertation
-	latexmk -C dissertation
-	rm -f dissertation.bbl
-	#	$(MAKE) clean -C Synopsis
-	latexmk -C synopsis
-	rm -f synopsis.bbl
-	$(MAKE) clean -C Presentation
-
-
 SPELLCHECK_DIRS ?= Dissertation Presentation Synopsis
 SPELLCHECK_FILES ?= $(foreach dir,$(SPELLCHECK_DIRS),$(wildcard $(dir)/*.tex))
 SPELLCHECK_LANG ?= ru
@@ -286,6 +276,14 @@ spell-check:
 		aspell --lang=$(LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $$file; \
 	done;
 
+clean:
+	#	$(MAKE) clean -C Dissertation
+	latexmk -C dissertation
+	rm -f dissertation.bbl
+	#	$(MAKE) clean -C Synopsis
+	latexmk -C synopsis
+	rm -f synopsis.bbl
+	$(MAKE) clean -C Presentation
 
 distclean:
 	$(MAKE) distclean -C Dissertation
