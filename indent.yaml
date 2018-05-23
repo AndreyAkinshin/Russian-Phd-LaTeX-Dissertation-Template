@@ -1,0 +1,21 @@
+maxNumberOfBackUps: 3
+cycleThroughBackUps: 1
+
+commandCodeBlocks:
+    roundParenthesesAllowed: 0
+specialBeginEnd:
+    leftRightRound:
+        begin: '\\left\('
+        end: '\\right\)'
+        lookForThis: 1
+    leftRightSquare:
+        begin: '\\left\['
+        end: '\\right\]'
+        lookForThis: 1
+    leftRightCurly:
+        begin: '\\left\\\{'
+        end: '\\right\\\}'
+        lookForThis: 1
+
+indentRulesGlobal:
+    UnNamedGroupingBracesBrackets: 1
