@@ -196,3 +196,6 @@ distclean:
 	rm -f *.bak
 	rm -f *.bcf
 	rm -f *.run.xml
+
+	# latexindent backup
+	rm -f *.bak[0-9]

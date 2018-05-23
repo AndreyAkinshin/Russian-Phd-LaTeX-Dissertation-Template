@@ -280,7 +280,7 @@ INDENT_SETTIGNS ?= indent.yaml
 INDENT_DIRS ?= Dissertation Presentation Synopsis
 INDENT_FILES ?= $(foreach dir,$(INDENT_DIRS),$(wildcard $(dir)/*.tex))
 indent:
-	$(foreach file, $(INDENT_FILES),\
+	@$(foreach file, $(INDENT_FILES),\
 	latexindent -l=$(INDENT_SETTIGNS) -s -w $(file);)
 
 clean:
