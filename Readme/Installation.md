@@ -59,13 +59,6 @@ draft`, которая будет собирать в режиме чернов�
 $ sudo apt-get install texlive-xetex texlive-generic-extra texlive-lang-cyrillic latexmk biber
 ```
 
-Для нормальной работы в системе должны быть установлены нужные шрифты. Например, для Ubuntu это можно сделать так:
-
-```
-$ sudo apt-get install ttf-mscorefonts-installer
-$ sudo fc-cache -fv
-```
-
 ### В Fedora
 
 > Протестировано на Fedora 27.
@@ -82,13 +75,6 @@ $ sudo dnf install texlive-xetex latexmk texlive-hyphen-russian biber \
                     texlive-biblatex texlive-biblatex-gost texlive-cite \
                     texlive-bibtex texlive-impnattypo texlive-cleveref \
                     texlive-tabu texlive-mwe
-```
-
-Далее необходимо установить необходимые шрифты из набора [Microsoft's Core Fonts](http://mscorefonts2.sourceforge.net/). Например, так:
-
-```
-$ sudo dnf install http://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
-$ sudo fc-cache -fv
 ```
 
 > В Fedora 23 есть проблема ([#84](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/84)) с компиляцией библиографии с помощью `biblatex` и `biber`, поэтому необходимо переключиться на использование `bibtex`. Для этого в файле `Dissertation/setup.tex` переключите `\setcounter{bibliosel}{1}` в `0`, чтобы получилось `\setcounter{bibliosel}{0}`. Туже самую операцию повторите в файле `Synopsis/setup.tex`.

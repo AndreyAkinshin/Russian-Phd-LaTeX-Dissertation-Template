@@ -1,2 +1,0 @@
-$pdflatex = 'pdflatex %O "\newcounter{draft}\setcounter{draft}{1}\newcounter{usealtfont}\setcounter{usealtfont}{1}\newcounter{bibliosel}\setcounter{bibliosel}{0}\newcounter{imgprecompile}\setcounter{imgprecompile}{0}\input{%T}"';
-$bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';

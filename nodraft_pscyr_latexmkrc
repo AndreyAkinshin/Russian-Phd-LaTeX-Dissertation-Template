@@ -1,1 +1,0 @@
-$pdflatex = 'pdflatex %O "\newcounter{draft}\setcounter{draft}{0}\newcounter{usealtfont}\setcounter{usealtfont}{1}\newcounter{bibliosel}\setcounter{bibliosel}{1}\newcounter{imgprecompile}\setcounter{imgprecompile}{0}\input{%T}"';

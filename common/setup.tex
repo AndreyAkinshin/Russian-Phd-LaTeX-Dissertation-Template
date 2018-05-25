@@ -17,6 +17,16 @@
 }{}
 \makeatother
 
+%%% Использование в xelatex и lualatex семейств шрифтов %%%
+\makeatletter
+\@ifundefined{c@fontfamily}{
+  \newcounter{fontfamily}
+  \setcounter{fontfamily}{1}  % 0 --- CMU семейство. Используется как fallback;
+                              % 1 --- Шрифты от MS (Times New Roman и компания)
+                              % 2 --- Семейство Liberation
+}{}
+\makeatother
+
 %% Библиография
 
 %% Внимание! При использовании bibtex8 необходимо удалить все
