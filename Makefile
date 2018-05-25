@@ -476,12 +476,12 @@ spell-check:
 	@$(foreach file, $(SPELLCHECK_FILES),\
 	aspell --lang=$(SPELLCHECK_LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $(file);)
 
-INDENT_SETTIGNS ?= indent.yaml
+INDENT_SETTINGS ?= indent.yaml
 INDENT_DIRS ?= Dissertation Presentation Synopsis
 INDENT_FILES ?= $(foreach dir,$(INDENT_DIRS),$(wildcard $(dir)/*.tex))
 indent:
 	@$(foreach file, $(INDENT_FILES),\
-	latexindent -l=$(INDENT_SETTIGNS) -s -w $(file);)
+	latexindent -l=$(INDENT_SETTINGS) -s -w $(file);)
 
 clean:
 	#	$(MAKE) clean -C Dissertation
