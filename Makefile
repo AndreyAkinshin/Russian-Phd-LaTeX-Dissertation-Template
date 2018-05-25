@@ -1,22 +1,36 @@
-.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat dissertation-formated synopsis-preformat pdflatex-examples altfont2-examples pscyr-examples xelatex-examples lualatex-examples examples spell-check indent clean distclean release draft
+.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat\
+dissertation-formated synopsis-preformat pdflatex-examples altfont2-examples\
+pscyr-examples xelatex-examples lualatex-examples examples spell-check indent\
+clean distclean release draft
 
 all: synopsis dissertation
 
 preformat: synopsis-preformat dissertation-preformat
 
+ifneq ($(SystemDrive),)
+    FONT_FAMILY?=1
+else
+    FONT_FAMILY?=2
+endif
+
 dissertation:
 	#	$(MAKE) -C Dissertation
-	latexmk -pdf -pdflatex="xelatex %O %S" dissertation
+	latexmk -pdf -pdflatex="xelatex %O '\newcounter{fontfamily}\setcounter{fontfamily}\
+{$(FONT_FAMILY)}\input{%S}'" dissertation
 
 pdflatex:
 	latexmk -pdf -pdflatex="pdflatex %O %S" dissertation
 
 synopsis:
 	#	$(MAKE) -C Synopsis
-	latexmk -pdf -pdflatex="xelatex %O %S" synopsis
+	latexmk -pdf -pdflatex="xelatex %O '\newcounter{fontfamily}\setcounter{fontfamily}\
+{$(FONT_FAMILY)}\input{%S}'" synopsis
+
 draft:	
-	latexmk -pdf -pdflatex="xelatex %O '\newcounter{draft}\setcounter{draft}{1}\input{%S}'" dissertation
-	latexmk -pdf -pdflatex="xelatex %O '\newcounter{draft}\setcounter{draft}{1}\input{%S}'" synopsis
+	latexmk -pdf -pdflatex="xelatex %O '\newcounter{fontfamily}\setcounter{fontfamily}\
+{$(FONT_FAMILY)}\newcounter{draft}\setcounter{draft}{1}\input{%S}'" dissertation
+	latexmk -pdf -pdflatex="xelatex %O '\newcounter{fontfamily}\setcounter{fontfamily}\
+{$(FONT_FAMILY)}\newcounter{draft}\setcounter{draft}{1}\input{%S}'" synopsis
 
 talk:
 	$(MAKE) talk -C Presentation
