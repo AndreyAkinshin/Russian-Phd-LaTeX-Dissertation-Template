@@ -27,7 +27,7 @@
     \caption{Программа ,,Hello, world`` без подсветки}
     \label{list:hwplain}
     \begin{Verb}
-        
+
         #include <iostream>
         using namespace std;
         
@@ -60,8 +60,10 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 \texttt{lstinline} или, самое простое, моноширинный текст
 (\texttt{\textbackslash texttt}).
 
-
-Пример~\ref{list:internal3}, иллюстрирующий подключение переопределённого языка. Может быть полезным, если подсветка кода работает криво. Без дополнительного окружения, с подписью и ссылкой, реализованной встроенным средством.
+Пример~\ref{list:internal3}, иллюстрирующий подключение переопределённого
+языка. Может быть полезным, если подсветка кода работает криво. Без
+дополнительного окружения, с подписью и ссылкой, реализованной встроенным
+средством.
 \begingroup
 \captiondelim{ } % разделитель идентификатора с номером от наименования
 \begin{lstlisting}[language={Renhanced},caption={Пример листинга c подписью собственными средствами},label={list:internal3}]
@@ -110,15 +112,12 @@ cacheSolve <- function(x, ...) {
                  %вне листинга
 \endgroup
 
-Листинг~\ref{list:external1} подгружается из внешнего файла. Приходится загружать без окружения дополнительного. Иначе по страницам не переносится.
+Листинг~\ref{list:external1} подгружается из внешнего файла. Приходится
+загружать без окружения дополнительного. Иначе по страницам не переносится.
 \begingroup
 \captiondelim{ } % разделитель идентификатора с номером от наименования
     \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={list:external1}]{listings/run_analysis.R}
 \endgroup
-
-
-
-
 
 \chapter{Очень длинное название второго приложения, в~котором продемонстрирована работа с~длинными таблицами} \label{AppendixB}
 
@@ -127,7 +126,7 @@ cacheSolve <- function(x, ...) {
 \fontsize{10pt}{10pt}\selectfont
 \begin{longtable*}[c]{|l|c|l|l|} %longtable* появляется из пакета ltcaption и даёт ненумерованную таблицу
 % \caption{Описание входных файлов модели}\label{Namelists} 
-%\\ 
+%\\
  \hline
  %\multicolumn{4}{|c|}{\textbf{Файл puma\_namelist}}        \\ \hline
  Параметр & Умолч. & Тип & Описание               \\ \hline
@@ -285,19 +284,15 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
     \label{tbl:test5}% label всегда желательно идти после caption
     \\[-0.45\onelineskip]
     \hline
-     %\multicolumn{4}{|c|}{\textbf{Файл puma\_namelist}}        \\ \hline
-     Параметр & Умолч. & Тип & Описание\\ \hline
-     \endfirsthead%
-%     \multicolumn{4}{|c|}{\small\slshape (продолжение)}        \\ \hline
+    Параметр & Умолч. & Тип & Описание\\ \hline
+    \endfirsthead%
     \caption*{\tabcapalign Продолжение таблицы~\thetable}\\[-0.45\onelineskip]
     \hline
-     Параметр & Умолч. & Тип & Описание\\ \hline
-      \endhead
-      \hline
-%     \multicolumn{4}{|r|}{\small\slshape продолжение следует}  \\
-%\hline
-     \endfoot
-         \hline
+    Параметр & Умолч. & Тип & Описание\\ \hline
+    \endhead
+    \hline
+    \endfoot
+    \hline
      \endlastfoot
      \multicolumn{4}{|l|}{\&INP}        \\ \hline 
      kick & 1 & int & 0: инициализация без шума ($p_s = const$) \\
@@ -423,11 +418,11 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
           &   &     & 2: генерация белого шума симметрично относительно \\
       & & & экватора    \\
      mars & 0 & int & 1: инициализация модели для планеты Марс     \\ 
-%     \hline 
     \end{longtable}
 \normalsize% возвращаем шрифт к нормальному
 \endgroup
-\section{Использование длинных таблиц с окружением \textit{longtabu}} \label{AppendixB2a}
+\section{Использование длинных таблиц с окружением \textit{longtabu}}
+\label{AppendixB2a}
 
 В таблице~\ref{tbl:test-functions} более книжный вариант 
 длинной таблицы, используя окружение \verb!longtabu! и разнообразные
@@ -579,7 +574,6 @@ k(-x_i-a)^m,\quad &x_i <-a
 \end{longtabu} 
 \endgroup
 
-
 \section{Форматирование внутри таблиц} \label{AppendixB3}
 
 В таблице~\ref{tbl:other-row} пример с чересстрочным
@@ -702,20 +696,7 @@ f12 & 500  & 4.6E-17   & 3.8E-16   & 1.6E-07   & 1.9E-05   & 1.2E-02   & 1.9E-01
     &      & (1.9E-16) & (8.3E-16) & (1.5E-07) & (9.2E-06) & (1.0E-02) & (3.9E-01) \\
 f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03   \\\nopagebreak
     &      & (6.5E-16) & (2.8E-15) & (9.8E-07) & (2.0E-05) & (3.8E-02) & (4.8E-03) \\
-
-    % \vspace*{1ex}     \\
-%         \midrule%%% тонкий разделитель
-%         \multicolumn{3}{@{}p{\textwidth}}{%
-%             % \vspace*{-4ex}% этим подтягиваем повыше
-%             % \hspace*{2.5em}% абзацный отступ - требование ГОСТ 2.105
-%             Примечание "---  Для функций $f_{12}$ и $f_{13}$
-%             используется $y_i = 1 + \frac{1}{4}(x_i+1)$ и
-%             $u(x_i,\,a,\,k,\,m)=\begin{cases}
-% k(x_i-a)^m,\quad  & x_i >a     \\[-0.5em]
-% 0,\quad           & -a\leq x_i \leq a        \\[-0.5em]
-% k(-x_i-a)^m,\quad & x_i <-a
-% \end{cases}$  }     \\
-\bottomrule %%% нижняя линейка 
+\bottomrule %%% нижняя линейка
 \end{longtabu} \endgroup
 
 \section{Очередной подраздел приложения} \label{AppendixB4}
@@ -725,4 +706,3 @@ f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03
 \section{И ещё один подраздел приложения} \label{AppendixB5}
 
 Нужно больше подразделов приложения!
-
