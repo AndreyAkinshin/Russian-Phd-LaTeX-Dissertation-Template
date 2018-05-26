@@ -32,9 +32,9 @@
     }
 
     \ifnumequal{\value{fontfamily}}{2}{                    % Семейство шрифтов Liberation (https://pagure.io/liberation-fonts)
-        \setmonofont{LiberationMono}[Scale=MatchLowercase] % моноширинный шрифт
+        \setmonofont{LiberationMono}[Scale=0.87] % моноширинный шрифт
         \newfontfamily\cyrillicfonttt{LiberationMono}[     % моноширинный шрифт для кириллицы
-            Scale=MatchLowercase]
+            Scale=0.87]
         \defaultfontfeatures{Ligatures=TeX}                % стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки моноширинного шрифта должны идти до этой строки, чтобы при врезках кода программ в коде не применялись лигатуры и замены дефисов
         \setmainfont{LiberationSerif}                      % Шрифт с засечками
         \newfontfamily\cyrillicfont{LiberationSerif}       % Шрифт с засечками для кириллицы
