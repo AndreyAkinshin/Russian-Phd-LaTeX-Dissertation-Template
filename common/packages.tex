@@ -78,7 +78,18 @@
 %%% Общее форматирование
 \usepackage{soulutf8}                               % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
 \usepackage{icomma}                                 % Запятая в десятичных дробях
-\usepackage[hyphenation, lastparline]{impnattypo}   % Оптимизация расстановки переносов и длины последней строки абзаца
+
+%%% Оптимизация расстановки переносов и длины последней строки абзаца
+\ifluatex
+    \ifnumequal{\value{draft}}{1}{% Черновик
+        \usepackage[hyphenation, lastparline, nosingleletter, homeoarchy,
+        rivers, draft]{impnattypo}
+    }{% Чистовик
+        \usepackage[hyphenation, lastparline, nosingleletter]{impnattypo}
+    }
+\else
+    \usepackage[hyphenation, lastparline]{impnattypo}
+\fi
 
 %%% Гиперссылки %%%
 \usepackage{hyperref}[2012/11/06]
