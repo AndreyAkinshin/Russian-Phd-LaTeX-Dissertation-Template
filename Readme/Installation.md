@@ -82,6 +82,21 @@ $ sudo dnf install texlive-xetex latexmk texlive-hyphen-russian biber \
 ### TeXLive на Linux в обход привязанных к конкретному линуксу пакетам
 [How to install “vanilla” TeXLive on Debian or Ubuntu?](http://tex.stackexchange.com/a/95373/79756) — инструкция на английском языке, как ставить TeXLive на Linux в обход привязанных к конкретному линуксу пакетам (на примере Debian и Ubuntu).
 
+### В MacOS 10.10 и выше
+Для установки в среде MacOS достаточно установить пакет MacTeX [отсюда](https://tug.org/mactex/mactex-download.html). После утановки необходимо добавить пути к установленным файлам в переменную окружения `PATH`, например, так:
+
+```
+export PATH=$PATH:export PATH=$PATH:/Library/TeX/texbin
+```
+
+Чтобы сделать эффект постоянным можно добавить эту строку в `.bash_profile`:
+
+```
+echo "export PATH=$PATH:export PATH=$PATH:/Library/TeX/texbin" >>~/.bash_profile
+```
+
+Теперь при следующем логине, вам будут доступны утилиты из пакета, необходимые для работы `make`-скриптов.
+
 ### Установка шрифтов PSCyr
 PSCyr — это пакет красивых русских шрифтов для LaTeX. К сожалению, его нужно устанавливать отдельно. Если он у вас не установлен, то ничего страшного — шаблон заработает и без него. Ну лучше бы его всё-таки поставить. Инструкции по установке PSCyr для различных конфигураций приведены [тут](../PSCyr/README.md). Если вы не нашли подходящую вам инструкцию, но смогли выполнить установку самостоятельно, то большая просьба [поделиться](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/pulls) вашими наработками.
 
@@ -109,6 +124,35 @@ $ sudo cp -R ./PSCyr/* /usr/local/share/texmf/
 $ sudo texhash
 $ updmap --enable Map=pscyr.map
 $ sudo mktexlsr
+```
+
+#### Установка в MacOS 10.x
+1. Скачать файлы со шрифтами и распаковать их в одну папку.
+2. Создать/отредквтировать файл `install.sh`^ чтобы он содержал следующее:
+
+```
+#!/bin/sh
+
+INSTALLDIR=`kpsewhich -expand-var='$TEXMFLOCAL'`
+mkdir -p $INSTALLDIR/{tex/latex,fonts/tfm/public,fonts/vf/public,fonts/type1/public,fonts/map/dvips,fonts/afm/public,doc/fonts}/pscyr
+mv dvips/pscyr/* $INSTALLDIR/fonts/map/dvips/pscyr
+mv tex/latex/pscyr/* $INSTALLDIR/tex/latex/pscyr
+mv fonts/tfm/public/pscyr/* $INSTALLDIR/fonts/tfm/public/pscyr
+mv fonts/vf/public/pscyr/* $INSTALLDIR/fonts/vf/public/pscyr
+mv fonts/type1/public/pscyr/* $INSTALLDIR/fonts/type1/public/pscyr
+mv fonts/afm/public/pscyr/* $INSTALLDIR/fonts/afm/public/pscyr
+mv LICENSE doc/README.koi doc/PROBLEMS ChangeLog $INSTALLDIR/doc/fonts/pscyr
+
+mktexlsr
+
+echo "Map pscyr.map\n" >> $INSTALLDIR/web2c/updmap.cfg
+updmap-sys
+```
+
+3. Запустить полученный скрипт с помощью `sudo`:
+
+```
+sudo bash ./install.sh
 ```
 
 ## Сборка PDF из командной строки
