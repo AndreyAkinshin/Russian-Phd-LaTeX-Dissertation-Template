@@ -83,7 +83,7 @@ $ sudo dnf install texlive-xetex latexmk texlive-hyphen-russian biber \
 [How to install “vanilla” TeXLive on Debian or Ubuntu?](http://tex.stackexchange.com/a/95373/79756) — инструкция на английском языке, как ставить TeXLive на Linux в обход привязанных к конкретному линуксу пакетам (на примере Debian и Ubuntu).
 
 ### В MacOS 10.10 и выше
-Для установки в среде MacOS достаточно установить пакет MacTeX [отсюда](https://tug.org/mactex/mactex-download.html). После утановки необходимо добавить пути к установленным файлам в переменную окружения `PATH`, например, так:
+Для установки в среде MacOS достаточно установить пакет MacTeX [отсюда](https://tug.org/mactex/mactex-download.html). После установки необходимо добавить пути к установленным файлам в переменную окружения `PATH`, например, так:
 
 ```
 export PATH=$PATH:export PATH=$PATH:/Library/TeX/texbin
@@ -128,7 +128,7 @@ $ sudo mktexlsr
 
 #### Установка в MacOS 10.x
 1. Скачать файлы со шрифтами и распаковать их в одну папку.
-2. Создать/отредквтировать файл `install.sh`^ чтобы он содержал следующее:
+2. Создать/отредактировать файл `install.sh`, чтобы он содержал следующее:
 
 ```
 #!/bin/sh
