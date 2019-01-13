@@ -109,7 +109,7 @@ PSCyr — это пакет красивых русских шрифтов дл�
 $ mkdir ./PSCyr/fonts/map ./PSCyr/fonts/enc
 $ cp ./PSCyr/dvips/pscyr/*.map ./PSCyr/fonts/map/
 $ cp ./PSCyr/dvips/pscyr/*.enc ./PSCyr/fonts/enc/
-$ echo "fadr6t AdvertisementPSCyr \"T2AEncoding ReEncodeFont\" > ./PSCyr/fonts/map/pscyr.map
+$ echo "fadr6t AdvertisementPSCyr \"T2AEncoding ReEncodeFont\"" > ./PSCyr/fonts/map/pscyr.map
 ```
 Дальше надо узнать, где у вас локальный каталог texmf. Для этого выполняем
 ```
