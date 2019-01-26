@@ -566,11 +566,15 @@ X[4]@{}%
             \hspace*{2.5em}% абзацный отступ - требование ГОСТ 2.105
             Примечание "---  Для функций $f_{12}$ и $f_{13}$
             используется $y_i = 1 + \frac{1}{4}(x_i+1)$
-            и~$u(x_i,\,a,\,k,\,m)=\begin{cases}
-k(x_i-a)^m,\quad &x_i >a\\[-0.5em]
-0,\quad &-a\leq x_i \leq a\\[-0.5em]
-k(-x_i-a)^m,\quad &x_i <-a
-\end{cases}$  }   \\        \bottomrule %%% нижняя линейка 
+            и~$u(x_i,\,a,\,k,\,m)=
+            \begin{cases*}
+                k(x_i-a)^m,& $ x_i >a $\\[-0.5em]
+                0,& $ -a\leq x_i \leq a $\\[-0.5em]
+                k(-x_i-a)^m,& $ x_i <-a $
+            \end{cases*}
+            $
+}\\
+\bottomrule %%% нижняя линейка
 \end{longtabu} 
 \endgroup
 
