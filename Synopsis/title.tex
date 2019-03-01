@@ -40,20 +40,50 @@
 \vspace{0.008\paperheight plus1fill}
 \noindent%
 \begin{tabularx}{\textwidth}{@{}lX@{}}
-    Научный руководитель:   & \supervisorRegalia\par
+    \ifdefined\supervisorTwoFio
+    Научные руководители:   & \supervisorRegalia\par
+                              \ifdefined\supervisorDead
+                              \framebox{\textbf{\supervisorFio}}
+                              \else
                               \textbf{\supervisorFio}
-    \vspace{0.013\paperheight}\\
+                              \fi
+                              \par
+                              \vspace{0.013\paperheight}
+                              \supervisorRegalia\par
+                              \ifdefined\supervisorTwoDead
+                              \framebox{\textbf{\supervisorTwoFio}}
+                              \else
+                              \textbf{\supervisorTwoFio}
+                              \fi
+                              \vspace{0.013\paperheight}\\
+    \else
+    Научный руководитель:   & \supervisorRegalia\par
+                              \ifdefined\supervisorDead
+                              \framebox{\textbf{\supervisorFio}}
+                              \else
+                              \textbf{\supervisorFio}
+                              \fi
+                              \vspace{0.013\paperheight}\\
+    \fi
     Официальные оппоненты:  &
     \ifnumequal{\value{showopplead}}{0}{\vspace{13\onelineskip plus1fill}}{%
         \textbf{\opponentOneFio,}\par
         \opponentOneRegalia,\par
         \opponentOneJobPlace,\par
         \opponentOneJobPost\par
-            \vspace{0.01\paperheight}
+        \vspace{0.01\paperheight}
         \textbf{\opponentTwoFio,}\par
         \opponentTwoRegalia,\par
         \opponentTwoJobPlace,\par
         \opponentTwoJobPost
+    \ifdefined\opponentThreeFio
+        \par
+        \vspace{0.01\paperheight}
+        \textbf{\opponentThreeFio,}\par
+        \opponentThreeRegalia,\par
+        \opponentThreeJobPlace,\par
+        \opponentThreeJobPost
+    \fi
     }%
     \vspace{0.013\paperheight} \\
     Ведущая организация:    &
