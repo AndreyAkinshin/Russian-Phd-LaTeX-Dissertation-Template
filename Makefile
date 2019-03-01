@@ -2,7 +2,7 @@
 dissertation-formated synopsis-preformat pdflatex-examples xcharter-examples\
 pscyr-examples xelatex-examples xelatex-msfonts-examples xelatex-liberation-examples\
 lualatex-examples lualatex-msfonts-examples lualatex-liberation-examples examples\
-spell-check indent clean distclean release draft
+spell-check indent compress clean distclean release draft
 
 all: synopsis dissertation
 
@@ -485,6 +485,12 @@ indent:
 	@$(foreach file, $(INDENT_FILES),\
 	latexindent -l=$(INDENT_SETTINGS) -s -w $(file);)
 
+COMPRESS_FILE?=dissertation.pdf
+COMPRESSION_LEVEL?=default # Possible values: screen, default, ebook, printer, prepress
+compress: $(COMPRESS_FILE)
+	gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/$(COMPRESSION_LEVEL) -dDetectDuplicateImages=true \
+-o $(patsubst %.pdf, %_compressed.pdf, $^) $^
+
 clean:
 	#	$(MAKE) clean -C Dissertation
 	latexmk -C dissertation
@@ -644,6 +650,9 @@ distclean:
 	# WinEdt
 	rm -f *.bak
 	rm -f *.sav
+
+	# GnuEmacs
+	rm -f *~
 
 	# endfloat
 	rm -f *.ttt
