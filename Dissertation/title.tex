@@ -50,11 +50,36 @@
 %
 \vspace{0pt plus4fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{flushright}
+\ifdefined\supervisorTwoFio
+Научные руководители:
+
+\supervisorRegalia
+
+\ifdefined\supervisorDead
+\framebox{\supervisorFio}
+\else
+\supervisorFio
+\fi
+
+\supervisorTwoRegalia
+
+\ifdefined\supervisorTwoDead
+\framebox{\supervisorTwoFio}
+\else
+\supervisorFio
+\fi
+\else
 Научный руководитель:
 
 \supervisorRegalia
 
+\ifdefined\supervisorDead
+\framebox{\supervisorFio}
+\else
 \supervisorFio
+\fi
+\fi
+
 \end{flushright}
 %
 \vspace{0pt plus4fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
