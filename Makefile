@@ -645,6 +645,9 @@ distclean:
 	rm -f *.bak
 	rm -f *.sav
 
+	# GnuEmacs
+	rm -f *~
+
 	# endfloat
 	rm -f *.ttt
 	rm -f *.fff
