@@ -1,60 +1,3 @@
-\documentclass[14pt]{beamer}
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
-\usepackage{amssymb,amsfonts,amsmath,mathtext}
-\usepackage{cite,enumerate,float,indentfirst}
-
-\graphicspath{{../images/}{images/}} 
-
-
-
-% \usetheme[secheader]{Boadilla}
-% \usecolortheme{seahorse}
-
-\usetheme{Pittsburgh}
-\usecolortheme{whale}
-
-\beamertemplatenavigationsymbolsempty
-
-\newcommand{\todo}{\alert}
-\input{../common/data.tex}      % Основные сведения
-
-\setbeamercolor{footline}{fg=blue}
-\setbeamertemplate{footline}{
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
-    % И. О. Фамилия, Организация кратко
-    \thesisAuthorShort, \thesisOrganizationShort
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
-    % Город, 20XX
-    \thesisCity, \thesisYear
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{}%
-  Стр. \insertframenumber{} из \inserttotalframenumber \hspace*{2ex}
-  \end{beamercolorbox}}%
-  \vskip0pt%
-}
-
-\newcommand{\itemi}{\item[\checkmark]}
-
-%\title{\small{Название презентации}}
-\title{\small{\thesisTitle}}
-\author{\small{%
-\emph{Выступающий:}~\thesisAuthorShort\\%
-\emph{Руководитель:}~\supervisorRegaliaShort~\supervisorFioShort}\\%
-\vspace{30pt}%
-\thesisOrganization%
-\vspace{20pt}%
-}
-\date{\small{\thesisCity, \thesisYear}}
-
-\begin{document}
-
-\maketitle
-
 \begin{frame}
 \frametitle{Цели и задачи}
 \begin{itemize}
@@ -225,5 +168,3 @@ $$
 Спасибо за внимание!
 \end{center}
 \end{frame}
-
-\end{document} 

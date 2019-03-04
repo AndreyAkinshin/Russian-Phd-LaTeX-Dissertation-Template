@@ -16,16 +16,14 @@ endif
 
 TEXFLAGS?=-halt-on-error -file-line-error
 
-dissertation:
-	#	$(MAKE) -C Dissertation
+dissertation:	
 	latexmk -pdf -pdflatex="xelatex $(TEXFLAGS) %O '\newcounter{fontfamily}\setcounter{fontfamily}\
 {$(FONT_FAMILY)}\input{%S}'" dissertation
 
 pdflatex:
 	latexmk -pdf -pdflatex="pdflatex $(TEXFLAGS) %O %S" dissertation
 
-synopsis:
-	#	$(MAKE) -C Synopsis
+synopsis:	
 	latexmk -pdf -pdflatex="xelatex $(TEXFLAGS) %O '\newcounter{fontfamily}\setcounter{fontfamily}\
 {$(FONT_FAMILY)}\input{%S}'" synopsis
 
@@ -36,7 +34,7 @@ draft:
 {$(FONT_FAMILY)}\newcounter{draft}\setcounter{draft}{1}\input{%S}'" synopsis
 
 talk:
-	$(MAKE) talk -C Presentation
+	latexmk -pdf -jobname=presentation -silent  presentation.tex
 
 dissertation-preformat:
 	etex -ini "&latex" mylatexformat.ltx """dissertation.tex"""
@@ -491,19 +489,15 @@ compress: $(COMPRESS_FILE)
 	gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/$(COMPRESSION_LEVEL) -dDetectDuplicateImages=true \
 -o $(patsubst %.pdf, %_compressed.pdf, $^) $^
 
-clean:
-	#	$(MAKE) clean -C Dissertation
+clean:	
 	latexmk -C dissertation
-	rm -f dissertation.bbl
-	#	$(MAKE) clean -C Synopsis
+	rm -f dissertation.bbl	
 	latexmk -C synopsis
 	rm -f synopsis.bbl
-	$(MAKE) clean -C Presentation
+	latexmk -C presentation
+	rm -f presentation.bbl
 
 distclean:
-	$(MAKE) distclean -C Dissertation
-	$(MAKE) distclean -C Synopsis
-	$(MAKE) distclean -C Presentation
 	## Core latex/pdflatex auxiliary files:
 	rm -f *.aux
 	rm -f *.lof
