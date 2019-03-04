@@ -1,19 +1,88 @@
-\documentclass[14pt]{beamer}
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
+\RequirePackage{ifxetex, ifluatex}
+\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579)
+\ifxetex
+    \xetexorluatextrue
+\else
+    \ifluatex
+        \xetexorluatextrue
+    \else
+        \xetexorluatexfalse
+    \fi
+\fi
+
+\newif\ifpresentation % Условие, проверяющее, что документ --- презентация
+\presentationtrue
+
+\RequirePackage{etoolbox}[2015/08/02] % Для продвинутой проверки разных условий
+
+%%% Основной запуск %%%
+\ifxetexorluatex
+    \ifxetex
+        \documentclass[xcolor={xetex,dvipsnames,table}, 14pt]{beamer} %продвинутые фокусы с цветами на слайдах
+    \else
+        \documentclass[xcolor={dvipsnames,table}, utf8, 14pt]{beamer} %продвинутые фокусы с цветами на слайдах
+    \fi
+\else
+    \documentclass[xcolor={pdftex,dvipsnames,table}, 14pt]{beamer} %продвинутые фокусы с цветами на слайдах
+\fi
+
+%%% Кодировки и шрифты %%%
+\ifxetexorluatex
+    \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
+    \setmainlanguage[babelshorthands=true]{russian} % Язык по-умолчанию русский с поддержкой приятных команд пакета babel
+    \setotherlanguage{english}                      % Дополнительный язык = английский (в американской вариации по-умолчанию)
+    \setmonofont{CMU Typewriter Text}                  % моноширинный шрифт
+    \newfontfamily\cyrillicfonttt{CMU Typewriter Text} % моноширинный шрифт для кириллицы
+    \defaultfontfeatures{Ligatures=TeX}                % стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки моноширинного шрифта должны идти до этой строки, чтобы при врезках кода программ в коде не применялись лигатуры и замены дефисов
+    \setmainfont{CMU Sans Serif}
+    \newfontfamily\cyrillicfont{CMU Sans Serif}
+    \setsansfont{CMU Sans Serif}                       % Шрифт без засечек
+    \newfontfamily\cyrillicfontsf{CMU Sans Serif}      % Шрифт без засечек для кириллицы
+%    \usepackage{unicode-math} %\setmathfont
+%    \setmathfont[Scale=MatchLowercase]{Asana Math}
+\else
+%%% Решение проблемы копирования текста в буфер кракозябрами
+    \input glyphtounicode.tex
+    \input glyphtounicode-cmr.tex %from pdfx package
+    \pdfgentounicode=1
+    \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
+    \defaulthyphenchar=127                      % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
+    \usepackage{textcomp}
+    \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
+    \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
+    \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
+    \usepackage{paratype}
+\fi
+
 \usepackage{amssymb,amsfonts,amsmath,mathtext}
 \usepackage{cite,enumerate,float,indentfirst}
 
-\graphicspath{{../images/}{images/}} 
-
-
+\graphicspath{{../images/}{images/}}
 
 % \usetheme[secheader]{Boadilla}
 % \usecolortheme{seahorse}
 
 \usetheme{Pittsburgh}
 \usecolortheme{whale}
+
+\usefonttheme{professionalfonts} % более строгое следование настройкам шрифтов (а вот если в них чего-то не хватает, то следует закомментировать)
+
+\usepackage{pgfpages,tikz}
+%% Откоментируйте эти строки, чтобы собрать
+%% презентацию с заметками
+%\setbeameroption{show notes} % добавлять страницу заметок
+%\setbeameroption{show notes on second screen=left} % положение заметок
+
+% поправить шрифты
+% https://tex.stackexchange.com/a/291545/104425
+\usepackage[normalem]{ulem}
+\makeatletter
+\def\beamer@framenotesbegin{% at beginning of slide
+  \usebeamercolor[fg]{normal text}
+  \gdef\beamer@noteitems{}%
+  \gdef\beamer@notes{}%
+}
+\makeatother
 
 \beamertemplatenavigationsymbolsempty
 
@@ -64,6 +133,11 @@
   \item \textbf{Актуальность:}
 \end{itemize}
 \end{frame}
+
+\note{
+  Этот текст будет виден только если в начале данного файла откомментировать опцию setbeameroption.
+  Для раздельного вывода презентации и заметок на экраны (как в impress или powerpoint) можно использовать программу \textit{pdf-presenter-console}.
+}
 
 \begin{frame}
 \frametitle{Проблемы}
