@@ -63,7 +63,7 @@ sorting=none,% настройка сортировки списка литера
 %http://tex.stackexchange.com/a/141831/79756
 %There is a way to automatically map the language field to the langid field. The following lines in the preamble should be enough to do that.
 %This command will copy the language field into the langid field and will then delete the contents of the language field. The language field will only be deleted if it was successfully copied into the langid field.
-\DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex 
+\DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex
     \maps{
         \map{% перекидываем значения полей language в поля langid, которыми пользуется biblatex
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
@@ -360,4 +360,3 @@ sorting=none,% настройка сортировки списка литера
 \newcommand*{\insertbiblioother}{
 \printbibliography[heading=otherpublications,keyword=biblioother]
 }
-

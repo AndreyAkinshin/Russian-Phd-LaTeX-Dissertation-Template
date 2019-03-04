@@ -38,7 +38,7 @@
 % users of unix-like systems should ensure these files are marked as
 % executable.
 \ifnumequal{\value{draft}}{1}{% Черновик
-   \IfFileExists{.git/gitHeadInfo.gin}{                                        
+   \IfFileExists{.git/gitHeadInfo.gin}{
       \usepackage[mark,pcount]{gitinfo2}
       \renewcommand{\gitMark}{rev.\gitAbbrevHash\quad\gitCommitterEmail\quad\gitAuthorIsoDate}
       \renewcommand{\gitMarkFormat}{\rmfamily\color{Gray}\small\bfseries}

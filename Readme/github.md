@@ -74,7 +74,7 @@ Winodows\Mac есть программы для работы с git... в кот
 шаблона, которые вы и не трогали, например Readme или какие-то
 внутренние опции) всё тоже пройдёт без дополнительных вопросов, а
 состояние репозиторие сразу перематается вперёд через все новые комиты
-(fast-forward). 
+(fast-forward).
 
 ```
 Updating 22ca047..112b54a
@@ -176,7 +176,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 <<<<<<< HEAD
 =======
 >>>>>>> master
-``` 
+```
 
 разумеется, удаляем.
 
@@ -189,5 +189,3 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 Ничего страшного, всегда есть возможность откатиться к коммиту прямо
 перед тем, как вы начали делать merge!
-
-

@@ -1,6 +1,6 @@
 %% This bibliography style attempts
 %% to format bibliography according to
-%% GOST 7.0.5-2008 
+%% GOST 7.0.5-2008
 %%
 %% Package version - 1.2
 %%
@@ -867,7 +867,7 @@ FUNCTION {format.pages.page}%%%%Поправлено (P вместо pp и p в�
       { "" }
       { numpages bbl.page tie.connect }
     if$}
-    { format.pages}    
+    { format.pages}
   if$
 }
 
