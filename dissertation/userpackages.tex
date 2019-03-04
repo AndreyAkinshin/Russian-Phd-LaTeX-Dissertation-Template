@@ -1,0 +1,46 @@
+\usepackage{tabu, tabulary}  %таблицы с автоматически подбирающейся шириной столбцов
+\usepackage{fr-longtable}    %ради \endlasthead
+
+% Листинги с исходным кодом программ
+\usepackage{fancyvrb}
+\usepackage{listings}
+\lccode`\~=0\relax %Без этого хака из-за особенностей пакета listings перестают работать конструкции с \MakeLowercase и т. п. в (xe|lua)latex
+
+% Русская традиция начертания греческих букв
+\usepackage{upgreek} % прямые греческие ради русской традиции
+
+%%% Микротипографика
+%\ifnumequal{\value{draft}}{0}{% Только если у нас режим чистовика
+%    \usepackage[final, babel, shrink=45]{microtype}[2016/05/14] % улучшает представление букв и слов в строках, может помочь при наличии отдельно висящих слов
+%}{}
+
+% Отметка о версии черновика на каждой странице
+% Чтобы работало надо в своей локальной копии по инструкции
+% https://www.ctan.org/pkg/gitinfo2 создать небходимые файлы в папке
+% ./git/hooks
+% If you’re familiar with tweaking git, you can probably work it out for
+% yourself. If not, I suggest you follow these steps:
+% 1. First, you need a git repository and working tree. For this example,
+% let’s suppose that the root of the working tree is in ~/compsci
+% 2. Copy the file post-xxx-sample.txt (which is in the same folder of
+% your TEX distribution as this pdf) into the git hooks directory in your
+% working copy. In our example case, you should end up with a file called
+% ~/compsci/.git/hooks/post-checkout
+% 3. If you’re using a unix-like system, don’t forget to make the file executable.
+% Just how you do this is outside the scope of this manual, but one
+% possible way is with commands such as this:
+% chmod g+x post-checkout.
+% 4. Test your setup with “git checkout master” (or another suitable branch
+% name). This should generate copies of gitHeadInfo.gin in the directories
+% you intended.
+% 5. Now make two more copies of this file in the same directory (hooks),
+% calling them post-commit and post-merge, and you’re done. As before,
+% users of unix-like systems should ensure these files are marked as
+% executable.
+\ifnumequal{\value{draft}}{1}{% Черновик
+   \IfFileExists{.git/gitHeadInfo.gin}{
+      \usepackage[mark,pcount]{gitinfo2}
+      \renewcommand{\gitMark}{rev.\gitAbbrevHash\quad\gitCommitterEmail\quad\gitAuthorIsoDate}
+      \renewcommand{\gitMarkFormat}{\rmfamily\color{Gray}\small\bfseries}
+   }{}
+}{}

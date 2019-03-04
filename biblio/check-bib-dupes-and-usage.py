@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 import re
 bibfile = "othercites.bib"
 authors = {}
@@ -61,7 +61,7 @@ for author in authors:
                 if page == "000": page = "No page"
                 print("\t\t with page:",page)
             prev_page = page
-            
+
 print("Total cites: ",len(cites))
 import sys,os,shutil,glob,subprocess
 path = os.getcwd()
@@ -88,8 +88,8 @@ files.sort()
 for filename in files:
     with open(filename, 'r') as myfile:
         all_text += myfile.read().replace('\n', '')
-        
-        
+
+
 print(len(all_text))
 for cite in cites:
     if cite not in all_text:

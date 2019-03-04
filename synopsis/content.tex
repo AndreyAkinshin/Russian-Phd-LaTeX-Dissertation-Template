@@ -1,0 +1,91 @@
+
+\section*{Общая характеристика работы}
+
+\newcommand{\actuality}{\underline{\textbf{\actualityTXT}}}
+\newcommand{\progress}{\underline{\textbf{\progressTXT}}}
+\newcommand{\aim}{\underline{{\textbf\aimTXT}}}
+\newcommand{\tasks}{\underline{\textbf{\tasksTXT}}}
+\newcommand{\novelty}{\underline{\textbf{\noveltyTXT}}}
+\newcommand{\influence}{\underline{\textbf{\influenceTXT}}}
+\newcommand{\methods}{\underline{\textbf{\methodsTXT}}}
+\newcommand{\defpositions}{\underline{\textbf{\defpositionsTXT}}}
+\newcommand{\reliability}{\underline{\textbf{\reliabilityTXT}}}
+\newcommand{\probation}{\underline{\textbf{\probationTXT}}}
+\newcommand{\contribution}{\underline{\textbf{\contributionTXT}}}
+\newcommand{\publications}{\underline{\textbf{\publicationsTXT}}}
+
+\input{../common/characteristic} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
+
+%Диссертационная работа была выполнена при поддержке грантов ...
+
+%\underline{\textbf{Объем и структура работы.}} Диссертация состоит из~введения,
+%четырех глав, заключения и~приложения. Полный объем диссертации
+%\textbf{ХХХ}~страниц текста с~\textbf{ХХ}~рисунками и~5~таблицами. Список
+%литературы содержит \textbf{ХХX}~наименование.
+
+\section*{Содержание работы}
+Во \underline{\textbf{введении}} обосновывается актуальность
+исследований, проводимых в~рамках данной диссертационной работы,
+приводится обзор научной литературы по изучаемой проблеме,
+формулируется цель, ставятся задачи работы, излагается научная новизна
+и практическая значимость представляемой работы. В~последующих главах
+сначала описывается общий принцип, позволяющий ..., а~потом идёт
+апробация на частных примерах: ...  и~... .
+
+
+\underline{\textbf{Первая глава}} посвящена ...
+
+ картинку можно добавить так:
+\begin{figure}[ht]
+  \centering
+  \includegraphics [scale=0.27] {latex}
+  \caption{Подпись к картинке.}
+  \label{img:latex}
+\end{figure}
+
+Формулы в строку без номера добавляются так:
+\[
+  \lambda_{T_s} = K_x\frac{d{x}}{d{T_s}}, \qquad
+  \lambda_{q_s} = K_x\frac{d{x}}{d{q_s}},
+\]
+
+\underline{\textbf{Вторая глава}} посвящена исследованию
+
+\underline{\textbf{Третья глава}} посвящена исследованию
+
+Можно сослаться на свои работы в автореферате. Для этого в файле
+\verb!Synopsis/setup.tex! необходимо присвоить положительное значение
+счётчику \verb!\setcounter{usefootcite}{1}!. В таком случае ссылки на
+работы других авторов будут подстрочными.
+\ifnumgreater{\value{usefootcite}}{0}{
+Изложенные в третьей главе результаты опубликованы в~\cite{vakbib1, vakbib2}.
+}{}
+Использование подстрочных ссылок внутри таблиц может вызывать проблемы.
+
+В \underline{\textbf{четвертой главе}} приведено описание
+
+В \underline{\textbf{заключении}} приведены основные результаты работы, которые заключаются в следующем:
+\input{../common/concl}
+
+При использовании пакета \verb!biblatex! список публикаций автора по теме
+диссертации формируется в разделе <<\publications>>\ файла
+\verb!../common/characteristic.tex!  при помощи команды \verb!\nocite!
+
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому списку литературы
+\ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8
+  \renewcommand{\bibname}{\large \authorbibtitle}
+  \nocite{*}
+  \insertbiblioauthor           % Подключаем Bib-базы
+  %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
+}{% Реализация пакетом biblatex через движок biber
+  \ifnumgreater{\value{usefootcite}}{0}{
+%  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
+  \insertbiblioauthorcited      % Вывод процитированных в автореферате работ автора
+  }{
+  \insertbiblioauthor           % Вывод всех работ автора
+%  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+%  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
+  \insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  }
+}
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}

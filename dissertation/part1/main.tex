@@ -1,0 +1,31 @@
+\chapter{Оформление различных элементов} \label{chapt1}
+
+\section{Форматирование текста} \label{sect1_1}
+
+Мы можем сделать \textbf{жирный текст} и \textit{курсив}.
+
+\section{Ссылки} \label{sect1_2}
+Сошлёмся на библиографию.
+Одна ссылка: \cite[с.~54]{Sokolov}\cite[с.~36]{Gaidaenko}.
+Две ссылки: \cite{Sokolov,Gaidaenko}.
+Много ссылок: %\cite[с.~54]{Lermontov,Management,Borozda} % такой «фокус» вызывает biblatex warning относительно опции sortcites, потому что неясно, к какому источнику относится уточнение о страницах, а bibtex об этой проблеме даже не предупреждает
+\cite{Lermontov,Management,Borozda,Marketing,Constitution,FamilyCode,Gost.7.0.53,Razumovski,Lagkueva,Pokrovski,Sirotko,Lukina,Methodology,Encyclopedia,Nasirova,Berestova,Kriger}.
+И~ещё немного ссылок:
+\cite{Article,Book,Booklet,Conference,Inbook,Incollection,Manual,Mastersthesis,Misc,Phdthesis,Proceedings,Techreport,Unpublished}.
+\cite{medvedev2006jelektronnye, CEAT:CEAT581, doi:10.1080/01932691.2010.513279,Gosele1999161,Li2007StressAnalysis, Shoji199895,test:eisner-sample,test:eisner-sample-shorted,AB_patent_Pomerantz_1968,iofis_patent1960}
+
+%Попытка реализовать несколько ссылок на конкретные страницы для стандартной реализации:[\citenum{Sokolov}, с.~54; \citenum{Gaidaenko}, с.~36].
+
+%Несколько источников мультицитата (только в biblatex)
+%\cites[vii--x, 5, 7]{Sokolov}[v"--~x, 25, 526]{Gaidaenko} поехали дальше
+
+Ссылки на собственные работы:~\cite{vakbib1, confbib1}
+
+Сошлёмся на приложения: Приложение \ref{AppendixA}, Приложение \ref{AppendixB2}.
+
+Сошлёмся на формулу: формула \eqref{eq:equation1}.
+
+Сошлёмся на изображение: рисунок \ref{img:knuth}.
+
+% Для примера, следующий параграф вынесен в отдельный файл
+\input{part1/equations}

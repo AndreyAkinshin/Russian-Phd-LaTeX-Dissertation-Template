@@ -1,0 +1,9 @@
+\clearpage                                  % В том числе гарантирует, что список литературы в оглавлении будет с правильным номером страницы
+%\hypersetup{ urlcolor=black }               % Ссылки делаем чёрными
+%\providecommand*{\BibDash}{}                % В стилях ugost2008 отключаем использование тире как разделителя
+\urlstyle{rm}                               % ссылки URL обычным шрифтом
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому списку литературы
+\insertbibliofull                           % Подключаем Bib-базы
+\ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}
+\urlstyle{tt}                               % возвращаем установки шрифта ссылок URL
+%\hypersetup{ urlcolor={urlcolor} }          % Восстанавливаем цвет ссылок

@@ -54,16 +54,16 @@ sorting=none,% настройка сортировки списка литера
 }{}
 
 %%% Подключение файлов bib %%%
-\addbibresource[label=other]{biblio/othercites.bib}
-\addbibresource[label=vak]{biblio/authorpapersVAK.bib}
-\addbibresource[label=papers]{biblio/authorpapers.bib}
-\addbibresource[label=conf]{biblio/authorconferences.bib}
+\addbibresource[label=other]{../biblio/othercites.bib}
+\addbibresource[label=vak]{../biblio/authorpapersVAK.bib}
+\addbibresource[label=papers]{../biblio/authorpapers.bib}
+\addbibresource[label=conf]{../biblio/authorconferences.bib}
 
 
 %http://tex.stackexchange.com/a/141831/79756
 %There is a way to automatically map the language field to the langid field. The following lines in the preamble should be enough to do that.
 %This command will copy the language field into the langid field and will then delete the contents of the language field. The language field will only be deleted if it was successfully copied into the langid field.
-\DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex 
+\DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex
     \maps{
         \map{% перекидываем значения полей language в поля langid, которыми пользуется biblatex
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
@@ -78,9 +78,9 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=booktitle, origfieldval]
         }
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{biblio/authorpapersVAK.bib}
-            \perdatasource{biblio/authorpapers.bib}
-            \perdatasource{biblio/authorconferences.bib}
+            \perdatasource{../biblio/authorpapersVAK.bib}
+            \perdatasource{../biblio/authorpapers.bib}
+            \perdatasource{../biblio/authorconferences.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
@@ -108,19 +108,19 @@ sorting=none,% настройка сортировки списка литера
             final]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/othercites.bib}
+            \perdatasource{../biblio/othercites.bib}
             \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{../biblio/authorpapersVAK.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapers.bib}
+            \perdatasource{../biblio/authorpapers.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthornotvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorconferences.bib}
+            \perdatasource{../biblio/authorconferences.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
         }
 %        \map[overwrite]{% стираем значения всех полей series
@@ -360,4 +360,3 @@ sorting=none,% настройка сортировки списка литера
 \newcommand*{\insertbiblioother}{
 \printbibliography[heading=otherpublications,keyword=biblioother]
 }
-
