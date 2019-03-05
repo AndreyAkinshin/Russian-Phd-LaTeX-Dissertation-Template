@@ -1,509 +1,73 @@
-.PHONY: synopsis dissertation preformat pdflatex talk dissertation-preformat\
-dissertation-formated synopsis-preformat pdflatex-examples xcharter-examples\
-pscyr-examples xelatex-examples xelatex-msfonts-examples xelatex-liberation-examples\
-lualatex-examples lualatex-msfonts-examples lualatex-liberation-examples examples\
-spell-check indent compress clean distclean release draft
+.PHONY: all preformat dissertation dissertation-draft pdflatex \
+synopsis synopsis-draft draft talk dissertation-preformat \
+dissertation-formated synopsis-preformat synopsis-formated \
+spell-check indent compress examples clean distclean release
+
+ifneq ($(SystemDrive),)
+    include windows.mk
+else
+    include unix.mk
+endif
+
+MKRC ?= latexmkrc
+TARGET ?= dissertation
+BACKEND ?= -pdfxe # -pdf=pdflatex;-pdfxe=xelatex;-pdflua=lualatex
+JOBNAME = $(TARGET)
+
+export DRAFTON ?= 0 # 1=on;0=off
+export ALTFONT ?= 0 # 0=CMU;1=MS fonts;2=Liberation fonts
+export USEBIBER ?= 1 # 0=bibtex8;1=biber
+export IMGCOMPILE ?= 0 # 1=on;0=off
+export LATEXFLAXS := -halt-on-error -file-line-error
 
 all: synopsis dissertation
 
-preformat: synopsis-preformat dissertation-preformat
+preformat: synopsis-preformat
+#dissertation-preformat
 
-ifneq ($(SystemDrive),)
-    FONT_FAMILY?=1
-else
-    FONT_FAMILY?=2
-endif
+%.pdf: %.tex
+	latexmk $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $<
 
-TEXFLAGS?=-halt-on-error -file-line-error
+%.ltx: %.tex
+	etex -ini "&latex" $< $@
 
-dissertation:
-	#	$(MAKE) -C Dissertation
-	latexmk -pdf -pdflatex="xelatex $(TEXFLAGS) %O '\newcounter{fontfamily}\setcounter{fontfamily}\
-{$(FONT_FAMILY)}\input{%S}'" dissertation
+dissertation: TARGET=dissertation
+dissertation: dissertation.pdf
 
-pdflatex:
-	latexmk -pdf -pdflatex="pdflatex $(TEXFLAGS) %O %S" dissertation
+synopsis: TARGET=synopsis
+synopsis: synopsis.pdf
 
-synopsis:
-	#	$(MAKE) -C Synopsis
-	latexmk -pdf -pdflatex="xelatex $(TEXFLAGS) %O '\newcounter{fontfamily}\setcounter{fontfamily}\
-{$(FONT_FAMILY)}\input{%S}'" synopsis
+presentation: TARGET=presentation
+presentation: presentation.pdf
 
-draft:
-	latexmk -pdf -pdflatex="xelatex $(TEXFLAGS) %O '\newcounter{fontfamily}\setcounter{fontfamily}\
-{$(FONT_FAMILY)}\newcounter{draft}\setcounter{draft}{1}\input{%S}'" dissertation
-	latexmk -pdf -pdflatex="xelatex $(TEXFLAGS) %O '\newcounter{fontfamily}\setcounter{fontfamily}\
-{$(FONT_FAMILY)}\newcounter{draft}\setcounter{draft}{1}\input{%S}'" synopsis
+dissertation-draft: DRAFTON=1
+dissertation-draft: dissertation
 
-talk:
-	$(MAKE) talk -C Presentation
+synopsis-draft: DRAFTON=1
+synopsis-draft: synopsis
 
-dissertation-preformat:
-	etex -ini "&latex" mylatexformat.ltx """dissertation.tex"""
-	latexmk -pdf -jobname=dissertation -silent --shell-escape dissertation.tex
+pdflatex: BACKEND=-pdf
+pdflatex: dissertation sinopsys
 
-dissertation-formated:
-	latexmk -pdf -jobname=dissertation -silent --shell-escape dissertation.tex
+draft: dissertation-draft synopsis-draft
 
-synopsis-preformat:
-	etex -ini "&latex" mylatexformat.ltx """synopsis.tex"""
-	latexmk -pdf -jobname=synopsis -silent --shell-escape synopsis.tex
+dissertation-preformat: dissertation.ltx dissertation
 
-pdflatex-examples:
-	#
-	$(eval RCFILE = nodraft_cm_bibtex_latexmkrc)
-	$(eval DESCR = pdflatex_bibtex)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = draft_cm_bibtex_latexmkrc)
-	$(eval DESCR = pdflatex_bibtex_draft)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = nodraft_cm_latexmkrc)
-	$(eval DESCR = pdflatex)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_cm_latexmkrc)
-	$(eval DESCR = pdflatex_draft)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
+dissertation-formated: dissertation
 
-pscyr-examples:
-	#
-	$(eval RCFILE = nodraft_msfonts_bibtex_latexmkrc)
-	$(eval DESCR = pdflatex_pscyr_bibtex)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = draft_msfonts_bibtex_latexmkrc)
-	$(eval DESCR = pdflatex_pscyr_bibtex_draft)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = nodraft_msfonts_latexmkrc)
-	$(eval DESCR = pdflatex_pscyr)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_msfonts_latexmkrc)
-	$(eval DESCR = pdflatex_pscyr_draft)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
+synopsis-preformat: synopsis.ltx synopsis
 
-xcharter-examples:
-	#
-	$(eval RCFILE = nodraft_altfont2_bibtex_latexmkrc)
-	$(eval DESCR = pdflatex_xcharter_bibtex)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = draft_altfont2_bibtex_latexmkrc)
-	$(eval DESCR = pdflatex_xcharter_bibtex_draft)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = nodraft_altfont2_latexmkrc)
-	$(eval DESCR = pdflatex_xcharter)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_altfont2_latexmkrc)
-	$(eval DESCR = pdflatex_xcharter_draft)
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -pdf -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -pdf -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
+synopsis-formated: synopsis
 
-xelatex-examples:
-	#
-	$(eval RCFILE = nodraft_cm_bibtex_latexmkrc)
-	$(eval DESCR = xelatex_bibtex)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	#
-	$(eval RCFILE = draft_cm_bibtex_latexmkrc)
-	$(eval DESCR = xelatex_bibtex_draft)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	#
-	$(eval RCFILE = nodraft_cm_latexmkrc)
-	$(eval DESCR = xelatex)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_cm_latexmkrc)
-	$(eval DESCR = xelatex_draft)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-
-xelatex-msfonts-examples:
-	#
-	$(eval RCFILE = nodraft_msfonts_bibtex_latexmkrc)
-	$(eval DESCR = xelatex_msfonts_bibtex)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	#
-	$(eval RCFILE = draft_msfonts_bibtex_latexmkrc)
-	$(eval DESCR = xelatex_msfonts_bibtex_draft)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	#
-	$(eval RCFILE = nodraft_msfonts_latexmkrc)
-	$(eval DESCR = xelatex_msfonts)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_msfonts_latexmkrc)
-	$(eval DESCR = xelatex_msfonts_draft)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-
-xelatex-liberation-examples:
-	#
-	$(eval RCFILE = nodraft_altfont2_bibtex_latexmkrc)
-	$(eval DESCR = xelatex_liberation_bibtex)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	#
-	$(eval RCFILE = draft_altfont2_bibtex_latexmkrc)
-	$(eval DESCR = xelatex_liberation_bibtex_draft)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	#
-	$(eval RCFILE = nodraft_altfont2_latexmkrc)
-	$(eval DESCR = xelatex_liberation)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_altfont2_latexmkrc)
-	$(eval DESCR = xelatex_liberation_draft)
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -xelatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).xdv
-	latexmk -xelatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f synopsis_$(DESCR).xdv
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-
-lualatex-examples:
-	#
-	$(eval RCFILE = nodraft_cm_bibtex_latexmkrc)
-	$(eval DESCR = lualatex_bibtex)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = draft_cm_bibtex_latexmkrc)
-	$(eval DESCR = lualatex_bibtex_draft)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = nodraft_cm_latexmkrc)
-	$(eval DESCR = lualatex)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_cm_latexmkrc)
-	$(eval DESCR = lualatex_draft)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-
-lualatex-msfonts-examples:
-	#
-	$(eval RCFILE = nodraft_msfonts_bibtex_latexmkrc)
-	$(eval DESCR = lualatex_msfonts_bibtex)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = draft_msfonts_bibtex_latexmkrc)
-	$(eval DESCR = lualatex_msfonts_bibtex_draft)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = nodraft_msfonts_latexmkrc)
-	$(eval DESCR = lualatex_msfonts)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_msfonts_latexmkrc)
-	$(eval DESCR = lualatex_msfonts_draft)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-
-lualatex-liberation-examples:
-	#
-	$(eval RCFILE = nodraft_altfont2_bibtex_latexmkrc)
-	$(eval DESCR = lualatex_liberation_bibtex)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = draft_altfont2_bibtex_latexmkrc)
-	$(eval DESCR = lualatex_liberation_bibtex_draft)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	#
-	$(eval RCFILE = nodraft_altfont2_latexmkrc)
-	$(eval DESCR = lualatex_liberation)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-	#
-	$(eval RCFILE = draft_altfont2_latexmkrc)
-	$(eval DESCR = lualatex_liberation_draft)
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -r $(RCFILE) -silent -shell-escape dissertation
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -r $(RCFILE) -silent -shell-escape synopsis
-	latexmk -lualatex -jobname="dissertation_$(DESCR)" -c dissertation
-	rm -f dissertation_$(DESCR).bbl
-	latexmk -lualatex -jobname="synopsis_$(DESCR)" -c synopsis
-	rm -f synopsis_$(DESCR).bbl
-	rm -f dissertation_$(DESCR).run.xml
-	rm -f synopsis_$(DESCR).run.xml
-
-examples: pdflatex-examples pscyr-examples xcharter-examples xelatex-examples\
-xelatex-msfonts-examples xelatex-liberation-examples lualatex-examples\
-lualatex-msfonts-examples lualatex-liberation-examples
-
-SPELLCHECK_DIRS ?= Dissertation Presentation Synopsis
-SPELLCHECK_FILES ?= $(foreach dir,$(SPELLCHECK_DIRS),$(wildcard $(dir)/*.tex))
-SPELLCHECK_LANG ?= ru
-DICT_DIR ?=
-DICT_MAIN ?=
-DICT_EXTRA ?=
-
-ifdef DICT_DIR
-    SDICT_DIR := --dict-dir=$(DICT_DIR)
-endif
-
-ifdef DICT_MAIN
-    SDICT_MAIN := --master=$(DICT_MAIN)
-endif
-
-ifdef DICT_EXTRA
-    SDICT_EXTRA := --extra-dicts=$(DICT_EXTRA)
-endif
-
-spell-check:
-	@$(foreach file, $(SPELLCHECK_FILES),\
-	aspell --lang=$(SPELLCHECK_LANG) $(SDICT_DIR) $(SDICT_MAIN) $(SDICT_EXTRA) --mode=tex --ignore-case check $(file);)
-
-INDENT_SETTINGS ?= indent.yaml
-INDENT_DIRS ?= Dissertation Presentation Synopsis
-INDENT_FILES ?= $(foreach dir,$(INDENT_DIRS),$(wildcard $(dir)/*.tex))
-indent:
-	@$(foreach file, $(INDENT_FILES),\
-	latexindent -l=$(INDENT_SETTINGS) -s -w $(file);)
-
-COMPRESS_FILE?=dissertation.pdf
-COMPRESSION_LEVEL?=default # Possible values: screen, default, ebook, printer, prepress
-compress: $(COMPRESS_FILE)
-	gs -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/$(COMPRESSION_LEVEL) -dDetectDuplicateImages=true \
--o $(patsubst %.pdf, %_compressed.pdf, $^) $^
+release: all
+	git add dissertation.pdf
+	git add synopsis.pdf
 
 clean:
-	#	$(MAKE) clean -C Dissertation
-	latexmk -C dissertation
-	rm -f dissertation.bbl
-	#	$(MAKE) clean -C Synopsis
-	latexmk -C synopsis
-	rm -f synopsis.bbl
-	$(MAKE) clean -C Presentation
+	latexmk -C
+	rm -f $(JOBNAME).bbl
 
-distclean:
-	$(MAKE) distclean -C Dissertation
-	$(MAKE) distclean -C Synopsis
-	$(MAKE) distclean -C Presentation
+distclean: clean
 	## Core latex/pdflatex auxiliary files:
 	rm -f *.aux
 	rm -f *.lof
@@ -513,9 +77,13 @@ distclean:
 	rm -f *.out
 	rm -f *.toc
 
+	## Files from subfolders
+	rm -f part*/*.aux
+
 	## Intermediate documents:
 	rm -f *.dvi
 	rm -f *-converted-to.*
+	rm -f *xdv
 	# these rules might exclude image files for figures etc.
 	# *.ps
 	# *.eps
@@ -629,7 +197,7 @@ distclean:
 	rm -f *.upa
 	rm -f *.upb
 
-	#pythontex
+	# pythontex
 	rm -f *.pytxcode
 	rm -f pythontex-files-*/
 
@@ -692,6 +260,10 @@ distclean:
 	# latexindent backup
 	rm -f *.bak[0-9]
 
-release: all
-	git add dissertation.pdf
-	git add synopsis.pdf
+	# compressed pdf file
+	rm -f *_compressed.pdf
+
+	# biber tool
+	rm -f bibcheck.log
+	rm -f _bibertool.bib
+
