@@ -3,6 +3,7 @@ synopsis synopsis-draft draft talk dissertation-preformat \
 dissertation-formated synopsis-preformat synopsis-formated \
 spell-check indent compress examples clean distclean release
 
+# include before variable definitions
 ifneq ($(SystemDrive),)
     include windows.mk
 else
@@ -12,15 +13,26 @@ endif
 MKRC ?= latexmkrc
 TARGET ?= dissertation
 BACKEND ?= -pdfxe # -pdf=pdflatex;-pdfxe=xelatex;-pdflua=lualatex
-JOBNAME = $(TARGET)
+JOBNAME ?= $(TARGET)
 
-export DRAFTON ?= 0 # 1=on;0=off
-export ALTFONT ?= 0 # 0=CMU;1=MS fonts;2=Liberation fonts
-export USEBIBER ?= 1 # 0=bibtex8;1=biber
-export IMGCOMPILE ?= 0 # 1=on;0=off
-export LATEXFLAXS := -halt-on-error -file-line-error
+DRAFTON ?= 0 # 1=on;0=off
+FONTFAMILY ?= 0 # 0=CMU;1=MS fonts;2=Liberation fonts
+ALTFONT ?= 0 # 0=Computer Modern;1=pscyr;2=XCharter
+USEBIBER ?= 1 # 0=bibtex8;1=biber
+IMGCOMPILE ?= 0 # 1=on;0=off
+LATEXFLAGS := -halt-on-error -file-line-error
+
+export DRAFTON
+export FONTFAMILY
+export ALTFONT
+export USEBIBER
+export IMGCOMPILE
+export LATEXFLAGS
 
 all: synopsis dissertation
+
+# include after "all" rule
+include examples.mk
 
 preformat: synopsis-preformat
 #dissertation-preformat
