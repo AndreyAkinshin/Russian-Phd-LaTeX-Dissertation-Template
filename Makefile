@@ -1,7 +1,7 @@
 .PHONY: all preformat dissertation dissertation-draft pdflatex \
 synopsis synopsis-draft draft talk dissertation-preformat \
 dissertation-formated synopsis-preformat synopsis-formated \
-spell-check indent compress clean distclean release
+_compile spell-check indent compress clean distclean release
 
 # include before variable definitions
 ifneq ($(SystemDrive),)
@@ -38,20 +38,23 @@ include examples.mk
 
 preformat: synopsis-preformat dissertation-preformat
 
-%.pdf: %.tex
-	latexmk $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $<
+_compile:
+	latexmk $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $(TARGET)
 
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
 dissertation: TARGET=dissertation
-dissertation: dissertation.pdf
+dissertation:
+	"$(MAKE)" _compile
 
 synopsis: TARGET=synopsis
-synopsis: synopsis.pdf
+synopsis:
+	"$(MAKE)" _compile
 
 presentation: TARGET=presentation
-presentation: presentation.pdf
+presentation:
+	"$(MAKE)" _compile
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
