@@ -28,8 +28,8 @@ preformat: synopsis-preformat
 %.pdf: %.tex
 	latexmk $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $<
 
-%.ltx: %.tex
-	etex -ini "&latex" $< $@
+mylatexformat.ltx:
+	etex -ini "&latex" $@ """$(TARGET)"""
 
 dissertation: TARGET=dissertation
 dissertation: dissertation.pdf
@@ -51,11 +51,13 @@ pdflatex: dissertation sinopsys
 
 draft: dissertation-draft synopsis-draft
 
-dissertation-preformat: dissertation.ltx dissertation
+dissertation-preformat: TARGET=dissertation
+dissertation-preformat: mylatexformat.ltx dissertation
 
 dissertation-formated: dissertation
 
-synopsis-preformat: synopsis.ltx synopsis
+synopsis-preformat: TARGET=synopsis
+synopsis-preformat: mylatexformat.ltx synopsis
 
 synopsis-formated: synopsis
 
