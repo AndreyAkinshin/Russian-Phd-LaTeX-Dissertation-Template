@@ -35,17 +35,20 @@ $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 # set to 1 to count CPU time
 $show_time = 0;
 
+# record access files
 $recorder = 1;
 
+# extensions to clean with -c flag
 $clean_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
 
+# extensions to clean with -C flag
 $clean_full_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.pdf";
 
 # this option is for debugging
-# 0 to dilently delete files, 1 to show what would be deleted
+# 0 to silently delete files, 1 to show what would be deleted
 $remove_dryrun = 0;
 
-# literal file strings
+# literal file strings to delete with -c flag
 @clean_literal = ("mylatexformat.fmt", "mylatexformat.log");
 
 ## Core latex/pdflatex auxiliary files:
@@ -153,9 +156,9 @@ push(@clean_regexp,
 # knitr
 push(@clean_regexp,
      "*-concordance.tex",
-     "*.tikz",
      "*-tikzDictionary",
     );
+# "*.tikz",
 
 # listings
 push(@clean_regexp,
@@ -310,6 +313,9 @@ push(@clean_regexp,
      "bibcheck.log",
      "*_bibertool.bib",
     );
+
+########################################################
+# functions
 
 sub regexp_cleanup {
     my @clean_regexp_dirs = split /(?<=\s)/, $REGEXDIRS;

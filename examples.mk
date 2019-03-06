@@ -27,8 +27,10 @@ examples-pdflatex-cm:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	)))
-	"$(MAKE)" distclean
+	) \
+	"$(MAKE)" distclean;\
+	))
+
 
 examples-pdflatex-pscyr: JOBNAME=$@
 examples-pdflatex-pscyr: BACKEND=-pdf
@@ -45,10 +47,9 @@ examples-pdflatex-pscyr:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-pdflatex-xcharter: JOBNAME=$@
 examples-pdflatex-xcharter: BACKEND=-pdf
@@ -65,10 +66,9 @@ examples-pdflatex-xcharter:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-xelatex-cmu: JOBNAME=$@
 examples-xelatex-cmu: BACKEND=-pdfxe
@@ -85,10 +85,9 @@ examples-xelatex-cmu:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-xelatex-ms: JOBNAME=$@
 examples-xelatex-ms: BACKEND=-pdfxe
@@ -105,10 +104,9 @@ examples-xelatex-ms:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-xelatex-liberation: JOBNAME=$@
 examples-xelatex-liberation: BACKEND=-pdfxe
@@ -125,10 +123,9 @@ examples-xelatex-liberation:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-lualatex-cmu: JOBNAME=$@
 examples-lualatex-cmu: BACKEND=-pdflua
@@ -145,10 +142,9 @@ examples-lualatex-cmu:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-lualatex-ms: JOBNAME=$@
 examples-lualatex-ms: BACKEND=-pdflua
@@ -165,10 +161,9 @@ examples-lualatex-ms:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))
 
 examples-lualatex-liberation: JOBNAME=$@
 examples-lualatex-liberation: BACKEND=-pdflua
@@ -185,7 +180,6 @@ examples-lualatex-liberation:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
-		TARGET=$(TYPE) \
-		clean; \
-	)))
+	) \
+	"$(MAKE)" distclean;\
+	))

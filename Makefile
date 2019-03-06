@@ -1,8 +1,17 @@
 .PHONY: all preformat dissertation dissertation-draft pdflatex \
 synopsis synopsis-draft draft talk dissertation-preformat \
 dissertation-formated synopsis-preformat synopsis-formated \
-_compile spell-check indent compress clean distclean release
+_clean _compile spell-check indent compress clean distclean release
 
+# settings precedence: command line>usercfg.mk>{windows,unix}.mk
+
+# user settings
+# include before variable definitions
+ifneq ($(wildcard usercfg.mk),)
+	include usercfg.mk
+endif
+
+# platform specific settings
 # include before variable definitions
 ifneq ($(SystemDrive),)
     include windows.mk
@@ -85,9 +94,11 @@ release: all
 	git add dissertation.pdf
 	git add synopsis.pdf
 
-clean: Dissertation Synopsis Presentation
-	latexmk -r $(MKRC) -c $^
+_clean:
+	latexmk -f -r $(MKRC) -c $(TARGET)
+
+clean: TARGET=dissertation synopsis presentation
+clean: _clean
 
 distclean: REGEXREMOVE=1
-distclean: Dissertation Synopsis Presentation
-	latexmk -r $(MKRC) -C $^
+distclean: clean
