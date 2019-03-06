@@ -22,6 +22,8 @@ USEBIBER ?= 1 # 0=bibtex8;1=biber
 IMGCOMPILE ?= 0 # 1=on;0=off
 LATEXFLAGS += -halt-on-error -file-line-error
 BIBERFLAGS ?=
+REGEXREMOVE ?= 0 # remove files using regex
+REGEXDIRS ?= . Dissertation Synopsis Presentation
 
 export DRAFTON
 export FONTFAMILY
@@ -30,6 +32,8 @@ export USEBIBER
 export IMGCOMPILE
 export LATEXFLAGS
 export BIBERFLAGS
+export REGEXREMOVE
+export REGEXDIRS
 
 all: synopsis dissertation
 
@@ -82,206 +86,7 @@ release: all
 	git add synopsis.pdf
 
 clean:
-	latexmk -jobname=$(JOBNAME) -c $(TARGET)
+	latexmk -r $(MKRC) -c $(TARGET)
 
-distclean: clean
-	latexmk -jobname=$(JOBNAME) -C $(TARGET)
-
-# ## Core latex/pdflatex auxiliary files:
-# *.aux
-# *.lof
-# *.log
-# *.lot
-# *.fls
-# *.out
-# *.toc
-
-# ## Files from subfolders
-# part*/*.aux
-
-# ## Intermediate documents:
-# *.dvi
-# *-converted-to.*
-# *xdv
-# # these rules might exclude image files for figures etc.
-# # *.ps
-# # *.eps
-# # *.pdf
-
-# ## Bibliography auxiliary files (bibtex/biblatex/biber):
-# *.bbl
-# *.bcf
-# *.blg
-# *-blx.aux
-# *-blx.bib
-# *.brf
-# *.run.xml
-
-# ## Build tool auxiliary files:
-# *.fdb_latexmk
-# *.synctex
-# *.synctex.gz
-# *.synctex.gz\(busy\)
-# *.pdfsync
-
-# ## Auxiliary and intermediate files from other packages:
-
-# # algorithms
-# *.alg
-# *.loa
-
-# # achemso
-# acs-*.bib
-
-# # amsthm
-# *.thm
-
-# # beamer
-# *.nav
-# *.snm
-# *.vrb
-
-# #(e)ledmac/(e)ledpar
-# *.end
-# *.[1-9]
-# *.[1-9][0-9]
-# *.[1-9][0-9][0-9]
-# *.[1-9]R
-# *.[1-9][0-9]R
-# *.[1-9][0-9][0-9]R
-# *.eledsec[1-9]
-# *.eledsec[1-9]R
-# *.eledsec[1-9][0-9]
-# *.eledsec[1-9][0-9]R
-# *.eledsec[1-9][0-9][0-9]
-# *.eledsec[1-9][0-9][0-9]R
-
-# # glossaries
-# *.acn
-# *.acr
-# *.glg
-# *.glo
-# *.gls
-
-# # gnuplottex
-# *-gnuplottex-*
-
-# # hyperref
-# *.brf
-
-# # knitr
-# *-concordance.tex
-# *.tikz
-# *-tikzDictionary
-
-# # listings
-# *.lol
-
-# # makeidx
-# *.idx
-# *.ilg
-# *.ind
-# *.ist
-
-# # minitoc
-# *.maf
-# *.mtc
-# *.mtc[0-9]
-# *.mtc[1-9][0-9]
-
-# # minted
-# _minted*
-# *.pyg
-
-# # morewrites
-# *.mw
-
-# # mylatexformat
-# *.fmt
-
-# # nomencl
-# *.nlo
-
-# # sagetex
-# *.sagetex.sage
-# *.sagetex.py
-# *.sagetex.scmd
-
-# # sympy
-# *.sout
-# *.sympy
-# sympy-plots-for-*.tex/
-
-# # pdfcomment
-# *.upa
-# *.upb
-
-# # pythontex
-# *.pytxcode
-# pythontex-files-*/
-
-# # Texpad
-# .texpadtmp
-
-# # TikZ & PGF
-# *.dpth
-# *.md5
-# *.auxlock
-
-# # todonotes
-# *.tdo
-
-# # xindy
-# *.xdy
-
-# # WinEdt
-# *.bak
-# *.sav
-
-# # GnuEmacs
-# *~
-
-# # endfloat
-# *.ttt
-# *.fff
-# *.aux
-# *.bbl
-# *.blg
-# *.dvi
-# *.fdb_latexmk
-# *.fls
-# *.glg
-# *.glo
-# *.gls
-# *.idx
-# *.ilg
-# *.ind
-# *.ist
-# *.lof
-# *.log
-# *.lot
-# *.nav
-# *.nlo
-# *.out
-# *.pdfsync
-# *.ps
-# *.snm
-# *.synctex.gz
-# *.toc
-# *.vrb
-# *.maf
-# *.mtc
-# *.mtc0
-# *.bak
-# *.bcf
-# *.run.xml
-
-# # latexindent backup
-# *.bak[0-9]
-
-# # compressed pdf file
-# *_compressed.pdf
-
-# # biber tool
-# bibcheck.log
-# *_bibertool.bib
+distclean:
+	latexmk -r $(MKRC) -C $(TARGET)
