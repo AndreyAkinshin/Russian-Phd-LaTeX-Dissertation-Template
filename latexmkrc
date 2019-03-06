@@ -9,26 +9,26 @@ $REGEXREMOVE = $ENV{REGEXREMOVE} || "0";
 $REGEXDIRS = $ENV{REGEXDIRS} || ". Dissertation Synopsis Presentation";
 
 $pdflatex = 'pdflatex ' . $LATEXFLAGS .
-    ' %O \'\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
+    ' %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
     '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY .
     '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
     '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER .
     '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
-    '}\input{%T}\'';
+    '}\input{%T}"';
 $xelatex = 'xelatex ' . $LATEXFLAGS .
-    ' -no-pdf %O \'\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
+    ' -no-pdf %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
     '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY.
     '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
     '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER.
     '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
-    '}\input{%T}\'';
+    '}\input{%T}"';
 $lualatex = 'lualatex ' . $LATEXFLAGS .
-    ' %O \'\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
+    ' %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
     '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY.
     '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
     '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER.
     '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
-    '}\input{%T}\'';
+    '}\input{%T}"';
 $biber = 'biber ' . $BIBERFLAGS . ' %O %S';
 $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
@@ -39,7 +39,7 @@ $recorder = 1;
 
 $clean_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
 
-$clean_full_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %.pdf";
+$clean_full_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.pdf";
 
 # this option is for debugging
 # 0 to dilently delete files, 1 to show what would be deleted

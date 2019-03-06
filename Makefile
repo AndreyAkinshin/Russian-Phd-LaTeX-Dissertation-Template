@@ -88,5 +88,6 @@ release: all
 clean: Dissertation Synopsis Presentation
 	latexmk -r $(MKRC) -c $^
 
+distclean: REGEXREMOVE=1
 distclean: Dissertation Synopsis Presentation
 	latexmk -r $(MKRC) -C $^

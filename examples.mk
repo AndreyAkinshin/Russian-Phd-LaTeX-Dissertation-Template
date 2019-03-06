@@ -10,7 +10,7 @@ examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
 examples-lualatex-liberation
 
-EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))_$(if $(BIB),bibtex,biber)$(if $(DRF),_draft)
+EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
 
 examples-pdflatex-cm: JOBNAME=$@
 examples-pdflatex-cm: BACKEND=-pdf
