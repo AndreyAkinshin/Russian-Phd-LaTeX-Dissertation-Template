@@ -1,6 +1,6 @@
 # example rules
 
-.PHONY: examples examples-pdflatex-cm examples-pdflatex-pscyr \
+.PHONY: _name examples examples-pdflatex-cm examples-pdflatex-pscyr \
 examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
 examples-lualatex-liberation
@@ -10,7 +10,7 @@ examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
 examples-lualatex-liberation
 
-EXAMPLENAME = $(JOBNAME)_$(TYPE)_draft-$(DRF)_biber-$(BIB)
+EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))_$(if $(BIB),bibtex,biber)$(if $(DRF),_draft)
 
 examples-pdflatex-cm: JOBNAME=$@
 examples-pdflatex-cm: BACKEND=-pdf
