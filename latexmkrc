@@ -16,7 +16,7 @@ $pdflatex = 'pdflatex ' . $LATEXFLAGS .
     '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
     '}\input{%T}"';
 $xelatex = 'xelatex ' . $LATEXFLAGS .
-    ' -no-pdf %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
+    ' %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
     '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY.
     '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
     '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER.

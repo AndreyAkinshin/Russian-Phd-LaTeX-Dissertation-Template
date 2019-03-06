@@ -20,7 +20,7 @@ FONTFAMILY ?= 0 # 0=CMU;1=MS fonts;2=Liberation fonts
 ALTFONT ?= 0 # 0=Computer Modern;1=pscyr;2=XCharter
 USEBIBER ?= 1 # 0=bibtex8;1=biber
 IMGCOMPILE ?= 0 # 1=on;0=off
-LATEXFLAGS += -halt-on-error -file-line-error
+LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
 REGEXREMOVE ?= 0 # remove files using regex
 REGEXDIRS ?= . Dissertation Synopsis Presentation
