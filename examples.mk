@@ -1,21 +1,21 @@
 # example rules
 
-.PHONY: examples examples-pdflatex-modern examples-pdflatex-pscyr \
+.PHONY: examples examples-pdflatex-cm examples-pdflatex-pscyr \
 examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
 examples-lualatex-liberation
 
-examples: examples-pdflatex-modern examples-pdflatex-pscyr \
+examples: examples-pdflatex-cm examples-pdflatex-pscyr \
 examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
 examples-lualatex-liberation
 
 EXAMPLENAME = $(JOBNAME)_$(TYPE)_draft-$(DRF)_biber-$(BIB)
 
-examples-pdflatex-modern: JOBNAME=$@
-examples-pdflatex-modern: BACKEND=-pdf
-examples-pdflatex-modern: ALTFONT=0
-examples-pdflatex-modern:
+examples-pdflatex-cm: JOBNAME=$@
+examples-pdflatex-cm: BACKEND=-pdf
+examples-pdflatex-cm: ALTFONT=0
+examples-pdflatex-cm:
 	#
 	$(foreach DRF,0 1, \
 	$(foreach BIB,0 1, \
@@ -28,7 +28,9 @@ examples-pdflatex-modern:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-pdflatex-pscyr: JOBNAME=$@
@@ -44,12 +46,14 @@ examples-pdflatex-pscyr:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=0;\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-pdflatex-xcharter: JOBNAME=$@
 examples-pdflatex-xcharter: BACKEND=-pdf
-examples-pdflatex-xcharter: ALTFONT=1
+examples-pdflatex-xcharter: ALTFONT=2
 examples-pdflatex-xcharter:
 	#
 	$(foreach DRF,0 1, \
@@ -63,7 +67,9 @@ examples-pdflatex-xcharter:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-xelatex-cmu: JOBNAME=$@
@@ -82,7 +88,9 @@ examples-xelatex-cmu:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-xelatex-ms: JOBNAME=$@
@@ -101,7 +109,9 @@ examples-xelatex-ms:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-xelatex-liberation: JOBNAME=$@
@@ -120,7 +130,9 @@ examples-xelatex-liberation:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-lualatex-cmu: JOBNAME=$@
@@ -139,7 +151,9 @@ examples-lualatex-cmu:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-lualatex-ms: JOBNAME=$@
@@ -158,7 +172,9 @@ examples-lualatex-ms:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))
 
 examples-lualatex-liberation: JOBNAME=$@
@@ -177,5 +193,7 @@ examples-lualatex-liberation:
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
-	"$(MAKE)" distclean; \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) \
+		TARGET=$(TYPE) \
+		clean; \
 	)))

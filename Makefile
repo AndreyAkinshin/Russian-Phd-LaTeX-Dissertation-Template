@@ -82,205 +82,206 @@ release: all
 	git add synopsis.pdf
 
 clean:
-	latexmk -C
-	rm -f $(JOBNAME).bbl
+	latexmk -jobname=$(JOBNAME) -c $(TARGET)
 
 distclean: clean
-	## Core latex/pdflatex auxiliary files:
-	rm -f *.aux
-	rm -f *.lof
-	rm -f *.log
-	rm -f *.lot
-	rm -f *.fls
-	rm -f *.out
-	rm -f *.toc
+	latexmk -jobname=$(JOBNAME) -C $(TARGET)
 
-	## Files from subfolders
-	rm -f part*/*.aux
+# ## Core latex/pdflatex auxiliary files:
+# *.aux
+# *.lof
+# *.log
+# *.lot
+# *.fls
+# *.out
+# *.toc
 
-	## Intermediate documents:
-	rm -f *.dvi
-	rm -f *-converted-to.*
-	rm -f *xdv
-	# these rules might exclude image files for figures etc.
-	# *.ps
-	# *.eps
-	# *.pdf
+# ## Files from subfolders
+# part*/*.aux
 
-	## Bibliography auxiliary files (bibtex/biblatex/biber):
-	rm -f *.bbl
-	rm -f *.bcf
-	rm -f *.blg
-	rm -f *-blx.aux
-	rm -f *-blx.bib
-	rm -f *.brf
-	rm -f *.run.xml
+# ## Intermediate documents:
+# *.dvi
+# *-converted-to.*
+# *xdv
+# # these rules might exclude image files for figures etc.
+# # *.ps
+# # *.eps
+# # *.pdf
 
-	## Build tool auxiliary files:
-	rm -f *.fdb_latexmk
-	rm -f *.synctex
-	rm -f *.synctex.gz
-	rm -f *.synctex.gz\(busy\)
-	rm -f *.pdfsync
+# ## Bibliography auxiliary files (bibtex/biblatex/biber):
+# *.bbl
+# *.bcf
+# *.blg
+# *-blx.aux
+# *-blx.bib
+# *.brf
+# *.run.xml
 
-	## Auxiliary and intermediate files from other packages:
+# ## Build tool auxiliary files:
+# *.fdb_latexmk
+# *.synctex
+# *.synctex.gz
+# *.synctex.gz\(busy\)
+# *.pdfsync
 
-	# algorithms
-	rm -f *.alg
-	rm -f *.loa
+# ## Auxiliary and intermediate files from other packages:
 
-	# achemso
-	rm -f acs-*.bib
+# # algorithms
+# *.alg
+# *.loa
 
-	# amsthm
-	rm -f *.thm
+# # achemso
+# acs-*.bib
 
-	# beamer
-	rm -f *.nav
-	rm -f *.snm
-	rm -f *.vrb
+# # amsthm
+# *.thm
 
-	#(e)ledmac/(e)ledpar
-	rm -f *.end
-	rm -f *.[1-9]
-	rm -f *.[1-9][0-9]
-	rm -f *.[1-9][0-9][0-9]
-	rm -f *.[1-9]R
-	rm -f *.[1-9][0-9]R
-	rm -f *.[1-9][0-9][0-9]R
-	rm -f *.eledsec[1-9]
-	rm -f *.eledsec[1-9]R
-	rm -f *.eledsec[1-9][0-9]
-	rm -f *.eledsec[1-9][0-9]R
-	rm -f *.eledsec[1-9][0-9][0-9]
-	rm -f *.eledsec[1-9][0-9][0-9]R
+# # beamer
+# *.nav
+# *.snm
+# *.vrb
 
-	# glossaries
-	rm -f *.acn
-	rm -f *.acr
-	rm -f *.glg
-	rm -f *.glo
-	rm -f *.gls
+# #(e)ledmac/(e)ledpar
+# *.end
+# *.[1-9]
+# *.[1-9][0-9]
+# *.[1-9][0-9][0-9]
+# *.[1-9]R
+# *.[1-9][0-9]R
+# *.[1-9][0-9][0-9]R
+# *.eledsec[1-9]
+# *.eledsec[1-9]R
+# *.eledsec[1-9][0-9]
+# *.eledsec[1-9][0-9]R
+# *.eledsec[1-9][0-9][0-9]
+# *.eledsec[1-9][0-9][0-9]R
 
-	# gnuplottex
-	rm -f *-gnuplottex-*
+# # glossaries
+# *.acn
+# *.acr
+# *.glg
+# *.glo
+# *.gls
 
-	# hyperref
-	rm -f *.brf
+# # gnuplottex
+# *-gnuplottex-*
 
-	# knitr
-	rm -f *-concordance.tex
-	rm -f *.tikz
-	rm -f *-tikzDictionary
+# # hyperref
+# *.brf
 
-	# listings
-	rm -f *.lol
+# # knitr
+# *-concordance.tex
+# *.tikz
+# *-tikzDictionary
 
-	# makeidx
-	rm -f *.idx
-	rm -f *.ilg
-	rm -f *.ind
-	rm -f *.ist
+# # listings
+# *.lol
 
-	# minitoc
-	rm -f *.maf
-	rm -f *.mtc
-	rm -f *.mtc[0-9]
-	rm -f *.mtc[1-9][0-9]
+# # makeidx
+# *.idx
+# *.ilg
+# *.ind
+# *.ist
 
-	# minted
-	rm -f _minted*
-	rm -f *.pyg
+# # minitoc
+# *.maf
+# *.mtc
+# *.mtc[0-9]
+# *.mtc[1-9][0-9]
 
-	# morewrites
-	rm -f *.mw
+# # minted
+# _minted*
+# *.pyg
 
-	# mylatexformat
-	rm -f *.fmt
+# # morewrites
+# *.mw
 
-	# nomencl
-	rm -f *.nlo
+# # mylatexformat
+# *.fmt
 
-	# sagetex
-	rm -f *.sagetex.sage
-	rm -f *.sagetex.py
-	rm -f *.sagetex.scmd
+# # nomencl
+# *.nlo
 
-	# sympy
-	rm -f *.sout
-	rm -f *.sympy
-	rm -f sympy-plots-for-*.tex/
+# # sagetex
+# *.sagetex.sage
+# *.sagetex.py
+# *.sagetex.scmd
 
-	# pdfcomment
-	rm -f *.upa
-	rm -f *.upb
+# # sympy
+# *.sout
+# *.sympy
+# sympy-plots-for-*.tex/
 
-	# pythontex
-	rm -f *.pytxcode
-	rm -f pythontex-files-*/
+# # pdfcomment
+# *.upa
+# *.upb
 
-	# Texpad
-	rm -f .texpadtmp
+# # pythontex
+# *.pytxcode
+# pythontex-files-*/
 
-	# TikZ & PGF
-	rm -f *.dpth
-	rm -f *.md5
-	rm -f *.auxlock
+# # Texpad
+# .texpadtmp
 
-	# todonotes
-	rm -f *.tdo
+# # TikZ & PGF
+# *.dpth
+# *.md5
+# *.auxlock
 
-	# xindy
-	rm -f *.xdy
+# # todonotes
+# *.tdo
 
-	# WinEdt
-	rm -f *.bak
-	rm -f *.sav
+# # xindy
+# *.xdy
 
-	# GnuEmacs
-	rm -f *~
+# # WinEdt
+# *.bak
+# *.sav
 
-	# endfloat
-	rm -f *.ttt
-	rm -f *.fff
-	rm -f *.aux
-	rm -f *.bbl
-	rm -f *.blg
-	rm -f *.dvi
-	rm -f *.fdb_latexmk
-	rm -f *.fls
-	rm -f *.glg
-	rm -f *.glo
-	rm -f *.gls
-	rm -f *.idx
-	rm -f *.ilg
-	rm -f *.ind
-	rm -f *.ist
-	rm -f *.lof
-	rm -f *.log
-	rm -f *.lot
-	rm -f *.nav
-	rm -f *.nlo
-	rm -f *.out
-	rm -f *.pdfsync
-	rm -f *.ps
-	rm -f *.snm
-	rm -f *.synctex.gz
-	rm -f *.toc
-	rm -f *.vrb
-	rm -f *.maf
-	rm -f *.mtc
-	rm -f *.mtc0
-	rm -f *.bak
-	rm -f *.bcf
-	rm -f *.run.xml
+# # GnuEmacs
+# *~
 
-	# latexindent backup
-	rm -f *.bak[0-9]
+# # endfloat
+# *.ttt
+# *.fff
+# *.aux
+# *.bbl
+# *.blg
+# *.dvi
+# *.fdb_latexmk
+# *.fls
+# *.glg
+# *.glo
+# *.gls
+# *.idx
+# *.ilg
+# *.ind
+# *.ist
+# *.lof
+# *.log
+# *.lot
+# *.nav
+# *.nlo
+# *.out
+# *.pdfsync
+# *.ps
+# *.snm
+# *.synctex.gz
+# *.toc
+# *.vrb
+# *.maf
+# *.mtc
+# *.mtc0
+# *.bak
+# *.bcf
+# *.run.xml
 
-	# compressed pdf file
-	rm -f *_compressed.pdf
+# # latexindent backup
+# *.bak[0-9]
 
-	# biber tool
-	rm -f bibcheck.log
-	rm -f *_bibertool.bib
+# # compressed pdf file
+# *_compressed.pdf
+
+# # biber tool
+# bibcheck.log
+# *_bibertool.bib
