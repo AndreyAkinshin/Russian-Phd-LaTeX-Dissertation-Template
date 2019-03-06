@@ -9,10 +9,28 @@ $REGEXREMOVE = $ENV{REGEXREMOVE} = "0";
 $REGEXDIRS = $ENV{REGEXDIRS} = ". Dissertation Synopsis Presentation";
 
 
-$pdflatex = 'pdflatex '.$LATEXFLAGS.' %O "\newcounter{draft}\setcounter{draft}{ '.$DRAFTON.'}\newcounter{fontfamily}\setcounter{fontfamily}{'.$FONTFAMILY.'}\newcounter{usealtfont}\setcounter{usealtfont}{'.$ALTFONT.'}\newcounter{bibliosel}\setcounter{bibliosel}{'.$USEBIBER.'}\newcounter{imgprecompile}\setcounter{imgprecompile}{'.$IMGCOMPILE.'}\input{%T}"';
-$xelatex = 'xelatex '.$LATEXFLAGS.' -no-pdf %O "\newcounter{draft}\setcounter{draft}{'.$DRAFTON.'}\newcounter{fontfamily}\setcounter{fontfamily}{'.$FONTFAMILY.'}\newcounter{usealtfont}\setcounter{usealtfont}{'.$ALTFONT.'}\newcounter{bibliosel}\setcounter{bibliosel}{'.$USEBIBER.'}\newcounter{imgprecompile}\setcounter{imgprecompile}{'.$IMGCOMPILE.'}\input{%T}"';
-$lualatex = 'lualatex '.$LATEXFLAGS.' %O "\newcounter{draft}\setcounter{draft}{'.$DRAFTON.'}\newcounter{fontfamily}\setcounter{fontfamily}{'.$FONTFAMILY.'}\newcounter{usealtfont}\setcounter{usealtfont}{'.$ALTFONT.'}\newcounter{bibliosel}\setcounter{bibliosel}{'.$USEBIBER.'}\newcounter{imgprecompile}\setcounter{imgprecompile}{'.$IMGCOMPILE.'}\input{%T}"';
-$biber = 'biber '.$BIBERFLAGS.' %O %S';
+$pdflatex = 'pdflatex ' . $LATEXFLAGS . \
+    ' %O \newcounter{draft}\setcounter{draft}{' . $DRAFTON . \
+    '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY . \
+    '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT . \
+    '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER . \
+    '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE . \
+    '}\input{%T}';
+$xelatex = 'xelatex ' . $LATEXFLAGS . \
+    ' -no-pdf %O \newcounter{draft}\setcounter{draft}{' . $DRAFTON . \
+    '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY. \
+    '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT . \
+    '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER. \
+    '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE . \
+    '}\input{%T}';
+$lualatex = 'lualatex ' . $LATEXFLAGS . \
+    '%O \newcounter{draft}\setcounter{draft}{' . $DRAFTON . \
+    '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY. \
+    '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT . \
+    '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER. \
+    '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE . \
+    '}\input{%T}';
+$biber = 'biber ' . $BIBERFLAGS . ' %O %S';
 $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
 # set to 1 to count CPU time
@@ -294,19 +312,14 @@ push(@clean_regexp,
      "*_bibertool.bib",
     );
 
-use File::Find::Rule;
 sub regexp_cleanup {
     my @clean_regexp_dirs = split /(?<=\s)/, $REGEXDIRS;
     foreach my $dir (@clean_regexp_dirs) {
         $dir =~ s/^\s*(.*?)\s*$/$1/;
+        print "$dir/$pattern\n";
         foreach my $pattern (@clean_regexp)
         {
-            my $level = 1;
-            my @files = File::Find::Rule->file()
-                ->name($pattern)
-                ->maxdepth($level)
-                ->in($dir);
-            #unlink_or_move( glob( "$file" ) );
+            my @files = glob "$dir/$pattern";
             foreach my $file (@files) {
                 if ($remove_dryrun == 0) {
                     unlink_or_move( glob( "$file" ) );

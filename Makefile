@@ -85,8 +85,8 @@ release: all
 	git add dissertation.pdf
 	git add synopsis.pdf
 
-clean:
-	latexmk -r $(MKRC) -c $(TARGET)
+clean: Dissertation Synopsis Presentation
+	latexmk -r $(MKRC) -c $^
 
-distclean:
-	latexmk -r $(MKRC) -C $(TARGET)
+distclean: Dissertation Synopsis Presentation
+	latexmk -r $(MKRC) -C $^
