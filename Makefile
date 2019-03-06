@@ -95,10 +95,12 @@ release: all
 	git add synopsis.pdf
 
 _clean:
-	latexmk -f -r $(MKRC) -c $(TARGET)
+	latexmk -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
 
-clean: TARGET=dissertation synopsis presentation
-clean: _clean
+clean:
+	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
+	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _clean
+	"$(MAKE)" TARGET=presentation JOBNAME=presentation _clean
 
 distclean: REGEXREMOVE=1
 distclean: clean
