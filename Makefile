@@ -1,7 +1,8 @@
 .PHONY: all preformat dissertation dissertation-draft pdflatex \
 synopsis synopsis-draft draft talk dissertation-preformat \
 dissertation-formated synopsis-preformat synopsis-formated \
-_clean _compile spell-check indent compress clean distclean release
+_clean _distclean _compile spell-check indent compress clean \
+distclean release
 
 # settings precedence: command line>usercfg.mk>{windows,unix}.mk
 
@@ -32,7 +33,6 @@ IMGCOMPILE ?= 0 # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
 LATEXMKFLAGS ?=
-REGEXREMOVE ?= 0 # remove files using regex
 REGEXDIRS ?= . Dissertation Synopsis Presentation
 
 export DRAFTON
@@ -95,10 +95,15 @@ release: all
 _clean:
 	latexmk $(LATEXMKFLAGS) -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
 
+_distclean:
+	latexmk $(LATEXMKFLAGS) -f -r $(MKRC) -jobname=$(JOBNAME) -C $(TARGET)
+
 clean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
 	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _clean
 	"$(MAKE)" TARGET=presentation JOBNAME=presentation _clean
 
-distclean: REGEXREMOVE=1
-distclean: clean
+distclean:
+	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _distclean
+	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _distclean
+	"$(MAKE)" TARGET=presentation JOBNAME=presentation _distclean

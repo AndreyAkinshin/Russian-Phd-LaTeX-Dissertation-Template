@@ -28,9 +28,9 @@ examples-pdflatex-cm:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
-
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-pdflatex-pscyr: JOBNAME=$@
 examples-pdflatex-pscyr: BACKEND=-pdf
@@ -48,8 +48,9 @@ examples-pdflatex-pscyr:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-pdflatex-xcharter: JOBNAME=$@
 examples-pdflatex-xcharter: BACKEND=-pdf
@@ -67,8 +68,9 @@ examples-pdflatex-xcharter:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-xelatex-cmu: JOBNAME=$@
 examples-xelatex-cmu: BACKEND=-pdfxe
@@ -86,8 +88,9 @@ examples-xelatex-cmu:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-xelatex-ms: JOBNAME=$@
 examples-xelatex-ms: BACKEND=-pdfxe
@@ -105,8 +108,9 @@ examples-xelatex-ms:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-xelatex-liberation: JOBNAME=$@
 examples-xelatex-liberation: BACKEND=-pdfxe
@@ -124,8 +128,9 @@ examples-xelatex-liberation:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-lualatex-cmu: JOBNAME=$@
 examples-lualatex-cmu: BACKEND=-pdflua
@@ -143,8 +148,9 @@ examples-lualatex-cmu:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-lualatex-ms: JOBNAME=$@
 examples-lualatex-ms: BACKEND=-pdflua
@@ -162,8 +168,9 @@ examples-lualatex-ms:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))
 
 examples-lualatex-liberation: JOBNAME=$@
 examples-lualatex-liberation: BACKEND=-pdflua
@@ -172,7 +179,7 @@ examples-lualatex-liberation:
 	$(foreach DRF,0 1, \
 	$(foreach BIB,0 1, \
 	$(foreach TYPE,dissertation synopsis, \
-	"$(MAKE)" $(TYPE) \
+	echo "$(MAKE)" $(TYPE) \
 		BACKEND=$(BACKEND) \
 		FONTFAMILY=$(FONTFAMILY) \
 		ALTFONT=$(ALTFONT) \
@@ -181,5 +188,6 @@ examples-lualatex-liberation:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" _clean;\
-	))
+	$(foreach TYPE,dissertation synopsis, \
+	"$(MAKE)" JOBNAME=$(EXAMPLENAME) TARGET=$(TYPE) _clean;\
+	)))

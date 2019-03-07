@@ -5,7 +5,6 @@ $USEBIBER = $ENV{USEBIBER} || "0";
 $IMGCOMPILE = $ENV{IMGCOMPILE} || "0";
 $LATEXFLAGS = $ENV{LATEXFLAGS} || "";
 $BIBERFLAGS = $ENV{BIBERFLAGS} || "";
-$REGEXREMOVE = $ENV{REGEXREMOVE} || "0";
 $REGEXDIRS = $ENV{REGEXDIRS} || ". Dissertation Synopsis Presentation";
 
 $pdflatex = 'pdflatex ' . $LATEXFLAGS .
@@ -38,11 +37,14 @@ $show_time = 0;
 # record access files
 $recorder = 1;
 
+# delete bibtex generated files
+$bibtex_use = 2;
+
 # extensions to clean with -c flag
-$clean_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
+$clean_ext = "%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
 
 # extensions to clean with -C flag
-$clean_full_ext = "%R.bbl %R.aux lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.pdf";
+$clean_full_ext = "%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
 
 # this option is for debugging
 # 0 to silently delete files, 1 to show what would be deleted
@@ -347,31 +349,24 @@ sub literal_cleanup {
 }
 
 sub cleanup1 {
-    # Usage: cleanup1( directory, pattern_or_ext_without_period, ... )
+    # Usage: cleanup1( directory, exts_without_period, ... )
     #
-    # The directory is a fixed name, so I must escape any glob metacharacters
-    #   in it:
-    print "========= MODIFIED cleanup1 cw latexmk v. 4.39 and earlier\n";
+    # The directory and the root file name are fixed names, so I must escape
+    #   any glob metacharacters in them:
     my $dir = fix_pattern( shift );
-
-    # Change extensions to glob patterns
+    my $root_fixed = fix_pattern( $root_filename );
     foreach (@_) {
-        # If specified pattern is pure extension, without period,
-        #   wildcard character (?, *) or %R,
-        # then prepend it with directory/root_filename and period to
-        #   make a full file specification
-        # Else leave the pattern as is, to be used by glob.
-        # New feature: pattern is unchanged if it contains ., *, ?
-        (my $name = (/%R/ || /[\*\.\?]/) ? $_ : "%R.$_") =~ s/%R/$dir$root_filename/;
+        my $name = /%R/ ? $_ : "%R.$_";
+	$name =~ s/%R/${root_fixed}/;
+	$name = $dir.$name;
         if ($remove_dryrun == 0) {
             unlink_or_move( glob( "$name" ) );
         } else {
             print "Would be removed: $name\n";
         }
     }
-    literal_cleanup();
-    if ($REGEXREMOVE == "1") {
+    if ($cleanup_mode == 1) {
+        literal_cleanup();
         regexp_cleanup();
     }
 } #END cleanup1
-
