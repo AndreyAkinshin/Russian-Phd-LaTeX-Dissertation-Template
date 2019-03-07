@@ -28,7 +28,7 @@ examples-pdflatex-cm:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 
@@ -48,7 +48,7 @@ examples-pdflatex-pscyr:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-pdflatex-xcharter: JOBNAME=$@
@@ -67,7 +67,7 @@ examples-pdflatex-xcharter:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-xelatex-cmu: JOBNAME=$@
@@ -86,7 +86,7 @@ examples-xelatex-cmu:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-xelatex-ms: JOBNAME=$@
@@ -105,7 +105,7 @@ examples-xelatex-ms:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-xelatex-liberation: JOBNAME=$@
@@ -124,7 +124,7 @@ examples-xelatex-liberation:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-lualatex-cmu: JOBNAME=$@
@@ -143,7 +143,7 @@ examples-lualatex-cmu:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-lualatex-ms: JOBNAME=$@
@@ -162,7 +162,7 @@ examples-lualatex-ms:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))
 
 examples-lualatex-liberation: JOBNAME=$@
@@ -181,5 +181,5 @@ examples-lualatex-liberation:
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
-	"$(MAKE)" distclean;\
+	"$(MAKE)" _clean;\
 	))

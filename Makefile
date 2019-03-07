@@ -31,6 +31,7 @@ USEBIBER ?= 1 # 0=bibtex8;1=biber
 IMGCOMPILE ?= 0 # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
+LATEXMKFLAGS ?=
 REGEXREMOVE ?= 0 # remove files using regex
 REGEXDIRS ?= . Dissertation Synopsis Presentation
 
@@ -52,22 +53,19 @@ include examples.mk
 preformat: synopsis-preformat dissertation-preformat
 
 _compile:
-	latexmk $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $(TARGET)
+	latexmk $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $(TARGET)
 
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
-dissertation: TARGET=dissertation
 dissertation:
-	"$(MAKE)" _compile
+	"$(MAKE)" TARGET=dissertation _compile
 
-synopsis: TARGET=synopsis
 synopsis:
-	"$(MAKE)" _compile
+	"$(MAKE)" TARGET=synopsis _compile
 
-presentation: TARGET=presentation
 presentation:
-	"$(MAKE)" _compile
+	"$(MAKE)" TARGET=presentation _compile
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
@@ -95,7 +93,7 @@ release: all
 	git add synopsis.pdf
 
 _clean:
-	latexmk -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
+	latexmk $(LATEXMKFLAGS) -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
 
 clean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
