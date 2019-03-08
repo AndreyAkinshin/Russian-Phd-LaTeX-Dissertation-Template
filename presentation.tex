@@ -1,12 +1,17 @@
+%%% Автоопределение компилятора, флаги типа документа
+\input{common/engineflags}    
+\presentationtrue
+
 \documentclass[14pt, xcolor={dvipsnames, table, hyperref, cmyk}, utf8]{beamer}
 
-
+%%% Общие пакеты и стили
 \input{common/setup}          % общие настройки шаблона
-\input{common/packages}       % Пакеты общие для диссертации и автореферата
+\input{common/packagesForAll} % Пакеты общие для диссертации, автореферата и презентации
 \input{common/data}           % Основные сведения
 \input{common/fonts}          % Определение шрифтов (частичное)
 
-\input{Presentation/prespreamble.tex}	% Настройки
+%%% Настройки презентации
+\input{Presentation/prespreamble.tex}
 
 
 \begin{document}

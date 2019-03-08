@@ -1,11 +1,17 @@
 %&preformat-synopsis
+
+%%% Автоопределение компилятора, флаги типа документа
+\input{common/engineflags}    
+\synopsistrue
+
 \RequirePackage[l2tabu,orthodox]{nag} % Раскомментировав, можно в логе получать рекомендации относительно правильного использования пакетов и предупреждения об устаревших и нерекомендуемых пакетах
 \PassOptionsToPackage{bookmarks=false}{hyperref}
 \documentclass[a5paper,10pt,twoside,openany,article]{memoir} %,draft
 
 \input{common/setup}          % общие настройки шаблона
-\input{common/packages}       % Пакеты общие для диссертации и автореферата
-\synopsistrue                 % Этот документ --- автореферат
+
+\input{common/packagesForAll}       % Пакеты общие для диссертации, автореферата и презентации
+\input{common/packagesForDisAndSyn} % Пакеты общие для диссертации и автореферата
 \input{Synopsis/synpackages}  % Пакеты для автореферата
 \input{Synopsis/userpackages} % Пакеты для специфических пользовательских задач
 

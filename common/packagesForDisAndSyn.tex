@@ -1,69 +1,6 @@
-%%% Проверка используемого TeX-движка %%%
-\RequirePackage{ifxetex, ifluatex}
-\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579)
-\ifxetex
-    \xetexorluatextrue
-\else
-    \ifluatex
-        \xetexorluatextrue
-    \else
-        \xetexorluatexfalse
-    \fi
-\fi
-
-\newif\ifsynopsis           % Условие, проверяющее, что документ --- автореферат
-
-\RequirePackage{etoolbox}[2015/08/02]               % Для продвинутой проверки разных условий
-
 %%% Поля и разметка страницы %%%
 \usepackage{pdflscape}                              % Для включения альбомных страниц
 \usepackage{geometry}                               % Для последующего задания полей
-
-%%% Математические пакеты %%%
-\usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
-\usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
-\usepackage{mathtools}              % Добавляет окружение multlined
-
-%%%% Установки для размера шрифта 14 pt %%%%
-%% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
-%% должно располагаться до вызова пакета fontspec или polyglossia, потому что они сбивают его работу
-\newlength{\curtextsize}
-\newlength{\bigtextsize}
-\setlength{\bigtextsize}{13.9pt}
-
-\makeatletter
-%\show\f@size                                       % неплохо для отслеживания, но вызывает стопорение процесса, если документ компилируется без команды  -interaction=nonstopmode
-\setlength{\curtextsize}{\f@size pt}
-\makeatother
-
-%%% Кодировки и шрифты %%%
-\ifxetexorluatex
-    \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
-\else
-   %%% Решение проблемы копирования текста в буфер кракозябрами
-    \ifnumequal{\value{usealtfont}}{0}{}{
-        \input glyphtounicode.tex
-        \input glyphtounicode-cmr.tex %from pdfx package
-        \pdfgentounicode=1
-    }
-    \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
-    \ifnumequal{\value{usealtfont}}{2}{}{
-        \defaulthyphenchar=127                      % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
-    }
-    \usepackage{textcomp}
-    \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
-    \ifnumequal{\value{usealtfont}}{1}{% Используется pscyr, при наличии
-        \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}  % Подключение pscyr
-    }{}
-    \usepackage[utf8]{inputenc}[2014/04/30]         % Кодировка utf8
-    \usepackage[english, russian]{babel}[2014/03/24]% Языки: русский, английский
-    \ifnumequal{\value{usealtfont}}{2}{
-        % http://dxdy.ru/post1238763.html#p1238763
-        \usepackage[scaled=0.960]{XCharter}[2017/12/19] % Подключение русифицированных шрифтов XCharter
-        \usepackage[charter, vvarbb, scaled=1.048]{newtxmath}[2017/12/14]
-        \setDisplayskipStretch{-0.078}
-    }{}
-\fi
 
 %%% Оформление абзацев %%%
 \usepackage{indentfirst}                            % Красная строка
@@ -96,6 +33,9 @@
 
 %%% Изображения %%%
 \usepackage{graphicx}[2014/04/25]                   % Подключаем пакет работы с графикой
+
+%%% Списки %%%
+\usepackage{enumitem}
 
 %%% Счётчики %%%
 \usepackage[figure,table]{totalcount}               % Счётчик рисунков и таблиц
