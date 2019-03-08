@@ -20,19 +20,26 @@ else
     include unix.mk
 endif
 
-MKRC ?= latexmkrc
+MKRC ?= settings.pl
 TARGET ?= dissertation
-BACKEND ?= -pdfxe # -pdf=pdflatex;-pdfxe=xelatex;-pdflua=lualatex
 JOBNAME ?= $(TARGET)
+BACKEND ?= -pdfxe
+# -pdf=pdflatex
+# -pdfdvi=pdflatex with dvi
+# -pdfps=pdflatex with ps
+# -pdfxe=xelatex with dvi
+# -xelatex=xelatex without dvi
+# -pdflua=lualatex with dvi
+# -lualatex=lualatex without dvi
 
-DRAFTON ?= 0 # 1=on;0=off
-FONTFAMILY ?= 0 # 0=CMU;1=MS fonts;2=Liberation fonts
-ALTFONT ?= 0 # 0=Computer Modern;1=pscyr;2=XCharter
-USEBIBER ?= 1 # 0=bibtex8;1=biber
-IMGCOMPILE ?= 0 # 1=on;0=off
+DRAFTON ?= # 1=on;0=off
+FONTFAMILY ?= # 0=CMU;1=MS fonts;2=Liberation fonts
+ALTFONT ?= # 0=Computer Modern;1=pscyr;2=XCharter
+USEBIBER ?= # 0=bibtex8;1=biber
+IMGCOMPILE ?= # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
-LATEXMKFLAGS ?=
+LATEXMKFLAGS ?= -silent -shell-escape
 REGEXDIRS ?= . Dissertation Synopsis Presentation
 
 export DRAFTON
@@ -42,18 +49,14 @@ export USEBIBER
 export IMGCOMPILE
 export LATEXFLAGS
 export BIBERFLAGS
-export REGEXREMOVE
 export REGEXDIRS
 
 all: synopsis dissertation
 
-# include after "all" rule
-include examples.mk
-
 preformat: synopsis-preformat dissertation-preformat
 
 _compile:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) --shell-escape -r $(MKRC) $(TARGET)
+	latexmk $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -r $(MKRC) $(TARGET)
 
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
@@ -93,10 +96,10 @@ release: all
 	git add synopsis.pdf
 
 _clean:
-	latexmk $(LATEXMKFLAGS) -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
+	latexmk $(LATEXMKFLAGS) $(BACKEND) -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
 
 _distclean:
-	latexmk $(LATEXMKFLAGS) -f -r $(MKRC) -jobname=$(JOBNAME) -C $(TARGET)
+	latexmk $(LATEXMKFLAGS) $(BACKEND) -f -r $(MKRC) -jobname=$(JOBNAME) -C $(TARGET)
 
 clean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
@@ -107,3 +110,6 @@ distclean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _distclean
 	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _distclean
 	"$(MAKE)" TARGET=presentation JOBNAME=presentation _distclean
+
+# include after "all" rule
+include examples.mk

@@ -1,33 +1,37 @@
-$DRAFTON = $ENV{DRAFTON} || "0";
-$FONTFAMILY = $ENV{FONTFAMILY} || "0";
-$ALTFONT = $ENV{ALTFONT} || "0";
-$USEBIBER = $ENV{USEBIBER} || "0";
-$IMGCOMPILE = $ENV{IMGCOMPILE} || "0";
+$DRAFTON = $ENV{DRAFTON} || "";
+$FONTFAMILY = $ENV{FONTFAMILY} || "";
+$ALTFONT = $ENV{ALTFONT} || "";
+$USEBIBER = $ENV{USEBIBER} || "";
+$IMGCOMPILE = $ENV{IMGCOMPILE} || "";
 $LATEXFLAGS = $ENV{LATEXFLAGS} || "";
 $BIBERFLAGS = $ENV{BIBERFLAGS} || "";
 $REGEXDIRS = $ENV{REGEXDIRS} || ". Dissertation Synopsis Presentation";
 
-$pdflatex = 'pdflatex ' . $LATEXFLAGS .
-    ' %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
-    '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY .
-    '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
-    '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER .
-    '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
-    '}\input{%T}"';
-$xelatex = 'xelatex ' . $LATEXFLAGS .
-    ' %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
-    '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY.
-    '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
-    '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER.
-    '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
-    '}\input{%T}"';
-$lualatex = 'lualatex ' . $LATEXFLAGS .
-    ' %O "\newcounter{draft}\setcounter{draft}{' . $DRAFTON .
-    '}\newcounter{fontfamily}\setcounter{fontfamily}{' . $FONTFAMILY.
-    '}\newcounter{usealtfont}\setcounter{usealtfont}{' . $ALTFONT .
-    '}\newcounter{bibliosel}\setcounter{bibliosel}{' . $USEBIBER.
-    '}\newcounter{imgprecompile}\setcounter{imgprecompile}{' . $IMGCOMPILE .
-    '}\input{%T}"';
+$counters = ' %O "';
+if ($DRAFTON ne "") {
+    $counters = $counters . '\newcounter{draft}' .
+        '\setcounter{draft}' . '{' . $DRAFTON . "}";
+}
+if ($FONTFAMILY ne "") {
+    $counters = $counters . '\newcounter{fontfamily}' .
+        '\setcounter{fontfamily}' . '{' . $FONTFAMILY . "}";
+}
+if ($ALTFONT ne "") {
+    $counters = $counters . '\newcounter{usealtfont}' .
+        '\setcounter{usealtfont}' . '{' . $ALTFONT . "}";
+}
+if ($USEBIBER ne "") {
+    $counters = $counters . '\newcounter{bibliosel}' .
+        '\setcounter{bibliosel}' . '{' . $USEBIBER . "}";
+}
+if ($IMGCOMPILE ne "") {
+    $counters = $counters . '\newcounter{imgprecompile}' .
+        '\setcounter{imgprecompile}' . '{' . $IMGCOMPILE . "}";
+}
+$counters = $counters . '\input{%T}"';
+
+# set options for all *latex
+set_tex_cmds($counters);
 $biber = 'biber ' . $BIBERFLAGS . ' %O %S';
 $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
