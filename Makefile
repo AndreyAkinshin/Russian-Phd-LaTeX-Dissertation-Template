@@ -1,8 +1,8 @@
-.PHONY: all preformat dissertation dissertation-draft pdflatex \
-synopsis synopsis-draft draft talk dissertation-preformat \
-dissertation-formated synopsis-preformat synopsis-formated \
-_clean _distclean _compile spell-check indent compress clean \
-distclean release
+.PHONY: all preformat _compile dissertation synopsis \
+presentation dissertation-draft synopsis-draft pdflatex \
+draft dissertation-preformat dissertation-formated \
+synopsis-preformat synopsis-formated release _clean \
+_distclean clean distclean
 
 # settings precedence: command line>usercfg.mk>{windows,unix}.mk
 
@@ -20,7 +20,7 @@ else
     include unix.mk
 endif
 
-MKRC ?= settings.pl
+MKRC ?= latexmkrc
 TARGET ?= dissertation
 JOBNAME ?= $(TARGET)
 BACKEND ?= -pdfxe
@@ -51,7 +51,7 @@ export LATEXFLAGS
 export BIBERFLAGS
 export REGEXDIRS
 
-all: synopsis dissertation
+all: synopsis dissertation presentation
 
 preformat: synopsis-preformat dissertation-preformat
 
