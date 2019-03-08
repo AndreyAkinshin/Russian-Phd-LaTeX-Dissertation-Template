@@ -77,7 +77,7 @@ synopsis-draft: DRAFTON=1
 synopsis-draft: synopsis
 
 pdflatex: BACKEND=-pdf
-pdflatex: dissertation sinopsys
+pdflatex: dissertation synopsis presentation
 
 draft: dissertation-draft synopsis-draft
 
