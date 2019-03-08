@@ -62,13 +62,13 @@ mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
 dissertation:
-	"$(MAKE)" TARGET=dissertation _compile
+	"$(MAKE)" BACKEND=$(BACKEND) TARGET=dissertation _compile
 
 synopsis:
-	"$(MAKE)" TARGET=synopsis _compile
+	"$(MAKE)" BACKEND=$(BACKEND) TARGET=synopsis _compile
 
 presentation:
-	"$(MAKE)" TARGET=presentation _compile
+	"$(MAKE)" BACKEND=$(BACKEND) TARGET=presentation _compile
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
