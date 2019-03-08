@@ -24,6 +24,10 @@
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 {\large Специальность \thesisSpecialtyNumber\ "---\par <<\thesisSpecialtyTitle>>}
 
+\ifdefined\thesisSpecialtyTwoNumber
+{\large Специальность \thesisSpecialtyTwoNumber\ "---\par <<\thesisSpecialtyTwoTitle>>}
+\fi
+
 \vspace{0pt plus1.5fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \Large{Автореферат}\par
 \large{диссертации на соискание учёной степени\par \thesisDegree}
