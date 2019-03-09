@@ -55,10 +55,10 @@ examples-xelatex-cmu: FONTFAMILY=0
 examples-xelatex-cmu:
 	$(basic-example)
 
-examples-xelatex-ms: JOBNAME=$@
-examples-xelatex-ms: BACKEND=-pdfxe
-examples-xelatex-ms: FONTFAMILY=1
-examples-xelatex-ms:
+examples-xelatex-msf: JOBNAME=$@
+examples-xelatex-msf: BACKEND=-pdfxe
+examples-xelatex-msf: FONTFAMILY=1
+examples-xelatex-msf:
 	$(basic-example)
 
 examples-xelatex-liberation: JOBNAME=$@
@@ -73,10 +73,10 @@ examples-lualatex-cmu: FONTFAMILY=0
 examples-lualatex-cmu:
 	$(basic-example)
 
-examples-lualatex-ms: JOBNAME=$@
-examples-lualatex-ms: BACKEND=-pdflua
-examples-lualatex-ms: FONTFAMILY=1
-examples-lualatex-ms:
+examples-lualatex-msf: JOBNAME=$@
+examples-lualatex-msf: BACKEND=-pdflua
+examples-lualatex-msf: FONTFAMILY=1
+examples-lualatex-msf:
 	$(basic-example)
 
 examples-lualatex-liberation: JOBNAME=$@
