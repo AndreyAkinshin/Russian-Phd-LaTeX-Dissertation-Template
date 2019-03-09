@@ -64,7 +64,7 @@ synopsis: JOBNAME=synopsis
 synopsis: TARGET=synopsis
 synopsis: _compile
 
-presentation: BACKEND=presentation
+presentation: JOBNAME=presentation
 presentation: TARGET=presentation
 presentation: _compile
 
