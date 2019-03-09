@@ -8,7 +8,7 @@ endif
 
 # platform specific settings
 # include before variable definitions
-ifneq ($(SystemDrive),)
+ifdef WINDIR
     include windows.mk
 else
     include unix.mk
@@ -33,7 +33,7 @@ USEBIBER ?= # 0=bibtex8;1=biber
 IMGCOMPILE ?= # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
-LATEXMKFLAGS ?=
+LATEXMKFLAGS ?= -silent
 REGEXDIRS ?= . Dissertation Synopsis Presentation
 MAKEFLAGS := -s
 
@@ -56,14 +56,17 @@ _compile:
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
-dissertation:
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=dissertation _compile
+dissertation: JOBNAME=dissertation
+dissertation: TARGET=dissertation
+dissertation: _compile
 
-synopsis:
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=synopsis _compile
+synopsis: JOBNAME=synopsis
+synopsis: TARGET=synopsis
+synopsis: _compile
 
-presentation:
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=presentation _compile
+presentation: BACKEND=presentation
+presentation: TARGET=presentation
+presentation: _compile
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
@@ -87,7 +90,9 @@ synopsis-preformat: mylatexformat.ltx synopsis
 synopsis-formated: synopsis
 
 synopsis-booklet: synopsis
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=synopsis_booklet _compile
+synopsis-booklet: TARGET=synopsis_booklet _compile
+synopsis-booklet: JOBNAME=synopsis_booklet _compile
+synopsis-booklet: _compile
 
 release: all
 	git add dissertation.pdf
