@@ -7,7 +7,7 @@ $LATEXFLAGS = $ENV{LATEXFLAGS};
 $BIBERFLAGS = $ENV{BIBERFLAGS};
 $REGEXDIRS = $ENV{REGEXDIRS} || '. Dissertation Synopsis Presentation';
 
-$counters = ' %O "';
+$counters = $LATEXFLAGS . ' %O "';
 if ($DRAFTON ne '') {
     $counters = $counters . '\newcounter{draft}' .
         '\setcounter{draft}' . '{' . $DRAFTON . '}';
