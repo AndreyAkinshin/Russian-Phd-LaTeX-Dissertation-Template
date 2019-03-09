@@ -5,16 +5,18 @@
 \documentclass[14pt, xcolor={dvipsnames, table, hyperref, cmyk}, utf8]{beamer}
 
 %%% Общие пакеты и стили
-\input{common/setup}          % общие настройки шаблона
-\input{common/packagesForAll} % Пакеты общие для диссертации, автореферата и презентации
+\input{common/setup}              % общие настройки шаблона
+\input{common/packagesForAll}     % Пакеты общие для диссертации, автореферата и презентации
+\input{Presentation/prespackages} % Пакеты для презентации
+
 \input{common/data}           % Основные сведения
 \input{common/fonts}          % Определение шрифтов (частичное)
 
 %%% Настройки презентации
-\input{Presentation/prespreamble.tex}
+\input{Presentation/presstyles}
 
 
 \begin{document}
 \maketitle
-\input{Presentation/prescontent.tex}
+\input{Presentation/prescontent}
 \end{document}
