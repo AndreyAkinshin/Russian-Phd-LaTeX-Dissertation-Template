@@ -1,32 +1,32 @@
-$DRAFTON = $ENV{DRAFTON} || "";
-$FONTFAMILY = $ENV{FONTFAMILY} || "";
-$ALTFONT = $ENV{ALTFONT} || "";
-$USEBIBER = $ENV{USEBIBER} || "";
-$IMGCOMPILE = $ENV{IMGCOMPILE} || "";
-$LATEXFLAGS = $ENV{LATEXFLAGS} || "";
-$BIBERFLAGS = $ENV{BIBERFLAGS} || "";
-$REGEXDIRS = $ENV{REGEXDIRS} || ". Dissertation Synopsis Presentation";
+$DRAFTON = $ENV{DRAFTON};
+$FONTFAMILY = $ENV{FONTFAMILY};
+$ALTFONT = $ENV{ALTFONT};
+$USEBIBER = $ENV{USEBIBER};
+$IMGCOMPILE = $ENV{IMGCOMPILE};
+$LATEXFLAGS = $ENV{LATEXFLAGS};
+$BIBERFLAGS = $ENV{BIBERFLAGS};
+$REGEXDIRS = $ENV{REGEXDIRS} || '. Dissertation Synopsis Presentation';
 
 $counters = ' %O "';
-if ($DRAFTON ne "") {
+if ($DRAFTON ne '') {
     $counters = $counters . '\newcounter{draft}' .
-        '\setcounter{draft}' . '{' . $DRAFTON . "}";
+        '\setcounter{draft}' . '{' . $DRAFTON . '}';
 }
-if ($FONTFAMILY ne "") {
+if ($FONTFAMILY ne '') {
     $counters = $counters . '\newcounter{fontfamily}' .
-        '\setcounter{fontfamily}' . '{' . $FONTFAMILY . "}";
+        '\setcounter{fontfamily}' . '{' . $FONTFAMILY . '}';
 }
-if ($ALTFONT ne "") {
+if ($ALTFONT ne '') {
     $counters = $counters . '\newcounter{usealtfont}' .
-        '\setcounter{usealtfont}' . '{' . $ALTFONT . "}";
+        '\setcounter{usealtfont}' . '{' . $ALTFONT . '}';
 }
-if ($USEBIBER ne "") {
+if ($USEBIBER ne '') {
     $counters = $counters . '\newcounter{bibliosel}' .
-        '\setcounter{bibliosel}' . '{' . $USEBIBER . "}";
+        '\setcounter{bibliosel}' . '{' . $USEBIBER . '}';
 }
-if ($IMGCOMPILE ne "") {
+if ($IMGCOMPILE ne '') {
     $counters = $counters . '\newcounter{imgprecompile}' .
-        '\setcounter{imgprecompile}' . '{' . $IMGCOMPILE . "}";
+        '\setcounter{imgprecompile}' . '{' . $IMGCOMPILE . '}';
 }
 $counters = $counters . '\input{%T}"';
 
@@ -45,26 +45,26 @@ $recorder = 1;
 $bibtex_use = 2;
 
 # extensions to clean with -c flag
-$clean_ext = "%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
+$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv';
 
 # extensions to clean with -C flag
-$clean_full_ext = "%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv";
+$clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv';
 
 # this option is for debugging
 # 0 to silently delete files, 1 to show what would be deleted
 $remove_dryrun = 0;
 
 # literal file strings to delete with -c flag
-@clean_literal = ("mylatexformat.fmt", "mylatexformat.log");
+@clean_literal = ('mylatexformat.fmt', 'mylatexformat.log');
 
 ## Core latex/pdflatex auxiliary files:
-@clean_regexp = ("*.aux",
-                 "*.lof",
-                 "*.log",
-                 "*.lot",
-                 "*.fls",
-                 "*.out",
-                 "*.toc");
+@clean_regexp = ('*.aux',
+                 '*.lof',
+                 '*.log',
+                 '*.lot',
+                 '*.fls',
+                 '*.out',
+                 '*.toc');
 
 ## Intermediate documents:
 # these rules might exclude image files for figures etc.
@@ -72,29 +72,29 @@ $remove_dryrun = 0;
 # *.eps
 # *.pdf
 push(@clean_regexp,
-     "*.dvi",
-     "*-converted-to.*",
-     "*xdv"
+     '*.dvi',
+     '*-converted-to.*',
+     '*xdv'
     );
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 push(@clean_regexp,
-     "*.bbl",
-     "*.bcf",
-     "*.blg",
-     "*-blx.aux",
-     "*-blx.bib",
-     "*.brf",
-     "*.run.xml"
+     '*.bbl',
+     '*.bcf',
+     '*.blg',
+     '*-blx.aux',
+     '*-blx.bib',
+     '*.brf',
+     '*.run.xml'
     );
 
 ## Build tool auxiliary files:
 push(@clean_regexp,
-     "*.fdb_latexmk",
-     "*.synctex",
-     "*.synctex.gz",
-     "*.synctex.gz\(busy\)",
-     "*.pdfsync",
+     '*.fdb_latexmk',
+     '*.synctex',
+     '*.synctex.gz',
+     '*.synctex.gz\(busy\)',
+     '*.pdfsync',
     );
 
 
@@ -102,222 +102,222 @@ push(@clean_regexp,
 
 # algorithms
 push(@clean_regexp,
-     "*.alg",
-     "*.loa",
+     '*.alg',
+     '*.loa',
     );
 
 # achemso
 push(@clean_regexp,
-     "acs-*.bib",
+     'acs-*.bib',
     );
 
 # amsthm
 push(@clean_regexp,
-     "*.thm",
+     '*.thm',
     );
 
 # beamer
 push(@clean_regexp,
-     "*.nav",
-     "*.snm",
-     "*.vrb",
+     '*.nav',
+     '*.snm',
+     '*.vrb',
     );
 
 #(e)ledmac/(e)ledpar
 push(@clean_regexp,
-     "*.end",
-     "*.[1-9]",
-     "*.[1-9][0-9]",
-     "*.[1-9][0-9][0-9]",
-     "*.[1-9]R",
-     "*.[1-9][0-9]R",
-     "*.[1-9][0-9][0-9]R",
-     "*.eledsec[1-9]",
-     "*.eledsec[1-9]R",
-     "*.eledsec[1-9][0-9]",
-     "*.eledsec[1-9][0-9]R",
-     "*.eledsec[1-9][0-9][0-9]",
-     "*.eledsec[1-9][0-9][0-9]R",
+     '*.end',
+     '*.[1-9]',
+     '*.[1-9][0-9]',
+     '*.[1-9][0-9][0-9]',
+     '*.[1-9]R',
+     '*.[1-9][0-9]R',
+     '*.[1-9][0-9][0-9]R',
+     '*.eledsec[1-9]',
+     '*.eledsec[1-9]R',
+     '*.eledsec[1-9][0-9]',
+     '*.eledsec[1-9][0-9]R',
+     '*.eledsec[1-9][0-9][0-9]',
+     '*.eledsec[1-9][0-9][0-9]R',
     );
 
 # glossaries
 push(@clean_regexp,
-     "*.acn",
-     "*.acr",
-     "*.glg",
-     "*.glo",
-     "*.gls",
+     '*.acn',
+     '*.acr',
+     '*.glg',
+     '*.glo',
+     '*.gls',
     );
 
 # gnuplottex
 push(@clean_regexp,
-     "*-gnuplottex-*",
+     '*-gnuplottex-*',
     );
 
 # hyperref
 push(@clean_regexp,
-     "*.brf",
+     '*.brf',
     );
 
 # knitr
 push(@clean_regexp,
-     "*-concordance.tex",
-     "*-tikzDictionary",
+     '*-concordance.tex',
+     '*-tikzDictionary',
     );
-# "*.tikz",
+# '*.tikz',
 
 # listings
 push(@clean_regexp,
-     "*.lol",
+     '*.lol',
     );
 
 # makeidx
 push(@clean_regexp,
-     "*.idx",
-     "*.ilg",
-     "*.ind",
-     "*.ist",
+     '*.idx',
+     '*.ilg',
+     '*.ind',
+     '*.ist',
     );
 
 # minitoc
 push(@clean_regexp,
-     "*.maf",
-     "*.mtc",
-     "*.mtc[0-9]",
-     "*.mtc[1-9][0-9]",
+     '*.maf',
+     '*.mtc',
+     '*.mtc[0-9]',
+     '*.mtc[1-9][0-9]',
     );
 
 # minted
 push(@clean_regexp,
-     "_minted*",
-     "*.pyg",
+     '_minted*',
+     '*.pyg',
     );
 
 # morewrites
 push(@clean_regexp,
-     "*.mw",
+     '*.mw',
     );
 
 # mylatexformat
 push(@clean_regexp,
-     "*.fmt",
+     '*.fmt',
     );
 
 # nomencl
 push(@clean_regexp,
-     "*.nlo",
+     '*.nlo',
     );
 
 # sagetex
 push(@clean_regexp,
-     "*.sagetex.sage",
-     "*.sagetex.py",
-     "*.sagetex.scmd",
+     '*.sagetex.sage',
+     '*.sagetex.py',
+     '*.sagetex.scmd',
     );
 
 # sympy
 push(@clean_regexp,
-     "*.sout",
-     "*.sympy",
+     '*.sout',
+     '*.sympy',
     );
 # sympy-plots-for-*.tex/
 
 # pdfcomment
 push(@clean_regexp,
-     "*.upa",
-     "*.upb",
+     '*.upa',
+     '*.upb',
     );
 
 # pythontex
 push(@clean_regexp,
-     "*.pytxcode",
+     '*.pytxcode',
     );
 # pythontex-files-*/
 
 # Texpad
 push(@clean_regexp,
-     ".texpadtmp",
+     '.texpadtmp',
     );
 
 # TikZ & PGF
 push(@clean_regexp,
-     "*.dpth",
-     "*.md5",
-     "*.auxlock",
+     '*.dpth',
+     '*.md5',
+     '*.auxlock',
     );
 
 # todonotes
 push(@clean_regexp,
-     "*.tdo",
+     '*.tdo',
     );
 
 # xindy
 push(@clean_regexp,
-     "*.xdy",
+     '*.xdy',
     );
 
 # WinEdt
 push(@clean_regexp,
-     "*.bak",
-     "*.sav",
+     '*.bak',
+     '*.sav',
     );
 
 # GnuEmacs
 push(@clean_regexp,
-     "*~",
+     '*~',
     );
 
 # endfloat
 push(@clean_regexp,
-     "*.ttt",
-     "*.fff",
-     "*.aux",
-     "*.bbl",
-     "*.blg",
-     "*.dvi",
-     "*.fdb_latexmk",
-     "*.fls",
-     "*.glg",
-     "*.glo",
-     "*.gls",
-     "*.idx",
-     "*.ilg",
-     "*.ind",
-     "*.ist",
-     "*.lof",
-     "*.log",
-     "*.lot",
-     "*.nav",
-     "*.nlo",
-     "*.out",
-     "*.pdfsync",
-     "*.ps",
-     "*.snm",
-     "*.synctex.gz",
-     "*.toc",
-     "*.vrb",
-     "*.maf",
-     "*.mtc",
-     "*.mtc0",
-     "*.bak",
-     "*.bcf",
-     "*.run.xml",
+     '*.ttt',
+     '*.fff',
+     '*.aux',
+     '*.bbl',
+     '*.blg',
+     '*.dvi',
+     '*.fdb_latexmk',
+     '*.fls',
+     '*.glg',
+     '*.glo',
+     '*.gls',
+     '*.idx',
+     '*.ilg',
+     '*.ind',
+     '*.ist',
+     '*.lof',
+     '*.log',
+     '*.lot',
+     '*.nav',
+     '*.nlo',
+     '*.out',
+     '*.pdfsync',
+     '*.ps',
+     '*.snm',
+     '*.synctex.gz',
+     '*.toc',
+     '*.vrb',
+     '*.maf',
+     '*.mtc',
+     '*.mtc0',
+     '*.bak',
+     '*.bcf',
+     '*.run.xml',
     );
 
 # latexindent backup
 push(@clean_regexp,
-     "*.bak[0-9]",
+     '*.bak[0-9]',
     );
 
 # compressed pdf file
 push(@clean_regexp,
-     "*_compressed.pdf",
+     '*_compressed.pdf',
     );
 
 # biber tool
 push(@clean_regexp,
-     "bibcheck.log",
-     "*_bibertool.bib",
+     'bibcheck.log',
+     '*_bibertool.bib',
     );
 
 ########################################################
