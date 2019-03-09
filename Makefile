@@ -1,8 +1,8 @@
 .PHONY: all preformat _compile dissertation synopsis \
 presentation dissertation-draft synopsis-draft pdflatex \
 draft dissertation-preformat dissertation-formated \
-synopsis-preformat synopsis-formated release _clean \
-_distclean clean distclean
+synopsis-preformat synopsis-formated synopsis-booklet \
+release _clean _distclean clean distclean
 
 # settings precedence: command line>usercfg.mk>{windows,unix}.mk
 
@@ -39,7 +39,7 @@ USEBIBER ?= # 0=bibtex8;1=biber
 IMGCOMPILE ?= # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
-LATEXMKFLAGS ?= -shell-escape
+LATEXMKFLAGS ?=
 REGEXDIRS ?= . Dissertation Synopsis Presentation
 
 export DRAFTON
@@ -90,6 +90,9 @@ synopsis-preformat: TARGET=synopsis
 synopsis-preformat: mylatexformat.ltx synopsis
 
 synopsis-formated: synopsis
+
+synopsis-booklet: synopsis
+	"$(MAKE)" BACKEND=$(BACKEND) TARGET=synopsis_booklet _compile
 
 release: all
 	git add dissertation.pdf
