@@ -1,11 +1,20 @@
 $DRAFTON = $ENV{DRAFTON};
+$DRAFTON //= '';
 $FONTFAMILY = $ENV{FONTFAMILY};
+$FONTFAMILY //= '';
 $ALTFONT = $ENV{ALTFONT};
+$ALTFONT //= '';
 $USEBIBER = $ENV{USEBIBER};
+$USEBIBER //= '';
 $IMGCOMPILE = $ENV{IMGCOMPILE};
+$IMGCOMPILE //= '';
 $LATEXFLAGS = $ENV{LATEXFLAGS};
+$LATEXFLAGS //= '';
 $BIBERFLAGS = $ENV{BIBERFLAGS};
-$REGEXDIRS = $ENV{REGEXDIRS} || '. Dissertation Synopsis Presentation';
+$BIBERFLAGS //= '';
+$REGEXDIRS = $ENV{REGEXDIRS};
+$REGEXDIRS //= '. Dissertation Synopsis Presentation';
+
 
 $counters = ' %O "';
 if ($DRAFTON ne '') {

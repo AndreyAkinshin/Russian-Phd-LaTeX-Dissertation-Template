@@ -39,7 +39,7 @@ USEBIBER ?= # 0=bibtex8;1=biber
 IMGCOMPILE ?= # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
-LATEXMKFLAGS ?= -silent -shell-escape
+LATEXMKFLAGS ?= -shell-escape
 REGEXDIRS ?= . Dissertation Synopsis Presentation
 
 export DRAFTON
