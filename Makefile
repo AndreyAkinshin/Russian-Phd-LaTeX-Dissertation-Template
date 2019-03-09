@@ -1,9 +1,3 @@
-.PHONY: all preformat _compile dissertation synopsis \
-presentation dissertation-draft synopsis-draft pdflatex \
-draft dissertation-preformat dissertation-formated \
-synopsis-preformat synopsis-formated synopsis-booklet \
-release _clean _distclean clean distclean
-
 # settings precedence: command line>usercfg.mk>{windows,unix}.mk
 
 # user settings
@@ -41,6 +35,7 @@ LATEXFLAGS ?= -halt-on-error -file-line-error
 BIBERFLAGS ?=
 LATEXMKFLAGS ?=
 REGEXDIRS ?= . Dissertation Synopsis Presentation
+MAKEFLAGS := -s
 
 export DRAFTON
 export FONTFAMILY
@@ -116,3 +111,13 @@ distclean:
 
 # include after "all" rule
 include examples.mk
+
+# disable parallel build
+.NOTPARALLEL:
+
+.PHONY: all preformat _compile dissertation synopsis \
+presentation dissertation-draft synopsis-draft pdflatex \
+draft dissertation-preformat dissertation-formated \
+synopsis-preformat synopsis-formated synopsis-booklet \
+release _clean _distclean clean distclean
+

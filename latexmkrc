@@ -37,7 +37,11 @@ if ($IMGCOMPILE ne '') {
     $counters = $counters . '\newcounter{imgprecompile}' .
         '\setcounter{imgprecompile}' . '{' . $IMGCOMPILE . '}';
 }
+if ($IMGCOMPILE eq '1') {
+   $LATEXFLAGS = $LATEXFLAGS . ' -shell-escape'
+}
 $counters = $counters . '\input{%T}"';
+$counters = $LATEXFLAGS . ' ' . $counters;
 
 # set options for all *latex
 set_tex_cmds($counters);
