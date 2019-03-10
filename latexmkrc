@@ -1,37 +1,49 @@
 $DRAFTON = $ENV{DRAFTON};
+$DRAFTON //= '';
 $FONTFAMILY = $ENV{FONTFAMILY};
+$FONTFAMILY //= '';
 $ALTFONT = $ENV{ALTFONT};
+$ALTFONT //= '';
 $USEBIBER = $ENV{USEBIBER};
+$USEBIBER //= '';
 $IMGCOMPILE = $ENV{IMGCOMPILE};
+$IMGCOMPILE //= '';
 $LATEXFLAGS = $ENV{LATEXFLAGS};
+$LATEXFLAGS //= '';
 $BIBERFLAGS = $ENV{BIBERFLAGS};
-$REGEXDIRS = $ENV{REGEXDIRS} || '. Dissertation Synopsis Presentation';
+$BIBERFLAGS //= '';
+$REGEXDIRS = $ENV{REGEXDIRS};
+$REGEXDIRS //= '. Dissertation Synopsis Presentation';
 
-$counters = $LATEXFLAGS . ' %O "';
+
+$texargs = '';
 if ($DRAFTON ne '') {
-    $counters = $counters . '\newcounter{draft}' .
+    $texargs = $texargs . '\newcounter{draft}' .
         '\setcounter{draft}' . '{' . $DRAFTON . '}';
 }
 if ($FONTFAMILY ne '') {
-    $counters = $counters . '\newcounter{fontfamily}' .
+    $texargs = $texargs . '\newcounter{fontfamily}' .
         '\setcounter{fontfamily}' . '{' . $FONTFAMILY . '}';
 }
 if ($ALTFONT ne '') {
-    $counters = $counters . '\newcounter{usealtfont}' .
+    $texargs = $texargs . '\newcounter{usealtfont}' .
         '\setcounter{usealtfont}' . '{' . $ALTFONT . '}';
 }
 if ($USEBIBER ne '') {
-    $counters = $counters . '\newcounter{bibliosel}' .
+    $texargs = $texargs . '\newcounter{bibliosel}' .
         '\setcounter{bibliosel}' . '{' . $USEBIBER . '}';
 }
 if ($IMGCOMPILE ne '') {
-    $counters = $counters . '\newcounter{imgprecompile}' .
+    $texargs = $texargs . '\newcounter{imgprecompile}' .
         '\setcounter{imgprecompile}' . '{' . $IMGCOMPILE . '}';
 }
-$counters = $counters . '\input{%T}"';
+if ($IMGCOMPILE eq '1') {
+   $LATEXFLAGS = $LATEXFLAGS . ' -shell-escape'
+}
 
 # set options for all *latex
-set_tex_cmds($counters);
+set_tex_cmds($LATEXFLAGS . ' %O %P');
+$pre_tex_code = $texargs;
 $biber = 'biber ' . $BIBERFLAGS . ' %O %S';
 $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
@@ -54,9 +66,6 @@ $clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.ru
 # 0 to silently delete files, 1 to show what would be deleted
 $remove_dryrun = 0;
 
-# literal file strings to delete with -c flag
-@clean_literal = ('mylatexformat.fmt', 'mylatexformat.log');
-
 ## Core latex/pdflatex auxiliary files:
 @clean_regexp = ('*.aux',
                  '*.lof',
@@ -64,8 +73,9 @@ $remove_dryrun = 0;
                  '*.lot',
                  '*.fls',
                  '*.out',
-                 '*.toc');
-
+                 '*.toc',
+                 'mylatexformat.fmt',
+                 'mylatexformat.log');
 ## Intermediate documents:
 # these rules might exclude image files for figures etc.
 # *.ps
@@ -341,17 +351,6 @@ sub regexp_cleanup {
     }
 }
 
-sub literal_cleanup {
-    foreach my $file (@clean_literal)
-    {
-        if ($remove_dryrun == 0) {
-            unlink_or_move( glob( "$file" ) );
-        } else {
-            print "Would be removed: $file\n";
-        }
-    }
-}
-
 sub cleanup1 {
     # Usage: cleanup1( directory, exts_without_period, ... )
     #
@@ -370,7 +369,6 @@ sub cleanup1 {
         }
     }
     if ($cleanup_mode == 1) {
-        literal_cleanup();
         regexp_cleanup();
     }
 } #END cleanup1

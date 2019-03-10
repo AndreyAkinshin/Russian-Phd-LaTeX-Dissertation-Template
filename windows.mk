@@ -1,4 +1,4 @@
 # Данный файл будет добавлен к рабочему Makefile,
 # если операционная система определится как Windows
 
-export FONTFAMILY ?= 1
+FONTFAMILY ?= 1

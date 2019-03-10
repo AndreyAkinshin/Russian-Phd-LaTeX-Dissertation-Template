@@ -1,9 +1,3 @@
-.PHONY: all preformat _compile dissertation synopsis \
-presentation dissertation-draft synopsis-draft pdflatex \
-draft dissertation-preformat dissertation-formated \
-synopsis-preformat synopsis-formated release _clean \
-_distclean clean distclean
-
 # settings precedence: command line>usercfg.mk>{windows,unix}.mk
 
 # user settings
@@ -14,22 +8,22 @@ endif
 
 # platform specific settings
 # include before variable definitions
-ifneq ($(SystemDrive),)
+ifdef WINDIR
     include windows.mk
 else
     include unix.mk
 endif
 
-MKRC ?= latexmkrc
-TARGET ?= dissertation
-JOBNAME ?= $(TARGET)
+MKRC ?= latexmkrc # config file
+TARGET ?= dissertation # target .tex file
+JOBNAME ?= $(TARGET) # project basename
 BACKEND ?= -pdfxe
 # -pdf=pdflatex
 # -pdfdvi=pdflatex with dvi
 # -pdfps=pdflatex with ps
-# -pdfxe=xelatex with dvi
+# -pdfxe=xelatex with dvi (faster than -xelatex)
 # -xelatex=xelatex without dvi
-# -pdflua=lualatex with dvi
+# -pdflua=lualatex with dvi  (faster than -lualatex)
 # -lualatex=lualatex without dvi
 
 DRAFTON ?= # 1=on;0=off
@@ -38,9 +32,10 @@ ALTFONT ?= # 0=Computer Modern;1=pscyr;2=XCharter
 USEBIBER ?= # 0=bibtex8;1=biber
 IMGCOMPILE ?= # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
-BIBERFLAGS ?=
-LATEXMKFLAGS ?= -silent -shell-escape
-REGEXDIRS ?= . Dissertation Synopsis Presentation
+LATEXMKFLAGS ?= -silent
+BIBERFLAGS ?= # --fixinits
+REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
+MAKEFLAGS := -s
 
 export DRAFTON
 export FONTFAMILY
@@ -56,19 +51,22 @@ all: synopsis dissertation presentation
 preformat: synopsis-preformat dissertation-preformat
 
 _compile:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -r $(MKRC) $(TARGET)
+	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) $(TARGET)
 
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
-dissertation:
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=dissertation _compile
+dissertation: JOBNAME=dissertation
+dissertation: TARGET=dissertation
+dissertation: _compile
 
-synopsis:
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=synopsis _compile
+synopsis: JOBNAME=synopsis
+synopsis: TARGET=synopsis
+synopsis: _compile
 
-presentation:
-	"$(MAKE)" BACKEND=$(BACKEND) TARGET=presentation _compile
+presentation: JOBNAME=presentation
+presentation: TARGET=presentation
+presentation: _compile
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
@@ -91,15 +89,20 @@ synopsis-preformat: mylatexformat.ltx synopsis
 
 synopsis-formated: synopsis
 
+synopsis-booklet: synopsis
+synopsis-booklet: TARGET=synopsis_booklet _compile
+synopsis-booklet: JOBNAME=synopsis_booklet _compile
+synopsis-booklet: _compile
+
 release: all
 	git add dissertation.pdf
 	git add synopsis.pdf
 
 _clean:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
+	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -c $(TARGET)
 
 _distclean:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -f -r $(MKRC) -jobname=$(JOBNAME) -C $(TARGET)
+	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -C $(TARGET)
 
 clean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
@@ -113,3 +116,13 @@ distclean:
 
 # include after "all" rule
 include examples.mk
+
+# disable parallel build
+.NOTPARALLEL:
+
+.PHONY: all preformat _compile dissertation synopsis \
+presentation dissertation-draft synopsis-draft pdflatex \
+draft dissertation-preformat dissertation-formated \
+synopsis-preformat synopsis-formated synopsis-booklet \
+release _clean _distclean clean distclean
+
