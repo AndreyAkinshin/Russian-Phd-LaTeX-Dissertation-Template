@@ -51,7 +51,7 @@ all: synopsis dissertation presentation
 preformat: synopsis-preformat dissertation-preformat
 
 _compile:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -r $(MKRC) $(TARGET)
+	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) $(TARGET)
 
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
@@ -99,10 +99,10 @@ release: all
 	git add synopsis.pdf
 
 _clean:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -f -r $(MKRC) -jobname=$(JOBNAME) -c $(TARGET)
+	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -c $(TARGET)
 
 _distclean:
-	latexmk $(LATEXMKFLAGS) $(BACKEND) -f -r $(MKRC) -jobname=$(JOBNAME) -C $(TARGET)
+	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -C $(TARGET)
 
 clean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
