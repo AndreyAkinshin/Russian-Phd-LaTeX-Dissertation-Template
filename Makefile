@@ -14,16 +14,16 @@ else
     include unix.mk
 endif
 
-MKRC ?= latexmkrc
-TARGET ?= dissertation
-JOBNAME ?= $(TARGET)
+MKRC ?= latexmkrc # config file
+TARGET ?= dissertation # target .tex file
+JOBNAME ?= $(TARGET) # project basename
 BACKEND ?= -pdfxe
 # -pdf=pdflatex
 # -pdfdvi=pdflatex with dvi
 # -pdfps=pdflatex with ps
-# -pdfxe=xelatex with dvi
+# -pdfxe=xelatex with dvi (faster than -xelatex)
 # -xelatex=xelatex without dvi
-# -pdflua=lualatex with dvi
+# -pdflua=lualatex with dvi  (faster than -lualatex)
 # -lualatex=lualatex without dvi
 
 DRAFTON ?= # 1=on;0=off
@@ -32,9 +32,9 @@ ALTFONT ?= # 0=Computer Modern;1=pscyr;2=XCharter
 USEBIBER ?= # 0=bibtex8;1=biber
 IMGCOMPILE ?= # 1=on;0=off
 LATEXFLAGS ?= -halt-on-error -file-line-error
-BIBERFLAGS ?=
 LATEXMKFLAGS ?= -silent
-REGEXDIRS ?= . Dissertation Synopsis Presentation
+BIBERFLAGS ?= # --fixinits
+REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
 MAKEFLAGS := -s
 
 export DRAFTON

@@ -1,13 +1,13 @@
 # example rules
 
 .PHONY: examples examples-pdflatex-cm examples-pdflatex-pscyr \
-examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
-examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
+examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
+examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
 examples-lualatex-liberation
 
 examples: examples-pdflatex-cm examples-pdflatex-pscyr \
-examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-ms\
-examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-ms\
+examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
+examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
 examples-lualatex-liberation
 
 EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
