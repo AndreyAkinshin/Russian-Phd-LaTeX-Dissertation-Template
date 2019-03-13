@@ -42,8 +42,19 @@ if ($IMGCOMPILE eq '1') {
 }
 
 # set options for all *latex
-set_tex_cmds($LATEXFLAGS . ' %O %P');
-$pre_tex_code = $texargs;
+if ( (! defined &set_tex_cmds) || (! defined $pre_tex_code) ) {
+    if ($xelatex_default_switches eq '') { # for latexmk < 4.59
+        $xelatex_default_switches = '-no-pdf';
+    }
+    $tex_cmds = $LATEXFLAGS . ' %O ' . $texargs . '\input{%T}';
+    $pdflatex = 'pdflatex ' . $tex_cmds;
+    $xelatex = 'xelatex ' . $tex_cmds;
+    $lualatex = 'lualatex ' . $tex_cmds;
+} else { # for latexmk >= 4.61
+    set_tex_cmds($LATEXFLAGS . ' %O %P');
+    $pre_tex_code = $texargs;
+}
+
 $biber = 'biber ' . $BIBERFLAGS . ' %O %S';
 $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
