@@ -59,17 +59,14 @@ _compile:
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
-dissertation: JOBNAME=dissertation
-dissertation: TARGET=dissertation
-dissertation: _compile
+dissertation:
+	"$(MAKE)" JOBNAME=dissertation TARGET=dissertation _compile
 
-synopsis: JOBNAME=synopsis
-synopsis: TARGET=synopsis
-synopsis: _compile
+synopsis:
+	"$(MAKE)" JOBNAME=synopsis TARGET=synopsis _compile
 
-presentation: JOBNAME=presentation
-presentation: TARGET=presentation
-presentation: _compile
+presentation:
+	"$(MAKE)" JOBNAME=presentation TARGET=presentation _compile
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
@@ -93,8 +90,8 @@ synopsis-preformat: mylatexformat.ltx synopsis
 synopsis-formated: synopsis
 
 synopsis-booklet: synopsis
-synopsis-booklet: TARGET=synopsis_booklet _compile
-synopsis-booklet: JOBNAME=synopsis_booklet _compile
+synopsis-booklet: TARGET=synopsis_booklet
+synopsis-booklet: JOBNAME=synopsis_booklet
 synopsis-booklet: _compile
 
 release: all
@@ -125,4 +122,3 @@ presentation dissertation-draft synopsis-draft pdflatex \
 draft dissertation-preformat dissertation-formated \
 synopsis-preformat synopsis-formated synopsis-booklet \
 release _clean _distclean clean distclean
-
