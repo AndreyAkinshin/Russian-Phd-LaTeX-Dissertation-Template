@@ -35,7 +35,10 @@ LATEXFLAGS ?= -halt-on-error -file-line-error
 LATEXMKFLAGS ?= -silent
 BIBERFLAGS ?= # --fixinits
 REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
+# Makefile options
 MAKEFLAGS := -s
+.DEFAULT_GOAL := all
+.NOTPARALLEL:
 
 export DRAFTON
 export FONTFAMILY
@@ -116,9 +119,6 @@ distclean:
 
 # include after "all" rule
 include examples.mk
-
-# disable parallel build
-.NOTPARALLEL:
 
 .PHONY: all preformat _compile dissertation synopsis \
 presentation dissertation-draft synopsis-draft pdflatex \
