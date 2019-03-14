@@ -57,20 +57,27 @@ all: synopsis dissertation presentation
 
 preformat: synopsis-preformat dissertation-preformat
 
-_compile:
+define compile
 	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) $(TARGET)
+endef
 
 mylatexformat.ltx:
 	etex -ini "&latex" $@ """$(TARGET)"""
 
+dissertation: JOBNAME=dissertation
+dissertation: TARGET=dissertation
 dissertation:
-	"$(MAKE)" JOBNAME=dissertation TARGET=dissertation _compile
+	$(compile)
 
+synopsis: JOBNAME=synopsis
+synopsis: TARGET=synopsis
 synopsis:
-	"$(MAKE)" JOBNAME=synopsis TARGET=synopsis _compile
+	$(compile)
 
+presentation: JOBNAME=presentation
+presentation: TARGET=presentation
 presentation:
-	"$(MAKE)" JOBNAME=presentation TARGET=presentation _compile
+	$(compile)
 
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
@@ -121,7 +128,7 @@ distclean:
 # include after "all" rule
 include examples.mk
 
-.PHONY: all preformat _compile dissertation synopsis \
+.PHONY: all preformat dissertation synopsis \
 presentation dissertation-draft synopsis-draft pdflatex \
 draft dissertation-preformat dissertation-formated \
 synopsis-preformat synopsis-formated synopsis-booklet \
