@@ -11,7 +11,11 @@ endif
 ifdef WINDIR
     include windows.mk
 else
-    include unix.mk
+    ifneq ($(SystemDrive),)
+        include windows.mk
+    else
+        include unix.mk
+    endif
 endif
 
 MKRC ?= latexmkrc # config file
