@@ -90,10 +90,12 @@
     \fi
     }%
     \vspace{0.013\paperheight} \\
+    \ifdefined\leadingOrganizationTitle
     Ведущая организация:    &
     \ifnumequal{\value{showopplead}}{0}{\vspace{6\onelineskip plus1fill}}{%
         \leadingOrganizationTitle
     }%
+    \fi
 \end{tabularx}
 \vspace{0.008\paperheight plus1fill}
 
