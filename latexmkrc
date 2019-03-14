@@ -68,10 +68,10 @@ $recorder = 1;
 $bibtex_use = 2;
 
 # extensions to clean with -c flag
-$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv';
+$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav';
 
 # extensions to clean with -C flag
-$clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv';
+$clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav';
 
 # this option is for debugging
 # 0 to silently delete files, 1 to show what would be deleted
