@@ -271,6 +271,7 @@ sudo bash ./install.sh
 * `make presentation` для сборки презентации для доклада,
 * `make dissertation-draft` для сборки диссертации в режиме черновика,
 * `make synopsis-draft` для сборки автореферата в режиме черновика,
+* `make synopsis-booklet` для сборки автореферата для печати,
 * `make draft` для быстрой сборки диссертации и автореферата в режиме черновика,
 * `make release` для сборки всего и внесения финальных *.pdf файлов в
   систему контроля версий git
@@ -340,11 +341,11 @@ make indent INDENT_SETTINGS=mysettings.yaml
 Программа [`gs`](https://ghostscript.com/) позволяет значительно уменьшить
 размер `.pdf` файлов.
 
-Для сжатия *.pdf* файлов можно использовать команду:
+Для сжатия файла диссертации можно использовать команду:
 ```bash
 make compress
 ```
-Сжатые файлы будет созданы с суффиксом `*_compressed.pdf`
+Сжатый файл будет создан с суффиксом `*_compressed.pdf`
 
 Возможен выбор степени сжатия файла.
 Например, команда
@@ -352,12 +353,12 @@ make compress
 ```bash
 make compress COMPRESSION_LEVEL=screen
 ```
-создаст файлы с минимально возможным размером.
+создаст файл с минимально возможным размером.
 Возможные уровни сжатия: `screen`, `default`, `ebook`, `printer`, `prepress`.
 По умолчанию используется значение `default`.
 
 Сжать другой `.pdf` файл можно командой:
 
 ```bash
-make compress COMPRESSION_FILES=alt_synopsis.pdf
+make compress COMPRESSION_FILE=alt_synopsis.pdf
 ```

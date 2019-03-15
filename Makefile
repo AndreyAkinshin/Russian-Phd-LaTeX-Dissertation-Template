@@ -8,14 +8,10 @@ endif
 
 # platform specific settings
 # include before variable definitions
-ifdef WINDIR
-    include windows.mk
+ifeq ($(OS),Windows_NT)
+	include windows.mk
 else
-    ifneq ($(SystemDrive),)
-        include windows.mk
-    else
-        include unix.mk
-    endif
+	include unix.mk
 endif
 
 MKRC ?= latexmkrc # config file
@@ -55,14 +51,9 @@ export REGEXDIRS
 
 all: synopsis dissertation presentation
 
-preformat: synopsis-preformat dissertation-preformat
-
 define compile
 	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) $(TARGET)
 endef
-
-mylatexformat.ltx:
-	etex -ini "&latex" $@ """$(TARGET)"""
 
 dissertation: JOBNAME=dissertation
 dissertation: TARGET=dissertation
@@ -90,20 +81,11 @@ pdflatex: dissertation synopsis presentation
 
 draft: dissertation-draft synopsis-draft
 
-dissertation-preformat: TARGET=dissertation
-dissertation-preformat: mylatexformat.ltx dissertation
-
-dissertation-formated: dissertation
-
-synopsis-preformat: TARGET=synopsis
-synopsis-preformat: mylatexformat.ltx synopsis
-
-synopsis-formated: synopsis
-
 synopsis-booklet: synopsis
 synopsis-booklet: TARGET=synopsis_booklet
 synopsis-booklet: JOBNAME=synopsis_booklet
-synopsis-booklet: _compile
+synopsis-booklet:
+	$(compile)
 
 release: all
 	git add dissertation.pdf
@@ -128,8 +110,6 @@ distclean:
 # include after "all" rule
 include examples.mk
 
-.PHONY: all preformat dissertation synopsis \
-presentation dissertation-draft synopsis-draft pdflatex \
-draft dissertation-preformat dissertation-formated \
-synopsis-preformat synopsis-formated synopsis-booklet \
-release _clean _distclean clean distclean
+.PHONY: all dissertation synopsis presentation dissertation-draft \
+synopsis-draft pdflatex draft synopsis-booklet release _clean \
+_distclean clean distclean
