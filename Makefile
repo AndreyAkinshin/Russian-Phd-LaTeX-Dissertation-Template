@@ -26,6 +26,7 @@ BACKEND ?= -pdfxe
 # -pdflua=lualatex with dvi  (faster than -lualatex)
 # -lualatex=lualatex without dvi
 
+# Do not modify the section below. Edit usercfg.mk instead.
 DRAFTON ?= # 1=on;0=off
 FONTFAMILY ?= # 0=CMU;1=MS fonts;2=Liberation fonts
 ALTFONT ?= # 0=Computer Modern;1=pscyr;2=XCharter
@@ -35,6 +36,7 @@ LATEXFLAGS ?= -halt-on-error -file-line-error
 LATEXMKFLAGS ?= -silent
 BIBERFLAGS ?= # --fixinits
 REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
+
 # Makefile options
 MAKEFLAGS := -s
 .DEFAULT_GOAL := all
