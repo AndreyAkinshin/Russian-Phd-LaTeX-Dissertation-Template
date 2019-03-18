@@ -36,6 +36,6 @@ COMPRESSION_FLAGS += -dMonoImageDownsampleType=/Subsample -dMonoImageResolution=
 
 compress: $(COMPRESS_FILE)
 	ps2pdf14 $(COMPRESSION_FLAGS) -dPDFSETTINGS=/$(COMPRESSION_LEVEL) \
-	-sOutputFile=$(patsubst %.pdf,%_compressed.pdf,$^) $^
+	$^ $(patsubst %.pdf,%_compressed.pdf,$^)
 
 .PHONY: compress
