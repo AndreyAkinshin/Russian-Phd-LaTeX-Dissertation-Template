@@ -3,12 +3,12 @@
 .PHONY: examples examples-pdflatex-cm examples-pdflatex-pscyr \
 examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
-examples-lualatex-liberation
+examples-lualatex-liberation examples-presentation
 
 examples: examples-pdflatex-cm examples-pdflatex-pscyr \
 examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
-examples-lualatex-liberation
+examples-lualatex-liberation examples-presentation
 
 EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
 
@@ -84,3 +84,11 @@ examples-lualatex-liberation: BACKEND=-pdflua
 examples-lualatex-liberation: FONTFAMILY=2
 examples-lualatex-liberation:
 	$(basic-example)
+
+examples-presentation:
+	$(foreach BKND,-pdf -pdfxe -pdflua, \
+	"$(MAKE)" presentation \
+		BACKEND=$(BKND) \
+		JOBNAME="presentation$(BKND)";\
+	"$(MAKE)" JOBNAME="presentation$(BKND)" _clean;\
+	)
