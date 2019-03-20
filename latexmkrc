@@ -14,6 +14,8 @@ $BIBERFLAGS = $ENV{BIBERFLAGS};
 $BIBERFLAGS //= '';
 $REGEXDIRS = $ENV{REGEXDIRS};
 $REGEXDIRS //= '. Dissertation Synopsis Presentation';
+$TIMERON = $ENV{TIMERON};
+$TIMERON //= '0';
 
 
 $texargs = '';
@@ -59,7 +61,7 @@ $biber = 'biber ' . $BIBERFLAGS . ' %O %S';
 $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
 # set to 1 to count CPU time
-$show_time = 0;
+$show_time = $TIMERON;
 
 # record access files
 $recorder = 1;

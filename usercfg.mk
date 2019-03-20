@@ -21,6 +21,7 @@
 # LATEXMKFLAGS ?= -silent
 # BIBERFLAGS ?= # --fixinits
 # REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
+# TIMERON ?= # show CPU usage
 
 ### Пользовательские правила
 
