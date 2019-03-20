@@ -16,18 +16,29 @@ indent:
 
 preformat: synopsis-preformat dissertation-preformat
 
-mylatexformat.ltx:
-	etex -ini "&latex" $@ """$(TARGET)"""
+%.fmt: %.tex
+	$(eval BK :='&latex' ) # catch all
+ifeq ($(BACKEND),-pdfxe)
+	$(eval BK:="&xelatex")
+endif
+ifeq ($(BACKEND),-xelatex)
+	$(eval BK:="&xelatex")
+endif
+ifeq ($(BACKEND),-pdflua)
+	$(eval BK:="&lualatex")
+endif
+ifeq ($(BACKEND),-lualatex)
+	$(eval BK:="&lualatex")
+endif
+	etex -ini -halt-on-error -file-line-error \
+	-shell-escape -jobname=$(JOBNAME) \
+	$(BK) mylatexformat.ltx """$^"""
 
 dissertation-preformat: TARGET=dissertation
-dissertation-preformat: mylatexformat.ltx dissertation
-
-dissertation-formated: dissertation
+dissertation-preformat: dissertation.fmt dissertation
 
 synopsis-preformat: TARGET=synopsis
-synopsis-preformat: mylatexformat.ltx synopsis
-
-synopsis-formated: synopsis
+synopsis-preformat: synopsis.fmt synopsis
 
 .PHONY: indent preformat dissertation-preformat \
-dissertation-formated synopsis-preformat synopsis-formated
+synopsis-preformat
