@@ -36,6 +36,7 @@ LATEXFLAGS ?= -halt-on-error -file-line-error
 LATEXMKFLAGS ?= -silent
 BIBERFLAGS ?= # --fixinits
 REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
+TIMERON ?= # show CPU usage
 
 # Makefile options
 MAKEFLAGS := -s
@@ -50,6 +51,7 @@ export IMGCOMPILE
 export LATEXFLAGS
 export BIBERFLAGS
 export REGEXDIRS
+export TIMERON
 
 all: synopsis dissertation presentation
 
