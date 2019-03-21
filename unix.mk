@@ -19,22 +19,9 @@ indent:
 preformat: synopsis-preformat dissertation-preformat
 
 %.fmt: %.tex
-	$(eval BK :='&latex' ) # catch all
-ifeq ($(BACKEND),-pdfxe)
-	$(eval BK:="&xelatex")
-endif
-ifeq ($(BACKEND),-xelatex)
-	$(eval BK:="&xelatex")
-endif
-ifeq ($(BACKEND),-pdflua)
-	$(eval BK:="&lualatex")
-endif
-ifeq ($(BACKEND),-lualatex)
-	$(eval BK:="&lualatex")
-endif
 	etex -ini -halt-on-error -file-line-error \
 	-shell-escape -jobname=$(JOBNAME) \
-	$(BK) mylatexformat.ltx """$^"""
+	"&latex" mylatexformat.ltx """$^"""
 
 ##! предкомпиляция диссертации
 dissertation-preformat: TARGET=dissertation
