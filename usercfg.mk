@@ -35,6 +35,7 @@ COMPRESSION_FLAGS += -dColorImageDownsampleType=/Average -dColorImageResolution=
 COMPRESSION_FLAGS += -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=144
 COMPRESSION_FLAGS += -dMonoImageDownsampleType=/Subsample -dMonoImageResolution=144
 
+##! сжатие файла .pdf
 compress: $(COMPRESS_FILE)
 	ps2pdf14 $(COMPRESSION_FLAGS) -dPDFSETTINGS=/$(COMPRESSION_LEVEL) \
 	$^ $(patsubst %.pdf,%_compressed.pdf,$^)
