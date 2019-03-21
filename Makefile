@@ -53,44 +53,54 @@ export BIBERFLAGS
 export REGEXDIRS
 export TIMERON
 
+##! компиляция всех файлов
 all: synopsis dissertation presentation
 
 define compile
 	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) $(TARGET)
 endef
 
+##! компиляция диссертации
 dissertation: JOBNAME=dissertation
 dissertation: TARGET=dissertation
 dissertation:
 	$(compile)
 
+##! компиляция автореферата
 synopsis: JOBNAME=synopsis
 synopsis: TARGET=synopsis
 synopsis:
 	$(compile)
 
+##! компиляция презентации
 presentation: JOBNAME=presentation
 presentation: TARGET=presentation
 presentation:
 	$(compile)
 
+##! компиляция черновика диссертации
 dissertation-draft: DRAFTON=1
 dissertation-draft: dissertation
 
+##! компиляция черновика автореферата
 synopsis-draft: DRAFTON=1
 synopsis-draft: synopsis
 
+##! компиляция черновика презентации
 pdflatex: BACKEND=-pdf
 pdflatex: dissertation synopsis presentation
 
+##! компиляция черновиков всех файлов
 draft: dissertation-draft synopsis-draft
 
+##! компиляция автореферата в формате А4 для печати
 synopsis-booklet: synopsis
 synopsis-booklet: TARGET=synopsis_booklet
 synopsis-booklet: JOBNAME=synopsis_booklet
 synopsis-booklet:
 	$(compile)
 
+##! добавление .pdf автореферата и диссертации в систему контроля версий
 release: all
 	git add dissertation.pdf
 	git add synopsis.pdf
@@ -101,11 +111,13 @@ _clean:
 _distclean:
 	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -C $(TARGET)
 
+##! очистка проекта от временных файлов
 clean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
 	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _clean
 	"$(MAKE)" TARGET=presentation JOBNAME=presentation _clean
 
+##! полная очистка проекта от временных файлов
 distclean:
 	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _distclean
 	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _distclean
