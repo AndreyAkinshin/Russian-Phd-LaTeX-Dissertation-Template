@@ -7,9 +7,12 @@ FONTFAMILY ?= 1 # Используются шрифты семейства MS
 
 ### Пользовательские правила
 
-INDENT_SETTINGS ?= indent.yaml
-INDENT_DIRS ?= Dissertation Presentation Synopsis
-INDENT_FILES ?= $(foreach dir,$(INDENT_DIRS),$(wildcard $(dir)/*.tex))
+ifeq ($(INDENT_FILES),)
+INDENT_FILES += $(wildcard Dissertation/part*.tex)
+INDENT_FILES += Synopsis/content.tex
+INDENT_FILES += Presentation/prescontent.tex
+endif
+##! форматирование файлов *.tex
 indent:
 	@$(foreach file, $(INDENT_FILES),\
 	latexindent -l=$(INDENT_SETTINGS) -s -w $(file) &&)\
