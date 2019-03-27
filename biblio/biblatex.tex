@@ -56,6 +56,8 @@ sorting=none,% настройка сортировки списка литера
 %%% Подключение файлов bib %%%
 \addbibresource[label=other]{biblio/othercites.bib}
 \addbibresource[label=vak]{biblio/authorpapersVAK.bib}
+\addbibresource[label=scopus]{biblio/authorpapersScopus.bib}
+\addbibresource[label=wos]{biblio/authorpapersWoS.bib}
 \addbibresource[label=papers]{biblio/authorpapers.bib}
 \addbibresource[label=conf]{biblio/authorconferences.bib}
 
@@ -79,10 +81,19 @@ sorting=none,% настройка сортировки списка литера
         }
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
             \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{biblio/authorpapersScopus.bib}
+            \perdatasource{biblio/authorpapersWoS.bib}
             \perdatasource{biblio/authorpapers.bib}
             \perdatasource{biblio/authorconferences.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
+        }
+        \map[overwrite]{% перекидываем refbase в addendum, чтобы указать тип публикации (ВАК, Scopus, WoS) в конце ссылки
+            \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{biblio/authorpapersScopus.bib}
+            \perdatasource{biblio/authorpapersWoS.bib}
+            \step[fieldsource=refbase, final]
+            \step[fieldset=addendum, origfieldval]
         }
         \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
@@ -116,8 +127,16 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorpapersScopus.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/authorpapersWoS.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorwos,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/authorpapers.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthornotvak,biblioauthor,bibliofull}]
+            \step[fieldset=keywords, fieldvalue={biblioauthorothers,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/authorconferences.bib}
@@ -297,16 +316,41 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 \defbibheading{countauthorvak}{}
 
-\newtotcounter{citeauthornotvak}
+\newtotcounter{citeauthorscopus}
 \makeatletter
-\defbibenvironment{countauthornotvak} %Env of bibliography
-{\setcounter{citeauthornotvak}{0}%
+\defbibenvironment{countauthorscopus} %Env of bibliography
+{\setcounter{citeauthorscopus}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthornotvak в нашей реализации
-{\stepcounter{citeauthornotvak}} %What is printing / executed at each entry.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorscopus в нашей реализации
+{\stepcounter{citeauthorscopus}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthornotvak}{}
+\defbibheading{countauthorscopus}{}
+
+\newtotcounter{citeauthorwos}
+\makeatletter
+\defbibenvironment{countauthorwos} %Env of bibliography
+{\setcounter{citeauthorwos}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorwos в нашей реализации
+{\stepcounter{citeauthorwos}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorwos}{}
+
+% сумма citeauthorscopus и citeauthorwos
+\newtotcounter{citeauthorscwostot}
+
+\newtotcounter{citeauthorothers}
+\makeatletter
+\defbibenvironment{countauthorothers} %Env of bibliography
+{\setcounter{citeauthorothers}{0}%
+    \renewcommand{\blx@driver}[1]{}%
+} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorothers в нашей реализации
+{\stepcounter{citeauthorothers}} %What is printing / executed at each entry.
+\makeatother
+\defbibheading{countauthorothers}{}
 
 \newtotcounter{citeauthorconf}
 \makeatletter
@@ -353,8 +397,10 @@ sorting=none,% настройка сортировки списка литера
 \newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
 \section*{\authorbibtitle}
 \printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1,title=\vakbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorwos, section=1,title=\vakbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorscopus, section=1,title=\vakbibtitle]%
 \printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1,title=\confbibtitle]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthornotvak, section=1,title=\notvakbibtitle]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorothers, section=1,title=\othersbibtitle]%
 }
 
 \newcommand*{\insertbiblioother}{

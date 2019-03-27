@@ -139,6 +139,20 @@
   language = {russian}
 }
 
+% Тот-же пример, с использованием https://www.ctan.org/pkg/biblatex-gost
+% @THESIS{Sirotko,
+%   author =       {Сиротко, Владимир Викторович},
+%   title =        {Медико-социальные аспекты городского травматизма в современных условиях},
+%   media =        {text},
+%   type =         {phdautoref},
+%   science =      {мед. наук},
+%   specialitycode ={14.00.33},
+%   address =      {М.},
+%   year =         {2006},
+%   pagetotal =    {26},
+%   language =     {russian},
+% }
+
 @BOOK{Lukina,
   author = {Лукина, Валентина Александровна},
   title = {Творческая история «Записок охотника» И. С. Тургенева : автореф. дис. ... канд. филол. наук : 10.01.01},
@@ -147,6 +161,20 @@
   numpages = {26},
   language = {russian}
 }
+
+% Тот-же пример, с использованием https://www.ctan.org/pkg/biblatex-gost
+% @THESIS{Sirotko,
+%   author =       {Лукина, Валентина Александровна},
+%   title =        {Творческая история «Записок охотника» И. С. Тургенева},
+%   media =        {text},
+%   type =         {phdautoref},
+%   science =      {филол. наук},
+%   specialitycode ={10.01.01},
+%   address =      {СПб.},
+%   year =         {2006},
+%   pagetotal =    {26},
+%   language =     {russian},
+% }
 
 % ГОСТ Р 7.0.11-2011, Приложение Б, Отчёты о научно-исследовательской работе
 @BOOK{Methodology,
@@ -169,15 +197,38 @@
   language = {russian}
 }
 
+% Тот-же пример, с использованием https://www.ctan.org/pkg/biblatex-gost
+% @BOOK{Encyclopedia,
+%   title = {Художественная энциклопедия зарубежного классического искусства},
+%   address = {М.},
+%   media = {eresource},
+%   publisher = {Большая Рос. энкцикл.},
+%   year = {1996},
+%   note = {1 электрон. опт. диск (CD-ROM)},
+%   language = {russian},
+% }
+
 @ARTICLE{Nasirova,
   author = {Насырова, Г. А.},
   title = {Модели государственного регулирования страховой деятельности [Электронный ресурс]},
   journal = {Вестник Финансовой академии},
   year = {2003},
+  media = {eresource},
   number = {4},
   note = {Режим доступа: http://vestnik.fa.ru/4(28)2003/4.html},
   language = {russian}
 }
+
+% Тот-же пример, с использованием https://www.ctan.org/pkg/biblatex-gost
+% @BOOK{Encyclopedia,
+%   title = {Художественная энциклопедия зарубежного классического искусства},
+%   address = {М.},
+%   media = {eresource},
+%   publisher = {Большая Рос. энкцикл.},
+%   year = {1996},
+%   note = {1 электрон. опт. диск (CD-ROM)},
+%   language = {russian},
+% }
 
 % ГОСТ Р 7.0.11-2011, Приложение Б, Статьи
 
@@ -535,3 +586,68 @@ keywords = "Glass ceramic",
   year                     = {1968},
   language                 = {english}
 }
+
+% Примеры оформления патентов из пакета https://www.ctan.org/pkg/biblatex-gost
+% @Patent{patent2h,
+%   heading =      {Заявка 1095735 Рос. федерация, МПК\ensuremath{^7} B 64 G 1/00},
+%   author =       {Тернер, Э. В.},
+%   authortype =   {США},
+%   title =        {Одноразовая ракета-носитель},
+%   media =        {text},
+%   _type =        {patreq},
+%   _number =      1095735,
+%   _location =    {countryru},
+%   _ipc =         {МПК\ensuremath{^7} B 64 G 1/00},
+%   holder =       {{заявитель Спейс Системз/Лорал, инк.}},
+%   credits =      {патент. поверенный Егорова Г. Б.},
+%   reqnumber =    {2000108705/28},
+%   date =         {2000-04-07},
+%   publdate =     {2001-03-10},
+%   publication =  {Бюл. № 7 (I ч.)\midsentence},
+%   prdate =       {1999-04-09},
+%   prnumber =     {09/289, 037},
+%   prcountry =    {countryus},
+%   pagetotal =    {5 с.~: ил.},
+%   language =     {russian},
+% }
+
+% @Patent{patent3h,
+%   heading =      {А. с. 1007970 СССР, МКИ\ensuremath{^3} В 25.1 15/00},
+%   author =       {В. С. Ваулин and В. Г. Кемайкин},
+%   authortype =   {СССР},
+%   title =        {Устройство для захвата неориентированных деталей типа валов},
+%   media =        {text},
+%   _type =        {invcert},
+%   _number =      1007970,
+%   _location =    {countryussr},
+%   _ipc =         {МКИ\ensuremath{^3} В 25.1 15/00},
+%   reqnumber =    {3360585/25-08},
+%   date =         {1981-11-23},
+%   publication =  {Бюл. № 12},
+%   publdate =     {1983-03-30},
+%   pagetotal =    {2 с.~: ил.},
+%   language =     {russian},
+% }
+
+% @Patent{patent2,
+%   _heading =     {Заявка 1095735 Рос. федерация},
+%   author =       {Тернер, Э. В.},
+%   authortype =   {США},
+%   title =        {Одноразовая ракета-носитель},
+%   media =        {text},
+%   type =         {patreq},
+%   number =       1095735,
+%   location =     {countryru},
+%   ipc =          {МПК\ensuremath{^7} B 64 G 1/00},
+%   holder =       {{заявитель Спейс Системз/Лорал, инк.}},
+%   credits =      {патент. поверенный Егорова Г. Б.},
+%   reqnumber =    {2000108705/28},
+%   date =         {2000-04-07},
+%   publdate =     {2001-03-10},
+%   publication =  {Бюл. № 7 (I ч.)\midsentence},
+%   prioritydate = {1999-04-09},
+%   prioritynumber ={09/289, 037},
+%   prioritycountry ={countryus},
+%   pagetotal =    {5 с.~: ил.},
+%   language =     {russian},
+% }
