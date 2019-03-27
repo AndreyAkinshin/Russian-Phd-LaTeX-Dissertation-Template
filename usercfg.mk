@@ -25,6 +25,15 @@
 
 ### Пользовательские правила
 
+### Откоментируйте и измените эти строки, чтобы задать файлы для форматирования
+# INDENT_FILES += $(wildcard Dissertation/part1/*.tex)
+# INDENT_FILES += $(wildcard Dissertation/part2/*.tex)
+# INDENT_FILES += $(wildcard Dissertation/part3/*.tex)
+# INDENT_FILES += $(wildcard Dissertation/part4/*.tex)
+# INDENT_FILES += Synopsis/content.tex
+# INDENT_FILES += Presentation/prescontent.tex
+
+
 COMPRESS_FILE ?= dissertation.pdf
 COMPRESSION_LEVEL ?= default # Possible values: screen, default, ebook, printer, prepress
 COMPRESSION_FLAGS += -dBATCH -dNOPAUSE # no stops
