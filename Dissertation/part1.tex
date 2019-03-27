@@ -8,16 +8,46 @@
 Сошлёмся на библиографию.
 Одна ссылка: \cite[с.~54]{Sokolov}\cite[с.~36]{Gaidaenko}.
 Две ссылки: \cite{Sokolov,Gaidaenko}.
-Много ссылок: %\cite[с.~54]{Lermontov,Management,Borozda} % такой «фокус» вызывает biblatex warning относительно опции sortcites, потому что неясно, к какому источнику относится уточнение о страницах, а bibtex об этой проблеме даже не предупреждает
-\cite{Lermontov,Management,Borozda,Marketing,Constitution,FamilyCode,Gost.7.0.53,Razumovski,Lagkueva,Pokrovski,Sirotko,Lukina,Methodology,Encyclopedia,Nasirova,Berestova,Kriger}.
+Много ссылок: %\cite[с.~54]{Lermontov,Management,Borozda} % такой «фокус»
+%вызывает biblatex warning относительно опции sortcites, потому что неясно, к
+%какому источнику относится уточнение о страницах, а bibtex об этой проблеме
+%даже не предупреждает
+\cite{Lermontov, Management, Borozda, Marketing, Constitution, FamilyCode,
+Gost.7.0.53, Razumovski, Lagkueva, Pokrovski, Methodology, Nasirova, Berestova,
+Kriger}%
+\ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
+    \cite{Sirotko, Lukina, Encyclopedia}%
+}{% Примеры для biblatex через движок biber
+    \cite{Sirotko2, Lukina2, Encyclopedia2}%
+}%
+.
 И~ещё немного ссылок:
-\cite{Article,Book,Booklet,Conference,Inbook,Incollection,Manual,Mastersthesis,Misc,Phdthesis,Proceedings,Techreport,Unpublished}.
-\cite{medvedev2006jelektronnye, CEAT:CEAT581, doi:10.1080/01932691.2010.513279,Gosele1999161,Li2007StressAnalysis, Shoji199895,test:eisner-sample,test:eisner-sample-shorted,AB_patent_Pomerantz_1968,iofis_patent1960}
+\cite{Article,Book,Booklet,Conference,Inbook,Incollection,Manual,Mastersthesis,
+Misc,Phdthesis,Proceedings,Techreport,Unpublished}
+% Следует обратить внимание, что пробел после запятой внутри \cite{}
+% обрабатывается ожидаемо, а пробел перед запятой, может вызывать проблемы при
+% обработке ссылок.
+\cite{medvedev2006jelektronnye, CEAT:CEAT581, doi:10.1080/01932691.2010.513279,
+Gosele1999161,Li2007StressAnalysis, Shoji199895, test:eisner-sample,
+test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
+\ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
+}{% Примеры для biblatex через движок biber
+    \cite{patent2h, patent3h, patent2}%
+}%
+.
 
-%Попытка реализовать несколько ссылок на конкретные страницы для стандартной реализации:[\citenum{Sokolov}, с.~54; \citenum{Gaidaenko}, с.~36].
-
-%Несколько источников мультицитата (только в biblatex)
-%\cites[vii--x, 5, 7]{Sokolov}[v"--~x, 25, 526]{Gaidaenko} поехали дальше
+\ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
+Попытка реализовать несколько ссылок на конкретные страницы
+для \texttt{bibtex} реализации библиографии:
+[\citenum{Sokolov}, с.~54; \citenum{Gaidaenko}, с.~36].
+}{% Примеры для biblatex через движок biber
+Несколько источников (мультицитата):
+% Тут специально написано по-разному тире, для демонстрации, что
+% применение специальных тире в настоящий момент в biblatex приводит к непоказу
+% "с.".
+\cites[vii--x, 5, 7]{Sokolov}[v"--~x, 25, 526]{Gaidaenko}[vii--x, 5, 7]{Techreport},
+работает только в \texttt{biblatex} реализации библиографии.
+}%
 
 Ссылки на собственные работы:~\cite{vakbib1, confbib1}
 
