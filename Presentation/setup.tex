@@ -1,0 +1,12 @@
+%%% Добавление поясняющих записей (notes) к презентации %%%
+\makeatletter
+\@ifundefined{c@presnotes}{
+	\newcounter{presnotes}
+	\setcounter{presnotes}{0}       % 0 --- выкл;
+					% 1 --- вкл, записи на отдельном слайде;
+					% 2 --- вкл, записи на основном слайде;
+}{}
+\makeatother
+
+%%% Положение поясняющих записей (notes) при значении presnotes=2 %%%
+\newcommand{\presposition}{left}  % возможные значения: left, right, top, bottom
