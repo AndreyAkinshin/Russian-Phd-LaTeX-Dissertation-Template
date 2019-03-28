@@ -10,7 +10,9 @@ examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
 examples-lualatex-liberation examples-presentation
 
-EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
+.EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(JOBNAME)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
+
+.PRESEXAMPLENAME = presentation$(BKND)-notes-$(subst 0,off,$(subst 1,separate,$(subst 2,same,$(NOTES))))
 
 define basic-example #Canned Recipe
 	$(foreach DRF,0 1, \
@@ -20,13 +22,13 @@ define basic-example #Canned Recipe
 		BACKEND=$(BACKEND) \
 		FONTFAMILY=$(FONTFAMILY) \
 		ALTFONT=$(ALTFONT) \
-		JOBNAME=$(EXAMPLENAME) \
+		JOBNAME=$(.EXAMPLENAME) \
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		IMGCOMPILE=$(IMGCOMPILE);\
 	) \
 	$(foreach TYPE,dissertation synopsis, \
-	"$(MAKE)" BACKEND=$(BACKEND) JOBNAME=$(EXAMPLENAME) \
+	"$(MAKE)" BACKEND=$(BACKEND) JOBNAME=$(.EXAMPLENAME) \
 		TARGET=$(TYPE) _clean;\
 	)))
 endef
@@ -87,8 +89,10 @@ examples-lualatex-liberation:
 
 examples-presentation:
 	$(foreach BKND,-pdf -pdfxe -pdflua, \
+	$(foreach NOTES,0 1 2, \
 	"$(MAKE)" presentation \
+		NOTESON=$(NOTES) \
 		BACKEND=$(BKND) \
-		JOBNAME="presentation$(BKND)";\
-	"$(MAKE)" JOBNAME="presentation$(BKND)" _clean;\
-	)
+		JOBNAME=$(.PRESEXAMPLENAME);\
+	"$(MAKE)" JOBNAME=$(.PRESEXAMPLENAME) _clean;\
+	))

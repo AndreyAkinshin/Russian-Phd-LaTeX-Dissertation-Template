@@ -8,6 +8,8 @@ $USEBIBER = $ENV{USEBIBER};
 $USEBIBER //= '';
 $IMGCOMPILE = $ENV{IMGCOMPILE};
 $IMGCOMPILE //= '';
+$NOTESON = $ENV{NOTESON};
+$NOTESON //= '';
 $LATEXFLAGS = $ENV{LATEXFLAGS};
 $LATEXFLAGS //= '';
 $BIBERFLAGS = $ENV{BIBERFLAGS};
@@ -41,6 +43,10 @@ if ($IMGCOMPILE ne '') {
 }
 if ($IMGCOMPILE eq '1') {
    $LATEXFLAGS = $LATEXFLAGS . ' -shell-escape'
+}
+if ($NOTESON ne '') {
+    $texargs = $texargs . '\newcounter{presnotes}' .
+        '\setcounter{presnotes}' . '{' . $NOTESON . '}';
 }
 
 # set options for all *latex
