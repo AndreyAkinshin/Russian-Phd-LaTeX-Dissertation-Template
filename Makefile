@@ -88,7 +88,7 @@ dissertation-draft: dissertation
 synopsis-draft: DRAFTON=1
 synopsis-draft: synopsis
 
-##! компиляция черновика презентации
+##! компиляция диссертации, автореферата, и презентации при помощи pdflatex
 pdflatex: BACKEND=-pdf
 pdflatex: dissertation synopsis presentation
 
