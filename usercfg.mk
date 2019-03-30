@@ -47,7 +47,7 @@ COMPRESSION_FLAGS += -dMonoImageDownsampleType=/Subsample -dMonoImageResolution=
 
 ##! сжатие файла .pdf
 compress: $(COMPRESS_FILE)
-	ps2pdf14 $(COMPRESSION_FLAGS) -dPDFSETTINGS=/$(COMPRESSION_LEVEL) \
+	ps2pdf14 '$(COMPRESSION_FLAGS) -dPDFSETTINGS=/$(COMPRESSION_LEVEL)' \
 	$^ $(patsubst %.pdf,%_compressed.pdf,$^)
 
 .PHONY: compress
