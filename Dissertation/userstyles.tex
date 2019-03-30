@@ -9,8 +9,6 @@
 \box0
 }
 
-
-
 \lstdefinelanguage{Renhanced}%
 {keywords={abbreviate,abline,abs,acos,acosh,action,add1,add,%
         aggregate,alias,Alias,alist,all,anova,any,aov,aperm,append,apply,%
@@ -183,7 +181,6 @@
 \setlength{\lmarg}{\widthof{999}}   % ширина надписи 999
 \setlength{\twless}{\textwidth-\lmarg}
 
-
 \lstset{ %
 %    language=R,                     %  Язык указать здесь, если во всех листингах преимущественно один язык, в результате часть настроек может пойти только для этого языка
     numbers=left,                   % where to put the line-numbers
@@ -222,7 +219,6 @@
         \lstinputlisting{VerbEnv.tmp}}
     \minipage{\@tempdima}\lstinputlisting{VerbEnv.tmp}\endminipage}    
 \makeatother
-
 
 \DefineVerbatimEnvironment% с шрифтом 12 пт
 {Verb}{Verbatim}
@@ -313,3 +309,7 @@
 \renewcommand{\chi}{\upchi}
 \renewcommand{\psi}{\uppsi}
 \renewcommand{\omega}{\upomega}
+
+\def\slantfrac#1#2{ \hspace{3pt}\!^{#1}\!\!\hspace{1pt}/
+    \hspace{2pt}\!\!_{#2}\!\hspace{3pt}
+} %Макрос для красивых дробей в строчку (например, 1/2)
