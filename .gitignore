@@ -6,13 +6,16 @@
 *.fls
 *.out
 *.toc
+*.fot
+*.cb
+*.cb2
+.*.lb
 
 ## Intermediate documents:
 *.dvi
 *.xdv
 *-converted-to.*
 # these rules might exclude image files for figures etc.
-*.xdv
 *.ps
 *.eps
 *.pdf
@@ -23,19 +26,21 @@
 *.blg
 *-blx.aux
 *-blx.bib
-*.brf
 *.run.xml
 
 ## Build tool auxiliary files:
 *.fdb_latexmk
 *.synctex
+*.synctex(busy)
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
 
+## Build tool directories for auxiliary files
+# latexrun
+latex.out/
+
 ## Auxiliary and intermediate files from other packages:
-
-
 # algorithms
 *.alg
 *.loa
@@ -48,11 +53,38 @@ acs-*.bib
 
 # beamer
 *.nav
+*.pre
 *.snm
 *.vrb
 
-#(e)ledmac/(e)ledpar
+# changes
+*.soc
+
+# comment
+*.cut
+
+# cprotect
+*.cpt
+
+# elsarticle (documentclass of Elsevier journals)
+*.spl
+
+# endnotes
+*.ent
+
+# fixme
+*.lox
+
+# feynmf/feynmp
+*.mf
+*.mp
+*.t[1-9]
+*.t[1-9][0-9]
+*.tfm
+
+#(r)(e)ledmac/(r)(e)ledpar
 *.end
+*.?end
 *.[1-9]
 *.[1-9][0-9]
 *.[1-9][0-9][0-9]
@@ -72,20 +104,37 @@ acs-*.bib
 *.glg
 *.glo
 *.gls
+*.glsdefs
 
 # gnuplottex
 *-gnuplottex-*
+
+# gregoriotex
+*.gaux
+*.gtex
+
+# htlatex
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.trc
+*.xref
 
 # hyperref
 *.brf
 
 # knitr
 *-concordance.tex
+# Comment the next line if you want to keep your tikz graphics files
 *.tikz
 *-tikzDictionary
 
 # listings
 *.lol
+
+# luatexja-ruby
+*.ltjruby
 
 # makeidx
 *.idx
@@ -95,9 +144,12 @@ acs-*.bib
 
 # minitoc
 *.maf
-*.mtc
-*.mtc[0-9]
-*.mtc[1-9][0-9]
+*.mlf
+*.mlt
+*.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
 
 # minted
 _minted*
@@ -110,24 +162,42 @@ _minted*
 *.fmt
 
 # nomencl
+*.nlg
 *.nlo
+*.nls
+
+# pax
+*.pax
+
+# pdfpcnotes
+*.pdfpc
 
 # sagetex
 *.sagetex.sage
 *.sagetex.py
 *.sagetex.scmd
 
+# scrwfile
+*.wrt
+
 # sympy
 *.sout
 *.sympy
 sympy-plots-for-*.tex/
 
-#pythontex
+# pdfcomment
+*.upa
+*.upb
+
+# pythontex
 *.pytxcode
 pythontex-files-*/
 
-# Texpad
-.texpadtmp
+# tcolorbox
+*.listing
+
+# thmtools
+*.loe
 
 # TikZ & PGF
 *.dpth
@@ -137,16 +207,61 @@ pythontex-files-*/
 # todonotes
 *.tdo
 
+# vhistory
+*.hst
+*.ver
+
+# easy-todo
+*.lod
+
+# xcolor
+*.xcp
+
+# xmpincl
+*.xmpi
+
 # xindy
 *.xdy
 
-# WinEdt
-*.bak
-*.sav
+# xypic precompiled matrices
+*.xyc
 
 # endfloat
 *.ttt
 *.fff
+
+# Latexian
+TSWLatexianTemp*
+
+## Editors:
+# WinEdt
+*.bak
+*.sav
+
+# Texpad
+.texpadtmp
+
+# LyX
+*.lyx~
+
+# Kile
+*.backup
+
+# KBibTeX
+*~[0-9]*
+
+# auto folder when using emacs and auctex
+./auto/*
+*.el
+
+# expex forward references with \gathertags
+*-tags.tex
+
+# standalone packages
+*.sta
+
+# latexindent backups
+*.bak[0-9]
 
 # OS generated files
 .DS_Store
@@ -156,7 +271,3 @@ pythontex-files-*/
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# latexindent backups
-*.bak
-*.bak[0-9]
