@@ -29,7 +29,7 @@
 
 \beamertemplatenavigationsymbolsempty
 
-\newcommand{\todo}{\alert}
+\DeclareRobustCommand{\todo}{\textcolor{red}}       % решаем проблему превращения названия цвета в результате \MakeUppercase, http://tex.stackexchange.com/a/187930, \DeclareRobustCommand protects \todo from expanding inside \MakeUppercase
 
 \setbeamercolor{footline}{fg=blue}
 \setbeamertemplate{footline}{
@@ -53,11 +53,14 @@
 
 %\title{\small{Название презентации}}
 \title{\small{\thesisTitle}}
-\author{\small{%
-\emph{Выступающий:}~\thesisAuthorShort\\%
-\emph{Руководитель:}~\supervisorRegaliaShort~\supervisorFioShort}\\%
-\vspace{30pt}%
-\thesisOrganization%
-\vspace{20pt}%
+\author{%
+    \texorpdfstring{%
+        \small{%
+        \emph{Выступающий:}~\thesisAuthorShort\\%
+        \emph{Руководитель:}~\supervisorRegaliaShort~\supervisorFioShort}\\%
+        \vspace{30pt}%
+        \thesisOrganization%
+        \vspace{20pt}%
+    }{\thesisAuthor}%
 }
-\date{\small{\thesisCity, \thesisYear}}
+\date{\texorpdfstring{\small{\thesisCity, \thesisYear}}{}}
