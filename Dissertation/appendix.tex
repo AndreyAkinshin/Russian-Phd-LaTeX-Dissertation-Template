@@ -1,13 +1,13 @@
-\chapter{Примеры вставки листингов программного кода} \label{AppendixA}
+\chapter{Примеры вставки листингов программного кода} \label{app:A}
 
 Для крупных листингов есть два способа. Первый красивый, но в нём могут быть
 проблемы с поддержкой кириллицы (у вас может встречаться в~комментариях
-и печатаемых сообщениях), он представлен на листинге~\ref{list:hwbeauty}.
+и печатаемых сообщениях), он представлен на листинге~\ref{lst:hwbeauty}.
 \begin{ListingEnv}[!h]% настройки floating аналогичны окружению figure
     \captiondelim{ } % разделитель идентификатора с номером от наименования
     \caption{Программа ,,Hello, world`` на \protect\cpp}
     % далее метка для ссылки:
-    \label{list:hwbeauty}
+    \label{lst:hwbeauty}
     % окружение учитывает пробелы и табуляции и применяет их в сответсвии с настройками
     \begin{lstlisting}[language={[ISO]C++}]
 	#include <iostream>
@@ -21,16 +21,16 @@
 	}
     \end{lstlisting}
 \end{ListingEnv}%
-Второй не~такой красивый, но без ограничений (см.~листинг~\ref{list:hwplain}).
+Второй не~такой красивый, но без ограничений (см.~листинг~\ref{lst:hwplain}).
 \begin{ListingEnv}[!h]
     \captiondelim{ } % разделитель идентификатора с номером от наименования
     \caption{Программа ,,Hello, world`` без подсветки}
-    \label{list:hwplain}
+    \label{lst:hwplain}
     \begin{Verb}
 
         #include <iostream>
         using namespace std;
-        
+
         int main() //кириллица в комментариях
         {
             cout << "Привет, мир" << endl;
@@ -60,13 +60,13 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 \texttt{lstinline} или, самое простое, моноширинный текст
 (\texttt{\textbackslash texttt}).
 
-Пример~\ref{list:internal3}, иллюстрирующий подключение переопределённого
+Пример~\ref{lst:internal3}, иллюстрирующий подключение переопределённого
 языка. Может быть полезным, если подсветка кода работает криво. Без
 дополнительного окружения, с подписью и ссылкой, реализованной встроенным
 средством.
 \begingroup
 \captiondelim{ } % разделитель идентификатора с номером от наименования
-\begin{lstlisting}[language={Renhanced},caption={Пример листинга c подписью собственными средствами},label={list:internal3}]
+\begin{lstlisting}[language={Renhanced},caption={Пример листинга c подписью собственными средствами},label={lst:internal3}]
 ## Caching the Inverse of a Matrix
 
 ## Matrix inversion is usually a costly computation and there may be some
@@ -87,7 +87,7 @@ makeCacheMatrix <- function(x = matrix()) {#кириллица в коммент
     list(set = set, get = get,
     setSolved = setSolved,
     getSolved = getSolved)
-    
+
 }
 
 
@@ -112,16 +112,16 @@ cacheSolve <- function(x, ...) {
                  %вне листинга
 \endgroup
 
-Листинг~\ref{list:external1} подгружается из внешнего файла. Приходится
+Листинг~\ref{lst:external1} подгружается из внешнего файла. Приходится
 загружать без окружения дополнительного. Иначе по страницам не переносится.
 \begingroup
 \captiondelim{ } % разделитель идентификатора с номером от наименования
-    \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={list:external1}]{listings/run_analysis.R}
+    \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={lst:external1}]{listings/run_analysis.R}
 \endgroup
 
-\chapter{Очень длинное название второго приложения, в~котором продемонстрирована работа с~длинными таблицами} \label{AppendixB}
+\chapter{Очень длинное название второго приложения, в~котором продемонстрирована работа с~длинными таблицами} \label{app:B}
 
-\section{Подраздел приложения}\label{AppendixB1}
+\section{Подраздел приложения}\label{app:B1}
 Вот размещается длинная таблица:
 \fontsize{10pt}{10pt}\selectfont
 \begin{longtable*}[c]{|l|c|l|l|} %longtable* появляется из пакета ltcaption и даёт ненумерованную таблицу
@@ -268,7 +268,7 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
 \end{longtable*}
 
 \normalsize% возвращаем шрифт к нормальному
-\section{Ещё один подраздел приложения} \label{AppendixB2}
+\section{Ещё один подраздел приложения} \label{app:B2}
 
 Нужно больше подразделов приложения!
 Конвынёры витюпырата но нам, тебиквюэ мэнтётюм позтюлант ед про. Дуо эа лаудым
@@ -281,7 +281,7 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
     \small
     \begin{longtable}[c]{|l|c|l|l|}
     \caption{Наименование таблицы средней длины}%
-    \label{tbl:test5}% label всегда желательно идти после caption
+    \label{tab:test5}% label всегда желательно идти после caption
     \\[-0.45\onelineskip]
     \hline
     Параметр & Умолч. & Тип & Описание\\ \hline
@@ -422,9 +422,9 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
 \normalsize% возвращаем шрифт к нормальному
 \endgroup
 \section{Использование длинных таблиц с окружением \textit{longtabu}}
-\label{AppendixB2a}
+\label{app:B2a}
 
-В таблице~\ref{tbl:test-functions} более книжный вариант
+В таблице~\ref{tab:test-functions} более книжный вариант
 длинной таблицы, используя окружение \verb!longtabu! и разнообразные
 \verb!toprule! \verb!midrule! \verb!bottomrule! из~пакета
 \verb!booktabs!. Чтобы визуально таблица смотрелась лучше, можно
@@ -472,8 +472,8 @@ X[4]@{}%
 }
     \caption{Тестовые функции для оптимизации, $D$ "---
       размерность. Для всех функций значение в точке глобального
-      минимума равно нулю.\label{tbl:test-functions}}\\% label всегда желательно идти после caption
-    
+      минимума равно нулю.\label{tab:test-functions}}\\% label всегда желательно идти после caption
+
     \toprule     %%% верхняя линейка
     Имя           &Стартовый диапазон параметров &Функция  \\
     \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5
@@ -484,7 +484,7 @@ X[4]@{}%
     Имя           &Стартовый диапазон параметров &Функция  \\
     \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5
     \endhead
-    
+
     \multicolumn{3}{c}{\small\slshape (окончание)}        \\
     \toprule     %%% верхняя линейка
     Имя           &Стартовый диапазон параметров &Функция  \\
@@ -650,16 +650,16 @@ X[4]@{}%
 \end{longtabu}
 \endgroup
 
-\section{Форматирование внутри таблиц} \label{AppendixB3}
+\section{Форматирование внутри таблиц} \label{app:B3}
 
-В таблице~\ref{tbl:other-row} пример с чересстрочным
+В таблице~\ref{tab:other-row} пример с чересстрочным
 форматированием. В~файле \verb+userstyles.tex+  задаётся счётчик
 \verb+\newcounter{rowcnt}+ который увеличивается на~1 после каждой
 строчки (как указано в преамбуле таблицы). Кроме того, задаётся
 условный макрос \verb+\altshape+ который выдаёт одно
 из~двух типов форматирования в~зависимости от чётности счётчика.
 
-В таблице~\ref{tbl:other-row} каждая чётная строчка "--- синяя,
+В таблице~\ref{tab:other-row} каждая чётная строчка "--- синяя,
 нечётная "--- с наклоном и~слегка поднята вверх. Визуально это приводит
 к тому, что среднее значение и~среднеквадратичное изменение
 группируются и хорошо выделяются взглядом в~таблице. Сохраняется
@@ -692,7 +692,7 @@ X[4]@{}%
                                 %% места занимала в дисере.
 \begin{longtabu} to \textwidth {@{}X[0.27ml]@{}X[0.7mc]@{}A@{}A@{}A@{}X[0.98mc]@{}>{\setlength{\baselineskip}{0.7\baselineskip}}A@{}A<{\stepcounter{rowcnt}}@{}}
 % \begin{longtabu} to \textwidth {@{}X[0.2ml]X[1mc]X[1mc]X[1mc]X[1mc]X[1mc]>{\setlength{\baselineskip}{0.7\baselineskip}}X[1mc]X[1mc]@{}}
-  \caption{Длинная таблица с примером чересстрочного форматирования\label{tbl:other-row}}\vspace*{1ex}\\% label всегда желательно идти после caption
+  \caption{Длинная таблица с примером чересстрочного форматирования\label{tab:other-row}}\vspace*{1ex}\\% label всегда желательно идти после caption
   % \vspace*{1ex}     \\
 
   \toprule %%% верхняя линейка
@@ -707,7 +707,7 @@ X[4]@{}%
 & DE/rand /1/bin & PSO \\
  \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5
  \endhead
- 
+
  \multicolumn{8}{c}{\small\slshape (окончание)} \\
  \toprule %%% верхняя линейка
 \setcounter{rowcnt}{0} &Итера\-ции & JADE\texttt{++} & JADE & jDE & SaDE
@@ -719,7 +719,7 @@ X[4]@{}%
  \multicolumn{8}{r}{\small\slshape продолжение следует}     \\
  \endfoot
  \endlastfoot
- 
+
 f1  & 1500 & \textbf{1.8E-60}   & 1.3E-54   & 2.5E-28   & 4.5E-20   & 9.8E-14   & 9.6E-42   \\\nopagebreak
     &      & (8.4E-60) & (9.2E-54) & {\color{red}(3.5E-28)} & (6.9E-20) & (8.4E-14) & (2.7E-41) \\
 f2  & 2000 & 1.8E-25   & 3.9E-22   & 1.5E-23   & 1.9E-14   & 1.6E-09   & 9.3E-21   \\\nopagebreak
@@ -775,10 +775,51 @@ f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03
 \bottomrule %%% нижняя линейка
 \end{longtabu} \endgroup
 
-\section{Очередной подраздел приложения} \label{AppendixB4}
+\section{Стандартные префиксы ссылок} \label{app:B4}
+
+Общепринятым является следующий формат ссылок: \texttt{<prefix>:<label>}.
+Например, \verb+\label{fig:knuth}+; \verb+\ref{tab:test1}+; \verb+label={lst:external1}+.
+В таблице \ref{tab:tab_pref} приведены стандартные префиксы для различных типов ссылок.
+
+\begingroup
+    \centering
+    % \small
+    \begin{longtable}[c]{|c|c|}
+    \caption{Стандартные префиксы ссылок}%
+    \label{tab:tab_pref}% label всегда желательно идти после caption
+    \\[-0.45\onelineskip]
+    \hline
+    \textbf{Префикс} & \textbf{Описание} \\ \hline
+    \endfirsthead%
+    \caption*{\tabcapalign Продолжение таблицы~\thetable}\\[-0.45\onelineskip]
+    \hline
+    \textbf{Префикс} & \textbf{Описание} \\ \hline
+    \endhead
+    \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    ch:     & Глава             \\
+    sec:    & Секция            \\
+    subsec: & Подсекция         \\
+    fig:    & Рисунок           \\
+    tab:    & Таблица           \\
+    eq:     & Уравнение         \\
+    lst:    & Листинг программы \\
+    itm:    & Элемент списка    \\
+    alg:    & Алгоритм          \\
+    app:    & Секция приложения \\
+    \end{longtable}
+% \normalsize% возвращаем шрифт к нормальному
+\endgroup
+
+Для упорядочивания ссылок можно использовать разделительные символы.
+Например, \verb+\label{fig:scheemes/my_scheeme}+ или \\ \verb+\label{lst:dts/linked_list}+.
+
+\section{Очередной подраздел приложения} \label{app:B5}
 
 Нужно больше подразделов приложения!
 
-\section{И ещё один подраздел приложения} \label{AppendixB5}
+\section{И ещё один подраздел приложения} \label{app:B6}
 
 Нужно больше подразделов приложения!
