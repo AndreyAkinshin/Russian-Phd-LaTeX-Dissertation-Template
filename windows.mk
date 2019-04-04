@@ -7,6 +7,7 @@ FONTFAMILY ?= 1 # Используются шрифты семейства MS
 
 ### Пользовательские правила
 
+INDENT_SETTINGS ?= indent.yaml
 ifeq ($(INDENT_FILES),)
 INDENT_FILES += $(wildcard Dissertation/part*.tex)
 INDENT_FILES += Synopsis/content.tex
