@@ -33,21 +33,3 @@
 # INDENT_FILES += $(wildcard Dissertation/part4/*.tex)
 # INDENT_FILES += Synopsis/content.tex
 # INDENT_FILES += Presentation/prescontent.tex
-
-
-COMPRESS_FILE ?= dissertation.pdf
-COMPRESSION_LEVEL ?= default # Possible values: screen, default, ebook, printer, prepress
-COMPRESSION_FLAGS += -dBATCH -dNOPAUSE # no stops
-COMPRESSION_FLAGS += -dEmbedAllFonts=true -dSubsetFonts=true # font settings
-
-# image compression control
-COMPRESSION_FLAGS += -dColorImageDownsampleType=/Average -dColorImageResolution=144
-COMPRESSION_FLAGS += -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=144
-COMPRESSION_FLAGS += -dMonoImageDownsampleType=/Subsample -dMonoImageResolution=144
-
-##! сжатие файла .pdf
-compress: $(COMPRESS_FILE)
-	ps2pdf14 '$(COMPRESSION_FLAGS) -dPDFSETTINGS=/$(COMPRESSION_LEVEL)' \
-	$^ $(patsubst %.pdf,%_compressed.pdf,$^)
-
-.PHONY: compress

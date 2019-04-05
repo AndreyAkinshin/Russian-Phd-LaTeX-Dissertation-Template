@@ -14,6 +14,9 @@ else
 	include unix.mk
 endif
 
+# Ghostscript-based pdf postprocessing
+include compress.mk
+
 MKRC ?= latexmkrc # config file
 TARGET ?= dissertation # target .tex file
 JOBNAME ?= $(TARGET) # project basename
