@@ -9,6 +9,12 @@
 # Описание команд gs: https://www.ghostscript.com/doc/current/VectorDevices.htm 
 # (!) Ghostscript молча игнорирует неизвестные параметры.
 
+
+# Фикс для make из MSYS2, отключающий Automatic path mangling. См: 
+#  * https://stackoverflow.com/a/34386471/1032586 
+#  * https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
+MSYS_FIX := MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL="*"
+
 # Пересобираемый по умолчанию файл
 COMPRESS_FILE ?= dissertation.pdf
 
@@ -47,7 +53,7 @@ COMPRESSION_FLAGS_1 += -dMonoImageFilter=/CCITTFaxEncode
 COMPRESSION_FLAGS_1 += -dMonoImageResolution=144
 
 compress-lowdpi: $(COMPRESS_FILE)
-	ps2pdf14 $(COMPRESSION_FLAGS_1) \
+	$(MSYS_FIX) ps2pdf14 $(COMPRESSION_FLAGS_1) \
 	         $^ $(patsubst %.pdf,%_lowdpi.pdf,$^)
 
 
@@ -129,7 +135,7 @@ COMPRESSION_FLAGS_2 += -dMonoImageFilter=/FlateEncode
 
 
 compress-cmyk: $(COMPRESS_FILE)
-	ps2pdf14 $(COMPRESSION_FLAGS_2) \
+	$(MSYS_FIX) ps2pdf14 $(COMPRESSION_FLAGS_2) \
 	         $^ $(patsubst %.pdf,%_cmyk.pdf,$^)
 
 .PHONY: compress-lowdpi compress-cmyk
