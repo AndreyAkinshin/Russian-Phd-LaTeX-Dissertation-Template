@@ -2,7 +2,7 @@
 # Откомментируйте настройки, чтобы использовать их по умолчанию
 
 # MKRC ?= latexmkrc # config file
-# TARGET ?= dissertation # target .tex file
+# SOURCE ?= dissertation # source .tex file
 # BACKEND ?= -pdfxe
 ## -pdf=pdflatex
 ## -pdfdvi=pdflatex with dvi
