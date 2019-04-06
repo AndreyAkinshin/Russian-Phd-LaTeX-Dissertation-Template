@@ -53,7 +53,7 @@ COMPRESSION_FLAGS_1 += -dMonoImageFilter=/CCITTFaxEncode
 COMPRESSION_FLAGS_1 += -dMonoImageResolution=144
 
 compress-lowdpi: $(COMPRESS_FILE)
-	$(MSYS_FIX) ps2pdf14 $(COMPRESSION_FLAGS_1) \
+	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_1) \
 	         $^ $(patsubst %.pdf,%_lowdpi.pdf,$^)
 
 
@@ -68,6 +68,7 @@ COMPRESSION_FLAGS_2 = $(COMPRESSION_FLAGS_COMMON)
 # Пример растеризуемой страницы - титульный лист шаблона. Хотя фактически логотип прозрачности не содержит,
 # формально она есть и соответствующая проверка проваливается.
 COMPRESSION_FLAGS_2 += -dHaveTransparency=false
+COMPRESSION_FLAGS_2 += -dCompatibilityLevel=1.3
 
 # Разрешение растеризации
 # Рекомендуемое разрешение чёрно-белых изображений обычно состовляет 1000..1200dpi. Чтобы обычный текст 
@@ -135,7 +136,7 @@ COMPRESSION_FLAGS_2 += -dMonoImageFilter=/FlateEncode
 
 
 compress-cmyk: $(COMPRESS_FILE)
-	$(MSYS_FIX) ps2pdf14 $(COMPRESSION_FLAGS_2) \
+	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_2) \
 	         $^ $(patsubst %.pdf,%_cmyk.pdf,$^)
 
 .PHONY: compress-lowdpi compress-cmyk
