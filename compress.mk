@@ -13,7 +13,10 @@
 # Фикс для make из MSYS2, отключающий Automatic path mangling. См: 
 #  * https://stackoverflow.com/a/34386471/1032586 
 #  * https://github.com/msys2/msys2/wiki/Porting#user-content-filesystem-namespaces
+FULL_MAKE_VERSION_INFO := $(shell $(MAKE) --version)   # e.g. "GNU Make 4.2.1 Built for x86_64-pc-msys ... "
+ISMSYS_MAKE := $(findstring msys,$(FULL_MAKE_VERSION_INFO))
 MSYS_FIX := MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL="*"
+MSYS_FIX := $(if $(ISMSYS_MAKE),$(MSYS_FIX),)
 
 # Пересобираемый по умолчанию файл
 COMPRESS_FILE ?= dissertation.pdf
