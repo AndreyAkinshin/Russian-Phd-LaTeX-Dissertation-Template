@@ -55,9 +55,9 @@ COMPRESSION_FLAGS_1 += -dMonoImageDownsampleType=/Subsample
 COMPRESSION_FLAGS_1 += -dMonoImageFilter=/CCITTFaxEncode
 COMPRESSION_FLAGS_1 += -dMonoImageResolution=144
 
-compress-lowdpi: $(COMPRESS_FILE)
+compress-lowdpi:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_1) \
-	         $^ $(patsubst %.pdf,%_lowdpi.pdf,$^)
+	                   $(COMPRESS_FILE) $(patsubst %.pdf,%_lowdpi.pdf,$(COMPRESS_FILE))
 
 
 
@@ -138,8 +138,8 @@ COMPRESSION_FLAGS_2 += -dMonoImageFilter=/FlateEncode
 # COMPRESSION_FLAGS_2 += -sDefaultRGBProfile="default_rgb.icc"
 
 
-compress-cmyk: $(COMPRESS_FILE)
+compress-cmyk:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_2) \
-	         $^ $(patsubst %.pdf,%_cmyk.pdf,$^)
+	                   $(COMPRESS_FILE) $(patsubst %.pdf,%_cmyk.pdf,$(COMPRESS_FILE))
 
 .PHONY: compress-lowdpi compress-cmyk
