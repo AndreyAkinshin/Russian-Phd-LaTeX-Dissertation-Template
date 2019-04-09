@@ -18,8 +18,8 @@ endif
 include compress.mk
 
 MKRC ?= latexmkrc # config file
-TARGET ?= dissertation # target .tex file
-JOBNAME ?= $(TARGET) # project basename
+SOURCE ?= dissertation # source .tex file
+TARGET ?= $(SOURCE) # project basename
 BACKEND ?= -pdfxe
 # -pdf=pdflatex
 # -pdfdvi=pdflatex with dvi
@@ -62,24 +62,24 @@ export TIMERON
 all: synopsis dissertation presentation
 
 define compile
-	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) $(TARGET)
+	latexmk -norc -r $(MKRC) $(LATEXMKFLAGS) $(BACKEND) -jobname=$(TARGET) $(SOURCE)
 endef
 
 ##! компиляция диссертации
-dissertation: JOBNAME=dissertation
 dissertation: TARGET=dissertation
+dissertation: SOURCE=dissertation
 dissertation:
 	$(compile)
 
 ##! компиляция автореферата
-synopsis: JOBNAME=synopsis
 synopsis: TARGET=synopsis
+synopsis: SOURCE=synopsis
 synopsis:
 	$(compile)
 
 ##! компиляция презентации
-presentation: JOBNAME=presentation
 presentation: TARGET=presentation
+presentation: SOURCE=presentation
 presentation:
 	$(compile)
 
@@ -100,8 +100,8 @@ draft: dissertation-draft synopsis-draft
 
 ##! компиляция автореферата в формате А4 для печати
 synopsis-booklet: synopsis
+synopsis-booklet: SOURCE=synopsis_booklet
 synopsis-booklet: TARGET=synopsis_booklet
-synopsis-booklet: JOBNAME=synopsis_booklet
 synopsis-booklet:
 	$(compile)
 
@@ -110,27 +110,29 @@ release: all
 	git add dissertation.pdf
 	git add synopsis.pdf
 
-_clean:
-	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -c $(TARGET)
+##! очистка от временных файлов цели TARGET
+clean-target:
+	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(TARGET) -c $(SOURCE)
 
-_distclean:
-	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(JOBNAME) -C $(TARGET)
+##! полная очистка от временных файлов цели TARGET
+distclean-target:
+	latexmk -norc -r $(MKRC) -f $(LATEXMKFLAGS) $(BACKEND) -jobname=$(TARGET) -C $(SOURCE)
 
 ##! очистка проекта от временных файлов
 clean:
-	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _clean
-	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _clean
-	"$(MAKE)" TARGET=presentation JOBNAME=presentation _clean
+	"$(MAKE)" SOURCE=dissertation TARGET=dissertation clean-target
+	"$(MAKE)" SOURCE=synopsis TARGET=synopsis clean-target
+	"$(MAKE)" SOURCE=presentation TARGET=presentation clean-target
 
 ##! полная очистка проекта от временных файлов
 distclean:
-	"$(MAKE)" TARGET=dissertation JOBNAME=dissertation _distclean
-	"$(MAKE)" TARGET=synopsis JOBNAME=synopsis _distclean
-	"$(MAKE)" TARGET=presentation JOBNAME=presentation _distclean
+	"$(MAKE)" SOURCE=dissertation TARGET=dissertation distclean-target
+	"$(MAKE)" SOURCE=synopsis TARGET=synopsis distclean-target
+	"$(MAKE)" SOURCE=presentation TARGET=presentation distclean-target
 
 # include after "all" rule
 include examples.mk
 
 .PHONY: all dissertation synopsis presentation dissertation-draft \
-synopsis-draft pdflatex draft synopsis-booklet release _clean \
-_distclean clean distclean
+synopsis-draft pdflatex draft synopsis-booklet release clean-target \
+distclean-target clean distclean
