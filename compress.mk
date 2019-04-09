@@ -18,8 +18,8 @@ ISMSYS_MAKE := $(findstring msys,$(FULL_MAKE_VERSION_INFO))
 MSYS_FIX := MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL="*"
 MSYS_FIX := $(if $(ISMSYS_MAKE),$(MSYS_FIX),)
 
-# Пересобираемый по умолчанию файл
-COMPRESS_FILE ?= dissertation.pdf
+# Пересобираемый файл
+COMPRESS_FILE ?= $(TARGET)
 
 # Не останавливаться после каждой страницы
 COMPRESSION_FLAGS_COMMON += -dBATCH -dNOPAUSE
@@ -57,7 +57,7 @@ COMPRESSION_FLAGS_1 += -dMonoImageResolution=144
 
 compress-lowdpi:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_1) \
-	                   $(COMPRESS_FILE) $(patsubst %.pdf,%_lowdpi.pdf,$(COMPRESS_FILE))
+	                   $(COMPRESS_FILE).pdf $(COMPRESS_FILE)_lowdpi.pdf
 
 
 
@@ -140,6 +140,6 @@ COMPRESSION_FLAGS_2 += -dMonoImageFilter=/FlateEncode
 
 compress-cmyk:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_2) \
-	                   $(COMPRESS_FILE) $(patsubst %.pdf,%_cmyk.pdf,$(COMPRESS_FILE))
+	                   $(COMPRESS_FILE).pdf $(COMPRESS_FILE)_cmyk.pdf
 
 .PHONY: compress-lowdpi compress-cmyk
