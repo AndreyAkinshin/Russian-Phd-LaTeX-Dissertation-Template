@@ -17,17 +17,24 @@ endif
 # Ghostscript-based pdf postprocessing
 include compress.mk
 
-MKRC ?= latexmkrc # config file
-SOURCE ?= dissertation # source .tex file
-TARGET ?= $(SOURCE) # project basename
+# Config file
+MKRC ?= latexmkrc
+
+# Source .tex file
+SOURCE ?= dissertation
+
+# LaTeX compiler output .pdf file
+TARGET ?= $(SOURCE)
+
+# LaTeX version:
+# -pdf		= pdflatex
+# -pdfdvi	= pdflatex with dvi
+# -pdfps	= pdflatex with ps
+# -pdfxe	= xelatex with dvi (faster than -xelatex)
+# -xelatex	= xelatex without dvi
+# -pdflua	= lualatex with dvi  (faster than -lualatex)
+# -lualatex	= lualatex without dvi
 BACKEND ?= -pdfxe
-# -pdf=pdflatex
-# -pdfdvi=pdflatex with dvi
-# -pdfps=pdflatex with ps
-# -pdfxe=xelatex with dvi (faster than -xelatex)
-# -xelatex=xelatex without dvi
-# -pdflua=lualatex with dvi  (faster than -lualatex)
-# -lualatex=lualatex without dvi
 
 # Do not modify the section below. Edit usercfg.mk instead.
 DRAFTON ?= # 1=on;0=off
