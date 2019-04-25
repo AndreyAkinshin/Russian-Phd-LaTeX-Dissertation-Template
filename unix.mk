@@ -23,7 +23,7 @@ preformat: synopsis-preformat dissertation-preformat
 
 %.fmt: %.tex
 	etex -ini -halt-on-error -file-line-error \
-	-shell-escape -jobname=$(JOBNAME) \
+	-shell-escape -jobname=$(TARGET) \
 	"&latex" mylatexformat.ltx """$^"""
 
 ##! предкомпиляция диссертации
