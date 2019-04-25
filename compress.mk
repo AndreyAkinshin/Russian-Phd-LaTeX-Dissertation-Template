@@ -55,6 +55,8 @@ COMPRESSION_FLAGS_1 += -dMonoImageDownsampleType=/Subsample
 COMPRESSION_FLAGS_1 += -dMonoImageFilter=/CCITTFaxEncode
 COMPRESSION_FLAGS_1 += -dMonoImageResolution=144
 
+
+##! сжатие файла с потерей данных
 compress-lowdpi:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_1) \
 	                   $(COMPRESS_FILE).pdf $(COMPRESS_FILE)_lowdpi.pdf
@@ -138,6 +140,7 @@ COMPRESSION_FLAGS_2 += -dMonoImageFilter=/FlateEncode
 # COMPRESSION_FLAGS_2 += -sDefaultRGBProfile="default_rgb.icc"
 
 
+##! сжатие файла с конвертацией в CMYK
 compress-cmyk:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_2) \
 	                   $(COMPRESS_FILE).pdf $(COMPRESS_FILE)_cmyk.pdf
