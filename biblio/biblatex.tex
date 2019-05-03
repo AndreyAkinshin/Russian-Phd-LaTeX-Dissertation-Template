@@ -374,7 +374,7 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 \defbibheading{countauthor}{}
 
-\defbibheading{authorpublications}[\authorbibtitle]{\section*{#1}}
+\defbibheading{authorpublications}[\bibtitleauthor]{\section*{#1}}
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}}
 \defbibheading{otherpublications}{\section*{#1}}
 
@@ -386,21 +386,21 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioauthorcited}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=0,title=\authorbibtitle]
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=0,title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\authorbibtitle]
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthorimportant}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\authorbibtitle{}}}]
+\printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\bibtitleauthor{}}}]
 }
 \newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
-\section*{\authorbibtitle}
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1,title=\vakbibtitle]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorwos, section=1,title=\wosbibtitle]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorscopus, section=1,title=\scopusbibtitle]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1,title=\confbibtitle]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorothers, section=1,title=\othersbibtitle]%
+\section*{\bibtitleauthor}
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1, title=\bibtitleauthorvak]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorwos, section=1, title=\bibtitleauthorwos]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorscopus, section=1, title=\bibtitleauthorscopus]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1, title=\bibtitleauthorconf]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorothers, section=1, title=\bibtitleauthorothers]%
 }
 
 \newcommand*{\insertbiblioother}{
