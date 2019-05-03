@@ -94,12 +94,12 @@
 
 {\contribution} Автор принимал активное участие \ldots
 
-%\publications\ Основные результаты по теме диссертации изложены в ХХ печатных изданиях~\cite{Sokolov,Gaidaenko,Lermontov,Management},
+%{\publications} Основные результаты по теме диссертации изложены в ХХ печатных изданиях~\cite{Sokolov,Gaidaenko,Lermontov,Management},
 %Х из которых изданы в журналах, рекомендованных ВАК~\cite{Sokolov,Gaidaenko},
 %ХХ --- в тезисах докладов~\cite{Lermontov,Management}.
 
 \ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8
-    \publications\ Основные результаты по теме диссертации изложены в XX печатных изданиях,
+    {\publications} Основные результаты по теме диссертации изложены в XX печатных изданиях,
     X из которых изданы в журналах, рекомендованных ВАК,
     X "--- в тезисах докладов.%
 }{% Реализация пакетом biblatex через движок biber
@@ -109,30 +109,29 @@
         \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=1]%
         \printbibliography[heading=countauthorwos,env=countauthorwos, keyword=biblioauthorwos, section=1]%
         \printbibliography[heading=countauthorscopus,env=countauthorscopus, keyword=biblioauthorscopus, section=1]%
-	\printbibliography[heading=countauthorconf, env=countauthorconf, keyword=biblioauthorconf, section=1]%
+        \printbibliography[heading=countauthorconf, env=countauthorconf, keyword=biblioauthorconf, section=1]%
         \printbibliography[heading=countauthorothers, env=countauthorothers, keyword=biblioauthorothers, section=1]%
         \printbibliography[heading=countauthor, env=countauthor, keyword=biblioauthor, section=1]%
         \nocite{%Порядок перечисления в этом блоке определяет порядок вывода в списке публикаций автора
                 vakbib1,vakbib2,%
-		wosbib1,%
-		scbib1,%
+                wosbib1,%
+                scbib1,%
                 confbib1,confbib2,%
                 bib1,bib2,%
         }%
-	\publications\ Основные результаты по теме диссертации изложены
-	\setcounter{citeauthorscwostot}{\value{citeauthorscopus}} % вместе setcounter и addtocounter добавляют пробел между словами. По-этому они так раскиданы.
-        в~\arabic{citeauthor}~печатных изданиях,
-	\addtocounter{citeauthorscwostot}{\value{citeauthorwos}}
-	\arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy
-	\ifnum \value{citeauthorscwostot}>0
-	, \arabic{citeauthorscwostot} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy
-	\fi
-	\ifnum \value{citeauthorconf}>0
-	, \arabic{citeauthorconf} "--- в~тезисах докладов.
-	\else
-	.
-	\fi
-    \end{refsection}
+        {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях, %
+        \setcounter{citeauthorscwostot}{\value{citeauthorscopus}}%
+        \addtocounter{citeauthorscwostot}{\value{citeauthorwos}}%
+        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
+        \ifnum \value{citeauthorscwostot}>0%
+        , \arabic{citeauthorscwostot} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy%
+        \fi%
+        \ifnum \value{citeauthorconf}>0%
+        , \arabic{citeauthorconf} "--- в~тезисах докладов.%
+        \else%
+        . %
+        \fi
+    \end{refsection}%
     \begin{refsection}[vak,wos,scopus,papers,conf]%Блок, позволяющий отобрать из всех работ автора наиболее значимые, и только их вывести в автореферате, но считать в блоке выше общее число работ
         \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=2]%
         \printbibliography[heading=countauthorwos, env=countauthorwos, keyword=biblioauthorwos, section=2]%
@@ -143,8 +142,8 @@
         \nocite{vakbib2}%vak
         \nocite{bib1}%other
         \nocite{confbib1}%conf
-    \end{refsection}
-}
+    \end{refsection}%
+} %
 При использовании пакета \verb!biblatex! для автоматического подсчёта
 количества публикаций автора по теме диссертации, необходимо
 их~здесь перечислить с использованием команды \verb!\nocite!.
