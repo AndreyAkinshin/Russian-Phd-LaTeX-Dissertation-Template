@@ -36,12 +36,12 @@
 
 ## Назначение и размещение файлов с библиографией
 Файлы с библиографией расположены в папке [biblio/](../biblio/):
-* работы автора в ваковских журналах — [authorpapersVAK.bib](../biblio/authorpapersVAK.bib);
-* работы автора в журналах, индексируемых в Scopus — [authorpapersScopus.bib](../biblio/authorpapersScopus.bib);
-* работы автора в журналах, индексируемых в Web of Science — [authorpapersWoS.bib](../biblio/authorpapersWoS.bib);
-* работы автора в остальных журналах — [authorpapers.bib](../biblio/authorpapers.bib);
-* работы автора тезисы на конференциях — [authorconferences.bib](../biblio/authorconferences.bib);
-* чужие работы, на которые автор ссылается — [othercites.bib](../biblio/othercites.bib).
+* работы автора в ваковских журналах — [authorVAK.bib](../biblio/authorVAK.bib);
+* работы автора в журналах, индексируемых в Scopus — [authorScopus.bib](../biblio/authorScopus.bib);
+* работы автора в журналах, индексируемых в Web of Science — [authorWoS.bib](../biblio/authorWoS.bib);
+* работы автора в остальных журналах — [authorother.bib](../biblio/authorother.bib);
+* работы автора тезисы на конференциях — [authorconf.bib](../biblio/authorconf.bib);
+* чужие работы, на которые автор ссылается — [external.bib](../biblio/external.bib).
 
 Кроме того, в этой же папке находится файл для автоматической проверки
 библиографической информации на возможные дубликаты —

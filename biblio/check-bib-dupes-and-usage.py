@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import re
-bibfile = "othercites.bib"
+bibfile = "external.bib"
 authors = {}
 author_list = []
 pages = []
