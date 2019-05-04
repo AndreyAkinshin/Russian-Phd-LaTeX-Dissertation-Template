@@ -36,9 +36,9 @@
 
 ## Назначение и размещение файлов с библиографией
 Файлы с библиографией расположены в папке [biblio/](../biblio/):
-* работы автора в ваковских журналах — [authorVAK.bib](../biblio/authorVAK.bib);
-* работы автора в журналах, индексируемых в Scopus — [authorScopus.bib](../biblio/authorScopus.bib);
-* работы автора в журналах, индексируемых в Web of Science — [authorWoS.bib](../biblio/authorWoS.bib);
+* работы автора в ваковских журналах — [authorvak.bib](../biblio/authorvak.bib);
+* работы автора в журналах, индексируемых в Scopus — [authorscopus.bib](../biblio/authorscopus.bib);
+* работы автора в журналах, индексируемых в Web of Science — [authorwos.bib](../biblio/authorwos.bib);
 * работы автора в остальных журналах — [authorother.bib](../biblio/authorother.bib);
 * работы автора тезисы на конференциях — [authorconf.bib](../biblio/authorconf.bib);
 * чужие работы, на которые автор ссылается — [external.bib](../biblio/external.bib).
