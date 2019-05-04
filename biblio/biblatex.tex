@@ -301,7 +301,6 @@ sorting=none,% настройка сортировки списка литера
   {} %Здесь то, что будет выводиться командой \printbibliography. \thecitenum сюда писать не надо
   {\stepcounter{citenum}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{counter}{}
 
 
 
@@ -314,7 +313,6 @@ sorting=none,% настройка сортировки списка литера
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorvak в нашей реализации
 {\stepcounter{citeauthorvak}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorvak}{}
 
 \newtotcounter{citeauthorscopus}
 \makeatletter
@@ -325,7 +323,6 @@ sorting=none,% настройка сортировки списка литера
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorscopus в нашей реализации
 {\stepcounter{citeauthorscopus}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorscopus}{}
 
 \newtotcounter{citeauthorwos}
 \makeatletter
@@ -336,7 +333,6 @@ sorting=none,% настройка сортировки списка литера
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorwos в нашей реализации
 {\stepcounter{citeauthorwos}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorwos}{}
 
 % сумма citeauthorscopus и citeauthorwos
 \newtotcounter{citeauthorscwostot}
@@ -350,7 +346,6 @@ sorting=none,% настройка сортировки списка литера
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorother в нашей реализации
 {\stepcounter{citeauthorother}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorother}{}
 
 \newtotcounter{citeauthorconf}
 \makeatletter
@@ -361,7 +356,6 @@ sorting=none,% настройка сортировки списка литера
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorconf в нашей реализации
 {\stepcounter{citeauthorconf}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorconf}{}
 
 \newtotcounter{citeauthor}
 \makeatletter
@@ -372,8 +366,8 @@ sorting=none,% настройка сортировки списка литера
 {} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthor в нашей реализации
 {\stepcounter{citeauthor}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthor}{}
 
+\defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
 \defbibheading{authorpublications}[\bibtitleauthor]{\section*{#1}}
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}}
 \defbibheading{externalpublications}{\section*{#1}}

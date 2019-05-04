@@ -102,12 +102,12 @@
 %Сделана отдельная секция, чтобы не отображались в списке цитированных материалов
     \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]% Подсчет и нумерация авторских работ. Засчитываются только те, которые были прописаны внутри \nocite{}.
         %Чтобы сменить порядок разделов в сгрупированном списке литературы необходимо перетасовать следующие три строчки, а также команды в разделе \newcommand*{\insertbiblioauthorgrouped} в файле biblio/biblatex.tex
-        \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=1]%
-        \printbibliography[heading=countauthorwos,env=countauthorwos, keyword=biblioauthorwos, section=1]%
-        \printbibliography[heading=countauthorscopus,env=countauthorscopus, keyword=biblioauthorscopus, section=1]%
-        \printbibliography[heading=countauthorconf, env=countauthorconf, keyword=biblioauthorconf, section=1]%
-        \printbibliography[heading=countauthorother, env=countauthorother, keyword=biblioauthorother, section=1]%
-        \printbibliography[heading=countauthor, env=countauthor, keyword=biblioauthor, section=1]%
+        \printbibliography[heading=nobibheading, env=countauthorvak, keyword=biblioauthorvak, section=1]%
+        \printbibliography[heading=nobibheading,env=countauthorwos, keyword=biblioauthorwos, section=1]%
+        \printbibliography[heading=nobibheading,env=countauthorscopus, keyword=biblioauthorscopus, section=1]%
+        \printbibliography[heading=nobibheading, env=countauthorconf, keyword=biblioauthorconf, section=1]%
+        \printbibliography[heading=nobibheading, env=countauthorother, keyword=biblioauthorother, section=1]%
+        \printbibliography[heading=nobibheading, env=countauthor, keyword=biblioauthor, section=1]%
         \nocite{%Порядок перечисления в этом блоке определяет порядок вывода в списке публикаций автора
                 vakbib1,vakbib2,%
                 wosbib1,%
