@@ -376,7 +376,7 @@ sorting=none,% настройка сортировки списка литера
 
 \defbibheading{authorpublications}[\bibtitleauthor]{\section*{#1}}
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}}
-\defbibheading{otherpublications}{\section*{#1}}
+\defbibheading{externalpublications}{\section*{#1}}
 
 
 %%% Создание команд для вывода списка литературы %%%
@@ -404,5 +404,5 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioexternal}{
-\printbibliography[heading=otherpublications,keyword=biblioexternal]
+\printbibliography[heading=externalpublications,keyword=biblioexternal]
 }
