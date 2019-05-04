@@ -54,12 +54,12 @@ sorting=none,% настройка сортировки списка литера
 }{}
 
 %%% Подключение файлов bib %%%
-\addbibresource[label=other]{biblio/othercites.bib}
-\addbibresource[label=vak]{biblio/authorpapersVAK.bib}
-\addbibresource[label=scopus]{biblio/authorpapersScopus.bib}
-\addbibresource[label=wos]{biblio/authorpapersWoS.bib}
-\addbibresource[label=papers]{biblio/authorpapers.bib}
-\addbibresource[label=conf]{biblio/authorconferences.bib}
+\addbibresource[label=biblabelexternal]{biblio/external.bib}
+\addbibresource[label=biblabelauthorvak]{biblio/authorVAK.bib}
+\addbibresource[label=biblabelauthorscopus]{biblio/authorScopus.bib}
+\addbibresource[label=biblabelauthorwos]{biblio/authorWoS.bib}
+\addbibresource[label=biblabelauthorother]{biblio/authorother.bib}
+\addbibresource[label=biblabelauthorconf]{biblio/authorconf.bib}
 
 
 %http://tex.stackexchange.com/a/141831/79756
@@ -80,18 +80,18 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=booktitle, origfieldval]
         }
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{biblio/authorpapersVAK.bib}
-            \perdatasource{biblio/authorpapersScopus.bib}
-            \perdatasource{biblio/authorpapersWoS.bib}
-            \perdatasource{biblio/authorpapers.bib}
-            \perdatasource{biblio/authorconferences.bib}
+            \perdatasource{biblio/authorVAK.bib}
+            \perdatasource{biblio/authorScopus.bib}
+            \perdatasource{biblio/authorWoS.bib}
+            \perdatasource{biblio/authorother.bib}
+            \perdatasource{biblio/authorconf.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
         \map[overwrite]{% перекидываем refbase в addendum, чтобы указать тип публикации (ВАК, Scopus, WoS) в конце ссылки
-            \perdatasource{biblio/authorpapersVAK.bib}
-            \perdatasource{biblio/authorpapersScopus.bib}
-            \perdatasource{biblio/authorpapersWoS.bib}
+            \perdatasource{biblio/authorVAK.bib}
+            \perdatasource{biblio/authorScopus.bib}
+            \perdatasource{biblio/authorWoS.bib}
             \step[fieldsource=refbase, final]
             \step[fieldset=addendum, origfieldval]
         }
@@ -119,27 +119,27 @@ sorting=none,% настройка сортировки списка литера
             final]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/othercites.bib}
-            \step[fieldset=keywords, fieldvalue={biblioother,bibliofull}]
+            \perdatasource{biblio/external.bib}
+            \step[fieldset=keywords, fieldvalue={biblioexternal,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapersVAK.bib}
+            \perdatasource{biblio/authorVAK.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapersScopus.bib}
+            \perdatasource{biblio/authorScopus.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapersWoS.bib}
+            \perdatasource{biblio/authorWoS.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorwos,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorpapers.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorothers,biblioauthor,bibliofull}]
+            \perdatasource{biblio/authorother.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorother,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorconferences.bib}
+            \perdatasource{biblio/authorconf.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
         }
 %        \map[overwrite]{% стираем значения всех полей series
@@ -341,16 +341,16 @@ sorting=none,% настройка сортировки списка литера
 % сумма citeauthorscopus и citeauthorwos
 \newtotcounter{citeauthorscwostot}
 
-\newtotcounter{citeauthorothers}
+\newtotcounter{citeauthorother}
 \makeatletter
-\defbibenvironment{countauthorothers} %Env of bibliography
-{\setcounter{citeauthorothers}{0}%
+\defbibenvironment{countauthorother} %Env of bibliography
+{\setcounter{citeauthorother}{0}%
     \renewcommand{\blx@driver}[1]{}%
 } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorothers в нашей реализации
-{\stepcounter{citeauthorothers}} %What is printing / executed at each entry.
+{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorother в нашей реализации
+{\stepcounter{citeauthorother}} %What is printing / executed at each entry.
 \makeatother
-\defbibheading{countauthorothers}{}
+\defbibheading{countauthorother}{}
 
 \newtotcounter{citeauthorconf}
 \makeatletter
@@ -400,9 +400,9 @@ sorting=none,% настройка сортировки списка литера
 \printbibliography[heading=pubsubgroup, keyword=biblioauthorwos, section=1, title=\bibtitleauthorwos]%
 \printbibliography[heading=pubsubgroup, keyword=biblioauthorscopus, section=1, title=\bibtitleauthorscopus]%
 \printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1, title=\bibtitleauthorconf]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorothers, section=1, title=\bibtitleauthorothers]%
+\printbibliography[heading=pubsubgroup, keyword=biblioauthorother, section=1, title=\bibtitleauthorother]%
 }
 
-\newcommand*{\insertbiblioother}{
-\printbibliography[heading=otherpublications,keyword=biblioother]
+\newcommand*{\insertbiblioexternal}{
+\printbibliography[heading=otherpublications,keyword=biblioexternal]
 }

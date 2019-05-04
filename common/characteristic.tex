@@ -100,13 +100,13 @@
     X "--- в тезисах докладов.
 }{% Реализация пакетом biblatex через движок biber
 %Сделана отдельная секция, чтобы не отображались в списке цитированных материалов
-    \begin{refsection}[vak,wos,scopus,papers,conf]% Подсчет и нумерация авторских работ. Засчитываются только те, которые были прописаны внутри \nocite{}.
+    \begin{refsection}[biblabelauthorvak,biblabelauthorwos,biblabelauthorscopus,biblabelauthorother,biblabelauthorconf]% Подсчет и нумерация авторских работ. Засчитываются только те, которые были прописаны внутри \nocite{}.
         %Чтобы сменить порядок разделов в сгрупированном списке литературы необходимо перетасовать следующие три строчки, а также команды в разделе \newcommand*{\insertbiblioauthorgrouped} в файле biblio/biblatex.tex
         \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=1]%
         \printbibliography[heading=countauthorwos,env=countauthorwos, keyword=biblioauthorwos, section=1]%
         \printbibliography[heading=countauthorscopus,env=countauthorscopus, keyword=biblioauthorscopus, section=1]%
         \printbibliography[heading=countauthorconf, env=countauthorconf, keyword=biblioauthorconf, section=1]%
-        \printbibliography[heading=countauthorothers, env=countauthorothers, keyword=biblioauthorothers, section=1]%
+        \printbibliography[heading=countauthorother, env=countauthorother, keyword=biblioauthorother, section=1]%
         \printbibliography[heading=countauthor, env=countauthor, keyword=biblioauthor, section=1]%
         \nocite{%Порядок перечисления в этом блоке определяет порядок вывода в списке публикаций автора
                 vakbib1,vakbib2,%
@@ -128,11 +128,11 @@
         .
         \fi
     \end{refsection}%
-    \begin{refsection}[vak,wos,scopus,papers,conf]%Блок, позволяющий отобрать из всех работ автора наиболее значимые, и только их вывести в автореферате, но считать в блоке выше общее число работ
+    \begin{refsection}[biblabelauthorvak,biblabelauthorwos,biblabelauthorscopus,biblabelauthorother,biblabelauthorconf]%Блок, позволяющий отобрать из всех работ автора наиболее значимые, и только их вывести в автореферате, но считать в блоке выше общее число работ
         \printbibliography[heading=countauthorvak, env=countauthorvak, keyword=biblioauthorvak, section=2]%
         \printbibliography[heading=countauthorwos, env=countauthorwos, keyword=biblioauthorwos, section=2]%
         \printbibliography[heading=countauthorscopus, env=countauthorscopus, keyword=biblioauthorscopus, section=2]%
-        \printbibliography[heading=countauthorothers, env=countauthorothers, keyword=biblioauthorothers, section=2]%
+        \printbibliography[heading=countauthorother, env=countauthorother, keyword=biblioauthorother, section=2]%
         \printbibliography[heading=countauthorconf, env=countauthorconf, keyword=biblioauthorconf, section=2]%
         \printbibliography[heading=countauthor, env=countauthor, keyword=biblioauthor, section=2]%
         \nocite{vakbib2}%vak
