@@ -8,7 +8,7 @@ pages = []
 all_auth = []
 cites = []
 print("Searching for duped bib records...")
-with open(bibfile, 'r') as biblio:
+with open(bibfile, 'r', encoding="utf8") as biblio:
     for bib_line in biblio:
         if "@" in bib_line and "@comment" not in bib_line.lower():
             if "@" in bib_line.split("{",1)[0]:
@@ -74,7 +74,7 @@ for fname in glob.iglob('*.tex'):
 files.sort()
 all_text = ""
 for filename in files:
-    with open(filename, 'r') as myfile:
+    with open(filename, 'r', encoding="utf8") as myfile:
         all_text += myfile.read().replace('\n', '')
 
 path = os.getcwd()
@@ -86,7 +86,7 @@ for fname in glob.iglob('*.tex'):
     files.append(fname)
 files.sort()
 for filename in files:
-    with open(filename, 'r') as myfile:
+    with open(filename, 'r', encoding="utf8") as myfile:
         all_text += myfile.read().replace('\n', '')
 
 
