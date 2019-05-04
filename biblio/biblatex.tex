@@ -55,9 +55,9 @@ sorting=none,% настройка сортировки списка литера
 
 %%% Подключение файлов bib %%%
 \addbibresource[label=bl-external]{biblio/external.bib}
-\addbibresource[label=bl-authorvak]{biblio/authorVAK.bib}
-\addbibresource[label=bl-authorscopus]{biblio/authorScopus.bib}
-\addbibresource[label=bl-authorwos]{biblio/authorWoS.bib}
+\addbibresource[label=bl-authorvak]{biblio/authorvak.bib}
+\addbibresource[label=bl-authorscopus]{biblio/authorscopus.bib}
+\addbibresource[label=bl-authorwos]{biblio/authorwos.bib}
 \addbibresource[label=bl-authorother]{biblio/authorother.bib}
 \addbibresource[label=bl-authorconf]{biblio/authorconf.bib}
 
@@ -80,18 +80,18 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=booktitle, origfieldval]
         }
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{biblio/authorVAK.bib}
-            \perdatasource{biblio/authorScopus.bib}
-            \perdatasource{biblio/authorWoS.bib}
+            \perdatasource{biblio/authorvak.bib}
+            \perdatasource{biblio/authorscopus.bib}
+            \perdatasource{biblio/authorwos.bib}
             \perdatasource{biblio/authorother.bib}
             \perdatasource{biblio/authorconf.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
         \map[overwrite]{% перекидываем refbase в addendum, чтобы указать тип публикации (ВАК, Scopus, WoS) в конце ссылки
-            \perdatasource{biblio/authorVAK.bib}
-            \perdatasource{biblio/authorScopus.bib}
-            \perdatasource{biblio/authorWoS.bib}
+            \perdatasource{biblio/authorvak.bib}
+            \perdatasource{biblio/authorscopus.bib}
+            \perdatasource{biblio/authorwos.bib}
             \step[fieldsource=refbase, final]
             \step[fieldset=addendum, origfieldval]
         }
@@ -123,15 +123,15 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=keywords, fieldvalue={biblioexternal,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorVAK.bib}
+            \perdatasource{biblio/authorvak.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorScopus.bib}
+            \perdatasource{biblio/authorscopus.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorWoS.bib}
+            \perdatasource{biblio/authorwos.bib}
             \step[fieldset=keywords, fieldvalue={biblioauthorwos,biblioauthor,bibliofull}]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
