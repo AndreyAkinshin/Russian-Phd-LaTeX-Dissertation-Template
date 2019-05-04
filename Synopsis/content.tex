@@ -76,7 +76,7 @@
   \renewcommand{\bibname}{\large \bibtitleauthor}
   \nocite{*}
   \insertbiblioauthor           % Подключаем Bib-базы
-  %\insertbiblioother   % !!! bibtex не умеет работать с несколькими библиографиями !!!
+  %\insertbiblioexternal   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
   \ifnumgreater{\value{usefootcite}}{0}{
 %  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
@@ -85,7 +85,7 @@
   \insertbiblioauthor           % Вывод всех работ автора
 %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
 %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
-  \insertbiblioother            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
   }
 }
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}
