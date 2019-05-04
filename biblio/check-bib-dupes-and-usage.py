@@ -33,11 +33,9 @@ with open(bibfile, 'r', encoding="utf8") as biblio:
             pages = []
             # print("==========")
         bib_line = bib_line.lower()
-        if "author" in bib_line and "book-group-author" not in bib_line:
-            bib_line = bib_line.split("author")[1]
-            if "=" not in bib_line:
-                continue
-            all_auth = re.split('[{"]', bib_line, maxsplit=1)[1]
+        if re.match(r'(\s*)author(\s*)=', bib_line):
+            authors_expr = bib_line.split("author")[1]
+            all_auth = re.split('[{"]', authors_expr, maxsplit=1)[1]
             if "\n" in all_auth:
                 all_auth = all_auth[:-1]
             all_auth = all_auth.split(" and ")
