@@ -338,35 +338,36 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 
 \defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
-\defbibheading{authorpublications}[\bibtitleauthor]{\section*{#1}}
-\defbibheading{pubsubgroup}{\noindent\textbf{#1}}
-\defbibheading{externalpublications}{\section*{#1}}
+\defbibheading{pubgroup}[\bibtitleauthor]{\section*{#1}} % обычный стиль, заголовок-секция
+\defbibheading{pubsubgroup}{\noindent\textbf{#1}} % для подразделов "по типу источника"
 
 
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
-\printbibliography[keyword=bibliofull,section=0,title=\fullbibtitle]
-\printbibliography[heading=nobibheading,env=counter,keyword=bibliofull,section=0]
+    \printbibliography[keyword=bibliofull,section=0,title=\bibtitlefull]
+    \printbibliography[heading=nobibheading,env=counter,keyword=bibliofull,section=0]
 }
-
 \newcommand*{\insertbiblioauthorcited}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=0,title=\bibtitleauthor]
+    \printbibliography[heading=pubgroup, section=0, keyword=biblioauthor, title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\bibtitleauthor]
+    \printbibliography[heading=pubgroup, section=1, keyword=biblioauthor, title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthorimportant}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\bibtitleauthor{}}}]
+    \printbibliography[heading=pubgroup, section=2, keyword=biblioauthor, title=\bibtitleauthorimportant]
 }
-\newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
-\section*{\bibtitleauthor}
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorvak, section=1, title=\bibtitleauthorvak]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorwos, section=1, title=\bibtitleauthorwos]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorscopus, section=1, title=\bibtitleauthorscopus]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorconf, section=1, title=\bibtitleauthorconf]%
-\printbibliography[heading=pubsubgroup, keyword=biblioauthorother, section=1, title=\bibtitleauthorother]%
+
+% Вариант вывода печатных работ автора, с группировкой по типу источника. 
+% Порядок команд `\printbibliography` должен соответствовать порядку в файле common/characteristic.tex
+\newcommand*{\insertbiblioauthorgrouped}{
+    \section*{\bibtitleauthor}
+    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorvak,    title=\bibtitleauthorvak]%
+    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorwos,    title=\bibtitleauthorwos]%
+    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorscopus, title=\bibtitleauthorscopus]%
+    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorconf,   title=\bibtitleauthorconf]%
+    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorother,  title=\bibtitleauthorother]%
 }
 
 \newcommand*{\insertbiblioexternal}{
-\printbibliography[heading=externalpublications,keyword=biblioexternal]
+    \printbibliography[heading=pubgroup,keyword=biblioexternal]
 }
