@@ -338,9 +338,8 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 
 \defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
-\defbibheading{authorpublications}[\bibtitleauthor]{\section*{#1}}
-\defbibheading{pubsubgroup}{\noindent\textbf{#1}}
-\defbibheading{externalpublications}{\section*{#1}}
+\defbibheading{pubgroup}[\bibtitleauthor]{\section*{#1}} % обычный стиль, заголовок-секция
+\defbibheading{pubsubgroup}{\noindent\textbf{#1}} % для подразделов "по типу источника"
 
 
 %%% Создание команд для вывода списка литературы %%%
@@ -350,13 +349,15 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioauthorcited}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=0,title=\bibtitleauthor]
+\printbibliography[heading=pubgroup,keyword=biblioauthor,section=0,title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthor}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=1,title=\bibtitleauthor]
+\printbibliography[heading=pubgroup,keyword=biblioauthor,section=1,title=\bibtitleauthor]
 }
+
+% Вариант вывода печатных работ автора, с перечислением только указанных в refsection=2
 \newcommand*{\insertbiblioauthorimportant}{
-\printbibliography[heading=authorpublications,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\bibtitleauthor{}}}]
+\printbibliography[heading=pubgroup,keyword=biblioauthor,section=2,title={Наиболее значимые \MakeLowercase{\protect\bibtitleauthor{}}}]
 }
 \newcommand*{\insertbiblioauthorgrouped}{% Заготовка для вывода сгруппированных печатных работ автора. Порядок нумерации определяется в соответствующих счетчиках внутри окружения refsection в файле common/characteristic.tex
 \section*{\bibtitleauthor}
@@ -368,5 +369,5 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioexternal}{
-\printbibliography[heading=externalpublications,keyword=biblioexternal]
+    \printbibliography[heading=pubgroup,keyword=biblioexternal]
 }
