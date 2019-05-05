@@ -60,7 +60,7 @@ BibTeX под UTF-8.
 ## Дополнительная полезная информация
 
 * [Оформление библиографии](Readme/Bibliography.md)
-* [Как вносить правки в проект](CONTRIBUTING.md)
+* [Как вносить правки в проект](Readme/Contributing.md)
 * [Полезные ссылки](Readme/Links.md)
 * [Шаблон в галерее шаблонов ShareLaTeX](https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template) (очень старая версия).
 
