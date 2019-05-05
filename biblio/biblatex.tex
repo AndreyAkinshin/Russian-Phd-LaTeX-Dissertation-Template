@@ -289,91 +289,55 @@ sorting=none,% настройка сортировки списка литера
 %  {\endlist}
 %  {\item}
 
-%% Счётчик использованных ссылок на литературу, обрабатывающий с учётом неоднократных ссылок
-%http://tex.stackexchange.com/a/66851/79756
-%\newcounter{citenum}
-\newtotcounter{citenum}
+%%% Макросы автоматического подсчёта количества авторских публикаций.
+% Печатают невидимую (пустую) библиографию, считая количество источников.
+% http://tex.stackexchange.com/a/66851/79756
+% 
 \makeatletter
-\defbibenvironment{counter} %Env of bibliography
-  {\setcounter{citenum}{0}%
-  \renewcommand{\blx@driver}[1]{}%
-  } %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-  {} %Здесь то, что будет выводиться командой \printbibliography. \thecitenum сюда писать не надо
-  {\stepcounter{citenum}} %What is printing / executed at each entry.
+	\newtotcounter{citenum}
+	\defbibenvironment{counter}
+	    {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}} % begin code: убирает весь выводимый текст
+	    {} % end code
+	    {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
+	
+	\newtotcounter{citeauthorvak}
+	\defbibenvironment{countauthorvak}
+	    {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
+	    {}
+	    {\stepcounter{citeauthorvak}}
+	
+	\newtotcounter{citeauthorscopus}
+	\defbibenvironment{countauthorscopus}
+		{\setcounter{citeauthorscopus}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthorscopus}}
+	
+	\newtotcounter{citeauthorwos}
+	\defbibenvironment{countauthorwos}
+		{\setcounter{citeauthorwos}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthorwos}}
+	
+	\newtotcounter{citeauthorother}
+	\defbibenvironment{countauthorother}
+		{\setcounter{citeauthorother}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthorother}}
+	
+	\newtotcounter{citeauthorconf}
+	\defbibenvironment{countauthorconf}
+		{\setcounter{citeauthorconf}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthorconf}}
+	
+	\newtotcounter{citeauthor}
+	\defbibenvironment{countauthor}
+		{\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthor}}
 \makeatother
-\defbibheading{counter}{}
 
-
-
-\newtotcounter{citeauthorvak}
-\makeatletter
-\defbibenvironment{countauthorvak} %Env of bibliography
-{\setcounter{citeauthorvak}{0}%
-    \renewcommand{\blx@driver}[1]{}%
-} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorvak в нашей реализации
-{\stepcounter{citeauthorvak}} %What is printing / executed at each entry.
-\makeatother
-\defbibheading{countauthorvak}{}
-
-\newtotcounter{citeauthorscopus}
-\makeatletter
-\defbibenvironment{countauthorscopus} %Env of bibliography
-{\setcounter{citeauthorscopus}{0}%
-    \renewcommand{\blx@driver}[1]{}%
-} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorscopus в нашей реализации
-{\stepcounter{citeauthorscopus}} %What is printing / executed at each entry.
-\makeatother
-\defbibheading{countauthorscopus}{}
-
-\newtotcounter{citeauthorwos}
-\makeatletter
-\defbibenvironment{countauthorwos} %Env of bibliography
-{\setcounter{citeauthorwos}{0}%
-    \renewcommand{\blx@driver}[1]{}%
-} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorwos в нашей реализации
-{\stepcounter{citeauthorwos}} %What is printing / executed at each entry.
-\makeatother
-\defbibheading{countauthorwos}{}
-
-% сумма citeauthorscopus и citeauthorwos
-\newtotcounter{citeauthorscwostot}
-
-\newtotcounter{citeauthorother}
-\makeatletter
-\defbibenvironment{countauthorother} %Env of bibliography
-{\setcounter{citeauthorother}{0}%
-    \renewcommand{\blx@driver}[1]{}%
-} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorother в нашей реализации
-{\stepcounter{citeauthorother}} %What is printing / executed at each entry.
-\makeatother
-\defbibheading{countauthorother}{}
-
-\newtotcounter{citeauthorconf}
-\makeatletter
-\defbibenvironment{countauthorconf} %Env of bibliography
-{\setcounter{citeauthorconf}{0}%
-    \renewcommand{\blx@driver}[1]{}%
-} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthorconf в нашей реализации
-{\stepcounter{citeauthorconf}} %What is printing / executed at each entry.
-\makeatother
-\defbibheading{countauthorconf}{}
-
-\newtotcounter{citeauthor}
-\makeatletter
-\defbibenvironment{countauthor} %Env of bibliography
-{\setcounter{citeauthor}{0}%
-    \renewcommand{\blx@driver}[1]{}%
-} %what is doing at the beginining of bibliography. In your case it's : a. Reset counter b. Say to print nothing when a entry is tested.
-{} %Здесь то, что будет выводиться командой \printbibliography. Обойдёмся без \theciteauthor в нашей реализации
-{\stepcounter{citeauthor}} %What is printing / executed at each entry.
-\makeatother
-\defbibheading{countauthor}{}
-
+\defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
 \defbibheading{authorpublications}[\bibtitleauthor]{\section*{#1}}
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}}
 \defbibheading{externalpublications}{\section*{#1}}
