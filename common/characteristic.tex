@@ -94,46 +94,83 @@
 
 {\contribution} Автор принимал активное участие \ldots
 
-\ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8. (При желании, внутри можно использовать обычные ссылки, наподобие `\cite{vakbib1,vakbib2}`).
+\ifnumequal{\value{bibliosel}}{0}
+{%%% Встроенная реализация с загрузкой файла через движок bibtex8. (При желании, внутри можно использовать обычные ссылки, наподобие `\cite{vakbib1,vakbib2}`).
     {\publications} Основные результаты по теме диссертации изложены в XX печатных изданиях,
     X из которых изданы в журналах, рекомендованных ВАК,
     X "--- в тезисах докладов.
-}{% Реализация пакетом biblatex через движок biber
-%Сделана отдельная секция, чтобы не отображались в списке цитированных материалов
-    \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]% Подсчет и нумерация авторских работ. Засчитываются только те, которые были прописаны внутри \nocite{}.
-        %Чтобы сменить порядок разделов в сгрупированном списке литературы необходимо перетасовать следующие три строчки, а также команды в разделе \newcommand*{\insertbiblioauthorgrouped} в файле biblio/biblatex.tex
-        \printbibliography[heading=nobibheading, env=countauthorvak, keyword=biblioauthorvak, section=1]%
-        \printbibliography[heading=nobibheading,env=countauthorwos, keyword=biblioauthorwos, section=1]%
-        \printbibliography[heading=nobibheading,env=countauthorscopus, keyword=biblioauthorscopus, section=1]%
-        \printbibliography[heading=nobibheading, env=countauthorconf, keyword=biblioauthorconf, section=1]%
-        \printbibliography[heading=nobibheading, env=countauthorother, keyword=biblioauthorother, section=1]%
-        \printbibliography[heading=nobibheading, env=countauthor, keyword=biblioauthor, section=1]%
-        \nocite{%Порядок перечисления в этом блоке определяет порядок вывода в списке публикаций автора
-                vakbib1,vakbib2,%
-                wosbib1,%
-                scbib1,%
-                confbib1,confbib2,%
-                bib1,bib2,%
-        }%
+}% 
+{%%% Реализация пакетом biblatex через движок biber
+    \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]
+        % Это refsection=1.
+        % Процитированные здесь работы:
+        %  * подсчитываются, для автоматического составления фразы "Основные результаты ..."
+        %  * попадают в авторскую библиографию, при usefootcite==0 и стиле `\insertbiblioauthor` или `\insertbiblioauthorgrouped`
+        %  * нумеруются там в зависимости от порядка команд `\printbibliography` в этом разделе. 
+        %  * при использовании `\insertbiblioauthorgrouped`, порядок команд `\printbibliography` в нём должен быть тем же (см. biblio/biblatex.tex)
+        %
+        % Невидимый библиографический список для подсчёта количества публикаций:
+        \printbibliography[heading=nobibheading, section=1, env=countauthorvak,    keyword=biblioauthorvak]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorwos,    keyword=biblioauthorwos]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorscopus, keyword=biblioauthorscopus]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorconf,   keyword=biblioauthorconf]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorother,  keyword=biblioauthorother]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthor,       keyword=biblioauthor]%
+        %
+        % Цитирования.
+        %  * Порядок перечисления определяет порядок в библиографии (только внутри подраздела, если `\insertbiblioauthorgrouped`).
+        %  * Если не соблюдать порядок "как для \printbibliography", нумерация в `\insertbiblioauthor` будет кривой.
+        %  * Если цитировать каждый источник отдельной командой --- найти некоторые ошибки будет проще.
+        %
+        %% authorvak
+        \nocite{vakbib1}%
+        \nocite{vakbib2}%
+        %
+        %% authorwos
+        \nocite{wosbib1}%
+        %
+        %% authorscopus
+        \nocite{scbib1}%
+        %
+        %% authorconf
+        \nocite{confbib1}%
+        \nocite{confbib2}%
+        %
+        % authorother
+        \nocite{bib1}%
+        \nocite{bib2}%
+        %
+        %
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
         \setcounter{citeauthorscwostot}{\value{citeauthorscopus}}%
         \addtocounter{citeauthorscwostot}{\value{citeauthorwos}}%
         \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
         \ifnum \value{citeauthorscwostot}>0%
-        , \arabic{citeauthorscwostot} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy%
+            , \arabic{citeauthorscwostot} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy%
         \fi%
         \ifnum \value{citeauthorconf}>0%
-        , \arabic{citeauthorconf} "--- в~тезисах докладов.
+            , \arabic{citeauthorconf} "--- в~тезисах докладов.
         \else%
-        .
+            .
         \fi
     \end{refsection}%
-    \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]%Блок, позволяющий отобрать из всех работ автора наиболее значимые, и только их вывести в автореферате, но считать в блоке выше общее число работ
+    \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]
+        % Это refsection=2.
+        % Процитированные здесь работы:
+        %  * попадают в авторскую библиографию, при usefootcite==0 и стиле `\insertbiblioauthorimportant`.
+        %  * ни на что не влияют в противном случае
         \nocite{vakbib2}%vak
         \nocite{bib1}%other
         \nocite{confbib1}%conf
     \end{refsection}%
-}%
+	%
+	% Всё, что вне этих двух refsection, это refsection=0,
+	%  * для диссертации - это нормальные ссылки, попадающие в обычную библиографию
+	%  * для автореферата:
+	%     * при usefootcite==0, ссылка корректно сработает только для источника из `external.bib`. Для своих работ --- напечатает "[0]" (и даже Warning не вылезет).
+	%     * при usefootcite==1, ссылка сработает нормально. В авторской библиографии будут только процитированные в refsection=0 работы.
+}
+
 При использовании пакета \verb!biblatex! для автоматического подсчёта
 количества публикаций автора по теме диссертации, необходимо
-их~здесь перечислить с использованием команды \verb!\nocite!.
+их~перечислить с использованием команды \verb!\nocite! в \verb!common/characteristic.tex!
