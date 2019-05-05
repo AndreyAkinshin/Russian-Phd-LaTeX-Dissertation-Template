@@ -1,5 +1,6 @@
 maxNumberOfBackUps: 3
 cycleThroughBackUps: 1
+defaultIndent: "    "
 
 commandCodeBlocks:
     roundParenthesesAllowed: 0
