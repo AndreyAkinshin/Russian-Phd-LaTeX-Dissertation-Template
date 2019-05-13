@@ -338,7 +338,7 @@ sorting=none,% настройка сортировки списка литера
 \makeatother
 
 \defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
-\defbibheading{pubgroup}[\bibtitleauthor]{\section*{#1}} % обычный стиль, заголовок-секция
+\defbibheading{pubgroup}{\section*{#1}} % обычный стиль, заголовок-секция
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}} % для подразделов "по типу источника"
 
 
@@ -369,5 +369,5 @@ sorting=none,% настройка сортировки списка литера
 }
 
 \newcommand*{\insertbiblioexternal}{
-    \printbibliography[heading=pubgroup,keyword=biblioexternal]
+    \printbibliography[heading=pubgroup,    section=0, keyword=biblioexternal,     title=\bibtitlefull]
 }
