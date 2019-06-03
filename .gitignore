@@ -250,6 +250,10 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+# Vim
+.*.swp
+.*.swo
+
 # auto folder when using emacs and auctex
 ./auto/*
 *.el
