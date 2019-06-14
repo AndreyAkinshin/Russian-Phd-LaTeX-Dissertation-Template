@@ -12,17 +12,16 @@
 	\ifnumequal{\value{presnotes}}{2}{
 		\setbeameroption{show notes on second screen=\presposition}
 	}{}
-	% https://tex.stackexchange.com/a/291545/104425
-	\usepackage[normalem]{ulem}
-	\makeatletter
-	\def\beamer@framenotesbegin{% at beginning of slide
-		\usebeamercolor[fg]{normal text}
-		\gdef\beamer@noteitems{}%
-		\gdef\beamer@notes{}%
-	}
-	\makeatother
 }
 
+% https://tex.stackexchange.com/a/291545/104425
+\makeatletter
+\def\beamer@framenotesbegin{% at beginning of slide
+	\usebeamercolor[fg]{normal text}
+	\gdef\beamer@noteitems{}%
+	\gdef\beamer@notes{}%
+}
+\makeatother
 
 % \usetheme[secheader]{Boadilla}
 % \usecolortheme{seahorse}
