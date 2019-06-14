@@ -54,16 +54,55 @@
 
 \newcommand{\itemi}{\item[\checkmark]}
 
+\setbeamertemplate{title page}
+{
+	\ifnumequal{\value{logotitle}}{1}{
+		\IfFileExists{images/logo.pdf}{
+			% изменить размер логотипа можно, изменяя размер minipage
+			% при этом не забыть соответственно изменить размер следующей minipage
+			\begin{minipage}[c]{0.15\textwidth}
+				\begin{flushleft}
+					\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+				\end{flushleft}
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[b]{0.8\linewidth}
+				\centering
+				\usebeamerfont{institute}\insertinstitute\par
+			\end{minipage}
+		}{
+			\centering
+			\usebeamerfont{institute}\insertinstitute\par
+		}
+	}{
+		\centering
+		\usebeamerfont{institute}\insertinstitute\par
+	}
+	\centering
+	\vfill
+	\usebeamerfont{title}\small\inserttitle\par
+	\usebeamerfont{subtitle}\insertsubtitle\par
+	\vfill
+	\usebeamerfont{author}\small\insertauthor\par
+	\vfill
+	\usebeamerfont{date}\small\insertdate\par
+}
+
 %\title{\small{Название презентации}}
-\title{\small{\thesisTitle}}
+\title{\thesisTitle}
 \author{%
     \texorpdfstring{%
-        \small{%
         \emph{Выступающий:}~\thesisAuthorShort\\%
-        \emph{Руководитель:}~\supervisorRegaliaShort~\supervisorFioShort}\\%
-        \vspace{10pt}%
-        \thesisOrganization%
-        \vfill%
+        \emph{Руководитель:}~\supervisorRegaliaShort~\supervisorFioShort\\%
+        %
     }{\thesisAuthor}%
 }
-\date{\texorpdfstring{\small{\thesisCity, \thesisYear}}{}}
+\date{\texorpdfstring{\thesisCity, \thesisYear}{}}
+\institute{\texorpdfstring{\thesisOrganization}{}}
+\IfFileExists{images/logo.pdf}{
+	\titlegraphic{\includegraphics[width=\textwidth]{images/logo}}
+	\ifnumequal{\value{logoother}}{1}{
+		% размер логотипа для каждой странице задаётся здесь
+		\logo{\includegraphics[width=0.15\textwidth]{images/logo}}
+	}{}
+}{}
