@@ -76,7 +76,7 @@ $recorder = 1;
 $bibtex_use = 2;
 
 # extensions to clean with -c flag
-$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav';
+$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav %R.fmt';
 
 # extensions to clean with -C flag
 $clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav';
@@ -93,8 +93,7 @@ $remove_dryrun = 0;
                  '*.fls',
                  '*.out',
                  '*.toc',
-                 'mylatexformat.fmt',
-                 'mylatexformat.log');
+                 '*.fmt');
 ## Intermediate documents:
 # these rules might exclude image files for figures etc.
 # *.ps

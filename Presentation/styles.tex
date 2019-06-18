@@ -1,0 +1,79 @@
+% Общие стили оформления.
+% Возможные варианты значений ищите в описании библиотеки beamer
+\usetheme{Pittsburgh}
+\usecolortheme{whale}
+
+% \usetheme[secheader]{Boadilla}
+% \usecolortheme{seahorse}
+
+% выключение кнопок навигации
+\beamertemplatenavigationsymbolsempty
+
+% Размеры шрифтов
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\normalsize}
+\setbeamerfont{bibliography item}{size=\small}
+\setbeamerfont{bibliography entry author}{size=\small}
+\setbeamerfont{bibliography entry title}{size=\small}
+\setbeamerfont{bibliography entry location}{size=\small}
+\setbeamerfont{bibliography entry note}{size=\small}
+% Аналогично можно настроить и другие размеры.
+% Названия классов элементов можно найти здесь
+% http://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
+
+% Цвет элементов
+\setbeamercolor{footline}{fg=blue}
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+% Аналогично можно настроить и другие цвета.
+% Названия классов элементов можно найти здесь
+% http://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
+
+% Убрать иконки перед списком литературы
+% https://tex.stackexchange.com/a/124271/104425
+\setbeamertemplate{bibliography item}{}
+
+% Использовать шрифт с засечками для формул
+% https://tex.stackexchange.com/a/34267/104425
+\usefonttheme[onlymath]{serif}
+
+% https://tex.stackexchange.com/a/291545/104425
+\makeatletter
+\def\beamer@framenotesbegin{% at beginning of slide
+    \usebeamercolor[fg]{normal text}
+    \gdef\beamer@noteitems{}%
+    \gdef\beamer@notes{}%
+}
+\makeatother
+
+% footer презентации
+\setbeamertemplate{footline}{
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
+            % И. О. Фамилия, Организация кратко
+            \thesisAuthorShort, \thesisOrganizationShort
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{}%
+            % Город, 20XX
+            \thesisCity, \thesisYear
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{}%
+            Стр. \insertframenumber{} из \inserttotalframenumber \hspace*{2ex}
+        \end{beamercolorbox}}%
+    \vskip0pt%
+}
+
+% вывод на экран заметок к презентации
+\ifnumequal{\value{presnotes}}{0}{}{
+    \setbeameroption{show notes}
+    \ifnumequal{\value{presnotes}}{2}{
+        \setbeameroption{show notes on second screen=\presposition}
+    }{}
+}

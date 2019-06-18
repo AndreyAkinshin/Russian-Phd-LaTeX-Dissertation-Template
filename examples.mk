@@ -12,7 +12,7 @@ examples-lualatex-liberation examples-presentation
 
 .EXAMPLENAME = $(TYPE)_$(subst -,_,$(subst examples-,,$(TARGET)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
 
-.PRESEXAMPLENAME = presentation$(BKND)-notes-$(subst 0,off,$(subst 1,separate,$(subst 2,same,$(NOTES))))
+.PRESEXAMPLENAME = $(subst -,_,presentation$(BKND)$(subst 0,-bibtex,$(subst 1,-biber,$(BIB)))-notes-$(subst 0,off,$(subst 1,separate,$(subst 2,same,$(NOTES)))))
 
 define basic-example #Canned Recipe
 	$(foreach DRF,0 1, \
@@ -89,10 +89,12 @@ examples-lualatex-liberation:
 
 examples-presentation:
 	$(foreach BKND,-pdf -pdfxe -pdflua, \
+	$(foreach BIB,0 1, \
 	$(foreach NOTES,0 1 2, \
 	"$(MAKE)" presentation \
 		NOTESON=$(NOTES) \
+		USEBIBER=$(BIB) \
 		BACKEND=$(BKND) \
 		TARGET=$(.PRESEXAMPLENAME);\
 	"$(MAKE)" TARGET=$(.PRESEXAMPLENAME) clean-target;\
-	))
+	)))

@@ -11,7 +11,7 @@ INDENT_SETTINGS ?= indent.yaml
 ifeq ($(INDENT_FILES),)
 INDENT_FILES += $(wildcard Dissertation/part*.tex)
 INDENT_FILES += Synopsis/content.tex
-INDENT_FILES += Presentation/prescontent.tex
+INDENT_FILES += Presentation/content.tex
 endif
 ##! форматирование файлов *.tex
 indent:
