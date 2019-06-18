@@ -11,7 +11,7 @@ INDENT_SETTINGS ?= indent.yaml
 ifeq ($(INDENT_FILES),)
 INDENT_FILES += $(wildcard Dissertation/part*.tex)
 INDENT_FILES += Synopsis/content.tex
-INDENT_FILES += Presentation/prescontent.tex
+INDENT_FILES += Presentation/content.tex
 endif
 ##! форматирование файлов *.tex
 indent:
@@ -19,7 +19,8 @@ indent:
 	latexindent -l=$(INDENT_SETTINGS) -s -w $(file);)
 
 ##! предкомпиляция диссертации и автореферата
-preformat: synopsis-preformat dissertation-preformat
+preformat: synopsis-preformat dissertation-preformat \
+presentation-preformat
 
 %.fmt: %.tex
 	etex -ini -halt-on-error -file-line-error \
@@ -33,6 +34,10 @@ dissertation-preformat: dissertation.fmt dissertation
 ##! предкомпиляция автореферата
 synopsis-preformat: TARGET=synopsis
 synopsis-preformat: synopsis.fmt synopsis
+
+##! предкомпиляция презентации
+presentation-preformat: TARGET=presentation
+presentation-preformat: presentation.fmt presentation
 
 # https://gist.github.com/klmr/575726c7e05d8780505a
 ##! это сообщение
@@ -76,4 +81,4 @@ help:
 	| more $(shell test $(shell uname) = Darwin && echo '--no-init --raw-control-chars')
 
 .PHONY: indent preformat dissertation-preformat \
-synopsis-preformat help
+synopsis-preformat presentation-preformat help
