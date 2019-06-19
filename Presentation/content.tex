@@ -158,7 +158,7 @@
 
 \begin{frame}
     \frametitle{Формулы}
-    $$
+    \[
     \left\{
     \begin{array}{rl}
         \dot x = & \sigma (y-x)  \\
@@ -166,7 +166,7 @@
         \dot z = & xy - bz
     \end{array}
     \right.
-    $$
+    \]
 \end{frame}
 
 \begin{frame}
@@ -187,14 +187,14 @@
         \begin{tabular}{ll}
             \toprule
             Интегральная форма                                                                                                                                          & Дифференциальная форма                                                        \\ \midrule
-            $Q_e(t) = \displaystyle\oiint_S \vec D(t) \cdot d\vec{s} = \displaystyle\iiint_V \rho_v(t) dv$                                                              & $\nabla \cdot \vec D(t) = \rho_v(t)$                                          \\
-            $\displaystyle\oiint_S \vec B(t) \cdot d\vec{s} = 0$                                                                                                        & $\nabla \cdot \vec B(t) = 0$                                                  \\
-            $V_{emf}(t) = \displaystyle\oint_L \vec E(t) \cdot d\vec{l}$ = $- \displaystyle\iint_S \left[\frac{\partial\vec{B}(t)}{\partial t}\right] \cdot d\vec{s}$   & $\nabla \times \vec E(t) = - \frac{\partial\vec{B}(t)}{\partial t}$           \\
-            $I(t) = \displaystyle\oint_L \vec H(t) \cdot d\vec{l} = \displaystyle\iint_S \left[\vec J(t) + \frac{\partial\vec{D}(t)}{\partial t}\right] \cdot d\vec{s}$ & $\nabla \times \vec H(t) = \vec J(t) + \frac{\partial\vec{D}(t)}{\partial t}$ \\ \midrule
-            $\displaystyle\oiint_S \vec J \cdot d\vec{s} = -\frac{\partial Q_e}{\partial t}$                                                                            & $\nabla \cdot \vec J = - \frac{\partial \rho_v}{\partial t}$                  \\
+            \(Q_e(t) = \displaystyle\oiint_S \vec D(t) \cdot d\vec{s} = \displaystyle\iiint_V \rho_v(t) dv\)                                                              & \(\nabla \cdot \vec D(t) = \rho_v(t)\)                                          \\
+            \(\displaystyle\oiint_S \vec B(t) \cdot d\vec{s} = 0\)                                                                                                        & \(\nabla \cdot \vec B(t) = 0\)                                                  \\
+            \(V_{emf}(t) = \displaystyle\oint_L \vec E(t) \cdot d\vec{l}\) = \(- \displaystyle\iint_S \left[\frac{\partial\vec{B}(t)}{\partial t}\right] \cdot d\vec{s}\)   & \(\nabla \times \vec E(t) = - \frac{\partial\vec{B}(t)}{\partial t}\)           \\
+            \(I(t) = \displaystyle\oint_L \vec H(t) \cdot d\vec{l} = \displaystyle\iint_S \left[\vec J(t) + \frac{\partial\vec{D}(t)}{\partial t}\right] \cdot d\vec{s}\) & \(\nabla \times \vec H(t) = \vec J(t) + \frac{\partial\vec{D}(t)}{\partial t}\) \\ \midrule
+            \(\displaystyle\oiint_S \vec J \cdot d\vec{s} = -\frac{\partial Q_e}{\partial t}\)                                                                            & \(\nabla \cdot \vec J = - \frac{\partial \rho_v}{\partial t}\)                  \\
             \bottomrule
-            \multicolumn{2}{c}{$\vec D(t) = \left[\varepsilon(t)\right] * \vec E(t)$}                                                                                                                                                                   \\
-            \multicolumn{2}{c}{$\vec B(t) = \left[\mu(t)\right] * \vec H(t)$}                                                                                                                                                                           \\
+            \multicolumn{2}{c}{\(\vec D(t) = \left[\varepsilon(t)\right] * \vec E(t)\)}                                                                                                                                                                   \\
+            \multicolumn{2}{c}{\(\vec B(t) = \left[\mu(t)\right] * \vec H(t)\)}                                                                                                                                                                           \\
         \end{tabular}
     }
     \framebreak
@@ -206,14 +206,14 @@
         \begin{tabular}{ll}
             \toprule
             Интегральная форма                                                                                                            & Дифференциальная форма                             \\ \midrule
-            $Q_e = \displaystyle\oiint_S \vec D \cdot d\vec{s} = \displaystyle\iiint_V \rho_v dv$                                         & $\nabla \cdot \vec D = \rho_v$                     \\
-            $\displaystyle\oiint_S \vec B \cdot d\vec{s} = 0$                                                                             & $\nabla \cdot \vec B = 0$                          \\
-            $V_{emf} = \displaystyle\oint_L \vec E \cdot d\vec{l}$ = $- \displaystyle\iint_S \left[j \omega \vec B\right] \cdot d\vec{s}$ & $\nabla \times \vec E = - j \omega \vec B$         \\
-            $I = \displaystyle\oint_L \vec H \cdot d\vec{l} = \displaystyle\iint_S \left[\vec J + j \omega \vec D\right] \cdot d\vec{s}$  & $\nabla \times \vec H = \vec J + j \omega \vec{D}$ \\ \midrule
-            $\displaystyle\oiint_S \vec J \cdot d\vec{s} = - j \omega Q_e$                                                                & $\nabla \cdot \vec J = - j \omega \rho_v$          \\
+            \(Q_e = \displaystyle\oiint_S \vec D \cdot d\vec{s} = \displaystyle\iiint_V \rho_v dv\)                                         & \(\nabla \cdot \vec D = \rho_v\)                     \\
+            \(\displaystyle\oiint_S \vec B \cdot d\vec{s} = 0\)                                                                             & \(\nabla \cdot \vec B = 0\)                          \\
+            \(V_{emf} = \displaystyle\oint_L \vec E \cdot d\vec{l}\) = \(- \displaystyle\iint_S \left[j \omega \vec B\right] \cdot d\vec{s}\) & \(\nabla \times \vec E = - j \omega \vec B\)         \\
+            \(I = \displaystyle\oint_L \vec H \cdot d\vec{l} = \displaystyle\iint_S \left[\vec J + j \omega \vec D\right] \cdot d\vec{s}\)  & \(\nabla \times \vec H = \vec J + j \omega \vec{D}\) \\ \midrule
+            \(\displaystyle\oiint_S \vec J \cdot d\vec{s} = - j \omega Q_e\)                                                                & \(\nabla \cdot \vec J = - j \omega \rho_v\)          \\
             \bottomrule
-            \multicolumn{2}{c}{$\vec D(t) = \left[\varepsilon\right] \vec E(t)$}                                                                                                               \\
-            \multicolumn{2}{c}{$\vec B(t) = \left[\mu\right] \vec H(t)$}                                                                                                                       \\
+            \multicolumn{2}{c}{\(\vec D(t) = \left[\varepsilon\right] \vec E(t)\)}                                                                                                               \\
+            \multicolumn{2}{c}{\(\vec B(t) = \left[\mu\right] \vec H(t)\)}                                                                                                                       \\
         \end{tabular}
     }
 \end{frame}
@@ -227,11 +227,11 @@
         \hline
         \textbf{Заголовок 1} & \textbf{Заголовок 2} \\
         \hline
-        Сумма                & $b+a$                \\
+        Сумма                & \(b+a\)                \\
         \hline
-        Разность             & $a-b$                \\
+        Разность             & \(a-b\)                \\
         \hline
-        Произведение         & $a*b$                \\
+        Произведение         & \(a*b\)                \\
         \hline
     \end{tabular}
 \end{frame}
@@ -242,9 +242,9 @@
     \begin{tabular}{lc}
         \toprule
         \multicolumn{1}{c}{\textbf{Заголовок 1}} & \textbf{Заголовок 2} \\ \midrule
-        Сумма                                    & $b+a$                \\
-        Разность                                 & $a-b$                \\
-        Произведение                             & $a*b$                \\
+        Сумма                                    & \(b+a\)                \\
+        Разность                                 & \(a-b\)                \\
+        Произведение                             & \(a*b\)                \\
         \bottomrule
     \end{tabular}
 \end{frame}
