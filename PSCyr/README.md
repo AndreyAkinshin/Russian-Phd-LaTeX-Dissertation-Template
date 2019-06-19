@@ -26,4 +26,3 @@
 * Декоративные шрифты:
   * CooperPSCyr.
   * AdvertisementPSCyr.
-  

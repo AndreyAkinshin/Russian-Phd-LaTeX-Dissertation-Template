@@ -2,7 +2,7 @@
 
 # Part 1. Merges the training and the test sets to create one data set.
 # 3. Uses descriptive activity names to name the activities in the data set
-# 4. Appropriately labels the data set with descriptive variable names. 
+# 4. Appropriately labels the data set with descriptive variable names.
 
 if (!file.exists("UCI HAR Dataset")) {
     stop("You need 'UCI HAR Dataset' folder full of data")
@@ -55,13 +55,13 @@ rm(features, activity_labels, subject_train, y_train, x_train, activity_train,
    subject_test, y_test, x_test, activity_test, data_train, data_test)
 
 
-# Part 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+# Part 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
 cols2match <- grep("(mean|std)",names(data))
 
 # Excluded gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean,
 # tBodyGyroJerkMean, as these represent derivations of angle data, as
-# opposed to the original feature vector. 
+# opposed to the original feature vector.
 
 # Subsetting data frame, also moving last columns to be first
 Subsetted_data_frame <- data[ ,c(562, 563, cols2match)]
@@ -71,8 +71,8 @@ Subsetted_data_frame <- data[ ,c(562, 563, cols2match)]
 
 library(dplyr) # for %>% and summarise_each
 
-               
-tidydata <- Subsetted_data_frame %>% group_by(Subject,Activity) %>% 
+
+tidydata <- Subsetted_data_frame %>% group_by(Subject,Activity) %>%
             summarise_each(funs(mean))
 
 write.table(tidydata, "tidydata.txt", row.names=FALSE)
