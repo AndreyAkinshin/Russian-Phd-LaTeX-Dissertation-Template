@@ -1,13 +1,11 @@
-\chapter{Примеры вставки листингов программного кода} \label{app:A}
+\chapter{Примеры вставки листингов программного кода}\label{app:A}
 
 Для крупных листингов есть два способа. Первый красивый, но в нём могут быть
 проблемы с поддержкой кириллицы (у вас может встречаться в~комментариях
 и печатаемых сообщениях), он представлен на листинге~\ref{lst:hwbeauty}.
 \begin{ListingEnv}[!h]% настройки floating аналогичны окружению figure
     \captiondelim{ } % разделитель идентификатора с номером от наименования
-    \caption{Программа ,,Hello, world`` на \protect\cpp}
-    % далее метка для ссылки:
-    \label{lst:hwbeauty}
+    \caption{Программа ,,Hello, world`` на \protect\cpp}\label{lst:hwbeauty}
     % окружение учитывает пробелы и табуляции и применяет их в сответсвии с настройками
     \begin{lstlisting}[language={[ISO]C++}]
 	#include <iostream>
@@ -24,8 +22,7 @@
 Второй не~такой красивый, но без ограничений (см.~листинг~\ref{lst:hwplain}).
 \begin{ListingEnv}[!h]
     \captiondelim{ } % разделитель идентификатора с номером от наименования
-    \caption{Программа ,,Hello, world`` без подсветки}
-    \label{lst:hwplain}
+    \caption{Программа ,,Hello, world`` без подсветки}\label{lst:hwplain}
     \begin{Verb}
 
         #include <iostream>
@@ -119,7 +116,7 @@ cacheSolve <- function(x, ...) {
     \lstinputlisting[lastline=78,language={R},caption={Листинг из внешнего файла},label={lst:external1}]{listings/run_analysis.R}
 \endgroup
 
-\chapter{Очень длинное название второго приложения, в~котором продемонстрирована работа с~длинными таблицами} \label{app:B}
+\chapter{Очень длинное название второго приложения, в~котором продемонстрирована работа с~длинными таблицами}\label{app:B}
 
 \section{Подраздел приложения}\label{app:B1}
 Вот размещается длинная таблица:
@@ -268,7 +265,7 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
 \end{longtable*}
 
 \normalsize% возвращаем шрифт к нормальному
-\section{Ещё один подраздел приложения} \label{app:B2}
+\section{Ещё один подраздел приложения}\label{app:B2}
 
 Нужно больше подразделов приложения!
 Конвынёры витюпырата но нам, тебиквюэ мэнтётюм позтюлант ед про. Дуо эа лаудым
@@ -280,8 +277,7 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
     \centering
     \small
     \begin{longtable}[c]{|l|c|l|l|}
-    \caption{Наименование таблицы средней длины}%
-    \label{tab:test5}% label всегда желательно идти после caption
+    \caption{Наименование таблицы средней длины}\label{tab:test5}% label всегда желательно идти после caption
     \\[-0.45\onelineskip]
     \hline
     Параметр & Умолч. & Тип & Описание\\ \hline
@@ -421,8 +417,7 @@ kick & 1 & int & 0: инициализация без шума ($p_s = const$) \
     \end{longtable}
 \normalsize% возвращаем шрифт к нормальному
 \endgroup
-\section{Использование длинных таблиц с окружением \textit{longtabu}}
-\label{app:B2a}
+\section{Использование длинных таблиц с окружением \textit{longtabu}}\label{app:B2a}
 
 В таблице~\ref{tab:test-functions} более книжный вариант
 длинной таблицы, используя окружение \verb!longtabu! и разнообразные
@@ -650,7 +645,7 @@ X[4]@{}%
 \end{longtabu}
 \endgroup
 
-\section{Форматирование внутри таблиц} \label{app:B3}
+\section{Форматирование внутри таблиц}\label{app:B3}
 
 В таблице~\ref{tab:other-row} пример с чересстрочным
 форматированием. В~файле \verb+userstyles.tex+  задаётся счётчик
@@ -775,18 +770,17 @@ f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03
 \bottomrule %%% нижняя линейка
 \end{longtabu} \endgroup
 
-\section{Стандартные префиксы ссылок} \label{app:B4}
+\section{Стандартные префиксы ссылок}\label{app:B4}
 
 Общепринятым является следующий формат ссылок: \texttt{<prefix>:<label>}.
 Например, \verb+\label{fig:knuth}+; \verb+\ref{tab:test1}+; \verb+label={lst:external1}+.
-В таблице \ref{tab:tab_pref} приведены стандартные префиксы для различных типов ссылок.
+В таблице~\ref{tab:tab_pref} приведены стандартные префиксы для различных типов ссылок.
 
 \begingroup
     \centering
     % \small
     \begin{longtable}[c]{|c|c|}
-    \caption{Стандартные префиксы ссылок}%
-    \label{tab:tab_pref}% label всегда желательно идти после caption
+    \caption{Стандартные префиксы ссылок}\label{tab:tab_pref}% label всегда желательно идти после caption
     \\[-0.45\onelineskip]
     \hline
     \textbf{Префикс} & \textbf{Описание} \\ \hline
@@ -816,10 +810,10 @@ f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03
 Для упорядочивания ссылок можно использовать разделительные символы.
 Например, \verb+\label{fig:scheemes/my_scheeme}+ или \\ \verb+\label{lst:dts/linked_list}+.
 
-\section{Очередной подраздел приложения} \label{app:B5}
+\section{Очередной подраздел приложения}~\label{app:B5}
 
 Нужно больше подразделов приложения!
 
-\section{И ещё один подраздел приложения} \label{app:B6}
+\section{И ещё один подраздел приложения}~\label{app:B6}
 
 Нужно больше подразделов приложения!
