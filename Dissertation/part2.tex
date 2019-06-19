@@ -3,20 +3,24 @@
 \section{Одиночное изображение}\label{sec:ch2/sec1}
 
 \begin{figure}[ht]
-  \centering
-  \includegraphics[scale=0.27]{latex}
+  \centerfloat{
+    \includegraphics[scale=0.27]{latex}
+  }
   \caption{TeX.}\label{fig:latex}
 \end{figure}
+
+Для выравнивания изображения по-центру используется команда \verb+\centerfloat+, которая является во
+многом улучшенной версией встроенной команды \verb+\centering+.
 
 \section{Длинное название параграфа, в котором мы узнаём как сделать две картинки с~общим номером и названием}\label{sec:ch2/sect2}
 
 А это две картинки под общим номером и названием:
 \begin{figure}[ht]
-  \begin{minipage}[ht]{0.49\linewidth}\centering
+  \begin{minipage}[b][][b]{0.49\linewidth}\centering
     \includegraphics[width=0.5\linewidth]{knuth1} \\ а)
   \end{minipage}
   \hfill
-  \begin{minipage}[ht]{0.49\linewidth}\centering
+  \begin{minipage}[b][][b]{0.49\linewidth}\centering
     \includegraphics[width=0.5\linewidth]{knuth2} \\ б)
   \end{minipage}
   \caption{Очень длинная подпись к изображению,
