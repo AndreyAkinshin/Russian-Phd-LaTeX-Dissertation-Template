@@ -292,44 +292,44 @@ sorting=none,% настройка сортировки списка литера
 %%% Макросы автоматического подсчёта количества авторских публикаций.
 % Печатают невидимую (пустую) библиографию, считая количество источников.
 % http://tex.stackexchange.com/a/66851/79756
-% 
+%
 \makeatletter
 	\newtotcounter{citenum}
 	\defbibenvironment{counter}
 	    {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}} % begin code: убирает весь выводимый текст
 	    {} % end code
 	    {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
-	
+
 	\newtotcounter{citeauthorvak}
 	\defbibenvironment{countauthorvak}
 	    {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
 	    {}
 	    {\stepcounter{citeauthorvak}}
-	
+
 	\newtotcounter{citeauthorscopus}
 	\defbibenvironment{countauthorscopus}
 		{\setcounter{citeauthorscopus}{0}\renewcommand{\blx@driver}[1]{}}
 		{}
 		{\stepcounter{citeauthorscopus}}
-	
+
 	\newtotcounter{citeauthorwos}
 	\defbibenvironment{countauthorwos}
 		{\setcounter{citeauthorwos}{0}\renewcommand{\blx@driver}[1]{}}
 		{}
 		{\stepcounter{citeauthorwos}}
-	
+
 	\newtotcounter{citeauthorother}
 	\defbibenvironment{countauthorother}
 		{\setcounter{citeauthorother}{0}\renewcommand{\blx@driver}[1]{}}
 		{}
 		{\stepcounter{citeauthorother}}
-	
+
 	\newtotcounter{citeauthorconf}
 	\defbibenvironment{countauthorconf}
 		{\setcounter{citeauthorconf}{0}\renewcommand{\blx@driver}[1]{}}
 		{}
 		{\stepcounter{citeauthorconf}}
-	
+
 	\newtotcounter{citeauthor}
 	\defbibenvironment{countauthor}
 		{\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
@@ -357,7 +357,7 @@ sorting=none,% настройка сортировки списка литера
     \printbibliography[heading=pubgroup, section=2, keyword=biblioauthor, title=\bibtitleauthorimportant]
 }
 
-% Вариант вывода печатных работ автора, с группировкой по типу источника. 
+% Вариант вывода печатных работ автора, с группировкой по типу источника.
 % Порядок команд `\printbibliography` должен соответствовать порядку в файле common/characteristic.tex
 \newcommand*{\insertbiblioauthorgrouped}{
     \section*{\bibtitleauthor}
