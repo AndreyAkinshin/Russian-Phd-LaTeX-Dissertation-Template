@@ -112,6 +112,13 @@ synopsis-booklet: TARGET=synopsis_booklet
 synopsis-booklet:
 	$(compile)
 
+##! компиляция презентации в формате А4 для печати
+presentation-booklet: presentation
+presentation-booklet: SOURCE=presentation_booklet
+presentation-booklet: TARGET=presentation_booklet
+presentation-booklet:
+	$(compile)
+
 ##! добавление .pdf автореферата и диссертации в систему контроля версий
 release: all
 	git add dissertation.pdf
@@ -141,5 +148,5 @@ distclean:
 include examples.mk
 
 .PHONY: all dissertation synopsis presentation dissertation-draft \
-synopsis-draft pdflatex draft synopsis-booklet release clean-target \
-distclean-target clean distclean
+synopsis-draft pdflatex draft synopsis-booklet presentation-booklet\
+release clean-target distclean-target clean distclean
