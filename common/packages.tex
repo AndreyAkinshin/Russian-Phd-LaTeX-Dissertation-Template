@@ -118,6 +118,18 @@
     \fi
     \creflabelformat{equation}{#2#1#3}                  % Формат по умолчанию ставил круглые скобки вокруг каждого номера ссылки, теперь просто номера ссылок без какого-либо дополнительного оформления
     \crefrangelabelformat{equation}{#3#1#4\cyrdash#5#2#6}   % Интервалы в русском языке принято делать через тире, если иное не оговорено
+
+    % Добавление возможности использования пробелов в \labelcref
+    % https://tex.stackexchange.com/a/340502/104425
+    \usepackage{kvsetkeys}
+    \makeatletter
+    \let\org@@cref\@cref
+    \renewcommand*{\@cref}[2]{%
+        \edef\process@me{%
+            \noexpand\org@@cref{#1}{\zap@space#2 \@empty}%
+        }\process@me
+    }
+    \makeatother
 \fi
 
 \ifnumequal{\value{draft}}{1}{% Черновик
