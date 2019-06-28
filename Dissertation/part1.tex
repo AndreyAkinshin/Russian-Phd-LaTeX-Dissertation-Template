@@ -5,6 +5,7 @@
 Мы можем сделать \textbf{жирный текст} и \textit{курсив}.
 
 \section{Ссылки}\label{sec:ch1/sec2}
+
 Сошлёмся на библиографию.
 Одна ссылка: \cite[с.~54]{Sokolov}\cite[с.~36]{Gaidaenko}.
 Две ссылки: \cite{Sokolov,Gaidaenko}.
@@ -64,17 +65,17 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 В таблице~\ref{tab:tab_pref} приложения~\ref{app:B4} приведён список рекомендуемых
 к использованию стандартных префиксов.
 
-\section{Формулы}~\label{sec:ch1/sec3}
+\section{Формулы}\label{sec:ch1/sec3}
 
 Благодаря пакету \textit{icomma}, \LaTeX~одинаково хорошо воспринимает
 в~качестве десятичного разделителя и запятую (\(3,1415\)), и точку (\(3.1415\)).
 
-\subsection{Ненумерованные одиночные формулы}~\label{subsec:ch1/sec3/sub1}
+\subsection{Ненумерованные одиночные формулы}\label{subsec:ch1/sec3/sub1}
 
 Вот так может выглядеть формула, которую необходимо вставить в~строку
 по~тексту: \(x \approx \sin x\) при \(x \to 0\).
 
-А вот так выглядит ненумерованая отдельностоящая формула c подстрочными
+А вот так выглядит ненумерованная отдельностоящая формула c подстрочными
 и надстрочными индексами:
 \[
 (x_1+x_2)^2 = x_1^2 + 2 x_1 x_2 + x_2^2
@@ -103,7 +104,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 но они считаются устаревшими.
 Лучше использовать их функциональные аналоги \verb+\(+\dots\verb+\)+ и \verb+\[+\dots\verb+\]+.
 
-\subsection{Ненумерованные многострочные формулы}~\label{subsec:ch1/sec3/sub2}
+\subsection{Ненумерованные многострочные формулы}\label{subsec:ch1/sec3/sub2}
 
 Вот так можно написать две формулы, не нумеруя их, чтобы знаки <<равно>> были
 строго друг под другом:
@@ -135,12 +136,12 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
     \end{cases}
 \]
 
-Кроме того, для  нумерованых формул \verb|alignedat| делает вертикальное
+Кроме того, для  нумерованных формул \verb|alignedat| делает вертикальное
 выравнивание номера формулы по центру формулы. Например, выравнивание
 компонент вектора:
 \begin{equation}
- \label{eq:2p3}
- \begin{alignedat}{2}
+\label{eq:2p3}
+\begin{alignedat}{2}
 {\mathbf{N}}_{o1n}^{(j)} = \,{\sin} \phi\,n\!\left(n+1\right)
          {\sin}\theta\,
          \pi_n\!\left({\cos} \theta\right)
@@ -211,15 +212,15 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \right)
 \]
 
-\subsection{Нумерованные формулы}~\label{subsec:ch1/sec3/sub3}
+\subsection{Нумерованные формулы}\label{subsec:ch1/sec3/sub3}
 
-А вот так пишется нумерованая формула:
+А вот так пишется нумерованная формула:
 \begin{equation}
   \label{eq:equation1}
   e = \lim_{n \to \infty} \left( 1+\frac{1}{n} \right) ^n
 \end{equation}
 
-Нумерованых формул может быть несколько:
+Нумерованных формул может быть несколько:
 \begin{equation}
   \label{eq:equation2}
   \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
