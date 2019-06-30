@@ -18,6 +18,10 @@ indent:
 	@$(foreach file, $(INDENT_FILES),\
 	latexindent -l=$(INDENT_SETTINGS) -s -w $(file);)
 
+##! форматирование файлов *.tex с разбиением длинных строк
+indent-wrap: INDENT_SETTINGS+=-m
+indent-wrap: indent
+
 ##! предкомпиляция диссертации и автореферата
 preformat: synopsis-preformat dissertation-preformat \
 presentation-preformat
@@ -80,5 +84,5 @@ help:
 	}' \
 	| more $(shell test $(shell uname) = Darwin && echo '--no-init --raw-control-chars')
 
-.PHONY: indent preformat dissertation-preformat \
+.PHONY: indent indent-wrap preformat dissertation-preformat \
 synopsis-preformat presentation-preformat help

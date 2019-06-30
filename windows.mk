@@ -19,4 +19,8 @@ indent:
 	latexindent -l=$(INDENT_SETTINGS) -s -w $(file) &&)\
 	echo "done"
 
-.PHONY: indent
+##! форматирование файлов *.tex с разбиением длинных строк
+indent-wrap: INDENT_SETTINGS+=-m
+indent-wrap: indent
+
+.PHONY: indent indent-wrap

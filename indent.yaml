@@ -20,3 +20,7 @@ specialBeginEnd:
 
 indentRulesGlobal:
     UnNamedGroupingBracesBrackets: 1
+
+modifyLineBreaks:
+    textWrapOptions:
+        columns: 80
