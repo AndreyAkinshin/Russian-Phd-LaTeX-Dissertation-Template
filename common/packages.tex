@@ -119,6 +119,12 @@
     \creflabelformat{equation}{#2#1#3}                  % Формат по умолчанию ставил круглые скобки вокруг каждого номера ссылки, теперь просто номера ссылок без какого-либо дополнительного оформления
     \crefrangelabelformat{equation}{#3#1#4\cyrdash#5#2#6}   % Интервалы в русском языке принято делать через тире, если иное не оговорено
 
+    % решение проблемы с "и" в \labelcref
+    % https://tex.stackexchange.com/a/455124/104425
+    \ifxetexorluatex
+        \DeclareTextSymbol{\cyri}\UnicodeEncodingName{"0438} % и
+    \fi
+
     % Добавление возможности использования пробелов в \labelcref
     % https://tex.stackexchange.com/a/340502/104425
     \usepackage{kvsetkeys}
