@@ -2,8 +2,9 @@
 
 * [Быстрый старт](#Быстрый-старт)
 * Установка
+  * [В Ubuntu с TexLive внутри контейнера DockerTex](#В-ubuntu-с-texlive-внутри-контейнера-dockertex)
   * [В Ubuntu](#В-ubuntu)
-  * [В Debian9](#В-debian)
+  * [В Debian](#В-debian)
   * [В Fedora](#В-fedora)
   * [В Gentoo](#В-gentoo)
   * [TeXLive на Linux в обход привязанных к конкретному линуксу пакетам](#texlive-на-linux-в-обход-привязанных-к-конкретному-линуксу-пакетам)
@@ -74,15 +75,57 @@
 
 ## Установка
 
+### В Ubuntu с TexLive внутри контейнера DockerTex
+
+> Протестировано в Ubuntu 16.04 LTS и Ubuntu 18.04 LTS
+
+Для обеспечения максимальной воспроизводимости сборки проекта рекомендуется использовать специализиарованный Docker-контейнер от проекта [dockertex](https://gitlab.com/raabf/dockertex), базирующийся на Debian Buster 10 и TexLive 2018, с минимальной модификацией (добавлением пакета шрифтов от Microsoft - `ttf-mscorefonts-installer` и набора шрифтов Liberation в виде пакета `fonts-liberation`). Образ контейнера объемом около 2.5 Гб будет загружен из сети, при этом с учетом этапа распаковки в системе потребуется около 8 Гб свободного места в каталоге `/var`.
+
+Установка контейнера в вашу систему выполняется путем запуска соответствующего скрипта, находящегося в корне этого шаблона:
+
+```bash
+sh install-dockertex.sh
+```
+
+Далее необходимо выйти из системы и зайти снова (либо перезагрузиться).
+
+После этого станут доступны две новых команды - `dockertex` и `dockertexstudio`.
+Для TexStudio будет создан ярлык с названием *Docker TexStudio (texlive2018)* в категории *Office*.
+
+**Команда `dockertex`** используется для сборки проекта - диссертации, автореферата и презентации (по сути это `make` без аргументов):
+
+```bash
+dockertex make
+```
+
+После выполнения команды будут созданы три PDF-файла: `dissertation.pdf`, `presentation.pdf` и `synopsis.pdf`.
+
+При необходимости можно запустить `make clean`:
+
+```bash
+dockertex make clean
+```
+
+Остальные аргументы `make` могут быть вызваны аналогично.
+
+**Команда `dockertexstudio`** используется для запуска TexStudio из контейнера:
+
+```bash
+dockertexstudio
+```
+
+После открытия файла `dissertation.tex` и нажатия <F5> будет создан PDF диссертации.
+
 ### В Ubuntu
 
-> Протестировано на Ubuntu 15.04.
+> Протестировано на Ubuntu 19.04.
+> Для LTS-версий рекомендуется использование [DockerTex](#В-ubuntu-с-texlive-внутри-контейнера-dockertex)
 
 Для установки XeTeX в Ubuntu и необходимых дополнительных пакетов можно
 использовать команду:
 
 ```bash
-sudo apt-get install texlive-xetex texlive-generic-extra texlive-lang-cyrillic latexmk biber
+sudo apt-get install make texlive-xetex texlive-generic-extra texlive-lang-cyrillic texlive-lang-french fonts-liberation latexmk biber
 ```
 
 или для установки полного комплекта программ:
@@ -90,7 +133,6 @@ sudo apt-get install texlive-xetex texlive-generic-extra texlive-lang-cyrillic l
 ```bash
 sudo apt-get install texlive-full
 ```
-
 
 Для использования шрифтов Microsoft требуется их установка.
 Например, для Ubuntu это можно сделать так:
@@ -102,22 +144,11 @@ sudo fc-cache -fv
 
 ### В Debian
 
-> Протестировано на Debian 9.
+> Протестировано на Debian 10.
 
-Установка аналогична Ubuntu. При этом может не хватать некоторых стилевых
-пакетов для тестовой сборки образцовой диссертационной работы из этого шаблона.
-Например, при компиляции может появиться сообщение вида:
-```bash
-File `impnattypo.sty' not found. ^^M
-```
-Для преодоления такого препятствия в менеджере пакетов который вам больше
-нравится ищите `impnattypo`.
-В результатах поиска будет пакет содержащий данный стиль, этот пакет нужно
-поставить стандартным способом. После этого сообщения:
-```bash
-File `impnattypo.sty' not found. ^^M
-```
-не будет и компиляция пойдет нормально.
+Установка аналогична Ubuntu.
+
+Для установки шрифтов Microsoft должен быть подключен репозиторий `contrib`.
 
 ### В Fedora
 
