@@ -129,6 +129,7 @@ acs-*.bib
 # Comment the next line if you want to keep your tikz graphics files
 *.tikz
 *-tikzDictionary
+images/cache/**
 
 # listings
 *.lol

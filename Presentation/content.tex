@@ -95,6 +95,14 @@
     \includegraphics[width=0.8\linewidth]{latex} % окружение figure не требуется
 \end{frame}
 
+\begin{frame}
+    \frametitle{Векторная графика}
+    \centering
+   \ifdefmacro{\tikzsetnextfilename}{\tikzsetnextfilename{tikz_presentation}}{}% присваиваемое предкомпилированному pdf имя файла (не обязательно)
+   \input{Presentation/images/tikz_plot.tikz}
+
+\end{frame}
+
 \subsection{Расположение}
 
 \begin{frame}
