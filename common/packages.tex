@@ -193,3 +193,24 @@
 %%% Цитата, не приводимая в автореферате:
 % возможно, актуальна только для biblatex
 %\newcommand{\citeinsynopsis}[1]{\ifsynopsis\else ~\cite{#1} \fi}
+
+%% Векторная графика
+
+\usepackage{tikz}                   % Продвинутый пакет векторной графики
+\usetikzlibrary{chains}             % Для примера tikz рисунка
+\usetikzlibrary{shapes.geometric}   % Для примера tikz рисунка
+\usetikzlibrary{shapes.symbols}     % Для примера tikz рисунка
+\usetikzlibrary{arrows}             % Для примера tikz рисунка
+
+% если текущий процесс запущен библиотекой tikz-external, то прекомпиляция должна быть включена
+\ifdefined\tikzexternalrealjob
+    \setcounter{imgprecompile}{1}
+\fi
+
+\ifnumequal{\value{imgprecompile}}{1}{% Только если у нас включена предкомпиляция
+    \usetikzlibrary{external}   % подключение возможности предкомпиляции
+    \tikzexternalize[prefix=images/cache/] % activate! % здесь можно указать отдельную папку для скомпилированных файлов
+    \ifxetex
+        \tikzset{external/up to date check={diff}}
+    \fi
+}{}

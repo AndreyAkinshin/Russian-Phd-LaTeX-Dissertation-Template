@@ -7,16 +7,3 @@
 
 %%% Списки %%%
 \usepackage{enumitem}
-
-\usepackage{tikz}                   % Продвинутый пакет векторной графики
-\usetikzlibrary{chains}             % Для примера tikz рисунка
-\usetikzlibrary{shapes.geometric}   % Для примера tikz рисунка
-\usetikzlibrary{shapes.symbols}     % Для примера tikz рисунка
-\usetikzlibrary{arrows}             % Для примера tikz рисунка
-\ifnumequal{\value{imgprecompile}}{1}{% Только если у нас включена предкомпиляция
-    \usetikzlibrary{external}   % подключение возможности предкомпиляции
-    \tikzexternalize[prefix=Dissertation/images/] % activate! % здесь можно указать отдельную папку для скомпилированных файлов
-    \ifxetex
-        \tikzset{external/up to date check={diff}}
-    \fi
-}{}
