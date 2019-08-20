@@ -41,7 +41,7 @@ if ($IMGCOMPILE ne '') {
     $texargs = $texargs . '\newcounter{imgprecompile}' .
         '\setcounter{imgprecompile}' . '{' . $IMGCOMPILE . '}';
 }
-if ($IMGCOMPILE eq '1') {
+if ($IMGCOMPILE ne '') {
    $LATEXFLAGS = $LATEXFLAGS . ' -shell-escape'
 }
 if ($NOTESON ne '') {
