@@ -48,6 +48,7 @@ LATEXMKFLAGS ?= -silent
 BIBERFLAGS ?= # --fixinits
 REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
 TIMERON ?= # show CPU usage
+TIKZFILE ?= # .tikz file for tikz rule
 
 # Makefile options
 MAKEFLAGS := -s
@@ -64,6 +65,7 @@ export LATEXFLAGS
 export BIBERFLAGS
 export REGEXDIRS
 export TIMERON
+export TIKZFILE
 
 ##! компиляция всех файлов
 all: synopsis dissertation presentation
@@ -119,6 +121,13 @@ presentation-booklet: TARGET=presentation_booklet
 presentation-booklet:
 	$(compile)
 
+##! компиляция tikz графики
+tikz: SOURCE=tikz
+tikz: BACKEND=-pdflua # некоторые библиотеки работают только с lualatex
+tikz: TARGET=$(basename $(notdir $(TIKZFILE)))
+tikz:
+	$(compile)
+
 ##! добавление .pdf автореферата и диссертации в систему контроля версий
 release: all
 	git add dissertation.pdf
@@ -149,4 +158,4 @@ include examples.mk
 
 .PHONY: all dissertation synopsis presentation dissertation-draft \
 synopsis-draft pdflatex draft synopsis-booklet presentation-booklet\
-release clean-target distclean-target clean distclean
+tikz release clean-target distclean-target clean distclean

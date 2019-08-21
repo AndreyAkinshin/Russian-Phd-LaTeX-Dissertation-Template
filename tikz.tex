@@ -1,0 +1,35 @@
+\documentclass[tikz]{standalone}
+% https://tex.stackexchange.com/a/42664/104425
+\usetikzlibrary{
+	arrows,
+	automata, %  is used for drawing "finite state automata and Turing Machines". To draw these graphs, each node, its name and relative position is defined, as well as the types of path between each
+	backgrounds, % defines background for pictures
+	calc, % make complex coordinate calculations
+	calendar, % display calendars
+	chains, % align nodes o chains
+	decorations, % decorate paths
+	er, % each node is defined, as is each edge between each node, as well as any attributes
+	graphs, % draw graphs
+	graphdrawing,
+	intersections, % calculate intersections of paths
+	mindmap,
+	matrix, % display matrices
+	folding, % paper folding library
+	patterns, % defines patterns for filling areas
+	petri, % draw Petri nets
+	plotmarks, % additional styles for plots
+	shapes, % define shapes other than rectangle, circle and coordinate
+	snakes, % curved lines
+	trees, % Each point on the tree is defined as a node, with children, and each child can have its own children
+}
+\usegdlibrary{trees}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{LiberationSerif}
+\newfontfamily\cyrillicfont{LiberationSerif}
+\setsansfont{LiberationSans}
+\newfontfamily\cyrillicfontsf{LiberationSans}
+\begin{document}
+\input{\tikzfilename}
+\end{document}

@@ -18,6 +18,8 @@ $REGEXDIRS = $ENV{REGEXDIRS};
 $REGEXDIRS //= '. Dissertation Synopsis Presentation';
 $TIMERON = $ENV{TIMERON};
 $TIMERON //= '0';
+$TIKZFILE = $ENV{TIKZFILE};
+$TIKZFILE //= '';
 
 
 $texargs = '';
@@ -47,6 +49,10 @@ if ($IMGCOMPILE ne '') {
 if ($NOTESON ne '') {
     $texargs = $texargs . '\newcounter{presnotes}' .
         '\setcounter{presnotes}' . '{' . $NOTESON . '}';
+}
+if ($TIKZFILE ne '') {
+    $texargs = $texargs . '\def' . '\tikzfilename' .
+	'{' . $TIKZFILE . '}';
 }
 
 # set options for all *latex
