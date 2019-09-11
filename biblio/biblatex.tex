@@ -71,13 +71,19 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
             \step[fieldset=language, null]
         }
+        \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
+            \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
+            \step[fieldset=numpages, null]
+        }
         \map[overwrite]{% перекидываем значения полей shortjournal, если они есть, в поля journal, которыми пользуется biblatex
             \step[fieldsource=shortjournal, final]
             \step[fieldset=journal, origfieldval]
+            \step[fieldset=shortjournal, null]
         }
         \map[overwrite]{% перекидываем значения полей shortbooktitle, если они есть, в поля booktitle, которыми пользуется biblatex
             \step[fieldsource=shortbooktitle, final]
             \step[fieldset=booktitle, origfieldval]
+            \step[fieldset=shortbooktitle, null]
         }
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
             \perdatasource{biblio/authorvak.bib}
@@ -104,6 +110,7 @@ sorting=none,% настройка сортировки списка литера
             match=\regexp{Электронный\s+ресурс},
             final]
             \step[fieldset=media, fieldvalue=eresource]
+            \step[fieldset=medium, null]
         }
         \map[overwrite]{% стираем значения всех полей issn
             \step[fieldset=issn, null]
@@ -157,7 +164,7 @@ sorting=none,% настройка сортировки списка литера
 %            final]
 %            \step[fieldset=media, null]
 %        }
-	% костыль для https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/345
+    % костыль для https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/345
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
             \perdatasource{authorvak.bib}
             \perdatasource{authorscopus.bib}
