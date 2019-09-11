@@ -157,6 +157,47 @@ sorting=none,% настройка сортировки списка литера
 %            final]
 %            \step[fieldset=media, null]
 %        }
+	% костыль для https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/345
+        \map[overwrite, refsection=0]{% стираем значения всех полей addendum
+            \perdatasource{authorvak.bib}
+            \perdatasource{authorscopus.bib}
+            \perdatasource{authorwos.bib}
+            \perdatasource{authorother.bib}
+            \perdatasource{authorconf.bib}
+            \step[fieldsource=addendum, final]
+            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
+        }
+        \map[overwrite]{% перекидываем refbase в addendum, чтобы указать тип публикации (ВАК, Scopus, WoS) в конце ссылки
+            \perdatasource{authorvak.bib}
+            \perdatasource{authorscopus.bib}
+            \perdatasource{authorwos.bib}
+            \step[fieldsource=refbase, final]
+            \step[fieldset=addendum, origfieldval]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{external.bib}
+            \step[fieldset=keywords, fieldvalue={biblioexternal,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{authorvak.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{authorscopus.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{authorwos.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorwos,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{authorother.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorother,biblioauthor,bibliofull}]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{authorconf.bib}
+            \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
+        }
     }
 }
 
