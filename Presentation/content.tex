@@ -97,10 +97,11 @@
 
 \begin{frame}
     \frametitle{Векторная графика}
-    \centering
-   \ifdefmacro{\tikzsetnextfilename}{\tikzsetnextfilename{tikz_presentation}}{}% присваиваемое предкомпилированному pdf имя файла (не обязательно)
-   \input{Presentation/images/tikz_plot.tikz}
-
+    \begin{figure}
+	    \centering
+	    \ifdefmacro{\tikzsetnextfilename}{\tikzsetnextfilename{tikz_presentation}}{}% присваиваемое предкомпилированному pdf имя файла (не обязательно)
+	    \input{Presentation/images/tikz_plot.tikz}
+    \end{figure}
 \end{frame}
 
 \subsection{Расположение}

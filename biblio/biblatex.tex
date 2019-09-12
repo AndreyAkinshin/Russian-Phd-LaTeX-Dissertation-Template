@@ -29,6 +29,7 @@ sorting=none,% настройка сортировки списка литера
 }
 \makeatother
 
+\ifsynopsis
 \ifnumgreater{\value{usefootcite}}{0}{
     \ExecuteBibliographyOptions{autocite=footnote}
     \newbibmacro*{cite:full}{%
@@ -52,15 +53,11 @@ sorting=none,% настройка сортировки списка литера
         \usebibmacro{postnote}%
     }
 }{}
+\fi
 
 %%% Подключение файлов bib %%%
 \addbibresource[label=bl-external]{biblio/external.bib}
-\addbibresource[label=bl-authorvak]{biblio/authorvak.bib}
-\addbibresource[label=bl-authorscopus]{biblio/authorscopus.bib}
-\addbibresource[label=bl-authorwos]{biblio/authorwos.bib}
-\addbibresource[label=bl-authorother]{biblio/authorother.bib}
-\addbibresource[label=bl-authorconf]{biblio/authorconf.bib}
-
+\addbibresource[label=bl-author]{biblio/author.bib}
 
 %http://tex.stackexchange.com/a/141831/79756
 %There is a way to automatically map the language field to the langid field. The following lines in the preamble should be enough to do that.
@@ -75,6 +72,10 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
             \step[fieldset=numpages, null]
         }
+        \map{% перекидываем значения полей pagestotal в поля pagetotal, которыми пользуется biblatex
+            \step[fieldsource=pagestotal, fieldset=pagetotal, origfieldval, final]
+            \step[fieldset=pagestotal, null]
+        }
         \map[overwrite]{% перекидываем значения полей shortjournal, если они есть, в поля journal, которыми пользуется biblatex
             \step[fieldsource=shortjournal, final]
             \step[fieldset=journal, origfieldval]
@@ -86,24 +87,9 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=shortbooktitle, null]
         }
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{biblio/authorvak.bib}
-            \perdatasource{biblio/authorscopus.bib}
-            \perdatasource{biblio/authorwos.bib}
-            \perdatasource{biblio/authorother.bib}
-            \perdatasource{biblio/authorconf.bib}
+            \perdatasource{biblio/author.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
-        }
-        \map[overwrite]{% перекидываем refbase в addendum, чтобы указать тип публикации (ВАК, Scopus, WoS) в конце ссылки
-            \perdatasource{biblio/authorvak.bib}
-            \perdatasource{biblio/authorscopus.bib}
-            \perdatasource{biblio/authorwos.bib}
-            \step[fieldsource=refbase, final]
-            \step[fieldset=addendum, origfieldval]
-        }
-        \map{% перекидываем значения полей numpages в поля pagetotal, которыми пользуется biblatex
-            \step[fieldsource=numpages, fieldset=pagetotal, origfieldval, final]
-            \step[fieldset=pagestotal, null]
         }
         \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media, которым пользуется biblatex, в значение eresource.
             \step[fieldsource=medium,
@@ -125,29 +111,24 @@ sorting=none,% настройка сортировки списка литера
             replace={$3-$2-$1$4}, % $4 вставлен исключительно ради нормальной работы программ подсветки синтаксиса, которые некорректно обрабатывают $ в таких конструкциях
             final]
         }
+        \map[overwrite]{ % стираем ключевые слова
+            \step[fieldsource=keywords]
+            \step[fieldset=keywords,null]
+        }
+        \map[overwrite,foreach={authorvak,authorscopus,authorwos,authorconf,authorother}]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=$MAPLOOP,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblio$MAPLOOP},append=true]
+        }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/external.bib}
-            \step[fieldset=keywords, fieldvalue={biblioexternal,bibliofull}]
+            \step[fieldset=keywords, fieldvalue={,biblioexternal},append=true]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorvak.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
+            \perdatasource{biblio/author.bib}
+            \step[fieldset=keywords, fieldvalue={,biblioauthor},append=true]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorscopus.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorwos.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorwos,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorother.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorother,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{biblio/authorconf.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
+            \step[fieldset=keywords, fieldvalue={,bibliofull},append=true]
         }
 %        \map[overwrite]{% стираем значения всех полей series
 %            \step[fieldset=series, null]
@@ -164,48 +145,29 @@ sorting=none,% настройка сортировки списка литера
 %            final]
 %            \step[fieldset=media, null]
 %        }
-    % костыль для https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/345
+        % временный костыль для biber версии 2.13
         \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{authorvak.bib}
-            \perdatasource{authorscopus.bib}
-            \perdatasource{authorwos.bib}
-            \perdatasource{authorother.bib}
-            \perdatasource{authorconf.bib}
+            \perdatasource{author.bib}
             \step[fieldsource=addendum, final]
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
-        \map[overwrite]{% перекидываем refbase в addendum, чтобы указать тип публикации (ВАК, Scopus, WoS) в конце ссылки
-            \perdatasource{authorvak.bib}
-            \perdatasource{authorscopus.bib}
-            \perdatasource{authorwos.bib}
-            \step[fieldsource=refbase, final]
-            \step[fieldset=addendum, origfieldval]
-        }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{external.bib}
-            \step[fieldset=keywords, fieldvalue={biblioexternal,bibliofull}]
+            \step[fieldset=keywords, fieldvalue={,biblioexternal},append=true]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{authorvak.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorvak,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{authorscopus.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorscopus,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{authorwos.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorwos,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{authorother.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorother,biblioauthor,bibliofull}]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{authorconf.bib}
-            \step[fieldset=keywords, fieldvalue={biblioauthorconf,biblioauthor,bibliofull}]
+            \perdatasource{author.bib}
+            \step[fieldset=keywords, fieldvalue={,biblioauthor},append=true]
         }
     }
+}
+
+\defbibfilter{vakscopuswos}{%
+    keyword=biblioauthorvak or keyword=biblioauthorscopus or keyword=biblioauthorwos
+}
+
+\defbibfilter{scopuswos}{%
+    keyword=biblioauthorscopus or keyword=biblioauthorwos
 }
 
 %%% Убираем неразрывные пробелы перед двоеточием и точкой с запятой %%%
@@ -383,6 +345,19 @@ sorting=none,% настройка сортировки списка литера
 		{\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
 		{}
 		{\stepcounter{citeauthor}}
+
+	\newtotcounter{citeauthorvakscopuswos}
+	\defbibenvironment{countauthorvakscopuswos}
+		{\setcounter{citeauthorvakscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthorvakscopuswos}}
+
+	\newtotcounter{citeauthorscopuswos}
+	\defbibenvironment{countauthorscopuswos}
+		{\setcounter{citeauthorscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
+		{}
+		{\stepcounter{citeauthorscopuswos}}
+
 \makeatother
 
 \defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии

@@ -10,7 +10,7 @@
   \draw[red, ultra thick, domain=0:3] plot (\x, {4*(1 - exp(-1.5*\x))}); % fill plot
   \draw[red, ultra thick, domain=3:6] plot (\x, {4*(1 - exp(-1.5*\x))}); % flattop plot
   \draw[red, ultra thick, domain=6:9.5] plot (\x, {4*(1 - exp(-9)) - 4*(1 - exp(-1.5*\x+9))}); % decay plot
-  \node [above] at (0,6) {\(E_\textup{ус}\)};
+  \node [above] at (0,6) {\(E_{acc}\)};
   \node [right] at (10,0) {\(t\)};
   \node at (1.5,5.4) {заполнение};
   \node at (4.5,5.4) {работа};

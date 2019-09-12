@@ -6,6 +6,8 @@ $ALTFONT = $ENV{ALTFONT};
 $ALTFONT //= '';
 $USEBIBER = $ENV{USEBIBER};
 $USEBIBER //= '';
+$USEFOOTCITE = $ENV{USEFOOTCITE};
+$USEFOOTCITE //= '';
 $IMGCOMPILE = $ENV{IMGCOMPILE};
 $IMGCOMPILE //= '';
 $NOTESON = $ENV{NOTESON};
@@ -38,6 +40,10 @@ if ($ALTFONT ne '') {
 if ($USEBIBER ne '') {
     $texargs = $texargs . '\newcounter{bibliosel}' .
         '\setcounter{bibliosel}' . '{' . $USEBIBER . '}';
+}
+if ($USEFOOTCITE ne '') {
+    $texargs = $texargs . '\newcounter{usefootcite}' .
+        '\setcounter{usefootcite}' . '{' . $USEFOOTCITE . '}';
 }
 if ($IMGCOMPILE ne '') {
     $texargs = $texargs . '\newcounter{imgprecompile}' .

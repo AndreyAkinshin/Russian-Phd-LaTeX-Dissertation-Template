@@ -101,7 +101,7 @@
     X "--- в тезисах докладов.
 }%
 {%%% Реализация пакетом biblatex через движок biber
-    \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]
+    \begin{refsection}[bl-author]
         % Это refsection=1.
         % Процитированные здесь работы:
         %  * подсчитываются, для автоматического составления фразы "Основные результаты ..."
@@ -110,12 +110,14 @@
         %  * при использовании `\insertbiblioauthorgrouped`, порядок команд `\printbibliography` в нём должен быть тем же (см. biblio/biblatex.tex)
         %
         % Невидимый библиографический список для подсчёта количества публикаций:
-        \printbibliography[heading=nobibheading, section=1, env=countauthorvak,    keyword=biblioauthorvak]%
-        \printbibliography[heading=nobibheading, section=1, env=countauthorwos,    keyword=biblioauthorwos]%
-        \printbibliography[heading=nobibheading, section=1, env=countauthorscopus, keyword=biblioauthorscopus]%
-        \printbibliography[heading=nobibheading, section=1, env=countauthorconf,   keyword=biblioauthorconf]%
-        \printbibliography[heading=nobibheading, section=1, env=countauthorother,  keyword=biblioauthorother]%
-        \printbibliography[heading=nobibheading, section=1, env=countauthor,       keyword=biblioauthor]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorvak,          keyword=biblioauthorvak]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorwos,          keyword=biblioauthorwos]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorscopus,       keyword=biblioauthorscopus]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorconf,         keyword=biblioauthorconf]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorother,        keyword=biblioauthorother]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthor,             keyword=biblioauthor]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]%
         %
         % Цитирования.
         %  * Порядок перечисления определяет порядок в библиографии (только внутри подраздела, если `\insertbiblioauthorgrouped`).
@@ -142,20 +144,17 @@
         %
         %
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
-        \newcounter{citeauthorscwostot}% сумма citeauthorscopus и citeauthorwos
-        \setcounter{citeauthorscwostot}{\value{citeauthorscopus}}%
-        \addtocounter{citeauthorscwostot}{\value{citeauthorwos}}%
         \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
-        \ifnum \value{citeauthorscwostot}>0%
-            , \arabic{citeauthorscwostot} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy%
+        \ifnum \value{citeauthorscopuswos}>0%
+            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy%
         \fi%
         \ifnum \value{citeauthorconf}>0%
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
         \else%
             .
-        \fi
+	\fi
     \end{refsection}%
-    \begin{refsection}[bl-authorvak,bl-authorwos,bl-authorscopus,bl-authorother,bl-authorconf]
+    \begin{refsection}[bl-author]
         % Это refsection=2.
         % Процитированные здесь работы:
         %  * попадают в авторскую библиографию, при usefootcite==0 и стиле `\insertbiblioauthorimportant`.
@@ -174,4 +173,16 @@
 
 При использовании пакета \verb!biblatex! для автоматического подсчёта
 количества публикаций автора по теме диссертации, необходимо
-их~перечислить с использованием команды \verb!\nocite! в \verb!common/characteristic.tex!
+их~перечислить с использованием команды \verb!\nocite! в \verb!common/characteristic.tex!.
+Для подсчёта используются счётчики:
+\begin{itemize}
+	\item \verb!citeauthorvak! для работ, индексируемых ВАК,
+	\item \verb!countauthorscopus! для работ, индексируемых Scopus,
+	\item \verb!countauthorwos! для работ, индексируемых Web of Science,
+	\item \verb!countauthorvakscopuswos! для работ, индексируемых одной из трёх баз,
+	\item \verb!countauthorscopuswos! для работ, индексируемых Scopus или Web of Science,
+	\item \verb!countauthorconf! для докладов на конференциях,
+	\item \verb!countauthorother! для остальных работ,
+	\item \verb!countauthor! для суммарного количества работ.
+\end{itemize}
+
