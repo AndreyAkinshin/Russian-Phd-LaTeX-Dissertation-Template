@@ -18,6 +18,7 @@
 # USEBIBER ?= # 0=bibtex8;1=biber
 # IMGCOMPILE ?= # 1=on;0=off
 # NOTESON ?= # 0=off;1=on, separate slide;2=on, same slide
+# USEFOOTCITE ?= # 0=no;1=yes
 # LATEXFLAGS ?= -halt-on-error -file-line-error
 # LATEXMKFLAGS ?= -silent
 # BIBERFLAGS ?= # --fixinits
