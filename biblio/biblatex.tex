@@ -25,6 +25,7 @@ isbn=false,% Показывать или нет ISBN, ISSN, ISRN
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
 sorting=none,% настройка сортировки списка литературы
+% defernumbers=true, % откоментируйте, если требуется правильная нумерация ссылок на литературу в режиме черновика. Замедляет сборку
 ]{biblatex}[2016/09/17]%
 }
 \makeatother
@@ -86,11 +87,6 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=booktitle, origfieldval]
             \step[fieldset=shortbooktitle, null]
         }
-        \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{biblio/author.bib}
-            \step[fieldsource=addendum, final]
-            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
-        }
         \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media, которым пользуется biblatex, в значение eresource.
             \step[fieldsource=medium,
             match=\regexp{Электронный\s+ресурс},
@@ -146,11 +142,6 @@ sorting=none,% настройка сортировки списка литера
 %            \step[fieldset=media, null]
 %        }
         % временный костыль для biber версии 2.13
-        \map[overwrite, refsection=0]{% стираем значения всех полей addendum
-            \perdatasource{author.bib}
-            \step[fieldsource=addendum, final]
-            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
-        }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{external.bib}
             \step[fieldset=keywords, fieldvalue={,biblioexternal},append=true]
@@ -161,6 +152,23 @@ sorting=none,% настройка сортировки списка литера
         }
     }
 }
+
+\ifsynopsis
+\else
+\DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex
+    \maps{
+        \map[overwrite]{% стираем значения всех полей addendum
+            \perdatasource{biblio/author.bib}
+            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
+        }
+         % временный костыль для biber версии 2.13
+        \map[overwrite]{% стираем значения всех полей addendum
+            \perdatasource{author.bib}
+            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
+        }
+    }
+}
+\fi
 
 \defbibfilter{vakscopuswos}{%
     keyword=biblioauthorvak or keyword=biblioauthorscopus or keyword=biblioauthorwos
@@ -282,8 +290,8 @@ sorting=none,% настройка сортировки списка литера
 %\defbibenvironment{bibliography} % переопределяем окружение библиографии из gost-numeric.bbx пакета biblatex-gost
 %  {\list
 %     {\printtext[labelnumberwidth]{%
-%	\printfield{prefixnumber}%
-%	\printfield{labelnumber}}}
+%       \printfield{prefixnumber}%
+%       \printfield{labelnumber}}}
 %     {%
 %      \setlength{\labelwidth}{\labelnumberwidth}%
 %      \setlength{\leftmargin}{0pt}% default is \labelwidth
@@ -304,59 +312,59 @@ sorting=none,% настройка сортировки списка литера
 % http://tex.stackexchange.com/a/66851/79756
 %
 \makeatletter
-	\newtotcounter{citenum}
-	\defbibenvironment{counter}
-	    {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}} % begin code: убирает весь выводимый текст
-	    {} % end code
-	    {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
+        \newtotcounter{citenum}
+        \defbibenvironment{counter}
+            {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}} % begin code: убирает весь выводимый текст
+            {} % end code
+            {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
 
-	\newtotcounter{citeauthorvak}
-	\defbibenvironment{countauthorvak}
-	    {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
-	    {}
-	    {\stepcounter{citeauthorvak}}
+        \newtotcounter{citeauthorvak}
+        \defbibenvironment{countauthorvak}
+            {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
+            {}
+            {\stepcounter{citeauthorvak}}
 
-	\newtotcounter{citeauthorscopus}
-	\defbibenvironment{countauthorscopus}
-		{\setcounter{citeauthorscopus}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthorscopus}}
+        \newtotcounter{citeauthorscopus}
+        \defbibenvironment{countauthorscopus}
+                {\setcounter{citeauthorscopus}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthorscopus}}
 
-	\newtotcounter{citeauthorwos}
-	\defbibenvironment{countauthorwos}
-		{\setcounter{citeauthorwos}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthorwos}}
+        \newtotcounter{citeauthorwos}
+        \defbibenvironment{countauthorwos}
+                {\setcounter{citeauthorwos}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthorwos}}
 
-	\newtotcounter{citeauthorother}
-	\defbibenvironment{countauthorother}
-		{\setcounter{citeauthorother}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthorother}}
+        \newtotcounter{citeauthorother}
+        \defbibenvironment{countauthorother}
+                {\setcounter{citeauthorother}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthorother}}
 
-	\newtotcounter{citeauthorconf}
-	\defbibenvironment{countauthorconf}
-		{\setcounter{citeauthorconf}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthorconf}}
+        \newtotcounter{citeauthorconf}
+        \defbibenvironment{countauthorconf}
+                {\setcounter{citeauthorconf}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthorconf}}
 
-	\newtotcounter{citeauthor}
-	\defbibenvironment{countauthor}
-		{\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthor}}
+        \newtotcounter{citeauthor}
+        \defbibenvironment{countauthor}
+                {\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthor}}
 
-	\newtotcounter{citeauthorvakscopuswos}
-	\defbibenvironment{countauthorvakscopuswos}
-		{\setcounter{citeauthorvakscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthorvakscopuswos}}
+        \newtotcounter{citeauthorvakscopuswos}
+        \defbibenvironment{countauthorvakscopuswos}
+                {\setcounter{citeauthorvakscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthorvakscopuswos}}
 
-	\newtotcounter{citeauthorscopuswos}
-	\defbibenvironment{countauthorscopuswos}
-		{\setcounter{citeauthorscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
-		{}
-		{\stepcounter{citeauthorscopuswos}}
+        \newtotcounter{citeauthorscopuswos}
+        \defbibenvironment{countauthorscopuswos}
+                {\setcounter{citeauthorscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeauthorscopuswos}}
 
 \makeatother
 
@@ -370,11 +378,8 @@ sorting=none,% настройка сортировки списка литера
     \printbibliography[keyword=bibliofull,section=0,title=\bibtitlefull]
     \printbibliography[heading=nobibheading,env=counter,keyword=bibliofull,section=0]
 }
-\newcommand*{\insertbiblioauthorcited}{
-    \printbibliography[heading=pubgroup, section=0, keyword=biblioauthor, title=\bibtitleauthor]
-}
 \newcommand*{\insertbiblioauthor}{
-    \printbibliography[heading=pubgroup, section=1, keyword=biblioauthor, title=\bibtitleauthor]
+    \printbibliography[heading=pubgroup, section=0, keyword=biblioauthor, title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthorimportant}{
     \printbibliography[heading=pubgroup, section=2, keyword=biblioauthor, title=\bibtitleauthorimportant]
@@ -384,11 +389,11 @@ sorting=none,% настройка сортировки списка литера
 % Порядок команд `\printbibliography` должен соответствовать порядку в файле common/characteristic.tex
 \newcommand*{\insertbiblioauthorgrouped}{
     \section*{\bibtitleauthor}
-    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorvak,    title=\bibtitleauthorvak]%
-    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorwos,    title=\bibtitleauthorwos]%
-    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorscopus, title=\bibtitleauthorscopus]%
-    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorconf,   title=\bibtitleauthorconf]%
-    \printbibliography[heading=pubsubgroup, section=1, keyword=biblioauthorother,  title=\bibtitleauthorother]%
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorvak,    title=\bibtitleauthorvak]%
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorwos,    title=\bibtitleauthorwos]%
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorscopus, title=\bibtitleauthorscopus]%
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorconf,   title=\bibtitleauthorconf]%
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorother,  title=\bibtitleauthorother]%
 }
 
 \newcommand*{\insertbiblioexternal}{

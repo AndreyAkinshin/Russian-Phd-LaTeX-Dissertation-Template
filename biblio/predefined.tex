@@ -34,7 +34,7 @@
 \renewcommand\citepunct{;\penalty\citepunctpenalty%
     \hskip.13emplus.1emminus.1em\relax}                % Разделение ; при перечислении ссылок (ГОСТ Р 7.0.5-2008)
 
-\newcommand*{\autocite}{\cite}  % Чтобы примеры цитирования, рассчитанные на biblatex, не вызывали ошибок при компиляции в bibtex
+\newcommand*{\autocite}[1]{}  % Чтобы примеры цитирования, рассчитанные на biblatex, не вызывали ошибок при компиляции в bibtex
 
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
