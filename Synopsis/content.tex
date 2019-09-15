@@ -57,9 +57,7 @@
 \verb!Synopsis/setup.tex! необходимо присвоить положительное значение
 счётчику \verb!\setcounter{usefootcite}{1}!. В таком случае ссылки на
 работы других авторов будут подстрочными.
-\ifnumgreater{\value{usefootcite}}{0}{
 Изложенные в третьей главе результаты опубликованы в~\cite{vakbib1, vakbib2}.
-}{}
 Использование подстрочных ссылок внутри таблиц может вызывать проблемы.
 
 В \underline{\textbf{четвертой главе}} приведено описание
@@ -79,14 +77,46 @@
   \insertbiblioauthor           % Подключаем Bib-базы
   %\insertbiblioexternal   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
+  % Цитирования.
+  %  * Порядок перечисления определяет порядок в библиографии (только внутри подраздела, если `\insertbiblioauthorgrouped`).
+  %  * Если не соблюдать порядок "как для \printbibliography", нумерация в `\insertbiblioauthor` будет кривой.
+  %  * Если цитировать каждый источник отдельной командой --- найти некоторые ошибки будет проще.
+  %
+  %% authorvak
+  \nocite{vakbib1}%
+  \nocite{vakbib2}%
+  %
+  %% authorwos
+  \nocite{wosbib1}%
+  %
+  %% authorscopus
+  \nocite{scbib1}%
+  %
+  %% authorconf
+  \nocite{confbib1}%
+  \nocite{confbib2}%
+  %
+  %% authorother
+  \nocite{bib1}%
+  \nocite{bib2}%
+
   \ifnumgreater{\value{usefootcite}}{0}{
-%  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
-  \insertbiblioauthorcited      % Вывод процитированных в автореферате работ автора
+    \begin{refcontext}[labelprefix={}]
+      \insertbiblioauthor      % Вывод всех работ автора
+    \end{refcontext}
   }{
-  \insertbiblioauthor           % Вывод всех работ автора
-%  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
-%  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
-  \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  \ifnum \value{citeexternal}>0
+  \begin{refcontext}[labelprefix=A]
+    \insertbiblioauthor      % Вывод всех работ автора
+  \end{refcontext}
+  \else
+    \insertbiblioauthor      % Вывод всех работ автора
+  \fi
+  %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+  %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
+  \begin{refcontext}[labelprefix={}]
+    \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  \end{refcontext}
   }
 }
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}

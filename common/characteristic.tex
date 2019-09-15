@@ -1,7 +1,7 @@
 
 {\actuality} Обзор, введение в тему, обозначение места данной работы в
 мировых исследованиях и~т.\:п., можно использовать ссылки на~другие
-работы\ifnumequal{\value{bibliosel}}{1}{~\autocite{Gosele1999161}}{}
+работы~\autocite{Gosele1999161}
 (если их~нет, то~в~автореферате
 автоматически пропадёт раздел <<Список литературы>>). Внимание! Ссылки
 на~другие работы в разделе общей характеристики работы можно
@@ -15,7 +15,7 @@
 в~автореферате подстрочных ссылок
 для других работ командой \verb!\autocite!, а~также цитирование
 собственных работ командой \verb!\cite!. Для этого в~файле
-\verb!Synopsis/setup.tex! необходимо присвоить положительное значение
+\verb!common/setup.tex! необходимо присвоить положительное значение
 счётчику \verb!\setcounter{usefootcite}{1}!.
 
 Для генерации содержимого титульного листа автореферата, диссертации
@@ -119,29 +119,7 @@
         \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]%
         %
-        % Цитирования.
-        %  * Порядок перечисления определяет порядок в библиографии (только внутри подраздела, если `\insertbiblioauthorgrouped`).
-        %  * Если не соблюдать порядок "как для \printbibliography", нумерация в `\insertbiblioauthor` будет кривой.
-        %  * Если цитировать каждый источник отдельной командой --- найти некоторые ошибки будет проще.
-        %
-        %% authorvak
-        \nocite{vakbib1}%
-        \nocite{vakbib2}%
-        %
-        %% authorwos
-        \nocite{wosbib1}%
-        %
-        %% authorscopus
-        \nocite{scbib1}%
-        %
-        %% authorconf
-        \nocite{confbib1}%
-        \nocite{confbib2}%
-        %
-        %% authorother
-        \nocite{bib1}%
-        \nocite{bib2}%
-        %
+        \nocite{*}%
         %
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
         \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
@@ -152,7 +130,7 @@
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
         \else%
             .
-	\fi
+        \fi
     \end{refsection}%
     \begin{refsection}[bl-author]
         % Это refsection=2.
@@ -163,26 +141,47 @@
         \nocite{bib1}%other
         \nocite{confbib1}%conf
     \end{refsection}%
-	%
-	% Всё, что вне этих двух refsection, это refsection=0,
-	%  * для диссертации - это нормальные ссылки, попадающие в обычную библиографию
-	%  * для автореферата:
-	%     * при usefootcite==0, ссылка корректно сработает только для источника из `external.bib`. Для своих работ --- напечатает "[0]" (и даже Warning не вылезет).
-	%     * при usefootcite==1, ссылка сработает нормально. В авторской библиографии будут только процитированные в refsection=0 работы.
+        %
+        % Всё, что вне этих двух refsection, это refsection=0,
+        %  * для диссертации - это нормальные ссылки, попадающие в обычную библиографию
+        %  * для автореферата:
+        %     * при usefootcite==0, ссылка корректно сработает только для источника из `external.bib`. Для своих работ --- напечатает "[0]" (и даже Warning не вылезет).
+        %     * при usefootcite==1, ссылка сработает нормально. В авторской библиографии будут только процитированные в refsection=0 работы.
+        %
+        % Невидимый библиографический список для подсчёта количества внешних публикаций
+        % Используется, чтобы убрать приставку "А" у работ автора, если в автореферате нет
+        % цитирований внешних источников.
+        % Замедляет компиляцию
+    \ifsynopsis
+    \ifnumequal{\value{draft}}{0}{
+      \printbibliography[heading=nobibheading, section=0, env=countexternal,          keyword=biblioexternal]%
+    }{}
+    \fi
 }
 
-При использовании пакета \verb!biblatex! для автоматического подсчёта
-количества публикаций автора по теме диссертации, необходимо
-их~перечислить с использованием команды \verb!\nocite! в \verb!common/characteristic.tex!.
+При использовании пакета \verb!biblatex! будут подсчитаны все работы, добавленные
+в файл \verb!biblio/author.tex!. Для правильного подсчёта работ в различных
+системах цитирования требуется использовать поля:
+\begin{itemize}
+        \item \texttt{authorvak} если публикация индексирована ВАК,
+        \item \texttt{authorscopus} если публикация индексирована Scopus,
+        \item \texttt{authorwos} если публикация индексирована Web of Science,
+        \item \texttt{authorconf} для докладов конференций,
+        \item \texttt{authorother} для других публикаций.
+\end{itemize}
 Для подсчёта используются счётчики:
 \begin{itemize}
-	\item \verb!citeauthorvak! для работ, индексируемых ВАК,
-	\item \verb!countauthorscopus! для работ, индексируемых Scopus,
-	\item \verb!countauthorwos! для работ, индексируемых Web of Science,
-	\item \verb!countauthorvakscopuswos! для работ, индексируемых одной из трёх баз,
-	\item \verb!countauthorscopuswos! для работ, индексируемых Scopus или Web of Science,
-	\item \verb!countauthorconf! для докладов на конференциях,
-	\item \verb!countauthorother! для остальных работ,
-	\item \verb!countauthor! для суммарного количества работ.
+        \item \texttt{citeauthorvak} для работ, индексируемых ВАК,
+        \item \texttt{citeauthorscopus} для работ, индексируемых Scopus,
+        \item \texttt{citeauthorwos} для работ, индексируемых Web of Science,
+        \item \texttt{citeauthorvakscopuswos} для работ, индексируемых одной из трёх баз,
+        \item \texttt{citeauthorscopuswos} для работ, индексируемых Scopus или Web of Science,
+        \item \texttt{citeauthorconf} для докладов на конференциях,
+        \item \texttt{citeauthorother} для остальных работ,
+        \item \texttt{citeauthor} для суммарного количества работ.
 \end{itemize}
+% Счётчик \texttt{citeexternal} используется для подсчёта процитированных публикаций.
 
+Для добавления в список публикаций автора работ, которые не были процитированы в
+автореферате требуется их~перечислить с использованием команды \verb!\nocite! в
+\verb!Synopsis/content.tex!.
