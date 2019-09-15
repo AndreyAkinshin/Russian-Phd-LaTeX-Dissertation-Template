@@ -130,7 +130,7 @@
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
         \else%
             .
-	\fi
+        \fi
     \end{refsection}%
     \begin{refsection}[bl-author]
         % Это refsection=2.
@@ -141,35 +141,46 @@
         \nocite{bib1}%other
         \nocite{confbib1}%conf
     \end{refsection}%
-	%
-	% Всё, что вне этих двух refsection, это refsection=0,
-	%  * для диссертации - это нормальные ссылки, попадающие в обычную библиографию
-	%  * для автореферата:
-	%     * при usefootcite==0, ссылка корректно сработает только для источника из `external.bib`. Для своих работ --- напечатает "[0]" (и даже Warning не вылезет).
-	%     * при usefootcite==1, ссылка сработает нормально. В авторской библиографии будут только процитированные в refsection=0 работы.
+        %
+        % Всё, что вне этих двух refsection, это refsection=0,
+        %  * для диссертации - это нормальные ссылки, попадающие в обычную библиографию
+        %  * для автореферата:
+        %     * при usefootcite==0, ссылка корректно сработает только для источника из `external.bib`. Для своих работ --- напечатает "[0]" (и даже Warning не вылезет).
+        %     * при usefootcite==1, ссылка сработает нормально. В авторской библиографии будут только процитированные в refsection=0 работы.
+        %
+        % Невидимый библиографический список для подсчёта количества внешних публикаций
+        % Используется, чтобы убрать приставку "А" у работ автора, если в автореферате нет
+        % цитирований внешних источников.
+        % Замедляет компиляцию
+    \ifsynopsis
+    \ifnumequal{\value{draft}}{0}{
+      \printbibliography[heading=nobibheading, section=0, env=countexternal,          keyword=biblioexternal]%
+    }{}
+    \fi
 }
 
 При использовании пакета \verb!biblatex! будут подсчитаны все работы, добавленные
 в файл \verb!biblio/author.tex!. Для правильного подсчёта работ в различных
 системах цитирования требуется использовать поля:
 \begin{itemize}
-	\item \texttt{authorvak} если публикация индексирована ВАК,
-	\item \texttt{authorscopus} если публикация индексирована Scopus,
-	\item \texttt{authorwos} если публикация индексирована Web of Science,
-	\item \texttt{authorconf} для докладов конференций,
-	\item \texttt{authorother} для других публикаций.
+        \item \texttt{authorvak} если публикация индексирована ВАК,
+        \item \texttt{authorscopus} если публикация индексирована Scopus,
+        \item \texttt{authorwos} если публикация индексирована Web of Science,
+        \item \texttt{authorconf} для докладов конференций,
+        \item \texttt{authorother} для других публикаций.
 \end{itemize}
 Для подсчёта используются счётчики:
 \begin{itemize}
-	\item \texttt{citeauthorvak} для работ, индексируемых ВАК,
-	\item \texttt{countauthorscopus} для работ, индексируемых Scopus,
-	\item \texttt{countauthorwos} для работ, индексируемых Web of Science,
-	\item \texttt{countauthorvakscopuswos} для работ, индексируемых одной из трёх баз,
-	\item \texttt{countauthorscopuswos} для работ, индексируемых Scopus или Web of Science,
-	\item \texttt{countauthorconf} для докладов на конференциях,
-	\item \texttt{countauthorother} для остальных работ,
-	\item \texttt{countauthor} для суммарного количества работ.
+        \item \texttt{citeauthorvak} для работ, индексируемых ВАК,
+        \item \texttt{citeauthorscopus} для работ, индексируемых Scopus,
+        \item \texttt{citeauthorwos} для работ, индексируемых Web of Science,
+        \item \texttt{citeauthorvakscopuswos} для работ, индексируемых одной из трёх баз,
+        \item \texttt{citeauthorscopuswos} для работ, индексируемых Scopus или Web of Science,
+        \item \texttt{citeauthorconf} для докладов на конференциях,
+        \item \texttt{citeauthorother} для остальных работ,
+        \item \texttt{citeauthor} для суммарного количества работ.
 \end{itemize}
+% Счётчик \texttt{citeexternal} используется для подсчёта процитированных публикаций.
 
 Для добавления в список публикаций автора работ, которые не были процитированы в
 автореферате требуется их~перечислить с использованием команды \verb!\nocite! в

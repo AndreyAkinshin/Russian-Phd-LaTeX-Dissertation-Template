@@ -101,16 +101,21 @@
   \nocite{bib2}%
 
   \ifnumgreater{\value{usefootcite}}{0}{
-%  \nocite{*} % Невидимая цитата всех работ, позволит вывести все работы автора
-  \insertbiblioauthor      % Вывод процитированных в автореферате работ автора
+    \begin{refcontext}[labelprefix={}]
+      \insertbiblioauthor      % Вывод всех работ автора
+    \end{refcontext}
   }{
+  \ifnum \value{citeexternal}>0
   \begin{refcontext}[labelprefix=A]
-	  \insertbiblioauthor           % Вывод всех работ автора
+    \insertbiblioauthor      % Вывод всех работ автора
   \end{refcontext}
+  \else
+    \insertbiblioauthor      % Вывод всех работ автора
+  \fi
   %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
   %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
   \begin{refcontext}[labelprefix={}]
-	  \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
+    \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
   \end{refcontext}
   }
 }

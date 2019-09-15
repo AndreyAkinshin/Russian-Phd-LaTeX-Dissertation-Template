@@ -25,7 +25,7 @@ isbn=false,% Показывать или нет ISBN, ISSN, ISRN
 backend=biber,% движок
 bibencoding=utf8,% кодировка bib файла
 sorting=none,% настройка сортировки списка литературы
-% defernumbers=true, % откоментируйте, если требуется правильная нумерация ссылок на литературу в режиме черновика. Замедляет сборку
+% defernumbers=true, % откомментируйте, если требуется правильная нумерация ссылок на литературу в режиме черновика. Замедляет сборку
 ]{biblatex}[2016/09/17]%
 }
 \makeatother
@@ -366,6 +366,11 @@ sorting=none,% настройка сортировки списка литера
                 {}
                 {\stepcounter{citeauthorscopuswos}}
 
+        \newtotcounter{citeexternal}
+        \defbibenvironment{countexternal}
+                {\setcounter{citeexternal}{0}\renewcommand{\blx@driver}[1]{}}
+                {}
+                {\stepcounter{citeexternal}}
 \makeatother
 
 \defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
@@ -376,7 +381,9 @@ sorting=none,% настройка сортировки списка литера
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
     \printbibliography[keyword=bibliofull,section=0,title=\bibtitlefull]
-    \printbibliography[heading=nobibheading,env=counter,keyword=bibliofull,section=0]
+    \ifnumequal{\value{draft}}{0}{
+      \printbibliography[heading=nobibheading,env=counter,keyword=bibliofull,section=0]
+    }{}
 }
 \newcommand*{\insertbiblioauthor}{
     \printbibliography[heading=pubgroup, section=0, keyword=biblioauthor, title=\bibtitleauthor]
