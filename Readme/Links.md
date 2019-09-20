@@ -8,6 +8,10 @@
 
 # Аспирантура и защита
 * [Я аспирант — сайт для аспирантов](http://yaaspirant.ru/)
+* Нормативные документы и формы документов для подачи диссертации (формы, образцы, перечни журналов и т.п.)
+  * ВАК: [нормативно-справочная информация](http://arhvak.minobrnauki.gov.ru/web/guest/7)
+  * МГУ: [полный перечень документов на сайте Истина](https://istina.msu.ru/dissertation_councils/by_organization/214524/documents/) и [на сайте "Диссертационные советы" МГУ](https://www.msu.ru/science/dis-sov1.html).
+  * СПбГУ: [на странице "Диссертационные советы" СПбГУ](https://disser.spbu.ru/dissertatsionnye-sovety-spbgu/normativnye-dokumenty.html) и на странице [на странице "Документы для представления диссертации к защите"](https://disser.spbu.ru/dissertatsionnye-sovety-spbgu/dokumenty-dlya-predstavleniya-dissertatsii-k-zashchite.html). Раздел ["Документы"](https://spbu.ru/openuniversity/documents) открытого университета.
 * Положения о присуждении ученых степеней
   * [Положение о присуждении ученых степеней](http://www.consultant.ru/document/cons_doc_LAW_152458/) (с сайта
 КонсультантПлюс)
@@ -22,6 +26,7 @@
 КонсультантПлюс)
   * [Положение о диссертационном совете Московского государственного университета имени М.В.Ломоносова](https://www.msu.ru/science/dissert/pol-dissovet.pdf) (с сайта МГУ, [Диссертационные советы](https://www.msu.ru/science/dis-sov1.html))
 * Положения об Аттестационной комиссии
+  * [Положение о Высшей аттестационной комиссии](http://docs.cntd.ru/document/420345392)
   * [Положение об Аттестационной комиссии МГУ имени М.В.Ломоносова](https://www.msu.ru/science/dissert/pol-attestkom.pdf) (с сайта МГУ, [Диссертационные советы](https://www.msu.ru/science/dis-sov1.html))
 * [russian-post-C5-addr](https://github.com/nvoronchev/russian-post-C5-addr) — Стилевой файл, позволяющий оформить конверты формата
 C5 приближенно к отечественным
