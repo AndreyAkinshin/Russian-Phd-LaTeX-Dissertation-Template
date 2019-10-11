@@ -111,9 +111,31 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=keywords]
             \step[fieldset=keywords,null]
         }
-        \map[overwrite,foreach={authorvak,authorscopus,authorwos,authorconf,authorother}]{ % записываем информацию о типе публикации в ключевые слова
-            \step[fieldsource=$MAPLOOP,final=true]
-            \step[fieldset=keywords,fieldvalue={,biblio$MAPLOOP},append=true]
+        % реализация foreach различается для biblatex v3.12 и v3.13.
+        % Для версии v3.13 эта конструкция заменяет последующие 5 структур map
+        % \map[overwrite,foreach={authorvak,authorscopus,authorwos,authorconf,authorother}]{ % записываем информацию о типе публикации в ключевые слова
+        %     \step[fieldsource=$MAPLOOP,final=true]
+        %     \step[fieldset=keywords,fieldvalue={,biblio$MAPLOOP},append=true]
+        % }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorvak,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorvak},append=true]
+        }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorscopus,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorscopus},append=true]
+        }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorwos,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorwos},append=true]
+        }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorconf,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorconf},append=true]
+        }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorother,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorother},append=true]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/external.bib}
