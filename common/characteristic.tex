@@ -4,7 +4,7 @@
 работы~\autocite{Gosele1999161}
 (если их~нет, то~в~автореферате
 автоматически пропадёт раздел <<Список литературы>>). Внимание! Ссылки
-на~другие работы в разделе общей характеристики работы можно
+на~другие работы в~разделе общей характеристики работы можно
 использовать только при использовании \verb!biblatex! (из-за технических
 ограничений \verb!bibtex8!. Это связано с тем, что одна
 и~та~же~характеристика используются и~в~тексте диссертации, и в
@@ -124,7 +124,7 @@
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
         \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
         \ifnum \value{citeauthorscopuswos}>0%
-            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of Science и Scopus\sloppy%
+            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of~Science и Scopus\sloppy%
         \fi%
         \ifnum \value{citeauthorconf}>0%
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
@@ -160,7 +160,7 @@
 }
 
 При использовании пакета \verb!biblatex! будут подсчитаны все работы, добавленные
-в файл \verb!biblio/author.bib!. Для правильного подсчёта работ в различных
+в файл \verb!biblio/author.bib!. Для правильного подсчёта работ в~различных
 системах цитирования требуется использовать поля:
 \begin{itemize}
         \item \texttt{authorvak} если публикация индексирована ВАК,
@@ -175,7 +175,7 @@
         \item \texttt{citeauthorscopus} для работ, индексируемых Scopus,
         \item \texttt{citeauthorwos} для работ, индексируемых Web of Science,
         \item \texttt{citeauthorvakscopuswos} для работ, индексируемых одной из трёх баз,
-        \item \texttt{citeauthorscopuswos} для работ, индексируемых Scopus или Web of Science,
+        \item \texttt{citeauthorscopuswos} для работ, индексируемых Scopus или Web of~Science,
         \item \texttt{citeauthorconf} для докладов на конференциях,
         \item \texttt{citeauthorother} для остальных работ,
         \item \texttt{citeauthor} для суммарного количества работ.
