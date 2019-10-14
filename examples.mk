@@ -48,8 +48,8 @@ define synopsis-example #Canned Recipe
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.SYNEXAMPLENAME) \
 		SOURCE=synopsis clean-target; \
 		) \
-	$(eval FOOT:=1) \
 	$(eval BIB:=1) \
+	$(foreach FOOT,0 1, \
 	$(foreach GRP,0 1, \
 	"$(MAKE)" synopsis \
 		BACKEND=$(BACKEND) \
@@ -62,7 +62,7 @@ define synopsis-example #Canned Recipe
 		USEFOOTCITE=$(FOOT); \
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.SYNEXAMPLENAME) \
 		SOURCE=synopsis clean-target; \
-	))
+	)))
 endef
 
 define presentation-example #Canned Recipe
