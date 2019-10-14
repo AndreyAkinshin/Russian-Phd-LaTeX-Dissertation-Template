@@ -12,7 +12,7 @@ examples-lualatex-liberation examples-presentation
 
 .DISSEXAMPLENAME = dissertation_$(subst -,_,$(subst examples-,,$(TARGET)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
 
-.SYNEXAMPLENAME = synopsis_$(subst -,_,$(subst examples-,,$(TARGET)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))$(subst 0,,$(subst 1,_footnote,$(FOOT)))
+.SYNEXAMPLENAME = synopsis_$(subst -,_,$(subst examples-,,$(TARGET)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))$(subst 0,,$(subst 1,_footnote,$(FOOT)))$(subst 0,,$(subst 1,_bibgrouped,$(GRP)))
 
 .PRESEXAMPLENAME = $(subst -,_,presentation$(BKND)$(subst 0,-bibtex,$(subst 1,-biber,$(BIB)))-notes-$(subst 0,off,$(subst 1,separate,$(subst 2,same,$(NOTES)))))
 
@@ -34,6 +34,7 @@ endef
 define synopsis-example #Canned Recipe
 	$(foreach DRF,0 1, \
 	$(eval FOOT:=0) \
+	$(eval GRP:=0) \
 	$(foreach BIB,0 1, \
 	"$(MAKE)" synopsis \
 		BACKEND=$(BACKEND) \
@@ -42,12 +43,14 @@ define synopsis-example #Canned Recipe
 		TARGET=$(.SYNEXAMPLENAME) \
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
+		BIBGROUPED=$(GRP) \
 		USEFOOTCITE=$(FOOT); \
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.SYNEXAMPLENAME) \
 		SOURCE=synopsis clean-target; \
 		) \
 	$(eval FOOT:=1) \
 	$(eval BIB:=1) \
+	$(foreach GRP,0 1, \
 	"$(MAKE)" synopsis \
 		BACKEND=$(BACKEND) \
 		FONTFAMILY=$(FONTFAMILY) \
@@ -55,10 +58,11 @@ define synopsis-example #Canned Recipe
 		TARGET=$(.SYNEXAMPLENAME) \
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
+		BIBGROUPED=$(GRP) \
 		USEFOOTCITE=$(FOOT); \
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.SYNEXAMPLENAME) \
 		SOURCE=synopsis clean-target; \
-	)
+	))
 endef
 
 define presentation-example #Canned Recipe

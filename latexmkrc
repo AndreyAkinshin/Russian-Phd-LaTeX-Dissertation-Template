@@ -8,6 +8,8 @@ $USEBIBER = $ENV{USEBIBER};
 $USEBIBER //= '';
 $USEFOOTCITE = $ENV{USEFOOTCITE};
 $USEFOOTCITE //= '';
+$BIBGROUPED = $ENV{BIBGROUPED};
+$BIBGROUPED //= '';
 $IMGCOMPILE = $ENV{IMGCOMPILE};
 $IMGCOMPILE //= '';
 $NOTESON = $ENV{NOTESON};
@@ -44,6 +46,10 @@ if ($USEBIBER ne '') {
 if ($USEFOOTCITE ne '') {
     $texargs = $texargs . '\newcounter{usefootcite}' .
         '\setcounter{usefootcite}' . '{' . $USEFOOTCITE . '}';
+}
+if ($BIBGROUPED ne '') {
+    $texargs = $texargs . '\newcounter{bibgrouped}' .
+        '\setcounter{bibgrouped}' . '{' . $BIBGROUPED . '}';
 }
 if ($IMGCOMPILE ne '') {
     $texargs = $texargs . '\newcounter{imgprecompile}' .

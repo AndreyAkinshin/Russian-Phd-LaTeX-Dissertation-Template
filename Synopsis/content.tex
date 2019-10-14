@@ -1,4 +1,3 @@
-
 \section*{Общая характеристика работы}
 
 \newcommand{\actuality}{\underline{\textbf{\actualityTXT}}}
@@ -102,20 +101,30 @@
 
   \ifnumgreater{\value{usefootcite}}{0}{
     \begin{refcontext}[labelprefix={}]
-      \insertbiblioauthor      % Вывод всех работ автора
+      \ifnum \value{bibgrouped}>0
+        \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+      \else
+        \insertbiblioauthor      % Вывод всех работ автора
+      \fi
     \end{refcontext}
   }{
   \ifnum \value{citeexternal}>0
-  \begin{refcontext}[labelprefix=A]
-    \insertbiblioauthor      % Вывод всех работ автора
-  \end{refcontext}
+    \begin{refcontext}[labelprefix=A]
+      \ifnum \value{bibgrouped}>0
+        \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+      \else
+        \insertbiblioauthor      % Вывод всех работ автора
+      \fi
+    \end{refcontext}
   \else
-    \insertbiblioauthor      % Вывод всех работ автора
+    \ifnum \value{bibgrouped}>0
+      \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+    \else
+      \insertbiblioauthor      % Вывод всех работ автора
+    \fi
   \fi
-  %  \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
   %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
-  \begin{refcontext}[labelprefix={}]
-    \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  \begin{refcontext}[labelprefix={}]    \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
   \end{refcontext}
   }
 }
