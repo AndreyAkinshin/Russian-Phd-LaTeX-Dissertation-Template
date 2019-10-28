@@ -24,6 +24,12 @@
 \usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
 \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
 \usepackage{mathtools}              % Добавляет окружение multlined
+\usepackage{units}                  % Красивые дроби и размерности
+
+% Кириллица в нумерации subequations
+\patchcmd{\subequations}{\def\theequation{\theparentequation\alph{equation}}}
+{\def\theequation{\theparentequation\asbuk{equation}}}
+{\typeout{subequations patched}}{\typeout{subequations not patched}}
 
 %%%% Установки для размера шрифта 14 pt %%%%
 %% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%

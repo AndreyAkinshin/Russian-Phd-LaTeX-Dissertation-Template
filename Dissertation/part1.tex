@@ -109,11 +109,6 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega}
 \]
 
-Для красивых дробей (например, в индексах) в
-\verb+userstyles.tex+ диссертации добавлен макрос
-\verb+\slantfrac+, благодаря которому можно
-писать \(\slantfrac{1}{2}\) вместо \(1/2\).
-
 Для добавления формул можно использовать пары \verb+$+\dots\verb+$+ и \verb+$$+\dots\verb+$$+,
 но~они считаются устаревшими.
 Лучше использовать их функциональные аналоги \verb+\(+\dots\verb+\)+ и \verb+\[+\dots\verb+\]+.
@@ -258,3 +253,27 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 красиво ссылаться сразу на несколько формул
 (\labelcref{eq:equation1, eq:equation3, eq:equation2}), даже перепутав
 порядок ссылок \verb|(\labelcref{eq:equation1, eq:equation3, eq:equation2})|.
+
+\subsection{Размерности величин}\label{sec:units}
+
+Размерности величин можно писать в строчку, например 1\,м/с, 20\,\(\frac{\textup{Н}}{\textup{м}}\).
+Лучшего результата можно добиться, используя функции пакета \verb|units|:
+\unit{м}; \unit[1]{см}; \unit[2,3]{мм}; \unitfrac[5]{мг}{л}; \unitfrac[100]{км}{ч}; \unitfrac[999,87]{кг}{\(\textup{м}^3\)}.
+Те-же команды работают в математических окружениях:
+\(\unitfrac[5]{км}{ч} = \frac{\unit[10^4]{м}}{\unit[2]{ч}}\);
+
+\begin{subequations}
+        \begin{align}
+                \vec F = \frac{1}{4 \pi \varepsilon_0}&\frac{q_1 q_2}{|\vec r|^2} \frac{\vec r}{|\vec r|}; \label{eq:unit_example} \\
+                [F] &= \unit{Н}; \label{eq:unit_example-f} \\
+                [\varepsilon_0] &= \unitfrac{Гн}{м}; \label{eq:unit_example-eps} \\
+                [q_1], [q_2] &= \unit{Кл}; \label{eq:unit_example-q} \\
+                [r] &= \unit{м}, \label{eq:unit_example-r}
+        \end{align}
+\end{subequations}
+где~\eqref{eq:unit_example} "--- уравнение, (\labelcref{eq:unit_example-f,eq:unit_example-eps,eq:unit_example-q,
+eq:unit_example-r}) "--- размерности величин.
+
+Для написания дробей можно использовать команду \verb|\nicefrac|: \nicefrac{1}{2}; \nicefrac{2,2}{3,5}.
+В качестве дополнительного аргумента можно использовать различные команды форматирования:
+\nicefrac[\texttt]{1}{2}; \nicefrac[\textit]{1}{2}; \nicefrac[\textbf]{1}{2}.
