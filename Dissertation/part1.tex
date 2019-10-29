@@ -109,11 +109,6 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega}
 \]
 
-Для красивых дробей (например, в индексах) в
-\verb+userstyles.tex+ диссертации добавлен макрос
-\verb+\slantfrac+, благодаря которому можно
-писать \(\slantfrac{1}{2}\) вместо \(1/2\).
-
 Для добавления формул можно использовать пары \verb+$+\dots\verb+$+ и \verb+$$+\dots\verb+$$+,
 но~они считаются устаревшими.
 Лучше использовать их функциональные аналоги \verb+\(+\dots\verb+\)+ и \verb+\[+\dots\verb+\]+.
@@ -258,3 +253,209 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 красиво ссылаться сразу на несколько формул
 (\labelcref{eq:equation1, eq:equation3, eq:equation2}), даже перепутав
 порядок ссылок \verb|(\labelcref{eq:equation1, eq:equation3, eq:equation2})|.
+
+Уравнения~(\labelcref{eq:subeq_1,eq:subeq_2}) демонстрируют возможности
+окружения \verb|\subequations|.
+\begin{subequations}
+	\label{eq:subeq_1}
+	\begin{gather}
+		y = x^2 + 1 \label{eq:subeq_1-1} \\
+		y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
+	\end{gather}
+\end{subequations}
+Ссылки на отдельные уравнения~(\labelcref{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}).
+\begin{subequations}
+	\label{eq:subeq_2}
+	\begin{align}
+		y &= x^3 + x^2 + x + 1 \label{eq:subeq_2-1} \\
+		y &= x^2
+	\end{align}
+\end{subequations}
+
+\subsection{Форматирование чисел и размерностей величин}\label{sec:units}
+
+Числа форматируются при помощи команды \verb|\num|:
+\num{5,3};
+\num{2,3e8};
+\num{12345,67890};
+\num{2,6 d4};
+\num{1+-2i};
+\num{.3e45};
+\num[exponent-base=2]{5 e64};
+\num[exponent-base=2,exponent-to-prefix]{5 e64};
+\num{1.654 x 2.34 x 3.430}
+\num{1 2 x 3 / 4}.
+Для написания последовательности чисел можно использовать команды \verb|\numlist| и \verb|\numrange|:
+\numlist{10;30;50;70}; \numrange{10}{30}.
+Значения углов можно форматировать при помощи команды \verb|\ang|:
+\ang{2.67};
+\ang{30,3};
+\ang{-1;;};
+\ang{;-2;};
+\ang{;;-3};
+\ang{300;10;1}.
+
+Обратите внимание, что ГОСТ запрещает использование знака <<->> для обозначения отрицательных чисел
+за исключением формул, таблиц и рисунков.
+Вместо него следует использовать слово <<минус>>.
+
+Размерности можно записывать при помощи команд \verb|\si| и \verb|\SI|:
+\si{\farad\squared\lumen\candela};
+\si{\joule\per\mole\per\kelvin};
+\si{\metre\per\second\squared};
+\SI{1.2-3i e5}{\joule\per\mole\per\kelvin};
+\SI{0.10(5)}{\neper};
+\SIlist{1;2;3;4}{\tesla};
+\SIrange{50}{100}{\volt}.
+Список единиц измерений приведён в таблицах~(\labelcref{tab:unit:base,
+	tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}).
+Приставки единиц приведены в таблице~\ref{tab:unit:prefix}.
+
+С дополнительными опциями форматирования можно ознакомиться в описании пакета \texttt{siunitx};
+изменить или добавить единицы измерений можно в файле \texttt{siunitx.cfg}.
+
+\begin{table}
+    \caption{Основные величины СИ.}\label{tab:unit:base}
+    \centering
+    \begin{tabular}{llc}
+        \toprule
+        Название  & Команда                & Символ         \\
+        \midrule
+        Ампер     & \verb|\ampere| & \si{\ampere}   \\
+        Кандела   & \verb|\candela| & \si{\candela}  \\
+        Кельвин   & \verb|\kelvin| & \si{\kelvin}   \\
+        Килограмм & \verb|\kilogram| & \si{\kilogram} \\
+        Метр      & \verb|\metre| & \si{\metre}    \\
+        Моль      & \verb|\mole| & \si{\mole}     \\
+        Секунда   & \verb|\second| & \si{\second}   \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Производные единицы СИ.}\label{tab:unit:derived}
+    \small
+    \centering
+    \begin{tabular}{llc|llc}
+        \toprule
+        Название       & Команда                 & Символ              & Название & Команда & Символ \\
+        \midrule
+        Беккерель      & \verb|\becquerel|  & \si{\becquerel}     &
+        Ньютон         & \verb|\newton|  & \si{\newton}                                      \\
+        Градус Цельсия & \verb|\degreeCelsius| & \si{\degreeCelsius} &
+        Ом             & \verb|\ohm| & \si{\ohm}                                         \\
+        Кулон          & \verb|\coulomb| & \si{\coulomb}       &
+        Паскаль        & \verb|\pascal| & \si{\pascal}                                      \\
+        Фарад          & \verb|\farad| & \si{\farad}         &
+        Радиан         & \verb|\radian| & \si{\radian}                                      \\
+        Грей           & \verb|\gray| & \si{\gray}          &
+        Сименс         & \verb|\siemens| & \si{\siemens}                                     \\
+        Герц           & \verb|\hertz| & \si{\hertz}         &
+        Зиверт         & \verb|\sievert| & \si{\sievert}                                     \\
+        Генри          & \verb|\henry| & \si{\henry}         &
+        Стерадиан      & \verb|\steradian| & \si{\steradian}                                   \\
+        Джоуль         & \verb|\joule| & \si{\joule}         &
+        Тесла          & \verb|\tesla| & \si{\tesla}                                       \\
+        Катал          & \verb|\katal| & \si{\katal}         &
+        Вольт          & \verb|\volt| & \si{\volt}                                        \\
+        Люмен          & \verb|\lumen| & \si{\lumen}         &
+        Ватт           & \verb|\watt| & \si{\watt}                                        \\
+        Люкс           & \verb|\lux| & \si{\lux}           &
+        Вебер          & \verb|\weber| & \si{\weber}                                       \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Внесистемные единицы.}\label{tab:unit:accepted}
+    \centering
+    \begin{tabular}{llc}
+        \toprule
+        Название        & Команда                 & Символ          \\
+        \midrule
+        День            & \verb|\day| & \si{\day}       \\
+        Градус          & \verb|\degree| & \si{\degree}    \\
+        Гектар          & \verb|\hectare| & \si{\hectare}   \\
+        Час             & \verb|\hour| & \si{\hour}      \\
+        Литр            & \verb|\litre| & \si{\litre}     \\
+        Угловая минута  & \verb|\arcminute| & \si{\arcminute} \\
+        Угловая секунда & \verb|\arcsecond| & \si{\arcsecond} \\ %
+        Минута          & \verb|\minute| & \si{\minute}    \\
+        Тонна           & \verb|\tonne| & \si{\tonne}     \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Внесистемные единицы, получаемые из эксперимента.}\label{tab:unit:physical}
+    \centering
+    \begin{tabular}{llc}
+        \toprule
+        Название                & Команда                 & Символ                 \\
+        \midrule
+        Астрономическая единица & \verb|\astronomicalunit| & \si{\astronomicalunit} \\
+        Атомная единица массы   & \verb|\atomicmassunit| & \si{\atomicmassunit}   \\
+        Боровский радиус        & \verb|\bohr| & \si{\bohr}             \\
+        Скорость света          & \verb|\clight| & \si{\clight}           \\
+        Дальтон                 & \verb|\dalton| & \si{\dalton}           \\
+        Масса электрона         & \verb|\electronmass| & \si{\electronmass}     \\
+        Электрон Вольт          & \verb|\electronvolt| & \si{\electronvolt}     \\
+        Элементарный заряд      & \verb|\elementarycharge| & \si{\elementarycharge} \\
+        Энергия Хартри          & \verb|\hartree| & \si{\hartree}          \\
+        Постоянная Планка       & \verb|\planckbar| & \si{\planckbar}        \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Другие внесистемные единицы.}\label{tab:unit:other}
+    \centering
+    \begin{tabular}{llc}
+        \toprule
+        Название                  & Команда                 & Символ             \\
+        \midrule
+        Ангстрем                  & \verb|\angstrom| & \si{\angstrom}     \\
+        Бар                       & \verb|\bar| & \si{\bar}          \\
+        Барн                      & \verb|\barn| & \si{\barn}         \\
+        Бел                       & \verb|\bel| & \si{\bel}          \\
+        Децибел                   & \verb|\decibel| & \si{\decibel}      \\
+        Узел                      & \verb|\knot| & \si{\knot}         \\
+        Миллиметр ртутного столба & \verb|\mmHg| & \si{\mmHg}         \\
+        Морская миля              & \verb|\nauticalmile| & \si{\nauticalmile} \\
+        Непер                     & \verb|\neper| & \si{\neper}        \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Приставки СИ.}\label{tab:unit:prefix}
+    \centering
+    \small
+    \begin{tabular}{llcc|llcc}
+        \toprule
+        Приставка & Команда                 & Символ      & Степень &
+        Приставка & Команда                 & Символ      & Степень   \\
+        \midrule
+        Иокто     & \verb|\yocto| & \si{\yocto} & -24     &
+        Дека      & \verb|\deca| & \si{\deca}  & 1         \\
+        Зепто     & \verb|\zepto| & \si{\zepto} & -21     &
+        Гекто     & \verb|\hecto| & \si{\hecto} & 2         \\
+        Атто      & \verb|\atto| & \si{\atto}  & -18     &
+        Кило      & \verb|\kilo| & \si{\kilo}  & 3         \\
+        Фемто     & \verb|\femto| & \si{\femto} & -15     &
+        Мега      & \verb|\mega| & \si{\mega}  & 6         \\
+        Пико      & \verb|\pico| & \si{\pico}  & -12     &
+        Гига      & \verb|\giga| & \si{\giga}  & 9         \\
+        Нано      & \verb|\nano| & \si{\nano}  & -9      &
+        Терра     & \verb|\tera| & \si{\tera}  & 12        \\
+        Микро     & \verb|\micro| & \si{\micro} & -6      &
+        Пета      & \verb|\peta| & \si{\peta}  & 15        \\
+        Милли     & \verb|\milli| & \si{\milli} & -3      &
+        Екса      & \verb|\exa| & \si{\exa}   & 18        \\
+        Санти     & \verb|\centi| & \si{\centi} & -2      &
+        Зетта     & \verb|\zetta| & \si{\zetta} & 21        \\
+        Деци      & \verb|\deci| & \si{\deci}  & -1      &
+        Иотта     & \verb|\yotta| & \si{\yotta} & 24        \\
+        \bottomrule
+    \end{tabular}
+\end{table}

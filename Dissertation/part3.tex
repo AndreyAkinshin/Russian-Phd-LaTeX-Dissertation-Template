@@ -201,6 +201,46 @@
     \end{tabularx}%
 \end{table}
 
+\section{Таблицы с форматированными числами}\label{sec:ch3/formatted-numbers}
+
+В таблицах~(\labelcref{tab:S:parse,tab:S:align}) представлены примеры использования опции
+форматирования чисел \texttt{S}, предоставляемой пакетом \texttt{siunitx}.
+
+\begin{table}
+    \centering
+    \caption{Выравнивание столбцов.}\label{tab:S:parse}
+    \begin{tabular}{SS[table-parse-only]}
+        \toprule
+        {Выравнивание по разделителю} & {Обычное выравнивание} \\
+        \midrule
+        12.345                        & 12.345                 \\
+        6,78                          & 6,78                   \\
+        -88.8(9)                      & -88.8(9)               \\
+        4.5e3                         & 4.5e3                  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \caption{Выравнивание с использованием опции \texttt{S}.}\label{tab:S:align}
+    \centering
+    \sisetup{
+        table-figures-integer = 2,
+        table-figures-decimal = 4
+    }
+    \begin{tabular}
+        {SS[table-number-alignment = center]S[table-number-alignment = left]S[table-number-alignment = right]}
+        \toprule
+        {Колонка 1} & {Колонка 2} & {Колонка 3} & {Колонка 4} \\
+        \midrule
+        2.3456      & 2.3456      & 2.3456      & 2.3456      \\
+        34.2345     & 34.2345     & 34.2345     & 34.2345     \\
+        56.7835     & 56.7835     & 56.7835     & 56.7835     \\
+        90.473      & 90.473      & 90.473      & 90.473      \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \section{Параграф "--- два}\label{sec:ch3/sect2}
 
 Некоторый текст.

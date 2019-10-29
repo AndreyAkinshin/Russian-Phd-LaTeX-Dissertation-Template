@@ -24,6 +24,23 @@
 \usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
 \usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
 \usepackage{mathtools}              % Добавляет окружение multlined
+\usepackage{xfrac}                  % Красивые дроби
+\usepackage[
+    locale = DE,
+    list-separator       = {;\,},
+    list-final-separator = {;\,},
+    list-pair-separator  = {;\,},
+    range-phrase         = {\text{\ensuremath{-}}},
+    % quotient-mode        = fraction, % красивые дроби могут не соответствовать ГОСТ
+    fraction-function    = \sfrac,
+    separate-uncertainty,
+    ]{siunitx}                      % Размерности SI
+
+% Кириллица в нумерации subequations
+% Для правильной работы требуется выполнение сразу после загрузки пакетов
+\patchcmd{\subequations}{\def\theequation{\theparentequation\alph{equation}}}
+{\def\theequation{\theparentequation\asbuk{equation}}}
+{\typeout{subequations patched}}{\typeout{subequations not patched}}
 
 %%%% Установки для размера шрифта 14 pt %%%%
 %% Формирование переменных и констант для сравнения (один раз для всех подключаемых файлов)%%
