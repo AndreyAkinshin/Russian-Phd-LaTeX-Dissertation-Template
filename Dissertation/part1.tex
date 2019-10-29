@@ -254,6 +254,24 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 (\labelcref{eq:equation1, eq:equation3, eq:equation2}), даже перепутав
 порядок ссылок \verb|(\labelcref{eq:equation1, eq:equation3, eq:equation2})|.
 
+Уравнения~(\labelcref{eq:subeq_1,eq:subeq_2}) демонстрируют возможности
+окружения \verb|\subequations|.
+\begin{subequations}
+	\label{eq:subeq_1}
+	\begin{gather}
+		y = x^2 + 1 \label{eq:subeq_1-1} \\
+		y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
+	\end{gather}
+\end{subequations}
+Ссылки на отдельные уравнения~(\labelcref{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}).
+\begin{subequations}
+	\label{eq:subeq_2}
+	\begin{align}
+		y &= x^3 + x^2 + x + 1 \label{eq:subeq_2-1} \\
+		y &= x^2
+	\end{align}
+\end{subequations}
+
 \subsection{Форматирование чисел и размерностей величин}\label{sec:units}
 
 Числа форматируются при помощи команды \verb|\num|:

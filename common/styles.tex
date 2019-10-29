@@ -121,8 +121,3 @@
 \setlist{nosep,%                                    % Единый стиль для всех списков (пакет enumitem), без дополнительных интервалов.
     labelindent=\parindent,leftmargin=*%            % Каждый пункт, подпункт и перечисление записывают с абзацного отступа (ГОСТ 2.105-95, 4.1.8)
 }
-
-% Кириллица в нумерации subequations
-\patchcmd{\subequations}{\def\theequation{\theparentequation\alph{equation}}}
-{\def\theequation{\theparentequation\asbuk{equation}}}
-{\typeout{subequations patched}}{\typeout{subequations not patched}}
