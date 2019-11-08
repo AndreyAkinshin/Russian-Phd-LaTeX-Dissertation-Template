@@ -130,7 +130,7 @@ dockertexstudio
 использовать команду:
 
 ```bash
-sudo apt-get install make texlive-xetex texlive-generic-extra texlive-lang-cyrillic texlive-lang-french fonts-liberation latexmk biber
+sudo apt-get install make texlive-xetex texlive-generic-extra texlive-lang-cyrillic texlive-lang-french texlive-science fonts-liberation latexmk biber
 ```
 
 или для установки полного комплекта программ:
