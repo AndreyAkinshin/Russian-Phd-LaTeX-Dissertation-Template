@@ -302,17 +302,18 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 Размерности можно записывать при помощи команд \verb|\si| и \verb|\SI|:
 \si{\farad\squared\lumen\candela};
 \si{\joule\per\mole\per\kelvin};
+\si[per-mode = symbol-or-fraction]{\joule\per\mole\per\kelvin};
 \si{\metre\per\second\squared};
 \SI{1.2-3i e5}{\joule\per\mole\per\kelvin};
 \SI{0.10(5)}{\neper};
 \SIlist{1;2;3;4}{\tesla};
 \SIrange{50}{100}{\volt}.
 Список единиц измерений приведён в таблицах~(\labelcref{tab:unit:base,
-	tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}).
+tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}).
 Приставки единиц приведены в таблице~\ref{tab:unit:prefix}.
 
 С дополнительными опциями форматирования можно ознакомиться в описании пакета \texttt{siunitx};
-изменить или добавить единицы измерений можно в файле \texttt{siunitx.cfg}.
+изменить или добавить единицы измерений можно в~файле \texttt{siunitx.cfg}.
 
 \begin{table}
     \caption{Основные величины СИ.}\label{tab:unit:base}
