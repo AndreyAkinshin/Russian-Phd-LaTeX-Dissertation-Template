@@ -30,6 +30,12 @@ sorting=none,% настройка сортировки списка литера
 }
 \makeatother
 
+\ifxetexorluatex
+\else
+% Исправление случая неподдержки знака номера в pdflatex
+    \DefineBibliographyStrings{russian}{number={\textnumero}}
+\fi
+
 \ifsynopsis
 \ifnumgreater{\value{usefootcite}}{0}{
     \ExecuteBibliographyOptions{autocite=footnote}
