@@ -121,3 +121,63 @@
 \setlist{nosep,%                                    % Единый стиль для всех списков (пакет enumitem), без дополнительных интервалов.
     labelindent=\parindent,leftmargin=*%            % Каждый пункт, подпункт и перечисление записывают с абзацного отступа (ГОСТ 2.105-95, 4.1.8)
 }
+
+%%% Правильная нумерация приложений, рисунков и формул %%%
+%% По ГОСТ 2.105, п. 4.3.8 Приложения обозначают заглавными буквами русского алфавита,
+%% начиная с А, за исключением букв Ё, З, Й, О, Ч, Ь, Ы, Ъ.
+%% Здесь также переделаны все нумерации русскими буквами.
+\ifxetexorluatex
+    \makeatletter
+    \def\russian@Alph#1{\ifcase#1\or
+       А\or Б\or В\or Г\or Д\or Е\or Ж\or
+       И\or К\or Л\or М\or Н\or
+       П\or Р\or С\or Т\or У\or Ф\or Х\or
+       Ц\or Ш\or Щ\or Э\or Ю\or Я\else\xpg@ill@value{#1}{russian@Alph}\fi}
+    \def\russian@alph#1{\ifcase#1\or
+       а\or б\or в\or г\or д\or е\or ж\or
+       и\or к\or л\or м\or н\or
+       п\or р\or с\or т\or у\or ф\or х\or
+       ц\or ш\or щ\or э\or ю\or я\else\xpg@ill@value{#1}{russian@alph}\fi}
+    \def\cyr@Alph#1{\ifcase#1\or
+        А\or Б\or В\or Г\or Д\or Е\or Ж\or
+        И\or К\or Л\or М\or Н\or
+        П\or Р\or С\or Т\or У\or Ф\or Х\or
+        Ц\or Ш\or Щ\or Э\or Ю\or Я\else\xpg@ill@value{#1}{cyr@Alph}\fi}
+    \def\cyr@alph#1{\ifcase#1\or
+        а\or б\or в\or г\or д\or е\or ж\or
+        и\or к\or л\or м\or н\or
+        п\or р\or с\or т\or у\or ф\or х\or
+        ц\or ш\or щ\or э\or ю\or я\else\xpg@ill@value{#1}{cyr@alph}\fi}
+    \makeatother
+\else
+    \makeatletter
+    \if@uni@ode
+      \def\russian@Alph#1{\ifcase#1\or
+        А\or Б\or В\or Г\or Д\or Е\or Ж\or
+        И\or К\or Л\or М\or Н\or
+        П\or Р\or С\or Т\or У\or Ф\or Х\or
+        Ц\or Ш\or Щ\or Э\or Ю\or Я\else\@ctrerr\fi}
+    \else
+      \def\russian@Alph#1{\ifcase#1\or
+        \CYRA\or\CYRB\or\CYRV\or\CYRG\or\CYRD\or\CYRE\or\CYRZH\or
+        \CYRI\or\CYRK\or\CYRL\or\CYRM\or\CYRN\or
+        \CYRP\or\CYRR\or\CYRS\or\CYRT\or\CYRU\or\CYRF\or\CYRH\or
+        \CYRC\or\CYRSH\or\CYRSHCH\or\CYREREV\or\CYRYU\or
+        \CYRYA\else\@ctrerr\fi}
+    \fi
+    \if@uni@ode
+      \def\russian@alph#1{\ifcase#1\or
+        а\or б\or в\or г\or д\or е\or ж\or
+        и\or к\or л\or м\or н\or
+        п\or р\or с\or т\or у\or ф\or х\or
+        ц\or ш\or щ\or э\or ю\or я\else\@ctrerr\fi}
+    \else
+      \def\russian@alph#1{\ifcase#1\or
+        \cyra\or\cyrb\or\cyrv\or\cyrg\or\cyrd\or\cyre\or\cyrzh\or
+        \cyri\or\cyrk\or\cyrl\or\cyrm\or\cyrn\or
+        \cyrp\or\cyrr\or\cyrs\or\cyrt\or\cyru\or\cyrf\or\cyrh\or
+        \cyrc\or\cyrsh\or\cyrshch\or\cyrerev\or\cyryu\or
+        \cyrya\else\@ctrerr\fi}
+    \fi
+    \makeatother
+\fi
