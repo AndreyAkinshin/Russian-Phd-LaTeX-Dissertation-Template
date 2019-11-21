@@ -402,6 +402,39 @@ sorting=none,% настройка сортировки списка литера
 \defbibheading{pubgroup}{\section*{#1}} % обычный стиль, заголовок-секция
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}} % для подразделов "по типу источника"
 
+%%%Сортировка списка литературы Русский-Английский (предварительно удалить .bib) (начало)
+%\DeclareSourcemap{
+%	\maps[datatype=bibtex]{
+%		\map{
+%			\step[fieldset=langid, fieldvalue={tempruorder}]
+%		}
+%		\map[overwrite]{
+%			\step[fieldsource=langid, match=russian, final]
+%			\step[fieldsource=presort, 
+%			match=\regexp{(.+)}, 
+%			replace=\regexp{aa$1}]
+%		}
+%		\map{
+%			\step[fieldsource=langid, match=russian, final]
+%			\step[fieldset=presort, fieldvalue={az}]
+%		}
+%		\map[overwrite]{
+%			\step[fieldsource=langid, notmatch=russian, final]
+%			\step[fieldsource=presort, 
+%			match=\regexp{(.+)}, 
+%			replace=\regexp{za$1}]
+%		}
+%		\map{
+%			\step[fieldsource=langid, notmatch=russian, final]
+%			\step[fieldset=presort, fieldvalue={zz}]
+%		}
+%		\map{
+%			\step[fieldsource=langid, match={tempruorder}, final]
+%			\step[fieldset=langid, null]
+%		}
+%	}
+%}
+%Сортировка списка литературы (конец)
 
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
