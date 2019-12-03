@@ -97,8 +97,11 @@
 \fi
 
 %%% Таблицы %%%
-\usepackage{longtable,ltcaption}                    % Длинные таблицы
-\usepackage{multirow,makecell}                      % Улучшенное форматирование таблиц
+\usepackage{longtable,ltcaption} % Длинные таблицы
+\usepackage{multirow,makecell}   % Улучшенное форматирование таблиц
+\usepackage{tabu, tabulary}      % таблицы с автоматически подбирающейся
+                                 % шириной столбцов (tabu обязательно
+                                 % до hyperref вызывать)
 
 %%% Общее форматирование
 \usepackage{soulutf8}                               % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
