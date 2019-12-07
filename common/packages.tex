@@ -12,7 +12,7 @@
 
 \newif\ifsynopsis           % Условие, проверяющее, что документ --- автореферат
 
-\RequirePackage{etoolbox}[2015/08/02]               % Для продвинутой проверки разных условий
+\usepackage{etoolbox}[2015/08/02]               % Для продвинутой проверки разных условий
 \providebool{presentation}
 
 %%% Поля и разметка страницы %%%
@@ -184,7 +184,7 @@
         % Предполагается, что в следующей версии класс будет исправлен
         \typeout{Assuming this version of memoir is free from the jumping-to-caption bug.}
     }{
-        \RequirePackage{xpatch}
+        \usepackage{xpatch}
 
         \newcommand\mem@step@subcounter{\refstepcounter{sub\@captype}\@contkeep}
 
