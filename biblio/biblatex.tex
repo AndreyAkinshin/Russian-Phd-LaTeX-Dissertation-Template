@@ -172,15 +172,6 @@ sorting=none,% настройка сортировки списка литера
 %            final]
 %            \step[fieldset=media, null]
 %        }
-        % временный костыль для biber версии 2.13
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{external.bib}
-            \step[fieldset=keywords, fieldvalue={,biblioexternal},append=true]
-        }
-        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
-            \perdatasource{author.bib}
-            \step[fieldset=keywords, fieldvalue={,biblioauthor},append=true]
-        }
     }
 }
 
@@ -190,11 +181,6 @@ sorting=none,% настройка сортировки списка литера
     \maps{
         \map[overwrite]{% стираем значения всех полей addendum
             \perdatasource{biblio/author.bib}
-            \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
-        }
-         % временный костыль для biber версии 2.13
-        \map[overwrite]{% стираем значения всех полей addendum
-            \perdatasource{author.bib}
             \step[fieldset=addendum, null] %чтобы избавиться от информации об объёме авторских статей, в отличие от автореферата
         }
     }
