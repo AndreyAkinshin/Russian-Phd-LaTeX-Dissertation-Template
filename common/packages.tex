@@ -170,6 +170,9 @@
         }\process@me
     }
     \makeatother
+
+    \newcommand{\eqrefs}[1]{(\labelcref{#1})}
+    \newcommand{\refs}[1]{\labelcref{#1}}
 \fi
 
 \ifnumequal{\value{draft}}{1}{% Черновик

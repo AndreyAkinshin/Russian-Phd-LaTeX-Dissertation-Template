@@ -249,12 +249,14 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
     \end{multlined}
 \end{equation}
 
-Используя команду \verb|\labelcref| из пакета \verb|cleveref|, можно
+Используя команду \verb|\eqrefs|, можно
 красиво ссылаться сразу на несколько формул
-(\labelcref{eq:equation1, eq:equation3, eq:equation2}), даже перепутав
-порядок ссылок \verb|(\labelcref{eq:equation1, eq:equation3, eq:equation2})|.
+\eqrefs{eq:equation1, eq:equation3, eq:equation2}, даже перепутав
+порядок ссылок \verb|\eqrefs{eq1, eq3, eq2}|.
+Аналогично, для ссылок на несколько рисунков, таблиц и т.д. \refs{sec:ch1/sec1, sec:ch1/sec2, sec:ch1/sec3} можно использовать команду \verb|\refs|.
+Обе эти команды определены в файле \verb|common/packages.tex|.
 
-Уравнения~(\labelcref{eq:subeq_1,eq:subeq_2}) демонстрируют возможности
+Уравнения~\eqrefs{eq:subeq_1,eq:subeq_2} демонстрируют возможности
 окружения \verb|\subequations|.
 \begin{subequations}
 	\label{eq:subeq_1}
@@ -263,7 +265,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 		y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
 	\end{gather}
 \end{subequations}
-Ссылки на отдельные уравнения~(\labelcref{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}).
+Ссылки на отдельные уравнения~\eqrefs{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}.
 \begin{subequations}
 	\label{eq:subeq_2}
 	\begin{align}
@@ -308,8 +310,8 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \SI{0.10(5)}{\neper};
 \SIlist{1;2;3;4}{\tesla};
 \SIrange{50}{100}{\volt}.
-Список единиц измерений приведён в таблицах~(\labelcref{tab:unit:base,
-tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}).
+Список единиц измерений приведён в таблицах~\refs{tab:unit:base,
+tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 Приставки единиц приведены в таблице~\ref{tab:unit:prefix}.
 
 С дополнительными опциями форматирования можно ознакомиться в описании пакета \texttt{siunitx};
