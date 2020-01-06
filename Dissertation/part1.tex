@@ -318,8 +318,9 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 изменить или добавить единицы измерений можно в~файле \texttt{siunitx.cfg}.
 
 \begin{table}
-    \caption{Основные величины СИ}\label{tab:unit:base}
     \centering
+    \captionstyle{\centering}
+    \caption{Основные величины СИ}\label{tab:unit:base}
     \begin{tabular}{llc}
         \toprule
         Название  & Команда                & Символ         \\
@@ -336,9 +337,10 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 \end{table}
 
 \begin{table}
+  \small
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Производные единицы СИ}\label{tab:unit:derived}
-    \small
-    \centering
     \begin{tabular}{llc|llc}
         \toprule
         Название       & Команда                 & Символ              & Название & Команда & Символ \\
@@ -367,11 +369,14 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
         Вебер          & \verb|\weber| & \si{\weber}                                       \\
         \bottomrule
     \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \begin{table}
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Внесистемные единицы}\label{tab:unit:accepted}
-    \centering
+
     \begin{tabular}{llc}
         \toprule
         Название        & Команда                 & Символ          \\
@@ -387,11 +392,13 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
         Тонна           & \verb|\tonne| & \si{\tonne}     \\
         \bottomrule
     \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \begin{table}
-    \caption{Внесистемные единицы, получаемые из эксперимента}\label{tab:unit:physical}
     \centering
+    \captionstyle{\centering}
+    \caption{Внесистемные единицы, получаемые из эксперимента}\label{tab:unit:physical}
     \begin{tabular}{llc}
         \toprule
         Название                & Команда                 & Символ                 \\
@@ -411,8 +418,9 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 \end{table}
 
 \begin{table}
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Другие внесистемные единицы}\label{tab:unit:other}
-    \centering
     \begin{tabular}{llc}
         \toprule
         Название                  & Команда                 & Символ             \\
@@ -428,12 +436,14 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
         Непер                     & \verb|\neper| & \si{\neper}        \\
         \bottomrule
     \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \begin{table}
+  \small
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Приставки СИ}\label{tab:unit:prefix}
-    \centering
-    \small
     \begin{tabular}{llcc|llcc}
         \toprule
         Приставка & Команда                 & Символ      & Степень &
@@ -461,4 +471,5 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
         Иотта     & \verb|\yotta| & \si{\yotta} & 24        \\
         \bottomrule
     \end{tabular}
+  \end{threeparttable}
 \end{table}

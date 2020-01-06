@@ -6,38 +6,39 @@
 
 \begin{table} [htbp]
   \centering
-  \changecaptionwidth\captionwidth{15cm}
-  \caption{Название таблицы}\label{tab:Ts0Sib}%
-  \begin{tabular}{| p{3cm} || p{3cm} | p{3cm} | p{4cm}l |}
-  \hline
-  \hline
-  Месяц   & \centering \(T_{min}\), К & \centering \(T_{max}\), К &\centering  \((T_{max} - T_{min})\), К & \\
-  \hline
-  Декабрь &\centering  253.575   &\centering  257.778    &\centering      4.203  &   \\
-  Январь  &\centering  262.431   &\centering  263.214    &\centering      0.783  &   \\
-  Февраль &\centering  261.184   &\centering  260.381    &\centering     \(-\)0.803  &   \\
-  \hline
-  \hline
-  \end{tabular}
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
+    \caption{Название таблицы}\label{tab:Ts0Sib}%
+    \begin{tabular}{| p{3cm} || p{3cm} | p{3cm} | p{4cm}l |}
+    \hline
+    \hline
+    Месяц   & \centering \(T_{min}\), К & \centering \(T_{max}\), К &\centering  \((T_{max} - T_{min})\), К & \\
+    \hline
+    Декабрь &\centering  253.575   &\centering  257.778    &\centering      4.203  &   \\
+    Январь  &\centering  262.431   &\centering  263.214    &\centering      0.783  &   \\
+    Февраль &\centering  261.184   &\centering  260.381    &\centering     \(-\)0.803  &   \\
+    \hline
+    \hline
+    \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \begin{table} [htbp]% Пример записи таблицы с номером, но без отображаемого наименования
-    \centering
-    \parbox{9cm}{% чтобы лучше смотрелось, подбирается самостоятельно
-        \captiondelim{}% должен стоять до самого пустого caption
-        \caption{}%
-        \label{tab:test1}%
-        \begin{SingleSpace}
-            \begin{tabular}{| c | c | c | c |}
-                \hline
-                Оконная функция & \({2N}\)& \({4N}\)& \({8N}\)\\ \hline
-                Прямоугольное   & 8.72  & 8.77  & 8.77  \\ \hline
-                Ханна           & 7.96  & 7.93  & 7.93  \\ \hline
-                Хэмминга        & 8.72  & 8.77  & 8.77  \\ \hline
-                Блэкмана        & 8.72  & 8.77  & 8.77  \\ \hline
-            \end{tabular}%
-        \end{SingleSpace}
-    }
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
+    \captiondelim{}% должен стоять до самого пустого caption
+    \caption{}%
+    \label{tab:test1}%
+    \begin{SingleSpace}
+      \begin{tabular}{| c | c | c | c |}
+	  \hline
+	  Оконная функция & \({2N}\)& \({4N}\)& \({8N}\)\\ \hline
+	  Прямоугольное   & 8.72  & 8.77  & 8.77  \\ \hline
+	  Ханна           & 7.96  & 7.93  & 7.93  \\ \hline
+	  Хэмминга        & 8.72  & 8.77  & 8.77  \\ \hline
+	  Блэкмана        & 8.72  & 8.77  & 8.77  \\ \hline
+      \end{tabular}%
+    \end{SingleSpace}
+  \end{threeparttable}
 \end{table}
 
 Таблица~\ref{tab:test2} "--- пример таблицы, оформленной в~классическом книжном
@@ -70,17 +71,19 @@
 и команд пакета \textit{makecell} для добавления разрыва строки внутри ячеек.
 
 \begin{table} [htbp]
-	\centering
-	\caption{Пример использования функций пакета \textit{makecell}}%
-	\label{tab:makecell}%
-	\begin{tabular}{| c | c | c | c |}
-	  \hline
-	  Колонка 1                                    & Колонка 2        & \thead{Название колонки 3, \\ не помещающееся в одну строку} & Колонка 4 \\ \hline
-	  \multicolumn{4}{|c|}{Выравнивание по центру}                                                                                               \\ \hline
-	  \multicolumn{2}{|r|}{\makecell{Выравнивание к \\ правому краю}} & \multicolumn{2}{|l|}{Выравнивание к левому краю}                         \\ \hline
-	  \makecell{В этой ячейке \\ много информации} & 8.72             & 8.55                                                         & 8.44      \\ \cline{3-4}
-	  А в этой мало                                & 8.22             & \multicolumn{2}{|c|}{5}                                                  \\ \hline
-	\end{tabular}%
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
+    \caption{Пример использования функций пакета \textit{makecell}}%
+    \label{tab:makecell}%
+    \begin{tabular}{| c | c | c | c |}
+	    \hline
+	    Колонка 1                                    & Колонка 2        & \thead{Название колонки 3, \\ не помещающееся в одну строку} & Колонка 4 \\ \hline
+	    \multicolumn{4}{|c|}{Выравнивание по центру}                                                                                               \\ \hline
+	    \multicolumn{2}{|r|}{\makecell{Выравнивание к \\ правому краю}} & \multicolumn{2}{l|}{Выравнивание к левому краю}                         \\ \hline
+	    \makecell{В этой ячейке \\ много информации} & 8.72             & 8.55                                                         & 8.44      \\ \cline{3-4}
+	    А в этой мало                                & 8.22             & \multicolumn{2}{c|}{5}                                                  \\ \hline
+    \end{tabular}%
+  \end{threeparttable}
 \end{table}
 
 Таблицы~\ref{tab:test3} и~\ref{tab:test4} "--- пример реализации расположения
@@ -97,7 +100,7 @@
             доминг лаборамюз эи ыам (Общий съём цен шляп (юфть)) & Шеф взъярён &
             адвыржаряюм &
             тебиквюэ элььэефэнд мэдиокретатым &
-            Чэнзэрет мныжаркхюм	\\
+            Чэнзэрет мныжаркхюм         \\
             \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5
             Эй, жлоб! Где туз? Прячь юных съёмщиц в~шкаф Плюш изъят. Бьём чуждый цен хвощ! &
             \({\approx}\) &
@@ -155,7 +158,7 @@
         доминг лаборамюз эи ыам (Общий съём цен шляп (юфть)) & Шеф взъярён &
         адвыр\-жаряюм &
         тебиквюэ элььэефэнд мэдиокретатым &
-        Чэнзэрет мныжаркхюм	\\
+        Чэнзэрет мныжаркхюм     \\
         \midrule %%% тонкий разделитель. Отделяет названия столбцов. Обязателен по ГОСТ 2.105 пункт 4.4.5
         Эй, жлоб! Где туз? Прячь юных съёмщиц в~шкаф Плюш изъят.
         Бьём чуждый цен хвощ! &
@@ -207,23 +210,26 @@
 форматирования чисел \texttt{S}, предоставляемой пакетом \texttt{siunitx}.
 
 \begin{table}
-    \centering
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Выравнивание столбцов}\label{tab:S:parse}
     \begin{tabular}{SS[table-parse-only]}
-        \toprule
-        {Выравнивание по разделителю} & {Обычное выравнивание} \\
-        \midrule
-        12.345                        & 12.345                 \\
-        6,78                          & 6,78                   \\
-        -88.8(9)                      & -88.8(9)               \\
-        4.5e3                         & 4.5e3                  \\
-        \bottomrule
+       \toprule
+       {Выравнивание по разделителю} & {Обычное выравнивание} \\
+       \midrule
+       12.345                        & 12.345                 \\
+       6,78                          & 6,78                   \\
+       -88.8(9)                      & -88.8(9)               \\
+       4.5e3                         & 4.5e3                  \\
+       \bottomrule
     \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \begin{table}
+  \centering
+  \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Выравнивание с использованием опции \texttt{S}}\label{tab:S:align}
-    \centering
     \sisetup{
         table-figures-integer = 2,
         table-figures-decimal = 4
@@ -239,6 +245,7 @@
         90.473      & 90.473      & 90.473      & 90.473      \\
         \bottomrule
     \end{tabular}
+  \end{threeparttable}
 \end{table}
 
 \section{Параграф "--- два}\label{sec:ch3/sect2}
