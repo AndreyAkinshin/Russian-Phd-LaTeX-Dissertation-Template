@@ -59,8 +59,6 @@
 уведомление. Вторая часть скрипта проверяет, все ли ссылки, внесённые в файл
 библиографии, были использованы в тексте диссертации.
 
-
-
 ## Замечания по реализациям библиографии
 ### `biblatex` + `biblatex-gost` + biber
 * В версии `biblatex` 3.1 существует [баг](https://github.com/plk/biblatex/issues/355),
@@ -222,7 +220,7 @@ defernumbers=true,
 Для правильной сортировки работ требуется:
 
 * откомментировать строку `defernumbers=true,` в файле
-[biblio/biblatex.tex](biblio/biblatex.tex),
-* в файле [common/characteristic.tex](common/characteristic.tex) вынести строку
+[biblio/biblatex.tex](../biblio/biblatex.tex),
+* в файле [common/characteristic.tex](../common/characteristic.tex) вынести строку
   `\printbibliography[heading=nobibheading,section=0,env=countexternal,keyword=biblioexternal]`
   за пределы условного оператора.
