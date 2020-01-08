@@ -473,3 +473,19 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
     \end{tabular}
   \end{threeparttable}
 \end{table}
+
+\subsection{Заголовки с формулами: \texorpdfstring{\(a^2 + b^2 = c^2\)}{%
+a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
+\texorpdfstring{\(\left\vert\textrm{{Im}}\Sigma\left(
+\protect\varepsilon\right)\right\vert\approx const\)}{|ImΣ (ε)| ≈ const},
+\texorpdfstring{\(\sigma_{xx}^{(1)}\)}{σ\_\{xx\}\textasciicircum\{(1)\}}
+}\label{subsec:with_math}
+
+Пакет \texttt{hyperref} берёт текст для закладок в pdf-файле из~аргументов
+команд типа \verb|\section|, которые могут содержать математические формулы,
+а~также изменения цвета текста или шрифта, которые не отображаются в~закладках.
+Чтобы использование формул в заголовках не вызывало в~логе компиляции появление
+предупреждений типа <<\texttt{Token not allowed in~a~PDF string
+(Unicode):(hyperref) removing...}>>, следует использовать конструкцию
+\verb|\texorpdfstring{}{}|, где в~первых фигурных скобках указывается
+формула, а~во~вторых "--- запись формулы для закладок.
