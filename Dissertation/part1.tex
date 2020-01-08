@@ -259,19 +259,19 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 Уравнения~\eqrefs{eq:subeq_1,eq:subeq_2} демонстрируют возможности
 окружения \verb|\subequations|.
 \begin{subequations}
-	\label{eq:subeq_1}
-	\begin{gather}
-		y = x^2 + 1 \label{eq:subeq_1-1} \\
-		y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
-	\end{gather}
+    \label{eq:subeq_1}
+    \begin{gather}
+        y = x^2 + 1 \label{eq:subeq_1-1} \\
+        y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
+    \end{gather}
 \end{subequations}
 Ссылки на отдельные уравнения~\eqrefs{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}.
 \begin{subequations}
-	\label{eq:subeq_2}
-	\begin{align}
-		y &= x^3 + x^2 + x + 1 \label{eq:subeq_2-1} \\
-		y &= x^2
-	\end{align}
+    \label{eq:subeq_2}
+    \begin{align}
+        y &= x^3 + x^2 + x + 1 \label{eq:subeq_2-1} \\
+        y &= x^2
+    \end{align}
 \end{subequations}
 
 \subsection{Форматирование чисел и размерностей величин}\label{sec:units}
@@ -306,15 +306,15 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \si{\joule\per\mole\per\kelvin};
 \si[per-mode = symbol-or-fraction]{\joule\per\mole\per\kelvin};
 \si{\metre\per\second\squared};
-\SI{1.2-3i e5}{\joule\per\mole\per\kelvin};
 \SI{0.10(5)}{\neper};
+\SI{1.2-3i e5}{\joule\per\mole\per\kelvin};
 \SIlist{1;2;3;4}{\tesla};
 \SIrange{50}{100}{\volt}.
 Список единиц измерений приведён в таблицах~\refs{tab:unit:base,
 tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
-Приставки единиц приведены в таблице~\ref{tab:unit:prefix}.
+Приставки единиц приведены в~таблице~\ref{tab:unit:prefix}.
 
-С дополнительными опциями форматирования можно ознакомиться в описании пакета \texttt{siunitx};
+С дополнительными опциями форматирования можно ознакомиться в~описании пакета \texttt{siunitx};
 изменить или добавить единицы измерений можно в~файле \texttt{siunitx.cfg}.
 
 \begin{table}
