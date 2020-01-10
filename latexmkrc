@@ -398,8 +398,8 @@ sub regexp_cleanup {
         my $root_fixed = fix_pattern( $root_filename );
         foreach (@_) {
             my $name = /%R/ ? $_ : "%R.$_";
-    	$name =~ s/%R/${root_fixed}/;
-    	$name = $dir.$name;
+        $name =~ s/%R/${root_fixed}/;
+        $name = $dir.$name;
             if ($remove_dryrun == 0) {
                 unlink_or_move( glob( "$name" ) );
             } else {
