@@ -51,6 +51,7 @@ BIBERFLAGS ?= # --fixinits
 REGEXDIRS ?= . Dissertation Synopsis Presentation # distclean dirs
 TIMERON ?= # show CPU usage
 TIKZFILE ?= # .tikz file for tikz rule
+USEDEV ?= # use development version
 
 # Makefile options
 MAKEFLAGS := -s
@@ -70,6 +71,7 @@ export BIBERFLAGS
 export REGEXDIRS
 export TIMERON
 export TIKZFILE
+export USEDEV
 
 ##! компиляция всех файлов
 all: synopsis dissertation presentation
