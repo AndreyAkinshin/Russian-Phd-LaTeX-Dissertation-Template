@@ -2,11 +2,17 @@
 
 * [Общие замечания](#Общие-замечания)
 * [Назначение и размещение файлов с библиографией](#Назначение-и-размещение-файлов-с-библиографией)
-* Замечания по реализациям библиографии
+* [Настройка библиографии](#Настройка-библиографии)
+  * [Группированные подсписки литературы (ВАК, Web of Science и т.п.)](#Группированные-подсписки-литературы-ВАК-web-of-science-и-тп)
+    * [В автореферате](#В-автореферате)
+    * [В тексте диссертации](#В-тексте-диссертации)
+    * [Выбор групп для отображения](#Выбор-групп-для-отображения)
+    * [Наименование списков и подсписков литературы](#Наименование-списков-и-подсписков-литературы)
+  * [Строгость соответствия ГОСТ](#Строгость-соответствия-ГОСТ)
+* [Замечания по реализациям библиографии](#Замечания-по-реализациям-библиографии)
   * [`biblatex` + `biblatex-gost` + biber](#biblatex--biblatex-gost--biber)
   * [Встроенная + `gost` + bibtex](#Встроенная--gost--bibtex)
     * [ugost2008mod.bst](#ugost2008modbst)
-  * [О строгости соответствия ГОСТ](#%D0%9E-%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%BE%D1%81%D1%82%D0%B8-%D1%81%D0%BE%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D0%93%D0%9E%D0%A1%D0%A2)
 * [Дополнительная информация](#Дополнительная-информация)
 * [В случае проблем](#В-случае-проблем)
 * [Режим черновика](#Режим-черновика)
@@ -58,6 +64,131 @@
 же автора в разных работах на одной странице. Если такое происходит — выводится
 уведомление. Вторая часть скрипта проверяет, все ли ссылки, внесённые в файл
 библиографии, были использованы в тексте диссертации.
+
+## Настройка библиографии
+
+### Группированные подсписки литературы (ВАК, Web of Science и т.п.)
+
+В некоторых советах принято литературу разбивать на подсписки: ВАК (или, например, рекомендованные для защиты в диссертационном совете МГУ по специальности), не из списка ВАК (другие) и прочее (тезисы докладов и т.п.).
+
+В любом случае разбиение подразумевает в т.ч. подзаголовки в списке литературы. Пример:
+
+![Пример подписка в МГУ](https://user-images.githubusercontent.com/146893/66545185-d5de5f00-eb42-11e9-8dd0-b93b681e57ab.png)
+
+См. подробные обсуждения [#361](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/361) и [#362](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/362).
+
+#### В автореферате
+Настройка возможна в режиме biblatex (biber), но не bibtex. Для настройки подобного поведения в автореферате достаточно установить значение `bibgrouped` в `1` в файле [Synopsis/setup.tex](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/master/Synopsis/setup.tex) следующим образом:
+
+```tex
+\@ifundefined{c@bibgrouped}{
+  \newcounter{bibgrouped}
+  \setcounter{bibgrouped}{1}  % 0 --- единый список работ автора;
+                              % 1 --- сгруппированные работы автора
+}{}
+```
+
+#### В тексте диссертации
+
+По умолчанию вся цитируемая литература выводится единым списком. Вывод литературы в тексте диссертации регулируется следующими строками в файле [Dissertation/references.tex](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/master/Dissertation/references.tex):
+
+```tex
+\insertbibliofull                           % Подключаем Bib-базы: все статьи единым списком
+% Режим с подсписками
+%\insertbiblioexternal                      % Подключаем Bib-базы: статьи, не являющиеся статьями автора по теме диссертации
+% Для вывода выберите и расскомментируйте одно из двух
+%\insertbiblioauthor                        % Подключаем Bib-базы: работы автора единым списком 
+%\insertbiblioauthorgrouped                 % Подключаем Bib-базы: работы автора сгруппированные (ВАК, WoS, Scopus и т.д.)
+```
+
+Чтобы настроить вывод работ автора, необходимо закомментировать команду `\insertbibliofull`, раскомментировать `\insertbiblioexternal` и одну из двух команд, подключающих работы автора. Например, для вывода группированных работ автора настройка выглядит так:
+
+```tex
+% \insertbibliofull                           % Подключаем Bib-базы: все статьи единым списком
+% Режим с подсписками
+\insertbiblioexternal                      % Подключаем Bib-базы: статьи, не являющиеся статьями автора по теме диссертации
+% Для вывода выберите и расскомментируйте одно из двух
+%\insertbiblioauthor                        % Подключаем Bib-базы: работы автора единым списком 
+\insertbiblioauthorgrouped                 % Подключаем Bib-базы: работы автора сгруппированные (ВАК, WoS, Scopus и т.д.)
+```
+
+#### Выбор групп для отображения
+
+По умолчанию выводятся группы: ВАК, Web of Science, Scopus, тезисы конференций и прочие работы автора. Чтобы не выводить какую-то из указанных групп, достаточно закомментировать одну из следующих команд `\printbibliography` в файле [biblio/biblatex.tex](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/master/biblio/biblatex.tex):
+
+```tex
+    \section*{\bibtitleauthor}
+    \ifsynopsis
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorvak,    title=\bibtitleauthorvak,resetnumbers=true] % Работы автора из списка ВАК (сброс нумерации)
+    \else
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorvak,    title=\bibtitleauthorvak,resetnumbers=false] % Работы автора из списка ВАК (сквозная нумерация)
+    \fi
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorwos,    title=\bibtitleauthorwos,resetnumbers=false]% Работы автора, индексируемые Web of Science
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorscopus, title=\bibtitleauthorscopus,resetnumbers=false]% Работы автора, индексируемые Scopus
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorconf,   title=\bibtitleauthorconf,resetnumbers=false]% Тезисы конференций
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorother,  title=\bibtitleauthorother,resetnumbers=false]% Прочие работы автора
+```
+
+#### Наименование списков и подсписков литературы
+
+Может потребоваться изменить наименование списка\подсписка литературы. Например, с наименования по-умолчанию "В изданиях из списка ВАК РФ" на "Статьи в рецензируемых научных изданиях, рекомендованных для защиты в диссертационном совете МГУ по специальности". Для этого достаточно отредоактировать следующие строки в файле [common/newnames.tex](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/master/common/newnames.tex):
+
+```tex
+%%% Заголовки библиографии:
+
+% для автореферата:
+\newcommand{\bibtitleauthor}{Публикации автора по теме диссертации}
+
+% для стиля библиографии `\insertbiblioauthorgrouped`
+\newcommand{\bibtitleauthorvak}{В изданиях из списка ВАК РФ}
+\newcommand{\bibtitleauthorscopus}{В изданиях, входящих в международную базу цитирования Scopus}
+\newcommand{\bibtitleauthorwos}{В изданиях, входящих в международную базу цитирования Web of Science}
+\newcommand{\bibtitleauthorother}{В прочих изданиях}
+\newcommand{\bibtitleauthorconf}{В сборниках трудов конференций}
+
+% для стиля библиографии `\insertbiblioauthorimportant`:
+\newcommand{\bibtitleauthorimportant}{Наиболее значимые \protect\MakeLowercase\bibtitleauthor}
+
+% для списка литературы в диссертации и списка чужих работ в автореферате:
+\newcommand{\bibtitlefull}{Список литературы} % (ГОСТ Р 7.0.11-2011, 4)
+```
+
+### Строгость соответствия ГОСТ
+
+  В соответствии с пунктом 5.6.7 [ГОСТ Р 7.0.11-2011 СИБИД. Диссертация
+  и автореферат диссертации. Структура и правила
+  оформления](http://docs.cntd.ru/document/1200093432) библиографические
+  записи в списке литературы оформляют согласно [ГОСТ
+  7.1](http://docs.cntd.ru/document/1200034383). Последний предписывает
+  оформление записей в списке литературы примерно таким образом:
+
+  > Лермонтов, М. Ю. Собрание сочинений: в 4 т. / М. Ю. Лермонтов. –– М. : Терра-Кн. клуб, 2009. –– 4 т.
+
+  > Фамилия, И. О. Название статьи / И. О. Фамилия, И. О. Фамилия2, И. О. Фамилия3 // Журнал. –– 2013. –– Т. 1, № 5. –– С. 100––120.
+
+  Подобное дублирование ФИО первого автора многих неподготовленных
+  к строгости ГОСТ 7.1 читателей может сильно смутить. Кроме того, в вашем
+  диссертационном совете может быть не принято строго соответствовать ГОСТ
+  в этой части, и такой вид списка литературы может быть воспринят как
+  следствие ошибки.
+
+  В этом случае на свой страх и риск можно понизить строгость ГОСТ, закомментировать [следующие
+  строки](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/master/biblio/biblatex.tex#L20-L22)
+  файла `biblio/biblatex.tex`:
+
+  ```tex
+  \ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
+  {\toggletrue{bbx:gostbibliography}%
+  \renewcommand*{\revsdnamepunct}{\addcomma}}{}
+  ```
+
+  Список литературы теперь будет выглядеть так: 
+
+  > Лермонтов М. Ю. Собрание сочинений: в 4 т. –– М. : Терра-Кн. клуб, 2009. –– 4 т.
+
+  > Фамилия И. О., Фамилия2 И. О., Фамилия3 И. О. Название статьи // Журнал. –– 2013. –– Т. 1, № 5. –– С. 100––120.
+
+  Подробнее, смотрите обсуждения в [#341](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/341), [#215](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/215).
 
 ## Замечания по реализациям библиографии
 ### `biblatex` + `biblatex-gost` + biber
@@ -133,43 +264,6 @@ biblio.bib аккуратно приведена вся библиография
 * Теперь, если авторов больше трёх, то они перемещаются правее заглавия, в область
 указания ответственности, и там сокращаются до первого «[и др.]» (согласно
 распространённой практике применения библиографических ГОСТов).
-
-### О строгости соответствия ГОСТ
-
-  В соответствии с пунктом 5.6.7 [ГОСТ Р 7.0.11-2011 СИБИД. Диссертация
-  и автореферат диссертации. Структура и правила
-  оформления](http://docs.cntd.ru/document/1200093432) библиографические
-  записи в списке литературы оформляют согласно [ГОСТ
-  7.1](http://docs.cntd.ru/document/1200034383). Последний предписывает
-  оформление записей в списке литературы примерно таким образом:
-
-  > Лермонтов, М. Ю. Собрание сочинений: в 4 т. / М. Ю. Лермонтов. –– М. : Терра-Кн. клуб, 2009. –– 4 т.
-
-  > Фамилия, И. О. Название статьи / И. О. Фамилия, И. О. Фамилия2, И. О. Фамилия3 // Журнал. –– 2013. –– Т. 1, № 5. –– С. 100––120.
-
-  Подобное дублирование ФИО первого автора многих неподготовленных
-  к строгости ГОСТ 7.1 читателей может сильно смутить. Кроме того, в вашем
-  диссертационном совете может быть не принято строго соответствовать ГОСТ
-  в этой части, и такой вид списка литературы может быть воспринят как
-  следствие ошибки.
-
-  В этом случае на свой страх и риск можно понизить строгость ГОСТ, закомментировать [следующие
-  строки](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/blob/master/biblio/biblatex.tex#L20-L22)
-  файла `biblio/biblatex.tex`:
-
-  ```tex
-  \ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
-  {\toggletrue{bbx:gostbibliography}%
-  \renewcommand*{\revsdnamepunct}{\addcomma}}{}
-  ```
-
-  Список литературы теперь будет выглядеть так: 
-
-  > Лермонтов М. Ю. Собрание сочинений: в 4 т. –– М. : Терра-Кн. клуб, 2009. –– 4 т.
-
-  > Фамилия И. О., Фамилия2 И. О., Фамилия3 И. О. Название статьи // Журнал. –– 2013. –– Т. 1, № 5. –– С. 100––120.
-
-  Подробнее, смотрите обсуждения в [#341](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/341), [#215](https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/215).
 
 ## Дополнительная информация
 Справка к пакету `biblatex-gost` рассказывает [о взаимосвязи ГОСТов на библиографию](http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gost/doc/biblatex-gost.pdf).
