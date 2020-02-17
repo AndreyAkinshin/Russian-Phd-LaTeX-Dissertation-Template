@@ -63,11 +63,11 @@
     \renewcommand\cftsectionaftersnum{.\space}       % добавляет точку с пробелом после номера подраздела в оглавлении
     \renewcommand\cftsubsectionaftersnum{.\space}    % добавляет точку с пробелом после номера подподраздела в оглавлении
     \renewcommand\cftsubsubsectionaftersnum{.\space} % добавляет точку с пробелом после номера подподподраздела в оглавлении
-    \AtBeginDocument{% без этого polyglossia сама всё переопределяет
+    \AfterEndPreamble{% без этого polyglossia сама всё переопределяет
         \setsecnumformat{\csname the#1\endcsname.\space}
     }
 }{%
-    \AtBeginDocument{% без этого polyglossia сама всё переопределяет
+    \AfterEndPreamble{% без этого polyglossia сама всё переопределяет
         \setsecnumformat{\csname the#1\endcsname\quad}
     }
 }
