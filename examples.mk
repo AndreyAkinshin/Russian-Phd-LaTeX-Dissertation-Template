@@ -1,14 +1,21 @@
 # example rules
 
-.PHONY: examples examples-pdflatex-cm examples-pdflatex-pscyr \
+.PHONY: examples examples-pdf examples-xe examples-lua \
+examples-pdflatex-cm examples-pdflatex-pscyr\
 examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
 examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
 examples-lualatex-liberation examples-presentation
 
-examples: examples-pdflatex-cm examples-pdflatex-pscyr \
-examples-pdflatex-xcharter examples-xelatex-cmu examples-xelatex-msf\
-examples-xelatex-liberation examples-lualatex-cmu examples-lualatex-msf\
-examples-lualatex-liberation examples-presentation
+examples-pdf: examples-pdflatex-cm examples-pdflatex-pscyr \
+examples-pdflatex-xcharter
+
+examples-xe: examples-xelatex-cmu examples-xelatex-msf\
+examples-xelatex-liberation
+
+examples-lua: examples-lualatex-cmu examples-lualatex-msf\
+examples-lualatex-liberation
+
+examples: examples-pdf examples-xe examples-lua examples-presentation
 
 .DISSEXAMPLENAME = dissertation_$(subst -,_,$(subst examples-,,$(TARGET)))$(subst 0,_bibtex,$(subst 1,_biber,$(BIB)))$(subst 0,,$(subst 1,_draft,$(DRF)))
 
