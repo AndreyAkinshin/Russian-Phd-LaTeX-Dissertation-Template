@@ -1,5 +1,7 @@
 $DRAFTON = $ENV{DRAFTON};
 $DRAFTON //= '';
+$SHOWMARKUP = $ENV{SHOWMARKUP};
+$SHOWMARKUP //= '';
 $FONTFAMILY = $ENV{FONTFAMILY};
 $FONTFAMILY //= '';
 $ALTFONT = $ENV{ALTFONT};
@@ -32,6 +34,10 @@ $texargs = '';
 if ($DRAFTON ne '') {
     $texargs = $texargs . '\newcounter{draft}' .
         '\setcounter{draft}' . '{' . $DRAFTON . '}';
+}
+if ($SHOWMARKUP ne '') {
+    $texargs = $texargs . '\newcounter{showmarkup}' .
+        '\setcounter{showmarkup}' . '{' . $SHOWMARKUP . '}';
 }
 if ($FONTFAMILY ne '') {
     $texargs = $texargs . '\newcounter{fontfamily}' .

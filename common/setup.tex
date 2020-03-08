@@ -12,6 +12,15 @@
 }{}
 \makeatother
 
+%%% Пометки в тексте %%%
+\makeatletter
+\@ifundefined{c@showmarkup}{
+  \newcounter{showmarkup}
+  \setcounter{showmarkup}{0}  % 0 --- скрыть пометки
+                              % 1 --- показывать пометки
+}{}
+\makeatother
+
 %%% Использование в pdflatex шрифтов не по-умолчанию %%%
 \makeatletter
 \@ifundefined{c@usealtfont}{
