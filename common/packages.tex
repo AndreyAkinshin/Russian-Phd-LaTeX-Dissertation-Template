@@ -12,15 +12,15 @@
 
 \newif\ifsynopsis           % Условие, проверяющее, что документ --- автореферат
 
-\usepackage{etoolbox}[2015/08/02]               % Для продвинутой проверки разных условий
+\usepackage{etoolbox}[2015/08/02]   % Для продвинутой проверки разных условий
 \providebool{presentation}
 
 \usepackage{comment}    % Позволяет убирать блоки текста (добавляет
                         % окружение comment и команду \excludecomment)
 
 %%% Поля и разметка страницы %%%
-\usepackage{pdflscape}                              % Для включения альбомных страниц
-\usepackage{geometry}                               % Для последующего задания полей
+\usepackage{pdflscape}  % Для включения альбомных страниц
+\usepackage{geometry}   % Для последующего задания полей
 
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
@@ -53,14 +53,16 @@
 \setlength{\bigtextsize}{13.9pt}
 
 \makeatletter
-%\show\f@size                                       % неплохо для отслеживания, но вызывает стопорение процесса, если документ компилируется без команды  -interaction=nonstopmode
+%\show\f@size    % неплохо для отслеживания, но вызывает стопорение процесса,
+                 % если документ компилируется без команды  -interaction=nonstopmode
 \setlength{\curtextsize}{\f@size pt}
 \makeatother
 
 %%% Кодировки и шрифты %%%
 \ifxetexorluatex
-    \PassOptionsToPackage{no-math}{fontspec}        % https://tex.stackexchange.com/a/26295/104425
-    \usepackage{polyglossia}[2014/05/21]            % Поддержка многоязычности (fontspec подгружается автоматически)
+    \PassOptionsToPackage{no-math}{fontspec}    % https://tex.stackexchange.com/a/26295/104425
+    \usepackage{polyglossia}[2014/05/21]        % Поддержка многоязычности
+                                        % (fontspec подгружается автоматически)
 \else
    %%% Решение проблемы копирования текста в буфер кракозябрами
     \ifnumequal{\value{usealtfont}}{0}{}{
@@ -68,9 +70,11 @@
         \input glyphtounicode-cmr.tex %from pdfx package
         \pdfgentounicode=1
     }
-    \usepackage{cmap}                               % Улучшенный поиск русских слов в полученном pdf-файле
+    \usepackage{cmap}   % Улучшенный поиск русских слов в полученном pdf-файле
     \ifnumequal{\value{usealtfont}}{2}{}{
-        \defaulthyphenchar=127                      % Если стоит до fontenc, то переносы не впишутся в выделяемый текст при копировании его в буфер обмена
+        \defaulthyphenchar=127  % Если стоит до fontenc, то переносы
+                                % не впишутся в выделяемый текст при
+                                % копировании его в буфер обмена
     }
     \usepackage{textcomp}
     \usepackage[T1,T2A]{fontenc}                    % Поддержка русских букв
@@ -109,8 +113,8 @@
 \usepackage{threeparttable}      % автоматический подгон ширины подписи таблицы
 
 %%% Общее форматирование
-\usepackage{soulutf8}                               % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
-\usepackage{icomma}                                 % Запятая в десятичных дробях
+\usepackage{soulutf8}% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+\usepackage{icomma}  % Запятая в десятичных дробях
 
 %%% Оптимизация расстановки переносов и длины последней строки абзаца
 \IfFileExists{impnattypo.sty}{% проверка установленности пакета impnattypo
@@ -138,12 +142,16 @@
 \usepackage{hyperref}[2012/11/06]
 
 %%% Изображения %%%
-\usepackage{graphicx}[2014/04/25]                   % Подключаем пакет работы с графикой
+\usepackage{graphicx}[2014/04/25]   % Подключаем пакет работы с графикой
 
 %%% Счётчики %%%
-\usepackage[figure,table]{totalcount}               % Счётчик рисунков и таблиц
-\usepackage{totcount}                               % Пакет создания счётчиков на основе последнего номера подсчитываемого элемента (может требовать дважды компилировать документ)
-\usepackage{totpages}                               % Счётчик страниц, совместимый с hyperref (ссылается на номер последней страницы). Желательно ставить последним пакетом в преамбуле
+\usepackage[figure,table]{totalcount}   % Счётчик рисунков и таблиц
+\usepackage{totcount}   % Пакет создания счётчиков на основе последнего номера
+                        % подсчитываемого элемента (может требовать дважды
+                        % компилировать документ)
+\usepackage{totpages}   % Счётчик страниц, совместимый с hyperref (ссылается
+                        % на номер последней страницы). Желательно ставить
+                        % последним пакетом в преамбуле
 
 %%% Продвинутое управление групповыми ссылками (пока только формулами) %%%
 \ifpresentation
