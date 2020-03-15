@@ -30,6 +30,8 @@ sorting=none,% настройка сортировки списка литера
 }
 \makeatother
 
+\providebool{blxmc} % biblatex version needs and has MakeCapital workaround
+\boolfalse{blxmc} % setting our new boolean flag to default false
 \ifxetexorluatex
 \else
 % Исправление случая неподдержки знака номера в pdflatex
@@ -37,8 +39,6 @@ sorting=none,% настройка сортировки списка литера
 
 % Исправление случая отсутствия прописных букв в некоторых случаях
 % https://github.com/plk/biblatex/issues/960#issuecomment-596658282
-    \providebool{blxmc} % biblatex version needs and has MakeCapital workaround
-    \boolfalse{blxmc} % setting our new boolean flag to default false
     \ifdefmacro{\ExplSyntaxOn}{}{\usepackage{expl3}}
     \makeatletter
     \ltx@ifpackagelater{biblatex}{2020/02/23}{
