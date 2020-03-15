@@ -34,6 +34,70 @@ sorting=none,% настройка сортировки списка литера
 \else
 % Исправление случая неподдержки знака номера в pdflatex
     \DefineBibliographyStrings{russian}{number={\textnumero}}
+
+% Исправление случая отсутствия прописных букв в некоторых случаях
+% https://github.com/plk/biblatex/issues/960#issuecomment-596658282
+    \providebool{blxmc} % biblatex version needs and has MakeCapital workaround
+    \boolfalse{blxmc} % setting our new boolean flag to default false
+    \ifdefmacro{\ExplSyntaxOn}{}{\usepackage{expl3}}
+    \makeatletter
+    \ltx@ifpackagelater{biblatex}{2020/02/23}{
+    % Assuming this version of biblatex defines MakeCapital correctly
+    }{
+        \ltx@ifpackagelater{biblatex}{2019/12/01}{
+            % Assuming this version of biblatex defines MakeCapital incorrectly
+            \usepackage{expl3}[2020/02/25]
+            \@ifpackagelater{expl3}{2020/02/25}{
+                \booltrue{blxmc} % setting our new boolean flag to true
+            }{}
+        }{}
+    }
+    \makeatother
+    \ifblxmc
+        \typeout{Assuming this version of biblatex defines MakeCapital
+        incorrectly}
+        \usepackage{xparse}
+        \makeatletter
+        \ExplSyntaxOn
+        \NewDocumentCommand \blx@maketext@lowercase {m}
+          {
+            \text_lowercase:n {#1}
+          }
+
+        \NewDocumentCommand \blx@maketext@uppercase {m}
+          {
+            \text_uppercase:n {#1}
+          }
+
+        \RenewDocumentCommand \MakeCapital {m}
+          {
+            \text_titlecase_first:n {#1}
+          }
+        \ExplSyntaxOff
+
+        \protected\def\blx@biblcstring#1#2#3{%
+          \blx@begunit
+          \blx@hyphenreset
+          \blx@bibstringsimple
+          \lowercase{\edef\blx@tempa{#3}}%
+          \ifcsundef{#2@\blx@tempa}
+            {\blx@warn@nostring\blx@tempa
+             \blx@endnounit}
+            {#1{\blx@maketext@lowercase{\csuse{#2@\blx@tempa}}}%
+             \blx@endunit}}
+
+        \protected\def\blx@bibucstring#1#2#3{%
+          \blx@begunit
+          \blx@hyphenreset
+          \blx@bibstringsimple
+          \lowercase{\edef\blx@tempa{#3}}%
+          \ifcsundef{#2@\blx@tempa}
+            {\blx@warn@nostring\blx@tempa
+             \blx@endnounit}
+            {#1{\blx@maketext@uppercase{\csuse{#2@\blx@tempa}}}%
+             \blx@endunit}}
+        \makeatother
+    \fi
 \fi
 
 \ifsynopsis
