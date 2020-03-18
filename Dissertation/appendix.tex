@@ -276,13 +276,14 @@ kick & 1 & int & 0: инициализация без шума (\(p_s = const\))
 \begingroup
     \centering
     \small
+    \captionsetup[table]{skip=7pt} % смещение положения подписи
     \begin{longtable}[c]{|l|c|l|l|}
     \caption{Наименование таблицы средней длины}\label{tab:test5}% label всегда желательно идти после caption
     \\[-0.45\onelineskip]
     \hline
     Параметр & Умолч. & Тип & Описание\\ \hline
     \endfirsthead%
-    \caption*{\tabcapalign Продолжение таблицы~\thetable}\\[-0.45\onelineskip]
+    \caption*{Продолжение таблицы~\thetable}\\[-0.45\onelineskip]
     \hline
     Параметр & Умолч. & Тип & Описание\\ \hline
     \endhead
@@ -776,36 +777,29 @@ f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03
 Например, \verb+\label{fig:knuth}+; \verb+\ref{tab:test1}+; \verb+label={lst:external1}+.
 В~таблице~\ref{tab:tab_pref} приведены стандартные префиксы для различных типов ссылок.
 
-\begingroup
-    \centering
-    % \small
-    \begin{longtable}[c]{|c|c|}
-    \caption{Стандартные префиксы ссылок}\label{tab:tab_pref}% label всегда желательно идти после caption
-    \\[-0.45\onelineskip]
-    \hline
-    \textbf{Префикс} & \textbf{Описание} \\ \hline
-    \endfirsthead%
-    \caption*{\tabcapalign Продолжение таблицы~\thetable}\\[-0.45\onelineskip]
-    \hline
-    \textbf{Префикс} & \textbf{Описание} \\ \hline
-    \endhead
-    \hline
-    \endfoot
-    \hline
-    \endlastfoot
-    ch:     & Глава             \\
-    sec:    & Секция            \\
-    subsec: & Подсекция         \\
-    fig:    & Рисунок           \\
-    tab:    & Таблица           \\
-    eq:     & Уравнение         \\
-    lst:    & Листинг программы \\
-    itm:    & Элемент списка    \\
-    alg:    & Алгоритм          \\
-    app:    & Секция приложения \\
-    \end{longtable}
-% \normalsize% возвращаем шрифт к нормальному
-\endgroup
+\begin{table}[htbp]
+        \captionsetup{justification=centering}
+        \centering{
+                \caption{\label{tab:tab_pref}Стандартные префиксы ссылок}
+                \begin{tabular}{ll}
+                        \toprule
+                        \textbf{Префикс} & \textbf{Описание} \\
+                        \midrule
+                        ch:     & Глава             \\
+                        sec:    & Секция            \\
+                        subsec: & Подсекция         \\
+                        fig:    & Рисунок           \\
+                        tab:    & Таблица           \\
+                        eq:     & Уравнение         \\
+                        lst:    & Листинг программы \\
+                        itm:    & Элемент списка    \\
+                        alg:    & Алгоритм          \\
+                        app:    & Секция приложения \\
+                        \bottomrule
+                \end{tabular}
+        }
+\end{table}
+
 
 Для упорядочивания ссылок можно использовать разделительные символы.
 Например, \verb+\label{fig:scheemes/my_scheeme}+ или \\ \verb+\label{lst:dts/linked_list}+.

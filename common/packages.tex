@@ -143,6 +143,8 @@
 
 %%% Изображения %%%
 \usepackage{graphicx}[2014/04/25]   % Подключаем пакет работы с графикой
+\usepackage{caption}                % Подписи рисунков и таблиц
+\usepackage{subcaption}             % Подписи подрисунков и подтаблиц
 
 %%% Счётчики %%%
 \usepackage[figure,table]{totalcount}   % Счётчик рисунков и таблиц
@@ -195,50 +197,6 @@
     \SetWatermarkScale{15}
     \SetWatermarkAngle{45}
 }{}
-
-%%% Исправление положения якорей подписей (под)рисунков %%%
-% Без hypcap и патча, при клике по ссылке на подрисунок, просмотрщик pdf прыгает "к подписи" а не "к рисунку".
-% Подробнее: https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues/238
-% (!) Даже с патчем, если мешать в одной фиге разные типы подфиг (subbottom и subcaption) - ссылки всё равно будут работать неправильно  (см. https://www.overleaf.com/read/czmbmmtnqrrg ).
-\ifpresentation
-\else
-    \usepackage[all]{hypcap}
-
-    \makeatletter
-    \ltx@ifclasslater{memoir}{2018/12/13}{
-        % Предполагается, что в следующей версии класс будет исправлен
-        \typeout{Assuming this version of memoir is free from the jumping-to-caption bug.}
-    }{
-        \usepackage{xpatch}
-
-        \newcommand\mem@step@subcounter{\refstepcounter{sub\@captype}\@contkeep}
-
-        \xpatchcmd{\@memsubbody}%
-        {\refstepcounter{sub\@captype}\@contkeep}% search pattern
-        {}% replacement
-        {\typeout{@memsubbody is patched}}%
-        {\typeout{@memsubbody is NOT patched}}%
-
-        \xpatchcmd{\@memcontsubbody}%
-        {\refstepcounter{sub\@captype}\@contkeep}% pattern
-        {}% replacement
-        {\typeout{@memcontsubbody is patched}}%
-        {\typeout{@memcontsubbody is NOT patched}}%
-
-        \xpatchcmd{\@memsubfloat}%
-        {\vbox\bgroup}% search pattern
-        {\vbox\bgroup\mem@step@subcounter}% replacement
-        {\typeout{@memsubfloat patch is ok}}%
-        {\typeout{@memsubfloat patch is NOT ok}}%
-
-        \xpatchcmd{\subcaption}%
-        {\refstepcounter{sub\@captype}}% search pattern
-        {\H@refstepcounter{sub\@captype}}% replacement
-        {\typeout{subcaption second patch is ok}}%
-        {\typeout{subcaption second patch is NOT ok}}%
-    }
-    \makeatother
-\fi
 
 %%% Цитата, не приводимая в автореферате:
 % возможно, актуальна только для biblatex
