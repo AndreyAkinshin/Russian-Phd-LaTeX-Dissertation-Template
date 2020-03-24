@@ -25,17 +25,16 @@
 \begin{table} [htbp]% Пример записи таблицы с номером, но без отображаемого наименования
   \centering
   \begin{threeparttable}% выравнивание подписи по границам таблицы
-    \captiondelim{}% должен стоять до самого пустого caption
     \caption{}%
     \label{tab:test1}%
     \begin{SingleSpace}
       \begin{tabular}{| c | c | c | c |}
-	  \hline
-	  Оконная функция & \({2N}\)& \({4N}\)& \({8N}\)\\ \hline
-	  Прямоугольное   & 8.72  & 8.77  & 8.77  \\ \hline
-	  Ханна           & 7.96  & 7.93  & 7.93  \\ \hline
-	  Хэмминга        & 8.72  & 8.77  & 8.77  \\ \hline
-	  Блэкмана        & 8.72  & 8.77  & 8.77  \\ \hline
+        \hline
+        Оконная функция & \({2N}\)& \({4N}\)& \({8N}\)\\ \hline
+        Прямоугольное   & 8.72  & 8.77  & 8.77  \\ \hline
+        Ханна           & 7.96  & 7.93  & 7.93  \\ \hline
+        Хэмминга        & 8.72  & 8.77  & 8.77  \\ \hline
+        Блэкмана        & 8.72  & 8.77  & 8.77  \\ \hline
       \end{tabular}%
     \end{SingleSpace}
   \end{threeparttable}
@@ -69,19 +68,33 @@
 В таблице~\ref{tab:makecell} приведён пример использования команды
 \verb+\multicolumn+ для объединения горизонтальных ячеек таблицы,
 и команд пакета \textit{makecell} для добавления разрыва строки внутри ячеек.
+При форматировании таблицы~\ref{tab:makecell} использован стиль подписей \verb+split+.
+Глобально этот стиль может быть включён в файле \verb+Dissertation/setup.tex+ для диссертации и в
+файле \verb+Synopsis/setup.tex+ для автореферата.
+Однако такое оформление не соответствует ГОСТ.
 
 \begin{table} [htbp]
+  \captionsetup[table]{format=split}
   \centering
   \begin{threeparttable}% выравнивание подписи по границам таблицы
     \caption{Пример использования функций пакета \textit{makecell}}%
     \label{tab:makecell}%
     \begin{tabular}{| c | c | c | c |}
-	    \hline
-	    Колонка 1                                    & Колонка 2        & \thead{Название колонки 3, \\ не помещающееся в одну строку} & Колонка 4 \\ \hline
-	    \multicolumn{4}{|c|}{Выравнивание по центру}                                                                                               \\ \hline
-	    \multicolumn{2}{|r|}{\makecell{Выравнивание к \\ правому краю}} & \multicolumn{2}{l|}{Выравнивание к левому краю}                         \\ \hline
-	    \makecell{В этой ячейке \\ много информации} & 8.72             & 8.55                                                         & 8.44      \\ \cline{3-4}
-	    А в этой мало                                & 8.22             & \multicolumn{2}{c|}{5}                                                  \\ \hline
+        \hline
+        Колонка 1 & Колонка 2 &
+        \thead{Название колонки 3,\\
+            не помещающееся в одну строку} & Колонка 4 \\
+        \hline
+        \multicolumn{4}{|c|}{Выравнивание по центру}\\
+        \hline
+        \multicolumn{2}{|r|}{\makecell{Выравнивание\\ к~правому краю}} &
+        \multicolumn{2}{l|}{Выравнивание к левому краю}\\
+        \hline
+        \makecell{В этой ячейке \\
+            много информации} & 8.72 & 8.55 & 8.44\\
+        \cline{3-4}
+        А в этой мало         & 8.22 & \multicolumn{2}{c|}{5}\\
+        \hline
     \end{tabular}%
   \end{threeparttable}
 \end{table}
