@@ -96,7 +96,10 @@
 \fi
 
 %%% Оформление абзацев %%%
-\indentafterchapter     % Красная строка после заголовков типа chapter
+\ifpresentation
+\else
+    \indentafterchapter     % Красная строка после заголовков типа chapter
+\fi
 
 %%% Цвета %%%
 \ifpresentation
