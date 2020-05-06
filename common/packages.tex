@@ -148,6 +148,7 @@
 \usepackage{graphicx}[2014/04/25]   % Подключаем пакет работы с графикой
 \usepackage{caption}                % Подписи рисунков и таблиц
 \usepackage{subcaption}             % Подписи подрисунков и подтаблиц
+\usepackage{pdfpages}               % Добавление внешних pdf файлов
 
 %%% Счётчики %%%
 \usepackage[figure,table]{totalcount}   % Счётчик рисунков и таблиц
@@ -212,7 +213,7 @@
 
 \ifnumequal{\value{imgprecompile}}{1}{% Только если у нас включена предкомпиляция
     \usetikzlibrary{external}   % подключение возможности предкомпиляции
-    \tikzexternalize[prefix=images/cache/] % activate! % здесь можно указать отдельную папку для скомпилированных файлов
+    \tikzexternalize[prefix=images/cache/,optimize command away=\includepdf] % activate! % здесь можно указать отдельную папку для скомпилированных файлов
     \ifxetex
         \tikzset{external/up to date check={diff}}
     \fi

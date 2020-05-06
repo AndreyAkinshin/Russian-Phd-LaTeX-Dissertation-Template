@@ -811,3 +811,9 @@ f13 & 500  & 2.0E-16   & 1.2E-15   & 1.5E-06   & 6.1E-05   & 7.5E-02   & 2.9E-03
 \section{И ещё один подраздел приложения}~\label{app:B6}
 
 Нужно больше подразделов приложения!
+
+\clearpage
+\refstepcounter{chapter}
+\addcontentsline{toc}{appendix}{\protect\chapternumberline{\thechapter}Чертёж детали}
+
+\includepdf[pages=-]{Dissertation/images/drawing.pdf}
