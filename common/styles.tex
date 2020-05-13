@@ -41,7 +41,13 @@
 %%% Подписи подрисунков %%%
 \DeclareCaptionSubType{figure}
 \renewcommand\thesubfigure{\asbuk{subfigure}} % нумерация подрисунков
+\ifsynopsis
+\DeclareCaptionFont{norm}{\fontsize{10pt}{11pt}\selectfont}
+\newcommand{\subfigureskip}{2.pt}
+\else
 \DeclareCaptionFont{norm}{\fontsize{14pt}{16pt}\selectfont}
+\newcommand{\subfigureskip}{0.pt}
+\fi
 
 \captionsetup[subfloat]{
         labelfont=norm,                 % нормальный размер подписей подрисунков
@@ -50,7 +56,7 @@
         labelformat=brace,              % одна скобка справа от номера
         justification=centering,        % центровка
         singlelinecheck=true,           % выравнивание по центру, если умещается в одну строку
-        skip=.0pt,                      % отбивка над подписью
+        skip=\subfigureskip,            % отбивка над подписью
         parskip=.0pt,                   % отбивка между параграфами подписи
         position=below,                 % положение подписи
 }
