@@ -36,10 +36,16 @@
 
  картинку можно добавить так:
 \begin{figure}[ht]
-  \centerfloat{
-    \includegraphics[scale=0.27]{latex}
-  }
-  \caption{Подпись к картинке.}\label{fig:latex}
+    \centerfloat{
+        \hfill
+        \subcaptionbox{\LaTeX}{%
+            \includegraphics[scale=0.27]{latex}}
+        \hfill
+        \subcaptionbox{Knuth}{%
+            \includegraphics[width=0.25\linewidth]{knuth1}}
+        \hfill
+    }
+    \caption{Подпись к картинке.}\label{fig:latex}
 \end{figure}
 
 Формулы в строку без номера добавляются так:
