@@ -194,6 +194,8 @@
     \newcommand{\refs}[1]{\labelcref{#1}}
 \fi
 
+\usepackage{placeins} % для \FloatBarrier
+
 \ifnumequal{\value{draft}}{1}{% Черновик
     \usepackage[firstpage]{draftwatermark}
     \SetWatermarkText{DRAFT}
