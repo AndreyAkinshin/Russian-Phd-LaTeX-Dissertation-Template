@@ -35,7 +35,7 @@
 \newcommand{\thesisCity}               % Диссертация, город написания диссертации
 {\fixme{Город}}
 \newcommand{\thesisYear}               % Диссертация, год написания диссертации
-{\fixme{20XX}}
+{\the\year}
 \newcommand{\thesisOrganization}       % Диссертация, организация
 {\fixme{Федеральное государственное автономное образовательное учреждение высшего
 образования <<Длинное название образовательного учреждения <<АББРЕВИАТУРА>>}}
@@ -116,7 +116,7 @@
 \newcommand{\synopsisLibrary}          % Автореферат, название библиотеки
 {\fixme{Название библиотеки}}
 \newcommand{\synopsisDate}             % Автореферат, дата рассылки
-{\fixme{DD mmmmmmmm YYYY года}}
+{\fixme{DD mmmmmmmm}\the\year~года}
 
 % To avoid conflict with beamer class use \providecommand
 \providecommand{\keywords}%            % Ключевые слова для метаданных PDF диссертации и автореферата
