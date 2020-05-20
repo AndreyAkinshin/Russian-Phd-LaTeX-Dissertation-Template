@@ -296,7 +296,7 @@ I found no \citation commands---while reading file dissertation.aux
 то, например под windows/texlive 2015/texstudio «лечится» изменением в
 `Параметры`-`Конфигурация TeXStudio`-`Построение` настройки `Библиография по умолчанию`
 на `Biber` (стоит часто `BibTeX`, и не работает, если в файлах `setup.tex`
-настроено `\setcounter{bibliosel}{1}`).
+настроено `\setcounter{bibliosel}{1}`). Если используется WinEdt и MikTEX: `Options`-`Execution Modes`- вкладка `Console Applications`- в списке слева пункт `BibTEX`. Параметр Executable меняем с `bibtex.exe` на `biber.exe`.
 
 Если нумерация списка литературы начинается с неправильного номера, то
 возможной причиной является старые версии используемых пакетов `biblatex` и
