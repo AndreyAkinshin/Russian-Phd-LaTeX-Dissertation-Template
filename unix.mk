@@ -43,6 +43,17 @@ synopsis-preformat: synopsis.fmt synopsis
 presentation-preformat: TARGET=presentation
 presentation-preformat: presentation.fmt presentation
 
+##! проверка исходных файлов
+test-src:
+	bash ./tests/test_source.sh
+
+##! проверка pdf файлов
+test-pdf:
+	bash ./tests/test_pdf.sh $(wildcard dissertation*.pdf) $(wildcard synopsis*.pdf)
+
+##! проверка шаблона
+test: test-pdf test-src
+
 # https://gist.github.com/klmr/575726c7e05d8780505a
 ##! это сообщение
 help:
