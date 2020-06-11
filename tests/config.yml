@@ -80,5 +80,12 @@ synopsis:
     "формулируется",
     ]
 
+presentation:
+  pages:
+    min_pages: 5
+    max_pages: 10
+
+  required_text: []
+
 sources:
   max_line_width: 120

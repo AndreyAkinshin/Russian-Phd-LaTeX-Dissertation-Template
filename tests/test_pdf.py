@@ -5,45 +5,46 @@ import pytest
 import yaml
 
 """
-Test cases for dissertation template.
+Тесты для шаблона диссертации.
 See https://blog.martisak.se/2020/05/16/latex-test-cases/
 """
 
+# {{{ Setup
 
 @pytest.fixture
 def config():
     return yaml.load(open("tests/config.yml"), Loader=yaml.FullLoader)
 
-
 @pytest.fixture(scope="session")
-def pdf_document(pdf):
+def pdf(option_pdf):
     """
-    This fixture opens the PDF document for reading,
-    and closes the file when the fixture goes out of scope.
+    Открытие файла для чтения и закрытие в конце работы.
     """
-    assert pdf
-    pdf_document = fitz.open(pdf)
+    assert option_pdf
+    pdf_document = fitz.open(option_pdf)
 
     yield pdf_document
     pdf_document.close()
 
+# }}}
+
+# {{{ Helpers
 
 def point_to_mm(point):
     """
-    Convert point to mm.
+    Конвертация point to mm.
     1pt=1/72in
     1in=2.54cm
     """
     return round(point / 72 * 25.4)
 
-
-def toc_page_range(name, pdf_document):
+def toc_page_range(section, pdf):
     """
-    Get toc section page range
+    Диапазон страниц для секции оглавления
     """
-    pdf_toc = pdf_document.getToC()
+    pdf_toc = pdf.getToC()
     toc_index, page_from = [
-        (i, e[2]) for (i, e) in enumerate(pdf_toc) if e[1].lower() == name.lower()
+        (i, e[2]) for (i, e) in enumerate(pdf_toc) if e[1].lower() == section.lower()
     ][0]
     page_to = (
         pdf_document.pageCount
@@ -52,145 +53,150 @@ def toc_page_range(name, pdf_document):
     )
     return range(page_from - 1, page_to - 1)
 
+def _test_links(pdf, label, toc_name):
+    """
+    Проверка страницы со ссылками
+    """
+    for page_num in toc_page_range(toc_name, pdf):
+        page = pdf.loadPage(page_num)
+        for page_num, count in Counter([l["page"] for l in page.links()]).items():
+            pg = pdf.loadPage(page_num)
+            assert count <= len(pg.searchFor(label, flags=fitz.TEXT_INHIBIT_SPACES))
 
-def test_annotations(pdf_document):
+# }}}
+
+# {{{ Tests
+
+def test_annotations(pdf):
     """
-    Test that there are no annotations.
+    Проверка наличия аннотаций pdf.
     """
-    for pg in pdf_document:
+    for pg in pdf:
         annotations = list(pg.annots())
         assert not annotations
 
-
-def test_toc(pdf_document, pdf_type, config):
+@pytest.mark.usefixtures("check_not_presentation", "check_not_draft")
+def test_toc(pdf, option_type, config):
     """
-    Test that file has table of contents.
+    Проверка оглавления.
     """
-    assert len(pdf_document.getToC()) == config[pdf_type]["toc"]["size"]
-
-
-def test_paper_size(pdf_document, pdf_type, config):
-    """
-    Test pages paper size.
-    """
-    for pg in pdf_document:
-        assert point_to_mm(pg.rect.width) == config[pdf_type]["paper_size"]["width"]
-        assert point_to_mm(pg.rect.height) == config[pdf_type]["paper_size"]["height"]
+    assert len(pdf.getToC()) == config[option_type]["toc"]["size"]
 
 
-def test_margin_size(pdf_document, pdf_type, config):
+@pytest.mark.usefixtures("check_not_presentation")
+def test_paper_size(pdf, option_type, config):
     """
-    Test pages paper size.
+    Проверка размера страницы.
     """
-    page_width = config[pdf_type]["paper_size"]["width"]
-    page_height = config[pdf_type]["paper_size"]["height"]
-    for pg in pdf_document:
+    for pg in pdf:
+        assert point_to_mm(pg.rect.width) == config[option_type]["paper_size"]["width"]
+        assert point_to_mm(pg.rect.height) == config[option_type]["paper_size"]["height"]
+
+
+@pytest.mark.usefixtures("check_not_presentation")
+def test_margin_size(pdf, option_type, config):
+    """
+    Проверка полей.
+    """
+    page_width = config[option_type]["paper_size"]["width"]
+    page_height = config[option_type]["paper_size"]["height"]
+    for pg in pdf:
         block = None
         for b in pg.getText("blocks"):
             rect = fitz.Rect(b[0], b[1], b[2], b[3])
             block = rect if block is None else block.includeRect(rect)
-        if block is not None:  # empty page
-            assert (
-                point_to_mm(block.top_left.x) >= config[pdf_type]["margins"]["min_left"]
-            )
-            assert (
-                point_to_mm(block.top_left.y) >= config[pdf_type]["margins"]["min_top"]
-            )
-            assert (page_width - point_to_mm(block.bottom_right.x)) >= config[pdf_type][
-                "margins"
-            ]["min_right"]
-            assert (page_height - point_to_mm(block.bottom_right.y)) >= config[
-                pdf_type
-            ]["margins"]["min_top"]
+            if block is not None:  # empty page
+                assert (
+                    point_to_mm(block.top_left.x) >= config[option_type]["margins"]["min_left"]
+                )
+                assert (
+                    point_to_mm(block.top_left.y) >= config[option_type]["margins"]["min_top"]
+                )
+                assert (page_width - point_to_mm(block.bottom_right.x)) >= config[option_type][
+                    "margins"
+                ]["min_right"]
+                assert (page_height - point_to_mm(block.bottom_right.y)) >= config[
+                    option_type
+                ]["margins"]["min_top"]
 
 
-def test_required_text(pdf_document, pdf_type, config):
+def test_required_text(pdf, option_type, config):
     """
-    Test that each required text is found in the document.
+    Проверка наличия ключевых слов в документе.
     """
 
-    for text in config[pdf_type]["required_text"]:
+    for text in config[option_type]["required_text"]:
         hits = 0
         print(f"text = {text}")
-        for pg in pdf_document:
+        for pg in pdf:
             hits += len(pg.searchFor(text, flags=fitz.TEXT_INHIBIT_SPACES))
 
         assert hits > 0
 
 
-def test_page_number(pdf_document, pdf_type, config):
+def test_page_number(pdf, option_type, config):
     """
-    Test that the number of pages is between
-    the minimum and the maximum number of pages.
+    Проверка количества страниц.
     """
 
     assert (
-        config[pdf_type]["pages"]["min_pages"]
-        <= pdf_document.pageCount
-        <= config[pdf_type]["pages"]["max_pages"]
+        config[option_type]["pages"]["min_pages"]
+        <= pdf.pageCount
+        <= config[option_type]["pages"]["max_pages"]
     )
 
 
-def test_metadata(pdf_document, pdf_type, config):
+@pytest.mark.usefixtures("check_not_presentation")
+def test_metadata(pdf, option_type, config):
     """
-    For each of the specified fields, check that the result
-    is as expected.
+    Проверка метаданных pdf документа.
     """
 
     metadata_fields = ["author", "title", "subject"]
 
     for field in metadata_fields:
         assert (
-            pdf_document.metadata.get(field, "").strip()
-            == config[pdf_type]["metadata"].get(field, "").strip()
+            pdf.metadata.get(field, "").strip()
+            == config[option_type]["metadata"].get(field, "").strip()
         )
 
 
-def test_fonts(pdf_document):
+@pytest.mark.skip("проверка шрифтов не реализована")
+def test_fonts():
     """
-    Check that all fonts are extractable. This will at least loop through
-    the embedded fonts and check their types.
+    Проверка шрифтов.
     """
-    assert True  # TODO: add test
+    assert True  # TODO: добавить тесты
 
 
-def _test_links(pdf_document, label, toc_name):
+@pytest.mark.usefixtures("check_dissertation")
+def test_figure_links(pdf):
     """
-    Test page with links
+    Проверка ссылок на рисунки.
     """
-    for page_num in toc_page_range(toc_name, pdf_document):
-        page = pdf_document.loadPage(page_num)
-        for page_num, count in Counter([l["page"] for l in page.links()]).items():
-            pg = pdf_document.loadPage(page_num)
-            assert count <= len(pg.searchFor(label, flags=fitz.TEXT_INHIBIT_SPACES))
+    _test_links(pdf, "Рисунок", "список рисунков")
 
 
-def test_figure_links(pdf_document, pdf_type):
+@pytest.mark.usefixtures("check_dissertation")
+def test_table_links(pdf, option_type):
     """
-    Check that figure links point to the right locations.
+    Проверка ссылок на таблицы.
     """
-    if pdf_type == "dissertation":
-        _test_links(pdf_document, "Рисунок", "список рисунков")
+    _test_links(pdf, "Таблица", "список таблиц")
 
 
-def test_table_links(pdf_document, pdf_type):
+@pytest.mark.usefixtures("check_dissertation")
+def test_bibliography(pdf):
     """
-    Check that table links point to the right locations.
+    Проверка нумерации литературы.
     """
-    if pdf_type == "dissertation":
-        _test_links(pdf_document, "Таблица", "список таблиц")
+    bib_index = 1
+    for page_num in toc_page_range("список литературы", pdf):
+        page = pdf.loadPage(page_num)
+        for block in page.getText("blocks"):
+            search = re.search(r"^(\d+)\.", block[4])
+            if search is not None:  # page number and section name
+                assert bib_index == int(search.groups()[0])
+                bib_index += 1
 
-
-def test_bibliography(pdf_document, pdf_type):
-    """
-    Check bibliography numeration.
-    """
-    if pdf_type == "dissertation":
-        bib_index = 1
-        for page_num in toc_page_range("список литературы", pdf_document):
-            page = pdf_document.loadPage(page_num)
-            for block in page.getText("blocks"):
-                search = re.search(r"^(\d+)\.", block[4])
-                if search is not None:  # page number and section name
-                    assert bib_index == int(search.groups()[0])
-                    bib_index += 1
+# }}}

@@ -52,7 +52,7 @@ test-pdf:
 	bash ./tests/test_pdf.sh $(wildcard dissertation*.pdf) $(wildcard synopsis*.pdf)
 
 ##! проверка шаблона
-test: test-pdf test-src
+test: test-src test-pdf
 
 # https://gist.github.com/klmr/575726c7e05d8780505a
 ##! это сообщение
