@@ -23,4 +23,4 @@ indentRulesGlobal:
 
 modifyLineBreaks:
     textWrapOptions:
-        columns: 80
+        columns: 120
