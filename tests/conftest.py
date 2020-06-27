@@ -10,24 +10,60 @@ def pytest_addoption(parser):
     """
     Добавление опций. Опция --pdf является обязательной.
     """
-    parser.addoption("--pdf", action="store", default=None,
-                     help="путь к pdf файлу (обязательно)")
-    parser.addoption("--type", action="store", default=None,
-                     help="""тип файла dissertation/synopsis/presentation""")
-    parser.addoption("--engine", action="store", default=None,
-                     help="""движок pdflatex/xelatex/lualatex""")
-    parser.addoption("--drafton", action="store", default=None,
-                     help="""файл в режиме черновика (yes|no)""")
-    parser.addoption("--showmarkup", action="store", default=None,
-                     help="""файл с командами рецензирования (yes|no)""")
-    parser.addoption("--fontfamily", action="store", default=None,
-                     help="""семейство шрифтов (cmu|liberation|msf|cm|pscyr|xcharter)""")
-    parser.addoption("--usebiber", action="store", default=None,
-                     help="""для сборки использовался biber (yes|no)""")
-    parser.addoption("--usefootcite", action="store", default=None,
-                     help="""подстрочные ссылки (yes|no)""")
-    parser.addoption("--bibgrouped", action="store", default=None,
-                     help="""группировка источников (yes|no)""")
+    parser.addoption(
+        "--pdf", action="store", default=None, help="путь к pdf файлу (обязательно)"
+    )
+    parser.addoption(
+        "--log", action="store", default=None, help="путь к log файлу (обязательно)"
+    )
+    parser.addoption(
+        "--type",
+        action="store",
+        default=None,
+        help="""тип файла dissertation/synopsis/presentation""",
+    )
+    parser.addoption(
+        "--engine",
+        action="store",
+        default=None,
+        help="""движок pdflatex/xelatex/lualatex""",
+    )
+    parser.addoption(
+        "--drafton",
+        action="store",
+        default=None,
+        help="""файл в режиме черновика (yes|no)""",
+    )
+    parser.addoption(
+        "--showmarkup",
+        action="store",
+        default=None,
+        help="""файл с командами рецензирования (yes|no)""",
+    )
+    parser.addoption(
+        "--fontfamily",
+        action="store",
+        default=None,
+        help="""семейство шрифтов (cmu|liberation|msf|cm|pscyr|xcharter)""",
+    )
+    parser.addoption(
+        "--usebiber",
+        action="store",
+        default=None,
+        help="""для сборки использовался biber (yes|no)""",
+    )
+    parser.addoption(
+        "--usefootcite",
+        action="store",
+        default=None,
+        help="""подстрочные ссылки (yes|no)""",
+    )
+    parser.addoption(
+        "--bibgrouped",
+        action="store",
+        default=None,
+        help="""группировка источников (yes|no)""",
+    )
 
 
 @pytest.fixture(scope="session")
@@ -36,7 +72,17 @@ def option_pdf(request):
     Файл pdf.
     """
     file_path = request.config.getoption("--pdf")
-    assert(file_path)
+    assert file_path
+    return file_path
+
+
+@pytest.fixture(scope="session")
+def option_log(request):
+    """
+    Файл log.
+    """
+    file_path = request.config.getoption("--log")
+    assert file_path
     return file_path
 
 
@@ -54,7 +100,7 @@ def option_type(request):
             opt = "synopsis"
         elif re.search(r"pr[ei]sent", filename) is not None:
             opt = "presentation"
-    assert(opt)
+    assert opt
     return opt
 
 
@@ -93,7 +139,7 @@ def option_engine(request):
         for name in [r"pdflatex", r"xelatex", r"lualatex"]:
             if re.search(name, filename) is not None:
                 return name
-    assert(file_engine)
+    assert file_engine
     return file_engine
 
 
@@ -128,8 +174,7 @@ def option_drafton(request):
     """
     opt = request.config.getoption("--drafton")
     if opt is None:
-        return re.search(r"draft",
-                         request.config.getoption("--pdf")) is not None
+        return re.search(r"draft", request.config.getoption("--pdf")) is not None
     return opt == "yes"
 
 
@@ -152,8 +197,7 @@ def option_showmarkup(request):
     """
     opt = request.config.getoption("--showmarkup")
     if opt is None:
-        return re.search(r"markup",
-                         request.config.getoption("--pdf")) is not None
+        return re.search(r"markup", request.config.getoption("--pdf")) is not None
     return opt == "yes"
 
 
@@ -176,8 +220,7 @@ def option_usebibier(request):
     """
     opt = request.config.getoption("--usebibier")
     if opt is None:
-        return re.search(r"bibier",
-                         request.config.getoption("--pdf")) is not None
+        return re.search(r"bibier", request.config.getoption("--pdf")) is not None
     return opt == "yes"
 
 
@@ -200,8 +243,7 @@ def option_usefootcite(request):
     """
     opt = request.config.getoption("--usefootcite")
     if opt is None:
-        return re.search(r"footcite",
-                         request.config.getoption("--pdf")) is not None
+        return re.search(r"footcite", request.config.getoption("--pdf")) is not None
     return opt == "yes"
 
 
@@ -224,8 +266,7 @@ def option_bibgrouped(request):
     """
     opt = request.config.getoption("--bibgrouped")
     if opt is None:
-        return re.search(r"bibgrouped",
-                         request.config.getoption("--pdf")) is not None
+        return re.search(r"bibgrouped", request.config.getoption("--pdf")) is not None
     return opt == "yes"
 
 

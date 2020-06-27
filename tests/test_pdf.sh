@@ -2,6 +2,8 @@
 
 TMPDIR=$(mktemp -d -p tests)
 EXITCODE=0
+RED='\033[0;31m'
+NC='\033[0m'
 
 function cleanup {
     rm -fr "$TMPDIR"
@@ -18,8 +20,11 @@ function setup_env {
 function run_tests {
     while [[ $# -gt 0 ]]
     do
-        python -m pytest tests/test_pdf.py --pdf "$1"
-        EXITCODE="$?"
+        echo -e "${RED}${1%.pdf}${NC}"
+        python -m pytest tests/test_pdf.py -rEs --pdf "$1" --log "${1%.pdf}.log.backup"
+        if [[ "$?" -ne 0 ]]; then
+            EXITCODE=1
+        fi
         shift
     done
 }
