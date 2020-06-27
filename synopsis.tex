@@ -39,10 +39,14 @@
 
 \begin{document}
 
+\typeout{templatetest:page_numbering/disable:int:\arabic{page}} % контрольная команда для системы тестирования
 \input{Synopsis/title}        % Титульный лист
-%\mainmatter                   % В том числе начинает нумерацию страниц арабскими цифрами с единицы
+%\mainmatter                  % В том числе начинает нумерацию страниц арабскими цифрами с единицы
+% \typeout{templatetest:page_numbering/reset:int:\arabic{page}} % контрольная команда для системы тестирования
 \mainmatter*                  % Нумерация страниц не изменится, но начнётся с новой страницы
+\typeout{templatetest:page_numbering/enable:int:\arabic{page}} % контрольная команда для системы тестирования
 \input{Synopsis/content}      % Содержание автореферата
+\typeout{templatetest:page_numbering/disable:int:\arabic{page}} % контрольная команда для системы тестирования
 
 %%% Выходные сведения типографии
 \newpage\thispagestyle{empty}

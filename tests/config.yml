@@ -17,10 +17,10 @@ dissertation:
     size: 46
 
   margins:
-    min_left: 10
-    min_top: 6
-    min_right: 6
-    min_bottom: 8
+    min_left: 20
+    min_top: 5
+    min_right: 5
+    min_bottom: 15
 
   pages:
     min_pages: 55
@@ -63,9 +63,9 @@ synopsis:
 
   margins:
     min_left: 10
-    min_top: 6
-    min_right: 6
-    min_bottom: 8
+    min_top: 5
+    min_right: 5
+    min_bottom: 10
 
   pages:
     min_pages: 5

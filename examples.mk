@@ -32,7 +32,9 @@ define dissertation-example #Canned Recipe
 		ALTFONT=$(ALTFONT) \
 		TARGET=$(.DISSEXAMPLENAME) \
 		DRAFTON=$(DRF) \
-		USEBIBER=$(BIB); \
+		USEBIBER=$(BIB) \
+		PRESERVELOG=1; \
+	"$(MAKE)" log-backup; \
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.DISSEXAMPLENAME) \
 		SOURCE=dissertation clean-target; \
 	))
@@ -51,7 +53,9 @@ define synopsis-example #Canned Recipe
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		BIBGROUPED=$(GRP) \
-		USEFOOTCITE=$(FOOT); \
+		USEFOOTCITE=$(FOOT) \
+		PRESERVELOG=1; \
+	"$(MAKE)" log-backup; \
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.SYNEXAMPLENAME) \
 		SOURCE=synopsis clean-target; \
 		) \
@@ -66,7 +70,9 @@ define synopsis-example #Canned Recipe
 		DRAFTON=$(DRF) \
 		USEBIBER=$(BIB) \
 		BIBGROUPED=$(GRP) \
-		USEFOOTCITE=$(FOOT); \
+		USEFOOTCITE=$(FOOT) \
+		PRESERVELOG=1; \
+	"$(MAKE)" log-backup; \
 	"$(MAKE)" BACKEND=$(BACKEND) TARGET=$(.SYNEXAMPLENAME) \
 		SOURCE=synopsis clean-target; \
 	)))
@@ -80,7 +86,9 @@ define presentation-example #Canned Recipe
 		NOTESON=$(NOTES) \
 		USEBIBER=$(BIB) \
 		BACKEND=$(BKND) \
-		TARGET=$(.PRESEXAMPLENAME); \
+		TARGET=$(.PRESEXAMPLENAME) \
+		PRESERVELOG=1; \
+	"$(MAKE)" log-backup; \
 	"$(MAKE)" TARGET=$(.PRESEXAMPLENAME) clean-target; \
 	)))
 endef

@@ -54,6 +54,10 @@ test-pdf:
 ##! проверка шаблона
 test: test-src test-pdf
 
+##! сохранение лог файлов
+log-backup:
+	$(foreach f, $(wildcard *.log), cp $(f) $(f).backup;)
+
 # https://gist.github.com/klmr/575726c7e05d8780505a
 ##! это сообщение
 help:
@@ -96,4 +100,4 @@ help:
 	| more $(shell test $(shell uname) = Darwin && echo '--no-init --raw-control-chars')
 
 .PHONY: indent indent-wrap preformat dissertation-preformat \
-synopsis-preformat presentation-preformat help
+synopsis-preformat presentation-preformat help log-backup
