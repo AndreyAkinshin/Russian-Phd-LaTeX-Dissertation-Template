@@ -98,10 +98,28 @@
 \fi
 
 %%% Оформление абзацев %%%
+\providebool{newpoly} % polyglossia with indentfirst setting
+\boolfalse{newpoly} % setting our new boolean flag to default false
+\ifxetexorluatex
+    \makeatletter
+    \@ifpackagelater{polyglossia}{2019/11/15}{
+        \booltrue{newpoly} % setting our new boolean flag to true
+    }{}
+    \makeatother
+\fi
 \ifpresentation
 \else
     \indentafterchapter     % Красная строка после заголовков типа chapter
+    \ifxetexorluatex
+        \ifnewpoly
+        \else
+            \usepackage{indentfirst}
+        \fi
+    \else
+        \usepackage{indentfirst}
+    \fi
 \fi
+
 
 %%% Цвета %%%
 \ifpresentation
