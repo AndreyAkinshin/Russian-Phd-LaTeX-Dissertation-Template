@@ -276,6 +276,10 @@ sorting=none,% настройка сортировки списка литера
     keyword=biblioauthorscopus or keyword=biblioauthorwos
 }
 
+\defbibfilter{papersregistered}{%
+    keyword=biblioauthor or keyword=biblioregistered
+}
+
 %%% Убираем неразрывные пробелы перед двоеточием и точкой с запятой %%%
 %\makeatletter
 %\ifnumequal{\value{draft}}{0}{% Чистовик
@@ -536,10 +540,10 @@ sorting=none,% настройка сортировки списка литера
     }{}
 }
 \newcommand*{\insertbiblioauthor}{
-    \printbibliography[heading=pubgroup, section=0, keyword=biblioauthor, title=\bibtitleauthor]
+    \printbibliography[heading=pubgroup, section=0, filter=papersregistered, title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthorimportant}{
-    \printbibliography[heading=pubgroup, section=2, keyword=biblioauthor, title=\bibtitleauthorimportant]
+    \printbibliography[heading=pubgroup, section=2, filter=papersregistered, title=\bibtitleauthorimportant]
 }
 
 % Вариант вывода печатных работ автора, с группировкой по типу источника.
