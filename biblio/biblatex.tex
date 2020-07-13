@@ -217,11 +217,11 @@ sorting=none,% настройка сортировки списка литера
         }
         \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
             \step[fieldsource=authorpatent,final=true]
-            \step[fieldset=keywords,fieldvalue={,biblioregisteredpatent},append=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorpatent},append=true]
         }
         \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
             \step[fieldsource=authorprogram,final=true]
-            \step[fieldset=keywords,fieldvalue={,biblioregisteredprogram},append=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorprogram},append=true]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/external.bib}
@@ -470,17 +470,17 @@ sorting=none,% настройка сортировки списка литера
         {}
         {\stepcounter{citeregistered}}
 
-    \newtotcounter{citeregisteredpatent}
-    \defbibenvironment{countregisteredpatent}
-        {\setcounter{citeregisteredpatent}{0}\renewcommand{\blx@driver}[1]{}}
+    \newtotcounter{citeauthorpatent}
+    \defbibenvironment{countauthorpatent}
+        {\setcounter{citeauthorpatent}{0}\renewcommand{\blx@driver}[1]{}}
         {}
-        {\stepcounter{citeregisteredpatent}}
+        {\stepcounter{citeauthorpatent}}
 
-    \newtotcounter{citeregisteredprogram}
-    \defbibenvironment{countregisteredprogram}
-        {\setcounter{citeregisteredprogram}{0}\renewcommand{\blx@driver}[1]{}}
+    \newtotcounter{citeauthorprogram}
+    \defbibenvironment{countauthorprogram}
+        {\setcounter{citeauthorprogram}{0}\renewcommand{\blx@driver}[1]{}}
         {}
-        {\stepcounter{citeregisteredprogram}}
+        {\stepcounter{citeauthorprogram}}
 
     \newtotcounter{citeexternal}
     \defbibenvironment{countexternal}
@@ -502,8 +502,8 @@ sorting=none,% настройка сортировки списка литера
 %        }
 %        \map[overwrite]{
 %            \step[fieldsource=langid, match=russian, final]
-%            \step[fieldsource=presort, 
-%            match=\regexp{(.+)}, 
+%            \step[fieldsource=presort,
+%            match=\regexp{(.+)},
 %            replace=\regexp{aa$1}]
 %        }
 %        \map{
@@ -512,8 +512,8 @@ sorting=none,% настройка сортировки списка литера
 %        }
 %        \map[overwrite]{
 %            \step[fieldsource=langid, notmatch=russian, final]
-%            \step[fieldsource=presort, 
-%            match=\regexp{(.+)}, 
+%            \step[fieldsource=presort,
+%            match=\regexp{(.+)},
 %            replace=\regexp{za$1}]
 %        }
 %        \map{
@@ -553,9 +553,8 @@ sorting=none,% настройка сортировки списка литера
     \fi
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorwos,    title=\bibtitleauthorwos,resetnumbers=false]% Работы автора, индексируемые Web of Science
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorscopus, title=\bibtitleauthorscopus,resetnumbers=false]% Работы автора, индексируемые Scopus
-    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioregisteredpatent, title=\bibtitleregisteredpatent,resetnumbers=false]% Патенты
-    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioregisteredprogram,
-title=\bibtitleregisteredprogram,resetnumbers=false]% Программы для ЭВМ
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorpatent, title=\bibtitleauthorpatent,resetnumbers=false]% Патенты
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorprogram,title=\bibtitleauthorprogram,resetnumbers=false]% Программы для ЭВМ
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorconf,   title=\bibtitleauthorconf,resetnumbers=false]% Тезисы конференций
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorother,  title=\bibtitleauthorother,resetnumbers=false]% Прочие работы автора
 }

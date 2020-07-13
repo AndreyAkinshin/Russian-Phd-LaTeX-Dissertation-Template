@@ -118,8 +118,8 @@
         \printbibliography[heading=nobibheading, section=1, env=countauthorconf,         keyword=biblioauthorconf]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorother,        keyword=biblioauthorother]%
         \printbibliography[heading=nobibheading, section=1, env=countregistered,         keyword=biblioregistered]%
-        \printbibliography[heading=nobibheading, section=1, env=countregisteredpatent,   keyword=biblioregisteredpatent]%
-        \printbibliography[heading=nobibheading, section=1, env=countregisteredprogram,  keyword=biblioregisteredprogram]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorpatent,       keyword=biblioauthorpatent]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorprogram,      keyword=biblioauthorprogram]%
         \printbibliography[heading=nobibheading, section=1, env=countauthor,             keyword=biblioauthor]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]%
@@ -137,29 +137,28 @@
             .
         \fi%
         \ifnum \value{citeregistered}=1%
-            \ifnum \value{citeregisteredpatent}=1%
-                Зарегистрирован \arabic{citeregisteredpatent} патент.
+            \ifnum \value{citeauthorpatent}=1%
+                Зарегистрирован \arabic{citeauthorpatent} патент.
             \fi%
-            \ifnum \value{citeregisteredprogram}=1%
-                Зарегистрирована \arabic{citeregisteredprogram} программа для ЭВМ.
+            \ifnum \value{citeauthorprogram}=1%
+                Зарегистрирована \arabic{citeauthorprogram} программа для ЭВМ.
             \fi%
         \fi%
         \ifnum \value{citeregistered}>1%
             Зарегистрированы\ %
-            \ifnum \value{citeregisteredpatent}>0%
-            \formbytotal{citeregisteredpatent}{патент}{}{а}{}\sloppy%
-            \ifnum \value{citeregisteredprogram}=0 . \else \ и \fi%
+            \ifnum \value{citeauthorpatent}>0%
+            \formbytotal{citeauthorpatent}{патент}{}{а}{}\sloppy%
+            \ifnum \value{citeauthorprogram}=0 . \else \ и \fi%
             \fi%
-            \ifnum \value{citeregisteredprogram}>0%
-            \formbytotal{citeregisteredprogram}{программ}{а}{ы}{} для ЭВМ.
+            \ifnum \value{citeauthorprogram}>0%
+            \formbytotal{citeauthorprogram}{программ}{а}{ы}{} для ЭВМ.
             \fi%
         \fi%
-        % К публикациям, в которых излагаются основные научные результаты диссертации на соискание ученой
+        % К публикациям, в которых излагаются основные научные результаты диссертации на соискание учёной
         % степени, в рецензируемых изданиях приравниваются патенты на изобретения, патенты (свидетельства) на
         % полезную модель, патенты на промышленный образец, патенты на селекционные достижения, свидетельства
         % на программу для электронных вычислительных машин, базу данных, топологию интегральных микросхем,
-        % зарегистрированные в установленном порядке.(в ред.
-        % Постановления Правительства РФ от 21.04.2016 N 335)
+        % зарегистрированные в установленном порядке.(в ред. Постановления Правительства РФ от 21.04.2016 N 335)
     \end{refsection}%
     \begin{refsection}[bl-author, bl-registered]
         % Это refsection=2.
@@ -211,8 +210,8 @@
         \item \texttt{citeauthorscopuswos} для работ, индексируемых Scopus или Web of~Science,
         \item \texttt{citeauthorconf} для докладов на конференциях,
         \item \texttt{citeauthorother} для остальных работ,
-        \item \texttt{citeregisteredpatent} для патентов,
-        \item \texttt{citeregisteredprogram} для зарегистрированных программ для ЭВМ,
+        \item \texttt{citeauthorpatent} для патентов,
+        \item \texttt{citeauthorprogram} для зарегистрированных программ для ЭВМ,
         \item \texttt{citeauthor} для суммарного количества работ.
 \end{itemize}
 % Счётчик \texttt{citeexternal} используется для подсчёта процитированных публикаций;
