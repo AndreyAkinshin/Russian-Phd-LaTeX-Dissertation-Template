@@ -102,7 +102,7 @@
     X "--- в тезисах докладов.
 }%
 {%%% Реализация пакетом biblatex через движок biber
-    \begin{refsection}[bl-author]
+    \begin{refsection}[bl-author, bl-registered]
         % Это refsection=1.
         % Процитированные здесь работы:
         %  * подсчитываются, для автоматического составления фразы "Основные результаты ..."
@@ -117,6 +117,9 @@
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopus,       keyword=biblioauthorscopus]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorconf,         keyword=biblioauthorconf]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorother,        keyword=biblioauthorother]%
+        \printbibliography[heading=nobibheading, section=1, env=countregistered,         keyword=biblioregistered]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorpatent,       keyword=biblioauthorpatent]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorprogram,      keyword=biblioauthorprogram]%
         \printbibliography[heading=nobibheading, section=1, env=countauthor,             keyword=biblioauthor]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]%
@@ -132,14 +135,39 @@
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
         \else%
             .
-        \fi
+        \fi%
+        \ifnum \value{citeregistered}=1%
+            \ifnum \value{citeauthorpatent}=1%
+                Зарегистрирован \arabic{citeauthorpatent} патент.
+            \fi%
+            \ifnum \value{citeauthorprogram}=1%
+                Зарегистрирована \arabic{citeauthorprogram} программа для ЭВМ.
+            \fi%
+        \fi%
+        \ifnum \value{citeregistered}>1%
+            Зарегистрированы\ %
+            \ifnum \value{citeauthorpatent}>0%
+            \formbytotal{citeauthorpatent}{патент}{}{а}{}\sloppy%
+            \ifnum \value{citeauthorprogram}=0 . \else \ и \fi%
+            \fi%
+            \ifnum \value{citeauthorprogram}>0%
+            \formbytotal{citeauthorprogram}{программ}{а}{ы}{} для ЭВМ.
+            \fi%
+        \fi%
+        % К публикациям, в которых излагаются основные научные результаты диссертации на соискание учёной
+        % степени, в рецензируемых изданиях приравниваются патенты на изобретения, патенты (свидетельства) на
+        % полезную модель, патенты на промышленный образец, патенты на селекционные достижения, свидетельства
+        % на программу для электронных вычислительных машин, базу данных, топологию интегральных микросхем,
+        % зарегистрированные в установленном порядке.(в ред. Постановления Правительства РФ от 21.04.2016 N 335)
     \end{refsection}%
-    \begin{refsection}[bl-author]
+    \begin{refsection}[bl-author, bl-registered]
         % Это refsection=2.
         % Процитированные здесь работы:
         %  * попадают в авторскую библиографию, при usefootcite==0 и стиле `\insertbiblioauthorimportant`.
         %  * ни на что не влияют в противном случае
         \nocite{vakbib2}%vak
+        \nocite{patbib1}%patent
+        \nocite{progbib1}%program
         \nocite{bib1}%other
         \nocite{confbib1}%conf
     \end{refsection}%
@@ -169,6 +197,8 @@
         \item \texttt{authorscopus} если публикация индексирована Scopus,
         \item \texttt{authorwos} если публикация индексирована Web of Science,
         \item \texttt{authorconf} для докладов конференций,
+        \item \texttt{authorpatent} для патентов,
+        \item \texttt{authorprogram} для зарегистрированных программ для ЭВМ,
         \item \texttt{authorother} для других публикаций.
 \end{itemize}
 Для подсчёта используются счётчики:
@@ -180,10 +210,13 @@
         \item \texttt{citeauthorscopuswos} для работ, индексируемых Scopus или Web of~Science,
         \item \texttt{citeauthorconf} для докладов на конференциях,
         \item \texttt{citeauthorother} для остальных работ,
+        \item \texttt{citeauthorpatent} для патентов,
+        \item \texttt{citeauthorprogram} для зарегистрированных программ для ЭВМ,
         \item \texttt{citeauthor} для суммарного количества работ.
 \end{itemize}
-% Счётчик \texttt{citeexternal} используется для подсчёта процитированных публикаций.
+% Счётчик \texttt{citeexternal} используется для подсчёта процитированных публикаций;
+% \texttt{citeregistered} "--- для подсчёта суммарного количества патентов и программ для ЭВМ.
 
 Для добавления в список публикаций автора работ, которые не были процитированы в
-автореферате требуется их~перечислить с использованием команды \verb!\nocite! в
+автореферате, требуется их~перечислить с использованием команды \verb!\nocite! в
 \verb!Synopsis/content.tex!.
