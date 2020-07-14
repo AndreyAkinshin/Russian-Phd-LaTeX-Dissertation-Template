@@ -52,18 +52,18 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 
 Ссылки на собственные работы:~\cite{vakbib1, confbib1}
 
-Сошлёмся на приложения: Приложение~\ref{app:A}, Приложение~\ref{app:B2}.
+Сошлёмся на приложения: Приложение~\cref{app:A}, Приложение~\cref{app:B2}.
 
-Сошлёмся на формулу: формула~\eqref{eq:equation1}.
+Сошлёмся на формулу: формула~\cref{eq:equation1}.
 
-Сошлёмся на изображение: рисунок~\ref{fig:knuth}.
+Сошлёмся на изображение: рисунок~\cref{fig:knuth}.
 
 Стандартной практикой является добавление к ссылкам префикса, характеризующего тип элемента.
 Это не является строгим требованием, но~позволяет лучше ориентироваться в документах большого размера.
 Например, для ссылок на~рисунки используется префикс \textit{fig},
 для ссылки на~таблицу "--- \textit{tab}.
 
-В таблице~\ref{tab:tab_pref} приложения~\ref{app:B4} приведён список рекомендуемых
+В таблице \cref{tab:tab_pref} приложения~\cref{app:B4} приведён список рекомендуемых
 к использованию стандартных префиксов.
 
 \section{Формулы}\label{sec:ch1/sec3}
@@ -177,7 +177,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 
 Ещё об отступах. Иногда для лучшей <<читаемости>> формул полезно
 немного исправить стандартные интервалы \LaTeX\ с учётом логической
-структуры самой формулы. Например в формуле~\ref{eq:2p3} добавлен
+структуры самой формулы. Например в формуле~\cref{eq:2p3} добавлен
 небольшой отступ \verb+\,+ между основными сомножителями, ниже
 результат применения всех вариантов отступа:
 \begin{align*}
@@ -235,7 +235,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
   \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
 \end{equation}
 
-Впоследствии на формулы~\eqref{eq:equation1} и~\eqref{eq:equation2} можно ссылаться.
+Впоследствии на формулы~\cref{eq:equation1, eq:equation2} можно ссылаться.
 
 Сделать так, чтобы номер формулы стоял напротив средней строки, можно,
 используя окружение \verb|multlined| (пакет \verb|mathtools|) вместо
@@ -249,16 +249,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
     \end{multlined}
 \end{equation}
 
-Используя команду \verb|\eqrefs|, можно
-красиво ссылаться сразу на несколько формул
-\eqrefs{eq:equation1, eq:equation3, eq:equation2}, даже перепутав
-порядок ссылок \verb|\eqrefs{eq1, eq3, eq2}|.
-Аналогично, для ссылок на несколько рисунков, таблиц и~т.\:д.
-\refs{sec:ch1/sec1, sec:ch1/sec2, sec:ch1/sec3} можно использовать
-команду \verb|\refs|.
-Обе эти команды определены в файле \verb|common/packages.tex|.
-
-Уравнения~\eqrefs{eq:subeq_1,eq:subeq_2} демонстрируют возможности
+Уравнения~\cref{eq:subeq_1,eq:subeq_2} демонстрируют возможности
 окружения \verb|\subequations|.
 \begin{subequations}
     \label{eq:subeq_1}
@@ -267,7 +258,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
         y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
     \end{gather}
 \end{subequations}
-Ссылки на отдельные уравнения~\eqrefs{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}.
+Ссылки на отдельные уравнения~\cref{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}.
 \begin{subequations}
     \label{eq:subeq_2}
     \begin{align}
@@ -312,9 +303,9 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \SI{1.2-3i e5}{\joule\per\mole\per\kelvin};
 \SIlist{1;2;3;4}{\tesla};
 \SIrange{50}{100}{\volt}.
-Список единиц измерений приведён в таблицах~\refs{tab:unit:base,
+Список единиц измерений приведён в таблицах~\cref{tab:unit:base,
 tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
-Приставки единиц приведены в~таблице~\ref{tab:unit:prefix}.
+Приставки единиц приведены в таблице~\cref{tab:unit:prefix}.
 
 С дополнительными опциями форматирования можно ознакомиться в~описании пакета \texttt{siunitx};
 изменить или добавить единицы измерений можно в~файле \texttt{siunitx.cfg}.
