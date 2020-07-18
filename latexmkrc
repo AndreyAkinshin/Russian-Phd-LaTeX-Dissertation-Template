@@ -1,3 +1,5 @@
+# -*- mode: perl; -*-
+
 $DRAFTON = $ENV{DRAFTON};
 $DRAFTON //= '';
 $SHOWMARKUP = $ENV{SHOWMARKUP};
