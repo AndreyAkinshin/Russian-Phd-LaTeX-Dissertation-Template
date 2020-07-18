@@ -165,13 +165,6 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=media, fieldvalue=eresource]
             \step[fieldset=medium, null]
         }
-        \map{% использование media=text по умолчанию
-            \step[fieldset=media, fieldvalue=text]
-        }
-        \map[overwrite]{% удалить media из патентов и программ ЭВМ
-            \perdatasource{biblio/registered.bib}
-            \step[fieldset=media, null]
-        }
         \map[overwrite]{% стираем значения всех полей issn
             \step[fieldset=issn, null]
         }
@@ -246,15 +239,47 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=howpublished, fieldset=organization, origfieldval]
             \step[fieldset=howpublished, null]
         }
-        % Так отключаем [Электронный ресурс]
-%        \map[overwrite]{% стираем значения всех полей media=eresource
-%            \step[fieldsource=media,
-%            match={eresource},
-%            final]
-%            \step[fieldset=media, null]
-%        }
     }
 }
+
+\ifnumequal{\value{mediadisplay}}{1}{
+    \DeclareSourcemap{
+        \maps{%
+            \map{% использование media=text по умолчанию
+                \step[fieldset=media, fieldvalue=text]
+            }
+        }
+    }
+}{}
+\ifnumequal{\value{mediadisplay}}{2}{
+    \DeclareSourcemap{
+        \maps{%
+            \map[overwrite]{% удаление всех записей media
+                \step[fieldset=media, null]
+            }
+        }
+    }
+}{}
+\ifnumequal{\value{mediadisplay}}{3}{
+    \DeclareSourcemap{
+        \maps{
+            \map[overwrite]{% стираем значения всех полей media=text
+                \step[fieldsource=media,match={text},final]
+                \step[fieldset=media, null]
+            }
+        }
+    }
+}{}
+\ifnumequal{\value{mediadisplay}}{4}{
+    \DeclareSourcemap{
+        \maps{
+            \map[overwrite]{% стираем значения всех полей media=eresource
+                \step[fieldsource=media,match={eresource},final]
+                \step[fieldset=media, null]
+            }
+        }
+    }
+}{}
 
 \ifsynopsis
 \else
