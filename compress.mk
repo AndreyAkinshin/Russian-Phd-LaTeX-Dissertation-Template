@@ -34,32 +34,33 @@ COMPRESSION_FLAGS_COMMON += -dEmbedAllFonts=true -dSubsetFonts=true
 
 
 ### (1) Пересборка pdf для уменьшения размера, за счёт снижения качества картинок --------------------------
-# (крутить `-d*ImageResolution` до достижения приемлемого размера)
+# (крутить `COMPRESSION_IMAGE_DPI` до достижения приемлемого размера)
+COMPRESSION_IMAGE_DPI ?= 144
 COMPRESSION_FLAGS_1 = $(COMPRESSION_FLAGS_COMMON)
 
 COMPRESSION_FLAGS_1 += -dDownsampleColorImages=true
 COMPRESSION_FLAGS_1 += -dColorImageDownsampleThreshold=1.5
 COMPRESSION_FLAGS_1 += -dColorImageDownsampleType=/Average  # Bicubic может давать цветные артефакты
 COMPRESSION_FLAGS_1 += -dColorImageFilter=/DCTEncode        # /DCTEncode = jpg, lossy
-COMPRESSION_FLAGS_1 += -dColorImageResolution=144
+COMPRESSION_FLAGS_1 += -dColorImageResolution=$(COMPRESSION_IMAGE_DPI)
 
 COMPRESSION_FLAGS_1 += -dDownsampleGrayImages=true
 COMPRESSION_FLAGS_1 += -dGrayImageDownsampleThreshold=1.5
 COMPRESSION_FLAGS_1 += -dGrayImageDownsampleType=/Bicubic
 COMPRESSION_FLAGS_1 += -dGrayImageFilter=/DCTEncode
-COMPRESSION_FLAGS_1 += -dGrayImageResolution=144
+COMPRESSION_FLAGS_1 += -dGrayImageResolution=$(COMPRESSION_IMAGE_DPI)
 
 COMPRESSION_FLAGS_1 += -dDownsampleMonoImages=true
 COMPRESSION_FLAGS_1 += -dMonoImageDownsampleThreshold=1.5
 COMPRESSION_FLAGS_1 += -dMonoImageDownsampleType=/Subsample
 COMPRESSION_FLAGS_1 += -dMonoImageFilter=/CCITTFaxEncode
-COMPRESSION_FLAGS_1 += -dMonoImageResolution=144
+COMPRESSION_FLAGS_1 += -dMonoImageResolution=$(COMPRESSION_IMAGE_DPI)
 
 
 ##! сжатие файла с потерей данных
 compress-lowdpi:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_1) \
-	                   $(COMPRESS_FILE).pdf $(COMPRESS_FILE)_lowdpi.pdf
+	                   $(basename $(COMPRESS_FILE)).pdf $(basename $(COMPRESS_FILE))_lowdpi.pdf
 
 
 
@@ -143,6 +144,6 @@ COMPRESSION_FLAGS_2 += -dMonoImageFilter=/FlateEncode
 ##! сжатие файла с конвертацией в CMYK
 compress-cmyk:
 	$(MSYS_FIX) ps2pdf $(COMPRESSION_FLAGS_2) \
-	                   $(COMPRESS_FILE).pdf $(COMPRESS_FILE)_cmyk.pdf
+	                   $(basename $(COMPRESS_FILE)).pdf $(basename $(COMPRESS_FILE))_cmyk.pdf
 
 .PHONY: compress-lowdpi compress-cmyk
