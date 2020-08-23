@@ -50,8 +50,12 @@
 % Если все команды закомментированы, то документ будет выведен в PDF файл полностью
 
 \begin{document}
-
-\input{common/renames}                 % Переопределение именований
+%%% Переопределение именований типовых разделов
+\ifxetexorluatex
+    \gappto\captionsrussian{\input{common/renames}} % for polyglossia
+\else
+    \input{common/renames} % for babel
+\fi
 
 %%% Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
 \include{Dissertation/title}           % Титульный лист
