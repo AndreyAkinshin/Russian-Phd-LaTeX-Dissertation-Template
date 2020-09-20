@@ -293,6 +293,44 @@ sorting=none,% настройка сортировки списка литера
 }
 \fi
 
+\ifpresentation
+% удаляем лишние поля в списке литературы презентации
+% их названия можно узнать в файле presentation.bbl
+\DeclareSourcemap{
+    \maps{
+    \map[overwrite,foreach={%
+        % {{{ Список лишних полей в презентации
+        address,%
+        chapter,%
+        edition,%
+        editor,%
+        eid,%
+        howpublished,%
+        institution,%
+        key,%
+        month,%
+        note,%
+        number,%
+        organization,%
+        pages,%
+        publisher,%
+        school,%
+        series,%
+        type,%
+        media,%
+        url,%
+        doi,%
+        location,%
+        volume,%
+        % Список лишних полей в презентации }}}
+    }]{
+        \perdatasource{biblio/author.bib}
+        \step[fieldset=$MAPLOOP,null]
+    }
+    }
+}
+\fi
+
 \defbibfilter{vakscopuswos}{%
     keyword=biblioauthorvak or keyword=biblioauthorscopus or keyword=biblioauthorwos
 }
