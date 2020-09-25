@@ -52,7 +52,8 @@
 \begin{document}
 %%% Переопределение именований типовых разделов
 \ifxetexorluatex
-    \gappto\captionsrussian{\input{common/renames}} % for polyglossia
+    % https://tex.stackexchange.com/a/156050
+    \gappto\captionsrussian{\input{common/renames}\unskip} % for polyglossia
 \else
     \input{common/renames} % for babel
 \fi
