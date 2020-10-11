@@ -232,9 +232,9 @@
 %http://tex.stackexchange.com/questions/145546/how-to-make-figure-and-listing-share-their-counter
 % Если смешивать плавающие и не плавающие окружения, то могут быть проблемы с нумерацией
 \makeatletter
-\AtBeginDocument{%
-    \let\c@ListingEnv\c@lstlisting
-    \let\theListingEnv\thelstlisting
+\AfterEndPreamble{% https://tex.stackexchange.com/a/252682
+    \let\c@ListingEnv\relax % drop existing counter "ListingEnv"
+    \newaliascnt{ListingEnv}{lstlisting} % команда требует пакет aliascnt
     \let\ftype@lstlisting\ftype@ListingEnv % give the floats the same precedence
 }
 \makeatother
