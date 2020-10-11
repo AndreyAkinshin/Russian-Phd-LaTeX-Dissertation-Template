@@ -62,6 +62,9 @@
 
 %%% Кодировки и шрифты %%%
 \ifxetexorluatex
+    \ifpresentation
+        \providecommand*\autodot{} % quick fix for polyglossia 1.50
+    \fi
     \PassOptionsToPackage{no-math}{fontspec}    % https://tex.stackexchange.com/a/26295/104425
     \usepackage{polyglossia}[2014/05/21]        % Поддержка многоязычности
                                         % (fontspec подгружается автоматически)
