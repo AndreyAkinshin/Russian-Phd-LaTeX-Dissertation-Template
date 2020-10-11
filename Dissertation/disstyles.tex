@@ -185,7 +185,7 @@
     \counterwithout{table}{chapter}    % Убираем связанность номера таблицы с номером главы/раздела
 }{}
 
-\AtBeginDocument{
+\AfterEndPreamble{
 %% регистрируем счётчики в системе totcounter
     \regtotcounter{totalcount@figure}
     \regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
