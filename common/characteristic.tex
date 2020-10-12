@@ -111,7 +111,6 @@
         %  * при использовании `\insertbiblioauthorgrouped`, порядок команд `\printbibliography` в нём должен быть тем же (см. biblio/biblatex.tex)
         %
         % Невидимый библиографический список для подсчёта количества публикаций:
-        \ifxetexorluatex\selectlanguage{english}\fi
         \printbibliography[heading=nobibheading, section=1, env=countauthorvak,          keyword=biblioauthorvak]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorwos,          keyword=biblioauthorwos]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopus,       keyword=biblioauthorscopus]%
@@ -124,7 +123,7 @@
         \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]%
         %
-        \nocite{*}\ifxetexorluatex\selectlanguage{russian}\fi%
+        \nocite{*}%
         %
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
         \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%

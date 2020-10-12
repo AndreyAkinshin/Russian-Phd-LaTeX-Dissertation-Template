@@ -51,12 +51,9 @@
 
 \begin{document}
 %%% Переопределение именований типовых разделов
-\ifxetexorluatex
-    % https://tex.stackexchange.com/a/156050
-    \gappto\captionsrussian{\input{common/renames}\unskip} % for polyglossia
-\else
-    \input{common/renames} % for babel
-\fi
+% https://tex.stackexchange.com/a/156050
+\gappto\captionsrussian{\input{common/renames}\unskip} % for polyglossia and babel
+\input{common/renames}
 
 %%% Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
 \include{Dissertation/title}           % Титульный лист
