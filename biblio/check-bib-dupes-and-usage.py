@@ -26,9 +26,10 @@ with open(bibfile, 'r', encoding="utf8") as biblio:
                     authors[author] = []
                 if len(pages) == 0:
                     pages = ['000']
+                prev_cite = cites[-2]
                 for page in pages:
-                    authors[author].append(page)
-                    authors[author].sort()
+                    authors[author].append( (page, prev_cite) )
+                    authors[author].sort(key=lambda x: x[0])
             author_list = []
             pages = []
             # print("==========")
@@ -55,15 +56,18 @@ with open(bibfile, 'r', encoding="utf8") as biblio:
             pages = re.findall(r'\d+', bib_line)
             # print(pages)
 for author in authors:
-    if len(authors[author]) != len(set(authors[author])):
+    author_pages = [p for (p, c) in authors[author]]
+    if len(author_pages) != len(set(author_pages)):
         print("\tDuplicated record author:", author)
         prev_page = ""
-        for page in authors[author]:
+        prev_cite = ""
+        for page, cite in authors[author]:
             if page == prev_page:
                 if page == "000":
                     page = "No page"
-                print("\t\t with page:", page)
+                print("\t\t with page:", page, ";", cite, "vs", prev_cite)
             prev_page = page
+            prev_cite = cite
 
 print("Total cites: ", len(cites))
 
