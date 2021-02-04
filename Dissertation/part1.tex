@@ -522,4 +522,94 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
         Этот текст всегда скрыт.
 \end{comment}
 
+\section{Работа со списоком сокращений и условных обозначений}\label{sec:acronyms}
+
+С помощью пакета \texttt{nomencl} можно создавать удобный сортированный список сокращений и
+условных обозначений во время написания текста.
+Вызов \verb+nomenclature+ добавляет нужный символ или сокращение с описанием в список, который
+затем печатается вызовом \verb+printnomenclature+ в соответствующем разделе.
+\begin{equation}
+    \omega = c k,
+\end{equation}
+где \( \omega \) --- частота света, \( c \) --- скорость света, \( k \) --- модуль волнового
+вектора.
+\nomenclature{\( \omega \)}{частота света\nomrefeq}
+\nomenclature{\( c \)}{скорость света\nomrefpage}
+\nomenclature{\( k \)}{модуль волнового вектора\nomrefeqpage}
+Использование
+\begin{verbatim}
+    \nomenclature{\( \omega \)}{частота света\nomrefeq}
+    \nomenclature{\( c \)}{скорость света\nomrefpage}
+    \nomenclature{\( k \)}{модуль волнового вектора\nomrefeqpage}
+\end{verbatim}
+после уравнения добавит в список условных обозначений три записи.
+Ссылки \verb+\nomrefeq+ на последнее уравнение, \verb+\nomrefpage+ --- на страницу,
+\verb+\nomrefeqpage+ --- вместе, можно опускать и не использовать.
+
+Группировкой и сортировкой пунктов в списке можно управлять с помощью указания дополнительных
+аргументов к команде \verb+nomenclature+.
+Например, при вызове
+\begin{verbatim}
+    \nomenclature[03]{\( \hbar \)}{постоянная Планка}
+    \nomenclature[01]{\( G \)}{гравитационная постоянная}
+\end{verbatim}
+\( G \) будет стоять в списке выше, чем \( \hbar \).
+Для корректных вертикальных отступов между строками в описании лучше не использовать
+многострочные формулы в списке обозначений.
+
+\nomenclature{%
+    \( \begin{rcases}
+        a_n\\
+        b_n
+    \end{rcases} \)%
+    }{коэффициенты разложения Ми в дальнем поле соответствующие электрическим и
+    магнитным мультиполям}
+\nomenclature[a\( e \)]{\( {\boldsymbol{\hat{\mathrm e}}} \)}{единичный вектор}
+\nomenclature{\( E_0 \)}{амплитуда падающего поля}
+\nomenclature{\( j \)}{тип функции Бесселя}
+\nomenclature{\( k \)}{волновой вектор падающей волны}
+\nomenclature{%
+    \( \begin{rcases}
+        a_n\\
+        b_n
+    \end{rcases} \)%
+    }{и снова коэффициенты разложения Ми в дальнем поле соответствующие электрическим и
+    магнитным мультиполям. Добавлено много текста, так что описание группы условных обозначений
+    значительно превысило высоту этой группы...}
+\nomenclature{\( L \)}{общее число слоёв}
+\nomenclature{\( l \)}{номер слоя внутри стратифицированной сферы}
+\nomenclature{\( \lambda \)}{длина волны электромагнитного излучения в вакууме}
+\nomenclature{\( n \)}{порядок мультиполя}
+\nomenclature{%
+    \( \begin{rcases}
+        {\mathbf{N}}_{e1n}^{(j)}&{\mathbf{N}}_{o1n}^{(j)}\\
+        {\mathbf{M}_{o1n}^{(j)}}&{\mathbf{M}_{e1n}^{(j)}}
+    \end{rcases} \)%
+    }{сферические векторные гармоники}
+\nomenclature{\( \mu \)}{магнитная проницаемость в вакууме}
+\nomenclature{\( r, \theta, \phi \)}{полярные координаты}
+\nomenclature{\( \omega \)}{частота падающей волны}
+
+С помощью \verb+nomenclature+ можно включать в список сокращения. BEM, CST MWS, DDA, FDFD,
+FDTD, FEM, FIT, FMM, FVTD, MLFMA, MoM, MSTM, PSTD, TLM.
+\nomenclature{FEM}{finite element method, метод конечных элементов}
+\nomenclature{FIT}{finite integration technique, метод конечных интегралов}
+\nomenclature{FMM}{fast multipole method, быстрый метод многополюсника}
+\nomenclature{FVTD}{finite volume time-domain, метод конечных объёмов во~временной области}
+\nomenclature{MLFMA}{multilevel fast multipole algorithm, многоуровневый быстрый алгоритм
+многополюсника}
+\nomenclature{BEM}{boundary element method, метод граничных элементов}
+\nomenclature{CST MWS}{Computer Simulation Technology Microwave Studio программа для
+компьютерного моделирования уравнен Максвелла}
+\nomenclature{DDA}{discrete dipole approximation, приближение дискретиных диполей}
+\nomenclature{FDFD}{finite difference frequency domain, метод конечных разностей в~частотной
+области}
+\nomenclature{FDTD}{finite difference time domain, метод конечных разностей во~временной
+области}
+\nomenclature{MoM}{method of moments, метод моментов}
+\nomenclature{MSTM}{multiple sphere T-Matrix, метод Т-матриц для множества сфер}
+\nomenclature{PSTD}{pseudospectral time domain method, псевдоспектральный метод во~временной
+области}
+\nomenclature{TLM}{transmission line matrix method, метод матриц линий передач}
+
 \FloatBarrier
