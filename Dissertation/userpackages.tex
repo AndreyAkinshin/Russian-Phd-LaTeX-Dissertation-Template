@@ -5,19 +5,6 @@
 \usepackage{listings}
 \lccode`\~=0\relax %Без этого хака из-за особенностей пакета listings перестают работать конструкции с \MakeLowercase и т. п. в (xe|lua)latex
 
-%%% Оформелние списка обозначений
-\usepackage[notocbasic,intoc]{nomencl}
-\makenomenclature
-\setlength{\nomitemsep}{-.8\parsep}
-% Переопределения названий. Так как опция russian не для utf8
-\renewcommand{\nomname}{Список сокращений и условных обозначений}%
-\renewcommand{\eqdeclaration}[1]{, см.~(#1)}%
-\renewcommand{\pagedeclaration}[1]{, стр.~#1}%
-\renewcommand{\nomAname}{Латинские буквы}%
-\renewcommand{\nomGname}{Греческие буквы}%
-\renewcommand{\nomXname}{Верхние индексы}%
-\renewcommand{\nomZname}{Индексы}%
-
 % Русская традиция начертания греческих букв
 \usepackage{upgreek} % прямые греческие ради русской традиции
 
