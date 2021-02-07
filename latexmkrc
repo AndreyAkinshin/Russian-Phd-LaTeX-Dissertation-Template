@@ -1,3 +1,5 @@
+# -*- mode: perl; -*-
+
 $DRAFTON = $ENV{DRAFTON};
 $DRAFTON //= '';
 $SHOWMARKUP = $ENV{SHOWMARKUP};
@@ -101,6 +103,9 @@ $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 # set to 1 to count CPU time
 $show_time = $TIMERON;
 
+# maximum number of passes
+$max_repeat = 6;
+
 # record access files
 $recorder = 1;
 
@@ -108,10 +113,10 @@ $recorder = 1;
 $bibtex_use = 2;
 
 # extensions to clean with -c flag
-$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav %R.fmt';
+$clean_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav %R.fmt %R.nls %R.nlo';
 
 # extensions to clean with -C flag
-$clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav';
+$clean_full_ext = '%R.bbl %R.aux %R.lof %R.log %R.lot %R.fls %R.out %R.toc %R.run.xml %R.xdv %R.snm %R.nav %R.nls %R.nlo';
 
 # this option is for debugging
 # 0 to silently delete files, 1 to show what would be deleted
@@ -382,6 +387,12 @@ push(@clean_regexp,
 
 ########################################################
 # functions
+
+# Custom dependency and function for nomencl package
+add_cus_dep( 'nlo', 'nls', 0, 'makenlo2nls' );
+sub makenlo2nls {
+    system( "makeindex -s nomencl.ist -o \"$_[0].nls\" \"$_[0].nlo\"" );
+}
 
 sub regexp_cleanup {
     my @clean_regexp_dirs = split /(?<=\s)/, $REGEXDIRS;

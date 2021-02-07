@@ -6,6 +6,10 @@
 % \usetheme[secheader]{Boadilla}
 % \usecolortheme{seahorse}
 
+% Размер полей слайдов
+\setbeamersize{text margin left=1cm,%
+               text margin right=1cm}
+
 % выключение кнопок навигации
 \beamertemplatenavigationsymbolsempty
 
@@ -35,9 +39,11 @@
 % Названия классов элементов можно найти здесь
 % http://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 
-% Убрать иконки перед списком литературы
-% https://tex.stackexchange.com/a/124271/104425
-\setbeamertemplate{bibliography item}{}
+% Нумеровать список статей
+% https://tex.stackexchange.com/a/419506/104425
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% или убрать номера
+% \setbeamertemplate{bibliography item}{}
 
 % Использовать шрифт с засечками для формул
 % https://tex.stackexchange.com/a/34267/104425

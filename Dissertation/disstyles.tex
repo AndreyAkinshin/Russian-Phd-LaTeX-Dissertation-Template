@@ -160,8 +160,8 @@
 % раскомментировать следующие 2
 % \setlength{\cftbeforechapterskip}{0pt plus 0pt}   % ИЛИ эти 2 строки из учебника
 % \renewcommand*{\insertchapterspace}{}
-% или эту  
-% \renewcommand*{\cftbeforechapterskip}{0em}       
+% или эту
+% \renewcommand*{\cftbeforechapterskip}{0em}
 
 
 %%% Блок дополнительного управления размерами заголовков
@@ -185,32 +185,11 @@
     \counterwithout{table}{chapter}    % Убираем связанность номера таблицы с номером главы/раздела
 }{}
 
-
-%%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
-\makeatletter
-\def\formbytotal#1#2#3#4#5{%
-    \newcount\@c
-    \@c\totvalue{#1}\relax
-    \newcount\@last
-    \newcount\@pnul
-    \@last\@c\relax
-    \divide\@last 10
-    \@pnul\@last\relax
-    \divide\@pnul 10
-    \multiply\@pnul-10
-    \advance\@pnul\@last
-    \multiply\@last-10
-    \advance\@last\@c
-    \total{#1}~#2%
-    \ifnum\@pnul=1#5\else%
-    \ifcase\@last#5\or#3\or#4\or#4\or#4\else#5\fi
-    \fi
-}
-\makeatother
-
-\AtBeginDocument{
+\AfterEndPreamble{
 %% регистрируем счётчики в системе totcounter
     \regtotcounter{totalcount@figure}
     \regtotcounter{totalcount@table}       % Если иным способом поставить в преамбуле то ошибка в числе таблиц
     \regtotcounter{TotPages}               % Если иным способом поставить в преамбуле то ошибка в числе страниц
+    \newtotcounter{totalappendix}
+    \newtotcounter{totalchapter}
 }

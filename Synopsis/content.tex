@@ -37,7 +37,7 @@
 
 \underline{\textbf{Первая глава}} посвящена \dots
 
- картинку можно добавить так:
+картинку можно добавить так:
 \begin{figure}[ht]
     \centerfloat{
         \hfill
@@ -103,6 +103,12 @@
   %% authorscopus
   \nocite{scbib1}%
   %
+  %% authorpathent
+  \nocite{patbib1}%
+  %
+  %% authorprogram
+  \nocite{progbib1}%
+  %
   %% authorconf
   \nocite{confbib1}%
   \nocite{confbib2}%
@@ -120,7 +126,7 @@
       \fi
     \end{refcontext}
   }{
-  \ifnum \value{citeexternal}>0
+  \ifnum \totvalue{citeexternal}>0
     \begin{refcontext}[labelprefix=A]
       \ifnum \value{bibgrouped}>0
         \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
@@ -136,8 +142,13 @@
     \fi
   \fi
   %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
-  \begin{refcontext}[labelprefix={}]    \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
+  \begin{refcontext}[labelprefix={}]
+      \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
   \end{refcontext}
+  % Невидимый библиографический список для подсчёта количества внешних публикаций
+  % Используется, чтобы убрать приставку "А" у работ автора, если в автореферате нет
+  % цитирований внешних источников.
+  \printbibliography[heading=nobibheading, section=0, env=countexternal, keyword=biblioexternal, resetnumbers=true]%
   }
 }
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}

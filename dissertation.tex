@@ -50,8 +50,10 @@
 % Если все команды закомментированы, то документ будет выведен в PDF файл полностью
 
 \begin{document}
-
-\input{common/renames}                 % Переопределение именований
+%%% Переопределение именований типовых разделов
+% https://tex.stackexchange.com/a/156050
+\gappto\captionsrussian{\input{common/renames}\unskip} % for polyglossia and babel
+\input{common/renames}
 
 %%% Структура диссертации (ГОСТ Р 7.0.11-2011, 4)
 \typeout{templatetest:page_numbering/disable:int:\arabic{page}} % контрольная команда для системы тестирования
@@ -74,6 +76,8 @@
 \include{Dissertation/references}      % Список литературы
 \include{Dissertation/lists}           % Списки таблиц и изображений (иллюстративный материал)
 
+\setcounter{totalchapter}{\value{chapter}} % Подсчёт количества глав
+
 %%% Настройки для приложений
 \appendix
 % Оформление заголовков приложений ближе к ГОСТ:
@@ -82,5 +86,7 @@
 \renewcommand\thechapter{\Asbuk{chapter}} % Чтобы приложения русскими буквами нумеровались
 
 \include{Dissertation/appendix}        % Приложения
+
+\setcounter{totalappendix}{\value{chapter}} % Подсчёт количества приложений
 
 \end{document}

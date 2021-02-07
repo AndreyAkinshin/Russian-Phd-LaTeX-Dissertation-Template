@@ -1,19 +1,35 @@
-\documentclass[tikz]{standalone}
-% https://tex.stackexchange.com/a/42664/104425
+\documentclass[a4paper,14pt,oneside,openany]{memoir}
+
+\pagestyle{empty}
+
+\usepackage[a4paper, top=2cm, bottom=2cm,
+           left=2.5cm, right=1cm, nofoot, nohead,
+           nomarginpar, heightrounded, showframe]{geometry}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{LiberationSerif}
+\newfontfamily\cyrillicfont{LiberationSerif}
+\setsansfont{LiberationSans}
+\newfontfamily\cyrillicfontsf{LiberationSans}
+
+\usepackage{tikz}
 \usetikzlibrary{
-	arrows,
+	arrows.meta,
 	automata, %  is used for drawing "finite state automata and Turing Machines". To draw these graphs, each node, its name and relative position is defined, as well as the types of path between each
 	backgrounds, % defines background for pictures
 	calc, % make complex coordinate calculations
 	calendar, % display calendars
 	chains, % align nodes o chains
 	decorations, % decorate paths
+	decorations.pathmorphing,
 	er, % each node is defined, as is each edge between each node, as well as any attributes
 	graphs, % draw graphs
 	graphdrawing,
 	intersections, % calculate intersections of paths
 	mindmap,
 	matrix, % display matrices
+	math,
 	folding, % paper folding library
 	patterns, % defines patterns for filling areas
 	petri, % draw Petri nets
@@ -23,13 +39,15 @@
 	trees, % Each point on the tree is defined as a node, with children, and each child can have its own children
 }
 \usegdlibrary{trees}
-\usepackage{polyglossia}
-\setmainlanguage{russian}
-\setotherlanguage{english}
-\setmainfont{LiberationSerif}
-\newfontfamily\cyrillicfont{LiberationSerif}
-\setsansfont{LiberationSans}
-\newfontfamily\cyrillicfontsf{LiberationSans}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=newest}
+\pgfkeys{/pgf/number format/.cd,use comma,1000 sep={}}
+
+\usepackage{siunitx}
+\usepackage[european,cuteinductors]{circuitikz}
+
 \begin{document}
-\input{\tikzfilename}
+\fbox{\input{\tikzfilename}}
 \end{document}

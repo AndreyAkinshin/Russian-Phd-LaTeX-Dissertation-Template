@@ -15,12 +15,12 @@
 %какому источнику относится уточнение о страницах, а bibtex об этой проблеме
 %даже не предупреждает
 \cite{Lermontov, Management, Borozda, Marketing, Constitution, FamilyCode,
-Gost.7.0.53, Razumovski, Lagkueva, Pokrovski, Methodology, Nasirova, Berestova,
+Gost.7.0.53, Razumovski, Lagkueva, Pokrovski, Methodology, Berestova,
 Kriger}%
 \ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
-    \cite{Sirotko, Lukina, Encyclopedia}%
+    \cite{Sirotko, Lukina, Encyclopedia, Nasirova}%
 }{% Примеры для biblatex через движок biber
-    \cite{Sirotko2, Lukina2, Encyclopedia2}%
+    \cite{Sirotko2, Lukina2, Encyclopedia2, Nasirova2}%
 }%
 .
 И~ещё немного ссылок:~\cite{Article,Book,Booklet,Conference,Inbook,Incollection,Manual,Mastersthesis,
@@ -52,18 +52,18 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 
 Ссылки на собственные работы:~\cite{vakbib1, confbib1}
 
-Сошлёмся на приложения: Приложение~\ref{app:A}, Приложение~\ref{app:B2}.
+Сошлёмся на приложения: Приложение~\cref{app:A}, Приложение~\cref{app:B2}.
 
-Сошлёмся на формулу: формула~\eqref{eq:equation1}.
+Сошлёмся на формулу: формула~\cref{eq:equation1}.
 
-Сошлёмся на изображение: рисунок~\ref{fig:knuth}.
+Сошлёмся на изображение: рисунок~\cref{fig:knuth}.
 
 Стандартной практикой является добавление к ссылкам префикса, характеризующего тип элемента.
 Это не является строгим требованием, но~позволяет лучше ориентироваться в документах большого размера.
 Например, для ссылок на~рисунки используется префикс \textit{fig},
 для ссылки на~таблицу "--- \textit{tab}.
 
-В таблице~\ref{tab:tab_pref} приложения~\ref{app:B4} приведён список рекомендуемых
+В таблице \cref{tab:tab_pref} приложения~\cref{app:B4} приведён список рекомендуемых
 к использованию стандартных префиксов.
 
 \section{Формулы}\label{sec:ch1/sec3}
@@ -177,7 +177,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 
 Ещё об отступах. Иногда для лучшей <<читаемости>> формул полезно
 немного исправить стандартные интервалы \LaTeX\ с учётом логической
-структуры самой формулы. Например в формуле~\ref{eq:2p3} добавлен
+структуры самой формулы. Например в формуле~\cref{eq:2p3} добавлен
 небольшой отступ \verb+\,+ между основными сомножителями, ниже
 результат применения всех вариантов отступа:
 \begin{align*}
@@ -235,7 +235,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
   \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
 \end{equation}
 
-Впоследствии на формулы~\eqref{eq:equation1} и~\eqref{eq:equation2} можно ссылаться.
+Впоследствии на формулы~\cref{eq:equation1, eq:equation2} можно ссылаться.
 
 Сделать так, чтобы номер формулы стоял напротив средней строки, можно,
 используя окружение \verb|multlined| (пакет \verb|mathtools|) вместо
@@ -249,16 +249,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
     \end{multlined}
 \end{equation}
 
-Используя команду \verb|\eqrefs|, можно
-красиво ссылаться сразу на несколько формул
-\eqrefs{eq:equation1, eq:equation3, eq:equation2}, даже перепутав
-порядок ссылок \verb|\eqrefs{eq1, eq3, eq2}|.
-Аналогично, для ссылок на несколько рисунков, таблиц и~т.\:д.
-\refs{sec:ch1/sec1, sec:ch1/sec2, sec:ch1/sec3} можно использовать
-команду \verb|\refs|.
-Обе эти команды определены в файле \verb|common/packages.tex|.
-
-Уравнения~\eqrefs{eq:subeq_1,eq:subeq_2} демонстрируют возможности
+Уравнения~\cref{eq:subeq_1,eq:subeq_2} демонстрируют возможности
 окружения \verb|\subequations|.
 \begin{subequations}
     \label{eq:subeq_1}
@@ -267,7 +258,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
         y = 2 x^2 - x + 1 \label{eq:subeq_1-2}
     \end{gather}
 \end{subequations}
-Ссылки на отдельные уравнения~\eqrefs{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}.
+Ссылки на отдельные уравнения~\cref{eq:subeq_1-1,eq:subeq_1-2,eq:subeq_2-1}.
 \begin{subequations}
     \label{eq:subeq_2}
     \begin{align}
@@ -312,9 +303,9 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \SI{1.2-3i e5}{\joule\per\mole\per\kelvin};
 \SIlist{1;2;3;4}{\tesla};
 \SIrange{50}{100}{\volt}.
-Список единиц измерений приведён в таблицах~\refs{tab:unit:base,
+Список единиц измерений приведён в таблицах~\cref{tab:unit:base,
 tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
-Приставки единиц приведены в~таблице~\ref{tab:unit:prefix}.
+Приставки единиц приведены в~таблице~\cref{tab:unit:prefix}.
 
 С дополнительными опциями форматирования можно ознакомиться в~описании пакета \texttt{siunitx};
 изменить или добавить единицы измерений можно в~файле \texttt{siunitx.cfg}.
@@ -530,5 +521,108 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 \begin{comment}
         Этот текст всегда скрыт.
 \end{comment}
+
+\section{Работа со списком сокращений и~условных обозначений}\label{sec:acronyms}
+
+С помощью пакета \texttt{nomencl} можно создавать удобный сортированный список
+сокращений и условных обозначений во время написания текста. Вызов
+\verb+\nomenclature+ добавляет нужный символ или сокращение с~описанием
+в~список, который затем печатается вызовом \verb+\printnomenclature+
+в~соответствующем разделе.
+Для того, чтобы эти операции прошли, потребуется дополнительный вызов
+\verb+makeindex -s nomencl.ist -o %.nls %.nlo+ в~командной строке, где вместо
+\verb+%+ следует подставить имя главного файла проекта (\verb+dissertation+
+для этого шаблона).
+Затем потребуется один или два дополнительных вызова компилятора проекта.
+\begin{equation}
+    \omega = c k,
+\end{equation}
+где \( \omega \) "--- частота света, \( c \) "--- скорость света, \( k \) "---
+модуль волнового вектора.
+\nomenclature{\(\omega\)}{частота света\nomrefeq}
+\nomenclature{\(c\)}{скорость света\nomrefpage}
+\nomenclature{\(k\)}{модуль волнового вектора\nomrefeqpage}
+Использование
+\begin{verbatim}
+\nomenclature{\(\omega\)}{частота света\nomrefeq}
+\nomenclature{\(c\)}{скорость света\nomrefpage}
+\nomenclature{\(k\)}{модуль волнового вектора\nomrefeqpage}
+\end{verbatim}
+после уравнения добавит в список условных обозначений три записи.
+Ссылки \verb+\nomrefeq+ на последнее уравнение, \verb+\nomrefpage+ "--- на
+страницу, \verb+\nomrefeqpage+ "--- сразу на~последнее уравнение и~на~страницу,
+можно опускать и~не~использовать.
+
+Группировкой и сортировкой пунктов в списке можно управлять с~помощью указания
+дополнительных аргументов к команде \verb+nomenclature+.
+Например, при вызове
+\begin{verbatim}
+\nomenclature[03]{\( \hbar \)}{постоянная Планка}
+\nomenclature[01]{\( G \)}{гравитационная постоянная}
+\end{verbatim}
+\( G \) будет стоять в списке выше, чем \( \hbar \).
+Для корректных вертикальных отступов между строками в описании лучше
+не~использовать многострочные формулы в~списке обозначений.
+
+\nomenclature{%
+    \( \begin{rcases}
+        a_n\\
+        b_n
+    \end{rcases} \)%
+    }{коэффициенты разложения Ми в дальнем поле соответствующие электрическим и
+    магнитным мультиполям}
+\nomenclature[a\( e \)]{\( {\boldsymbol{\hat{\mathrm e}}} \)}{единичный вектор}
+\nomenclature{\( E_0 \)}{амплитуда падающего поля}
+\nomenclature{\( j \)}{тип функции Бесселя}
+\nomenclature{\( k \)}{волновой вектор падающей волны}
+\nomenclature{%
+    \( \begin{rcases}
+        a_n\\
+        b_n
+    \end{rcases} \)%
+    }{и снова коэффициенты разложения Ми в дальнем поле соответствующие
+    электрическим и магнитным мультиполям. Добавлено много текста, так что
+    описание группы условных обозначений значительно превысило высоту этой
+    группы...}
+\nomenclature{\( L \)}{общее число слоёв}
+\nomenclature{\( l \)}{номер слоя внутри стратифицированной сферы}
+\nomenclature{\( \lambda \)}{длина волны электромагнитного излучения в вакууме}
+\nomenclature{\( n \)}{порядок мультиполя}
+\nomenclature{%
+    \( \begin{rcases}
+        {\mathbf{N}}_{e1n}^{(j)}&{\mathbf{N}}_{o1n}^{(j)}\\
+        {\mathbf{M}_{o1n}^{(j)}}&{\mathbf{M}_{e1n}^{(j)}}
+    \end{rcases} \)%
+    }{сферические векторные гармоники}
+\nomenclature{\( \mu \)}{магнитная проницаемость в вакууме}
+\nomenclature{\( r, \theta, \phi \)}{полярные координаты}
+\nomenclature{\( \omega \)}{частота падающей волны}
+
+С помощью \verb+nomenclature+ можно включать в~список сокращения,
+не~используя их~в~тексте.
+% запись сокращения в список происходит командой \nomenclature,
+% а не употреблением самого сокращения
+\nomenclature{FEM}{finite element method, метод конечных элементов}
+\nomenclature{FIT}{finite integration technique, метод конечных интегралов}
+\nomenclature{FMM}{fast multipole method, быстрый метод многополюсника}
+\nomenclature{FVTD}{finite volume time-domain, метод конечных объёмов
+    во~временной области}
+\nomenclature{MLFMA}{multilevel fast multipole algorithm, многоуровневый
+    быстрый алгоритм многополюсника}
+\nomenclature{BEM}{boundary element method, метод граничных элементов}
+\nomenclature{CST MWS}{Computer Simulation Technology Microwave Studio
+    программа для компьютерного моделирования уравнен Максвелла}
+\nomenclature{DDA}{discrete dipole approximation, приближение дискретиных
+    диполей}
+\nomenclature{FDFD}{finite difference frequency domain, метод конечных
+    разностей в~частотной области}
+\nomenclature{FDTD}{finite difference time domain, метод конечных разностей
+    во~временной области}
+\nomenclature{MoM}{method of moments, метод моментов}
+\nomenclature{MSTM}{multiple sphere T-Matrix, метод Т-матриц для множества
+    сфер}
+\nomenclature{PSTD}{pseudospectral time domain method, псевдоспектральный метод
+    во~временной области}
+\nomenclature{TLM}{transmission line matrix method, метод матриц линий передач}
 
 \FloatBarrier

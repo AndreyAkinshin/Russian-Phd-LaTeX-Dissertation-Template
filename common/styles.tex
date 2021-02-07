@@ -61,6 +61,87 @@
         position=below,                 % положение подписи
 }
 
+%%% Настройки ссылок на рисунки, таблицы и др. %%%
+% команды \cref...format отвечают за форматирование при помощи команды \cref
+% команды \labelcref...format отвечают за форматирование при помощи команды \labelcref
+
+\ifpresentation
+\else
+    \crefdefaultlabelformat{#2#1#3}
+
+    % Уравнение
+    \crefformat{equation}{(#2#1#3)} % одиночная ссылка с приставкой
+    \labelcrefformat{equation}{(#2#1#3)} % одиночная ссылка без приставки
+    \crefrangeformat{equation}{(#3#1#4) \cyrdash~(#5#2#6)} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{equation}{(#3#1#4) \cyrdash~(#5#2#6)} % диапазон ссылок без приставки
+    \crefmultiformat{equation}{(#2#1#3)}{ и~(#2#1#3)}{, (#2#1#3)}{ и~(#2#1#3)} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{equation}{(#2#1#3)}{ и~(#2#1#3)}{, (#2#1#3)}{ и~(#2#1#3)} % перечисление без приставки
+
+    % Подуравнение
+    \crefformat{subequation}{(#2#1#3)} % одиночная ссылка с приставкой
+    \labelcrefformat{subequation}{(#2#1#3)} % одиночная ссылка без приставки
+    \crefrangeformat{subequation}{(#3#1#4) \cyrdash~(#5#2#6)} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{subequation}{(#3#1#4) \cyrdash~(#5#2#6)} % диапазон ссылок без приставки
+    \crefmultiformat{subequation}{(#2#1#3)}{ и~(#2#1#3)}{, (#2#1#3)}{ и~(#2#1#3)} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{subequation}{(#2#1#3)}{ и~(#2#1#3)}{, (#2#1#3)}{ и~(#2#1#3)} % перечисление без приставки
+
+    % Глава
+    \crefformat{chapter}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{chapter}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{chapter}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{chapter}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{chapter}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{chapter}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+
+    % Параграф
+    \crefformat{section}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{section}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{section}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{section}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{section}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{section}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+
+    % Приложение
+    \crefformat{appendix}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{appendix}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{appendix}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{appendix}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{appendix}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{appendix}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+
+    % Рисунок
+    \crefformat{figure}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{figure}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{figure}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{figure}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{figure}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{figure}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+
+    % Таблица
+    \crefformat{table}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{table}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{table}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{table}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{table}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{table}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+
+    % Листинг
+    \crefformat{lstlisting}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{lstlisting}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{lstlisting}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{lstlisting}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{lstlisting}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{lstlisting}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+
+    % Листинг
+    \crefformat{ListingEnv}{#2#1#3} % одиночная ссылка с приставкой
+    \labelcrefformat{ListingEnv}{#2#1#3} % одиночная ссылка без приставки
+    \crefrangeformat{ListingEnv}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок с приставкой
+    \labelcrefrangeformat{ListingEnv}{#3#1#4 \cyrdash~#5#2#6} % диапазон ссылок без приставки
+    \crefmultiformat{ListingEnv}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление ссылок с приставкой
+    \labelcrefmultiformat{ListingEnv}{#2#1#3}{ и~#2#1#3}{, #2#1#3}{ и~#2#1#3} % перечисление без приставки
+\fi
+
 %%% Настройки гиперссылок %%%
 \ifluatex
     \hypersetup{
@@ -175,6 +256,31 @@
     \makeatother
 \fi
 
+
+%%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
+\makeatletter
+\def\formtotal#1#2#3#4#5{%
+    \newcount\@c
+    \@c\totvalue{#1}\relax
+    \newcount\@last
+    \newcount\@pnul
+    \@last\@c\relax
+    \divide\@last 10
+    \@pnul\@last\relax
+    \divide\@pnul 10
+    \multiply\@pnul-10
+    \advance\@pnul\@last
+    \multiply\@last-10
+    \advance\@last\@c
+    #2%
+    \ifnum\@pnul=1#5\else%
+    \ifcase\@last#5\or#3\or#4\or#4\or#4\else#5\fi
+    \fi
+}
+\makeatother
+
+\newcommand{\formbytotal}[5]{\total{#1}~\formtotal{#1}{#2}{#3}{#4}{#5}}
+
 %%% Команды рецензирования %%%
 \ifboolexpr{ (test {\ifnumequal{\value{draft}}{1}}) or (test {\ifnumequal{\value{showmarkup}}{1}})}{
         \newrobustcmd{\todo}[1]{\textcolor{red}{#1}}
@@ -187,4 +293,3 @@
         \newrobustcmd{\note}[2][]{}
         \excludecomment{commentbox}
 }
-

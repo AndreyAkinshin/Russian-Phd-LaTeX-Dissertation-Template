@@ -37,11 +37,15 @@ LaTeX-шаблон для русской кандидатской диссерт
 * [presentation.tex](presentation.tex): главный файл презентации.
 * **[папка Presentation](Presentation/):** Структурированная система файлов с
 шаблоном презентации.
+  * **папка images:** Папка для размещения файлов изображений, относящихся
+  только к презентации.
+  * [setup.tex](Presentation/setup.tex): Файл упрощённой настройки оформления
+  презентации.
 * **[папка Documents](Documents/):** Полезные документы (ГОСТ-ы и постановления).
 * **[папка PSCyr](PSCyr/):** Пакет PSCyr + инструкции по установке.
 * **[папка BibTeX-Styles](BibTeX-Styles/):** Подборка русских стилевых пакетов
 BibTeX под UTF-8.
-* **папка common:** Общие файлы настроек и управления содержанием шаблонов.
+* **[папка common](common/):** Общие файлы настроек и управления содержанием шаблонов.
   * [characteristic.tex](common/characteristic.tex): Часть общей характеристики
   работы, повторяющаяся в диссертации и автореферате.
   * [concl.tex](common/concl.tex): Заключение. Является общим для автореферата
@@ -53,9 +57,33 @@ BibTeX под UTF-8.
   пакеты и стили оформления автореферата и диссертации.
   * [setup.tex](common/setup.tex): Общие настройки автореферата и диссертации.
   В нём же настраивается выбор реализации библиографии.
-* **папка biblio:** Файлы с библиографией.
+* **[папка biblio](biblio/):** Файлы с библиографией.
+  * [author.bib](biblio/author.bib): Публикации автора по теме диссертации.
+  * [registered.bib](biblio/registered.bib): Зарегистрированные патенты и программы для ЭВМ.
+  * [external.bib](biblio/external.bib): Работы которые ссылается автор.
 * **папка images:** Общие файлы изображений шаблонов.
+  * **папка cache:** Папка прекомпелированных рисунков.
+	* [placeholder.txt](images/cache/placeholder.txt): Файл, необходимый для прекомпиляции
+      рисунков в [overleaf](https://www.overleaf.com/).
 * **папка listings:** Общие файлы листингов.
+
+Дополнительные файлы:
+
+* [Makefile](Makefile), [compress.mk](compress.mk), [unix.mk](unix.mk),
+  [windows.mk](windows.mk), [examples.mk](examples.mk), [latexmkrc](latexmkrc): Файлы системы сборки шаблона.
+* [usercfg.mk](usercfg.mk): Пользовательские настройки системы сборки шаблона.
+* [indent.yaml](indent.yaml): Файл настройки форматирования исходного кода для
+  [latexindent](https://www.ctan.org/pkg/latexindent).
+* [.editorconfig](.editorconfig): Файл настройки текстовых редакторов, поддерживающих стандарт
+  [editorconfig](https://editorconfig.org/).
+* [Dockerfile](Dockerfile), [install-dockertex.sh](install-dockertex.sh): Файлы генерации
+  [Docker](https://www.docker.com/) образа для сборки шаблона.
+* [siunitx.cfg](siunitx.cfg): Определения величин SI для библиотеки
+  [siunitx](https://ctan.org/pkg/siunitx).
+* [synopsis_booklet.tex](synopsis_booklet.tex),
+ [presentation_booklet.tex](presentation_booklet.tex): Файлы генерации печатных версий
+ автореферата и презентации.
+* [tikz.tex](tikz.tex): Файл изолированной сборки векторной графики [tikz](https://www.ctan.org/pkg/pgf).
 
 ## Дополнительная полезная информация
 

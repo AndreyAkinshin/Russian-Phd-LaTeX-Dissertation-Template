@@ -129,6 +129,7 @@ sorting=none,% настройка сортировки списка литера
 %%% Подключение файлов bib %%%
 \addbibresource[label=bl-external]{biblio/external.bib}
 \addbibresource[label=bl-author]{biblio/author.bib}
+\addbibresource[label=bl-registered]{biblio/registered.bib}
 
 %http://tex.stackexchange.com/a/141831/79756
 %There is a way to automatically map the language field to the langid field. The following lines in the preamble should be enough to do that.
@@ -164,9 +165,6 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=media, fieldvalue=eresource]
             \step[fieldset=medium, null]
         }
-        \map{% использование media=text по умолчанию
-            \step[fieldset=media, fieldvalue=text]
-        }
         \map[overwrite]{% стираем значения всех полей issn
             \step[fieldset=issn, null]
         }
@@ -185,8 +183,8 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldset=keywords,null]
         }
         % реализация foreach различается для biblatex v3.12 и v3.13.
-        % Для версии v3.13 эта конструкция заменяет последующие 5 структур map
-        % \map[overwrite,foreach={authorvak,authorscopus,authorwos,authorconf,authorother}]{ % записываем информацию о типе публикации в ключевые слова
+        % Для версии v3.13 эта конструкция заменяет последующие 7 структур map
+        % \map[overwrite,foreach={authorvak,authorscopus,authorwos,authorconf,authorother,authorparent,authorprogram}]{ % записываем информацию о типе публикации в ключевые слова
         %     \step[fieldsource=$MAPLOOP,final=true]
         %     \step[fieldset=keywords,fieldvalue={,biblio$MAPLOOP},append=true]
         % }
@@ -210,6 +208,14 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=authorother,final=true]
             \step[fieldset=keywords,fieldvalue={,biblioauthorother},append=true]
         }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorpatent,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorpatent},append=true]
+        }
+        \map[overwrite]{ % записываем информацию о типе публикации в ключевые слова
+            \step[fieldsource=authorprogram,final=true]
+            \step[fieldset=keywords,fieldvalue={,biblioauthorprogram},append=true]
+        }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/external.bib}
             \step[fieldset=keywords, fieldvalue={,biblioexternal},append=true]
@@ -217,6 +223,10 @@ sorting=none,% настройка сортировки списка литера
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \perdatasource{biblio/author.bib}
             \step[fieldset=keywords, fieldvalue={,biblioauthor},append=true]
+        }
+        \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
+            \perdatasource{biblio/registered.bib}
+            \step[fieldset=keywords, fieldvalue={,biblioregistered},append=true]
         }
         \map[overwrite]{ % добавляем ключевые слова, чтобы различать источники
             \step[fieldset=keywords, fieldvalue={,bibliofull},append=true]
@@ -229,15 +239,47 @@ sorting=none,% настройка сортировки списка литера
             \step[fieldsource=howpublished, fieldset=organization, origfieldval]
             \step[fieldset=howpublished, null]
         }
-        % Так отключаем [Электронный ресурс]
-%        \map[overwrite]{% стираем значения всех полей media=eresource
-%            \step[fieldsource=media,
-%            match={eresource},
-%            final]
-%            \step[fieldset=media, null]
-%        }
     }
 }
+
+\ifnumequal{\value{mediadisplay}}{1}{
+    \DeclareSourcemap{
+        \maps{%
+            \map{% использование media=text по умолчанию
+                \step[fieldset=media, fieldvalue=text]
+            }
+        }
+    }
+}{}
+\ifnumequal{\value{mediadisplay}}{2}{
+    \DeclareSourcemap{
+        \maps{%
+            \map[overwrite]{% удаление всех записей media
+                \step[fieldset=media, null]
+            }
+        }
+    }
+}{}
+\ifnumequal{\value{mediadisplay}}{3}{
+    \DeclareSourcemap{
+        \maps{
+            \map[overwrite]{% стираем значения всех полей media=text
+                \step[fieldsource=media,match={text},final]
+                \step[fieldset=media, null]
+            }
+        }
+    }
+}{}
+\ifnumequal{\value{mediadisplay}}{4}{
+    \DeclareSourcemap{
+        \maps{
+            \map[overwrite]{% стираем значения всех полей media=eresource
+                \step[fieldsource=media,match={eresource},final]
+                \step[fieldset=media, null]
+            }
+        }
+    }
+}{}
 
 \ifsynopsis
 \else
@@ -251,12 +293,54 @@ sorting=none,% настройка сортировки списка литера
 }
 \fi
 
+\ifpresentation
+% удаляем лишние поля в списке литературы презентации
+% их названия можно узнать в файле presentation.bbl
+\DeclareSourcemap{
+    \maps{
+    \map[overwrite,foreach={%
+        % {{{ Список лишних полей в презентации
+        address,%
+        chapter,%
+        edition,%
+        editor,%
+        eid,%
+        howpublished,%
+        institution,%
+        key,%
+        month,%
+        note,%
+        number,%
+        organization,%
+        pages,%
+        publisher,%
+        school,%
+        series,%
+        type,%
+        media,%
+        url,%
+        doi,%
+        location,%
+        volume,%
+        % Список лишних полей в презентации }}}
+    }]{
+        \perdatasource{biblio/author.bib}
+        \step[fieldset=$MAPLOOP,null]
+    }
+    }
+}
+\fi
+
 \defbibfilter{vakscopuswos}{%
     keyword=biblioauthorvak or keyword=biblioauthorscopus or keyword=biblioauthorwos
 }
 
 \defbibfilter{scopuswos}{%
     keyword=biblioauthorscopus or keyword=biblioauthorwos
+}
+
+\defbibfilter{papersregistered}{%
+    keyword=biblioauthor or keyword=biblioregistered
 }
 
 %%% Убираем неразрывные пробелы перед двоеточием и точкой с запятой %%%
@@ -393,65 +477,83 @@ sorting=none,% настройка сортировки списка литера
 % http://tex.stackexchange.com/a/66851/79756
 %
 \makeatletter
-        \newtotcounter{citenum}
-        \defbibenvironment{counter}
-            {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}} % begin code: убирает весь выводимый текст
-            {} % end code
-            {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
+    \newtotcounter{citenum}
+    \defbibenvironment{counter}
+        {\setcounter{citenum}{0}\renewcommand{\blx@driver}[1]{}} % begin code: убирает весь выводимый текст
+        {} % end code
+        {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
 
-        \newtotcounter{citeauthorvak}
-        \defbibenvironment{countauthorvak}
-            {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
-            {}
-            {\stepcounter{citeauthorvak}}
+    \newtotcounter{citeauthorvak}
+    \defbibenvironment{countauthorvak}
+        {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorvak}}
 
-        \newtotcounter{citeauthorscopus}
-        \defbibenvironment{countauthorscopus}
-                {\setcounter{citeauthorscopus}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthorscopus}}
+    \newtotcounter{citeauthorscopus}
+    \defbibenvironment{countauthorscopus}
+        {\setcounter{citeauthorscopus}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorscopus}}
 
-        \newtotcounter{citeauthorwos}
-        \defbibenvironment{countauthorwos}
-                {\setcounter{citeauthorwos}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthorwos}}
+    \newtotcounter{citeauthorwos}
+    \defbibenvironment{countauthorwos}
+        {\setcounter{citeauthorwos}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorwos}}
 
-        \newtotcounter{citeauthorother}
-        \defbibenvironment{countauthorother}
-                {\setcounter{citeauthorother}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthorother}}
+    \newtotcounter{citeauthorother}
+    \defbibenvironment{countauthorother}
+        {\setcounter{citeauthorother}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorother}}
 
-        \newtotcounter{citeauthorconf}
-        \defbibenvironment{countauthorconf}
-                {\setcounter{citeauthorconf}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthorconf}}
+    \newtotcounter{citeauthorconf}
+    \defbibenvironment{countauthorconf}
+        {\setcounter{citeauthorconf}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorconf}}
 
-        \newtotcounter{citeauthor}
-        \defbibenvironment{countauthor}
-                {\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthor}}
+    \newtotcounter{citeauthor}
+    \defbibenvironment{countauthor}
+        {\setcounter{citeauthor}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthor}}
 
-        \newtotcounter{citeauthorvakscopuswos}
-        \defbibenvironment{countauthorvakscopuswos}
-                {\setcounter{citeauthorvakscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthorvakscopuswos}}
+    \newtotcounter{citeauthorvakscopuswos}
+    \defbibenvironment{countauthorvakscopuswos}
+        {\setcounter{citeauthorvakscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorvakscopuswos}}
 
-        \newtotcounter{citeauthorscopuswos}
-        \defbibenvironment{countauthorscopuswos}
-                {\setcounter{citeauthorscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeauthorscopuswos}}
+    \newtotcounter{citeauthorscopuswos}
+    \defbibenvironment{countauthorscopuswos}
+        {\setcounter{citeauthorscopuswos}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorscopuswos}}
 
-        \newtotcounter{citeexternal}
-        \defbibenvironment{countexternal}
-                {\setcounter{citeexternal}{0}\renewcommand{\blx@driver}[1]{}}
-                {}
-                {\stepcounter{citeexternal}}
+    \newtotcounter{citeregistered}
+    \defbibenvironment{countregistered}
+        {\setcounter{citeregistered}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeregistered}}
+
+    \newtotcounter{citeauthorpatent}
+    \defbibenvironment{countauthorpatent}
+        {\setcounter{citeauthorpatent}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorpatent}}
+
+    \newtotcounter{citeauthorprogram}
+    \defbibenvironment{countauthorprogram}
+        {\setcounter{citeauthorprogram}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeauthorprogram}}
+
+    \newtotcounter{citeexternal}
+    \defbibenvironment{countexternal}
+        {\setcounter{citeexternal}{0}\renewcommand{\blx@driver}[1]{}}
+        {}
+        {\stepcounter{citeexternal}}
 \makeatother
 
 \defbibheading{nobibheading}{} % пустой заголовок, для подсчёта публикаций с помощью невидимой библиографии
@@ -461,35 +563,35 @@ sorting=none,% настройка сортировки списка литера
 %%%Сортировка списка литературы Русский-Английский (предварительно удалить dissertation.bbl) (начало)
 %%%Источник: https://github.com/odomanov/biblatex-gost/wiki/%D0%9A%D0%B0%D0%BA-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C,-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%BE%D1%8F%D0%B7%D1%8B%D1%87%D0%BD%D1%8B%D0%B5-%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8-%D0%BF%D1%80%D0%B5%D0%B4%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8-%D0%BE%D1%81%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC
 %\DeclareSourcemap{
-%	\maps[datatype=bibtex]{
-%		\map{
-%			\step[fieldset=langid, fieldvalue={tempruorder}]
-%		}
-%		\map[overwrite]{
-%			\step[fieldsource=langid, match=russian, final]
-%			\step[fieldsource=presort, 
-%			match=\regexp{(.+)}, 
-%			replace=\regexp{aa$1}]
-%		}
-%		\map{
-%			\step[fieldsource=langid, match=russian, final]
-%			\step[fieldset=presort, fieldvalue={az}]
-%		}
-%		\map[overwrite]{
-%			\step[fieldsource=langid, notmatch=russian, final]
-%			\step[fieldsource=presort, 
-%			match=\regexp{(.+)}, 
-%			replace=\regexp{za$1}]
-%		}
-%		\map{
-%			\step[fieldsource=langid, notmatch=russian, final]
-%			\step[fieldset=presort, fieldvalue={zz}]
-%		}
-%		\map{
-%			\step[fieldsource=langid, match={tempruorder}, final]
-%			\step[fieldset=langid, null]
-%		}
-%	}
+%    \maps[datatype=bibtex]{
+%        \map{
+%            \step[fieldset=langid, fieldvalue={tempruorder}]
+%        }
+%        \map[overwrite]{
+%            \step[fieldsource=langid, match=russian, final]
+%            \step[fieldsource=presort,
+%            match=\regexp{(.+)},
+%            replace=\regexp{aa$1}]
+%        }
+%        \map{
+%            \step[fieldsource=langid, match=russian, final]
+%            \step[fieldset=presort, fieldvalue={az}]
+%        }
+%        \map[overwrite]{
+%            \step[fieldsource=langid, notmatch=russian, final]
+%            \step[fieldsource=presort,
+%            match=\regexp{(.+)},
+%            replace=\regexp{za$1}]
+%        }
+%        \map{
+%            \step[fieldsource=langid, notmatch=russian, final]
+%            \step[fieldset=presort, fieldvalue={zz}]
+%        }
+%        \map{
+%            \step[fieldsource=langid, match={tempruorder}, final]
+%            \step[fieldset=langid, null]
+%        }
+%    }
 %}
 %Сортировка списка литературы (конец)
 
@@ -501,10 +603,10 @@ sorting=none,% настройка сортировки списка литера
     }{}
 }
 \newcommand*{\insertbiblioauthor}{
-    \printbibliography[heading=pubgroup, section=0, keyword=biblioauthor, title=\bibtitleauthor]
+    \printbibliography[heading=pubgroup, section=0, filter=papersregistered, title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthorimportant}{
-    \printbibliography[heading=pubgroup, section=2, keyword=biblioauthor, title=\bibtitleauthorimportant]
+    \printbibliography[heading=pubgroup, section=2, filter=papersregistered, title=\bibtitleauthorimportant]
 }
 
 % Вариант вывода печатных работ автора, с группировкой по типу источника.
@@ -518,6 +620,8 @@ sorting=none,% настройка сортировки списка литера
     \fi
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorwos,    title=\bibtitleauthorwos,resetnumbers=false]% Работы автора, индексируемые Web of Science
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorscopus, title=\bibtitleauthorscopus,resetnumbers=false]% Работы автора, индексируемые Scopus
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorpatent, title=\bibtitleauthorpatent,resetnumbers=false]% Патенты
+    \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorprogram,title=\bibtitleauthorprogram,resetnumbers=false]% Программы для ЭВМ
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorconf,   title=\bibtitleauthorconf,resetnumbers=false]% Тезисы конференций
     \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorother,  title=\bibtitleauthorother,resetnumbers=false]% Прочие работы автора
 }
