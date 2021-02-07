@@ -15,8 +15,8 @@
 %какому источнику относится уточнение о страницах, а bibtex об этой проблеме
 %даже не предупреждает
 \cite{Lermontov, Management, Borozda, Marketing, Constitution, FamilyCode,
-Gost.7.0.53, Razumovski, Lagkueva, Pokrovski, Methodology, Berestova,
-Kriger}%
+    Gost.7.0.53, Razumovski, Lagkueva, Pokrovski, Methodology, Berestova,
+    Kriger}%
 \ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
     \cite{Sirotko, Lukina, Encyclopedia, Nasirova}%
 }{% Примеры для biblatex через движок biber
@@ -24,13 +24,13 @@ Kriger}%
 }%
 .
 И~ещё немного ссылок:~\cite{Article,Book,Booklet,Conference,Inbook,Incollection,Manual,Mastersthesis,
-Misc,Phdthesis,Proceedings,Techreport,Unpublished}
+    Misc,Phdthesis,Proceedings,Techreport,Unpublished}
 % Следует обратить внимание, что пробел после запятой внутри \cite{}
 % обрабатывается ожидаемо, а пробел перед запятой, может вызывать проблемы при
 % обработке ссылок.
 \cite{medvedev2006jelektronnye, CEAT:CEAT581, doi:10.1080/01932691.2010.513279,
-Gosele1999161,Li2007StressAnalysis, Shoji199895, test:eisner-sample,
-test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
+    Gosele1999161,Li2007StressAnalysis, Shoji199895, test:eisner-sample,
+    test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}%
 \ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
 }{% Примеры для biblatex через движок biber
     \cite{patent2h, patent3h, patent2}%
@@ -50,7 +50,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 работает только в \texttt{biblatex} реализации библиографии.
 }%
 
-Ссылки на собственные работы:~\cite{vakbib1, confbib1}
+Ссылки на собственные работы:~\cite{vakbib1, confbib1}.
 
 Сошлёмся на приложения: Приложение~\cref{app:A}, Приложение~\cref{app:B2}.
 
@@ -79,34 +79,34 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 А вот так выглядит ненумерованная отдельностоящая формула c подстрочными
 и надстрочными индексами:
 \[
-(x_1+x_2)^2 = x_1^2 + 2 x_1 x_2 + x_2^2
+    (x_1+x_2)^2 = x_1^2 + 2 x_1 x_2 + x_2^2
 \]
 
 Формула с неопределенным интегралом:
 \[
-\int f(\alpha+x)=\sum\beta
+    \int f(\alpha+x)=\sum\beta
 \]
 
 При использовании дробей формулы могут получаться очень высокие:
 \[
-  \frac{1}{\sqrt{2}+
-  \displaystyle\frac{1}{\sqrt{2}+
-  \displaystyle\frac{1}{\sqrt{2}+\cdots}}}
+    \frac{1}{\sqrt{2}+
+        \displaystyle\frac{1}{\sqrt{2}+
+            \displaystyle\frac{1}{\sqrt{2}+\cdots}}}
 \]
 
 В формулах можно использовать греческие буквы:
 %Все \original... команды заранее, ради этого примера, определены в Dissertation\userstyles.tex
 \[
-\alpha\beta\gamma\delta\originalepsilon\epsilon\zeta\eta\theta%
-\vartheta\iota\kappa\varkappa\lambda\mu\nu\xi\pi\varpi\rho\varrho%
-\sigma\varsigma\tau\upsilon\originalphi\phi\chi\psi\omega\Gamma\Delta%
-\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega
+    \alpha\beta\gamma\delta\originalepsilon\epsilon\zeta\eta\theta%
+    \vartheta\iota\kappa\varkappa\lambda\mu\nu\xi\pi\varpi\rho\varrho%
+    \sigma\varsigma\tau\upsilon\originalphi\phi\chi\psi\omega\Gamma\Delta%
+    \Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega
 \]
 \[%https://texfaq.org/FAQ-boldgreek
-\boldsymbol{\alpha\beta\gamma\delta\originalepsilon\epsilon\zeta\eta%
-\theta\vartheta\iota\kappa\varkappa\lambda\mu\nu\xi\pi\varpi\rho%
-\varrho\sigma\varsigma\tau\upsilon\originalphi\phi\chi\psi\omega\Gamma%
-\Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega}
+    \boldsymbol{\alpha\beta\gamma\delta\originalepsilon\epsilon\zeta\eta%
+        \theta\vartheta\iota\kappa\varkappa\lambda\mu\nu\xi\pi\varpi\rho%
+        \varrho\sigma\varsigma\tau\upsilon\originalphi\phi\chi\psi\omega\Gamma%
+        \Delta\Theta\Lambda\Xi\Pi\Sigma\Upsilon\Phi\Psi\Omega}
 \]
 
 Для добавления формул можно использовать пары \verb+$+\dots\verb+$+ и \verb+$$+\dots\verb+$$+,
@@ -118,19 +118,19 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 Вот так можно написать две формулы, не нумеруя их, чтобы знаки <<равно>> были
 строго друг под другом:
 \begin{align}
-  f_W & =  \min \left( 1, \max \left( 0, \frac{W_{soil} / W_{max}}{W_{crit}} \right)  \right), \nonumber \\
-  f_T & =  \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
+    f_W & =  \min \left( 1, \max \left( 0, \frac{W_{soil} / W_{max}}{W_{crit}} \right)  \right), \nonumber \\
+    f_T & =  \min \left( 1, \max \left( 0, \frac{T_s / T_{melt}}{T_{crit}} \right)  \right), \nonumber
 \end{align}
 
 Выровнять систему ещё и по переменной \( x \) можно, используя окружение
 \verb|alignedat| из пакета \verb|amsmath|. Вот так:
 \[
-    |x| = \left\{
-    \begin{alignedat}{2}
-        &&x, \quad &\text{eсли } x\geqslant 0 \\
-        &-&x, \quad & \text{eсли } x<0
-    \end{alignedat}
-    \right.
+|x| = \left\{
+\begin{alignedat}{2}
+    &&x, \quad &\text{eсли } x\geqslant 0 \\
+    &-&x, \quad & \text{eсли } x<0
+\end{alignedat}
+\right.
 \]
 Здесь первый амперсанд (в исходном \LaTeX\ описании формулы) означает
 выравнивание по~левому краю, второй "--- по~\( x \), а~третий "--- по~слову
@@ -140,8 +140,8 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \[
     |x|=
     \begin{cases}
-    \phantom{-}x, \text{если } x \geqslant 0 \\
-    -x, \text{если } x<0
+        \phantom{-}x, \text{если } x \geqslant 0 \\
+        -x, \text{если } x<0
     \end{cases}
 \]
 
@@ -149,30 +149,30 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 выравнивание номера формулы по центру формулы. Например, выравнивание
 компонент вектора:
 \begin{equation}
-\label{eq:2p3}
-\begin{alignedat}{2}
-{\mathbf{N}}_{o1n}^{(j)} = \,{\sin} \phi\,n\!\left(n+1\right)
-         {\sin}\theta\,
-         \pi_n\!\left({\cos} \theta\right)
-         \frac{
-               z_n^{(j)}\!\left( \rho \right)
-              }{\rho}\,
-           &{\boldsymbol{\hat{\mathrm e}}}_{r}\,+   \\
-+\,
-{\sin} \phi\,
-         \tau_n\!\left({\cos} \theta\right)
-         \frac{
-            \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
-              }{\rho}\,
-            &{\boldsymbol{\hat{\mathrm e}}}_{\theta}\,+   \\
-+\,
-{\cos} \phi\,
-         \pi_n\!\left({\cos} \theta\right)
-         \frac{
-            \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
-              }{\rho}\,
-            &{\boldsymbol{\hat{\mathrm e}}}_{\phi}\:.
-\end{alignedat}
+    \label{eq:2p3}
+    \begin{alignedat}{2}
+        {\mathbf{N}}_{o1n}^{(j)} = \,{\sin} \phi\,n\!\left(n+1\right)
+        {\sin}\theta\,
+        \pi_n\!\left({\cos} \theta\right)
+        \frac{
+        z_n^{(j)}\!\left( \rho \right)
+        }{\rho}\,
+        &{\boldsymbol{\hat{\mathrm e}}}_{r}\,+   \\
+        +\,
+        {\sin} \phi\,
+        \tau_n\!\left({\cos} \theta\right)
+        \frac{
+        \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
+        }{\rho}\,
+        &{\boldsymbol{\hat{\mathrm e}}}_{\theta}\,+   \\
+        +\,
+        {\cos} \phi\,
+        \pi_n\!\left({\cos} \theta\right)
+        \frac{
+        \left[\rho z_n^{(j)}\!\left( \rho \right)\right]^{\prime}
+        }{\rho}\,
+        &{\boldsymbol{\hat{\mathrm e}}}_{\phi}\:.
+    \end{alignedat}
 \end{equation}
 
 Ещё об отступах. Иногда для лучшей <<читаемости>> формул полезно
@@ -181,58 +181,58 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 небольшой отступ \verb+\,+ между основными сомножителями, ниже
 результат применения всех вариантов отступа:
 \begin{align*}
-\backslash! &\quad f(x) = x^2\! +3x\! +2 \\
-  \mbox{по-умолчанию} &\quad f(x) = x^2+3x+2 \\
-\backslash, &\quad f(x) = x^2\, +3x\, +2 \\
-\backslash{:} &\quad f(x) = x^2\: +3x\: +2 \\
-\backslash; &\quad f(x) = x^2\; +3x\; +2 \\
-\backslash \mbox{space} &\quad f(x) = x^2\ +3x\ +2 \\
-\backslash \mbox{quad} &\quad f(x) = x^2\quad +3x\quad +2 \\
-\backslash \mbox{qquad} &\quad f(x) = x^2\qquad +3x\qquad +2
+    \backslash!             & \quad f(x) = x^2\! +3x\! +2         \\
+    \mbox{по-умолчанию}     & \quad f(x) = x^2+3x+2               \\
+    \backslash,             & \quad f(x) = x^2\, +3x\, +2         \\
+    \backslash{:}           & \quad f(x) = x^2\: +3x\: +2         \\
+    \backslash;             & \quad f(x) = x^2\; +3x\; +2         \\
+    \backslash \mbox{space} & \quad f(x) = x^2\ +3x\ +2           \\
+    \backslash \mbox{quad}  & \quad f(x) = x^2\quad +3x\quad +2   \\
+    \backslash \mbox{qquad} & \quad f(x) = x^2\qquad +3x\qquad +2
 \end{align*}
 
 Можно использовать разные математические алфавиты:
 \begin{align}
-\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
-\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
-\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber
+    \mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber  \\
+    \mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber \\
+    \mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ} \nonumber
 \end{align}
 
 Посмотрим на систему уравнений на примере аттрактора Лоренца:
 
 \[
 \left\{
-  \begin{array}{rl}
-    \dot x = & \sigma (y-x) \\
+\begin{array}{rl}
+    \dot x = & \sigma (y-x)  \\
     \dot y = & x (r - z) - y \\
     \dot z = & xy - bz
-  \end{array}
+\end{array}
 \right.
 \]
 
 А для вёрстки матриц удобно использовать многоточия:
 \[
-\left(
-  \begin{array}{ccc}
-    a_{11} & \ldots & a_{1n} \\
-    \vdots & \ddots & \vdots \\
-    a_{n1} & \ldots & a_{nn} \\
-  \end{array}
-\right)
+    \left(
+        \begin{array}{ccc}
+            a_{11} & \ldots & a_{1n} \\
+            \vdots & \ddots & \vdots \\
+            a_{n1} & \ldots & a_{nn} \\
+        \end{array}
+    \right)
 \]
 
 \subsection{Нумерованные формулы}\label{subsec:ch1/sec3/sub3}
 
 А вот так пишется нумерованная формула:
 \begin{equation}
-  \label{eq:equation1}
-  e = \lim_{n \to \infty} \left( 1+\frac{1}{n} \right) ^n
+    \label{eq:equation1}
+    e = \lim_{n \to \infty} \left( 1+\frac{1}{n} \right) ^n
 \end{equation}
 
 Нумерованных формул может быть несколько:
 \begin{equation}
-  \label{eq:equation2}
-  \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
+    \label{eq:equation2}
+    \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{k^2} = \frac{\pi^2}{6}
 \end{equation}
 
 Впоследствии на формулы~\cref{eq:equation1, eq:equation2} можно ссылаться.
@@ -241,7 +241,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 используя окружение \verb|multlined| (пакет \verb|mathtools|) вместо
 \verb|multline| внутри окружения \verb|equation|. Вот так:
 \begin{equation} % \tag{S} % tag - вписывает свой текст
-  \label{eq:equation3}
+    \label{eq:equation3}
     \begin{multlined}
         1+ 2+3+4+5+6+7+\dots + \\
         + 50+51+52+53+54+55+56+57 + \dots + \\
@@ -262,8 +262,8 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \begin{subequations}
     \label{eq:subeq_2}
     \begin{align}
-        y &= x^3 + x^2 + x + 1 \label{eq:subeq_2-1} \\
-        y &= x^2
+        y & = x^3 + x^2 + x + 1 \label{eq:subeq_2-1} \\
+        y & = x^2
     \end{align}
 \end{subequations}
 
@@ -304,7 +304,7 @@ test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}
 \SIlist{1;2;3;4}{\tesla};
 \SIrange{50}{100}{\volt}.
 Список единиц измерений приведён в таблицах~\cref{tab:unit:base,
-tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
+    tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 Приставки единиц приведены в~таблице~\cref{tab:unit:prefix}.
 
 С дополнительными опциями форматирования можно ознакомиться в~описании пакета \texttt{siunitx};
@@ -316,7 +316,7 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
     \caption{Основные величины СИ}\label{tab:unit:base}
     \begin{tabular}{llc}
         \toprule
-        Название  & Команда                & Символ         \\
+        Название  & Команда                 & Символ         \\
         \midrule
         Ампер     & \verb|\ampere| & \si{\ampere}   \\
         Кандела   & \verb|\candela| & \si{\candela}  \\
@@ -330,62 +330,62 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 \end{table}
 
 \begin{table}
-  \small
-  \centering
-  \begin{threeparttable}% выравнивание подписи по границам таблицы
-    \caption{Производные единицы СИ}\label{tab:unit:derived}
-    \begin{tabular}{llc|llc}
-        \toprule
-        Название       & Команда                 & Символ              & Название & Команда & Символ \\
-        \midrule
-        Беккерель      & \verb|\becquerel|  & \si{\becquerel}     &
-        Ньютон         & \verb|\newton|  & \si{\newton}                                      \\
-        Градус Цельсия & \verb|\degreeCelsius| & \si{\degreeCelsius} &
-        Ом             & \verb|\ohm| & \si{\ohm}                                         \\
-        Кулон          & \verb|\coulomb| & \si{\coulomb}       &
-        Паскаль        & \verb|\pascal| & \si{\pascal}                                      \\
-        Фарад          & \verb|\farad| & \si{\farad}         &
-        Радиан         & \verb|\radian| & \si{\radian}                                      \\
-        Грей           & \verb|\gray| & \si{\gray}          &
-        Сименс         & \verb|\siemens| & \si{\siemens}                                     \\
-        Герц           & \verb|\hertz| & \si{\hertz}         &
-        Зиверт         & \verb|\sievert| & \si{\sievert}                                     \\
-        Генри          & \verb|\henry| & \si{\henry}         &
-        Стерадиан      & \verb|\steradian| & \si{\steradian}                                   \\
-        Джоуль         & \verb|\joule| & \si{\joule}         &
-        Тесла          & \verb|\tesla| & \si{\tesla}                                       \\
-        Катал          & \verb|\katal| & \si{\katal}         &
-        Вольт          & \verb|\volt| & \si{\volt}                                        \\
-        Люмен          & \verb|\lumen| & \si{\lumen}         &
-        Ватт           & \verb|\watt| & \si{\watt}                                        \\
-        Люкс           & \verb|\lux| & \si{\lux}           &
-        Вебер          & \verb|\weber| & \si{\weber}                                       \\
-        \bottomrule
-    \end{tabular}
-  \end{threeparttable}
+    \small
+    \centering
+    \begin{threeparttable}% выравнивание подписи по границам таблицы
+        \caption{Производные единицы СИ}\label{tab:unit:derived}
+        \begin{tabular}{llc|llc}
+            \toprule
+            Название       & Команда                 & Символ              & Название & Команда & Символ \\
+            \midrule
+            Беккерель      & \verb|\becquerel| & \si{\becquerel}     &
+            Ньютон         & \verb|\newton| & \si{\newton}                                      \\
+            Градус Цельсия & \verb|\degreeCelsius| & \si{\degreeCelsius} &
+            Ом             & \verb|\ohm| & \si{\ohm}                                         \\
+            Кулон          & \verb|\coulomb| & \si{\coulomb}       &
+            Паскаль        & \verb|\pascal| & \si{\pascal}                                      \\
+            Фарад          & \verb|\farad| & \si{\farad}         &
+            Радиан         & \verb|\radian| & \si{\radian}                                      \\
+            Грей           & \verb|\gray| & \si{\gray}          &
+            Сименс         & \verb|\siemens| & \si{\siemens}                                     \\
+            Герц           & \verb|\hertz| & \si{\hertz}         &
+            Зиверт         & \verb|\sievert| & \si{\sievert}                                     \\
+            Генри          & \verb|\henry| & \si{\henry}         &
+            Стерадиан      & \verb|\steradian| & \si{\steradian}                                   \\
+            Джоуль         & \verb|\joule| & \si{\joule}         &
+            Тесла          & \verb|\tesla| & \si{\tesla}                                       \\
+            Катал          & \verb|\katal| & \si{\katal}         &
+            Вольт          & \verb|\volt| & \si{\volt}                                        \\
+            Люмен          & \verb|\lumen| & \si{\lumen}         &
+            Ватт           & \verb|\watt| & \si{\watt}                                        \\
+            Люкс           & \verb|\lux| & \si{\lux}           &
+            Вебер          & \verb|\weber| & \si{\weber}                                       \\
+            \bottomrule
+        \end{tabular}
+    \end{threeparttable}
 \end{table}
 
 \begin{table}
-  \centering
-  \begin{threeparttable}% выравнивание подписи по границам таблицы
-    \caption{Внесистемные единицы}\label{tab:unit:accepted}
+    \centering
+    \begin{threeparttable}% выравнивание подписи по границам таблицы
+        \caption{Внесистемные единицы}\label{tab:unit:accepted}
 
-    \begin{tabular}{llc}
-        \toprule
-        Название        & Команда                 & Символ          \\
-        \midrule
-        День            & \verb|\day| & \si{\day}       \\
-        Градус          & \verb|\degree| & \si{\degree}    \\
-        Гектар          & \verb|\hectare| & \si{\hectare}   \\
-        Час             & \verb|\hour| & \si{\hour}      \\
-        Литр            & \verb|\litre| & \si{\litre}     \\
-        Угловая минута  & \verb|\arcminute| & \si{\arcminute} \\
-        Угловая секунда & \verb|\arcsecond| & \si{\arcsecond} \\ %
-        Минута          & \verb|\minute| & \si{\minute}    \\
-        Тонна           & \verb|\tonne| & \si{\tonne}     \\
-        \bottomrule
-    \end{tabular}
-  \end{threeparttable}
+        \begin{tabular}{llc}
+            \toprule
+            Название        & Команда                 & Символ          \\
+            \midrule
+            День            & \verb|\day| & \si{\day}       \\
+            Градус          & \verb|\degree| & \si{\degree}    \\
+            Гектар          & \verb|\hectare| & \si{\hectare}   \\
+            Час             & \verb|\hour| & \si{\hour}      \\
+            Литр            & \verb|\litre| & \si{\litre}     \\
+            Угловая минута  & \verb|\arcminute| & \si{\arcminute} \\
+            Угловая секунда & \verb|\arcsecond| & \si{\arcsecond} \\ %
+            Минута          & \verb|\minute| & \si{\minute}    \\
+            Тонна           & \verb|\tonne| & \si{\tonne}     \\
+            \bottomrule
+        \end{tabular}
+    \end{threeparttable}
 \end{table}
 
 \begin{table}
@@ -411,67 +411,67 @@ tab:unit:derived,tab:unit:accepted,tab:unit:physical,tab:unit:other}.
 \end{table}
 
 \begin{table}
-  \centering
-  \begin{threeparttable}% выравнивание подписи по границам таблицы
-    \caption{Другие внесистемные единицы}\label{tab:unit:other}
-    \begin{tabular}{llc}
-        \toprule
-        Название                  & Команда                 & Символ             \\
-        \midrule
-        Ангстрем                  & \verb|\angstrom| & \si{\angstrom}     \\
-        Бар                       & \verb|\bar| & \si{\bar}          \\
-        Барн                      & \verb|\barn| & \si{\barn}         \\
-        Бел                       & \verb|\bel| & \si{\bel}          \\
-        Децибел                   & \verb|\decibel| & \si{\decibel}      \\
-        Узел                      & \verb|\knot| & \si{\knot}         \\
-        Миллиметр ртутного столба & \verb|\mmHg| & \si{\mmHg}         \\
-        Морская миля              & \verb|\nauticalmile| & \si{\nauticalmile} \\
-        Непер                     & \verb|\neper| & \si{\neper}        \\
-        \bottomrule
-    \end{tabular}
-  \end{threeparttable}
+    \centering
+    \begin{threeparttable}% выравнивание подписи по границам таблицы
+        \caption{Другие внесистемные единицы}\label{tab:unit:other}
+        \begin{tabular}{llc}
+            \toprule
+            Название                  & Команда                 & Символ             \\
+            \midrule
+            Ангстрем                  & \verb|\angstrom| & \si{\angstrom}     \\
+            Бар                       & \verb|\bar| & \si{\bar}          \\
+            Барн                      & \verb|\barn| & \si{\barn}         \\
+            Бел                       & \verb|\bel| & \si{\bel}          \\
+            Децибел                   & \verb|\decibel| & \si{\decibel}      \\
+            Узел                      & \verb|\knot| & \si{\knot}         \\
+            Миллиметр ртутного столба & \verb|\mmHg| & \si{\mmHg}         \\
+            Морская миля              & \verb|\nauticalmile| & \si{\nauticalmile} \\
+            Непер                     & \verb|\neper| & \si{\neper}        \\
+            \bottomrule
+        \end{tabular}
+    \end{threeparttable}
 \end{table}
 
 \begin{table}
-  \small
-  \centering
-  \begin{threeparttable}% выравнивание подписи по границам таблицы
-    \caption{Приставки СИ}\label{tab:unit:prefix}
-    \begin{tabular}{llcc|llcc}
-        \toprule
-        Приставка & Команда                 & Символ      & Степень &
-        Приставка & Команда                 & Символ      & Степень   \\
-        \midrule
-        Иокто     & \verb|\yocto| & \si{\yocto} & -24     &
-        Дека      & \verb|\deca| & \si{\deca}  & 1         \\
-        Зепто     & \verb|\zepto| & \si{\zepto} & -21     &
-        Гекто     & \verb|\hecto| & \si{\hecto} & 2         \\
-        Атто      & \verb|\atto| & \si{\atto}  & -18     &
-        Кило      & \verb|\kilo| & \si{\kilo}  & 3         \\
-        Фемто     & \verb|\femto| & \si{\femto} & -15     &
-        Мега      & \verb|\mega| & \si{\mega}  & 6         \\
-        Пико      & \verb|\pico| & \si{\pico}  & -12     &
-        Гига      & \verb|\giga| & \si{\giga}  & 9         \\
-        Нано      & \verb|\nano| & \si{\nano}  & -9      &
-        Терра     & \verb|\tera| & \si{\tera}  & 12        \\
-        Микро     & \verb|\micro| & \si{\micro} & -6      &
-        Пета      & \verb|\peta| & \si{\peta}  & 15        \\
-        Милли     & \verb|\milli| & \si{\milli} & -3      &
-        Екса      & \verb|\exa| & \si{\exa}   & 18        \\
-        Санти     & \verb|\centi| & \si{\centi} & -2      &
-        Зетта     & \verb|\zetta| & \si{\zetta} & 21        \\
-        Деци      & \verb|\deci| & \si{\deci}  & -1      &
-        Иотта     & \verb|\yotta| & \si{\yotta} & 24        \\
-        \bottomrule
-    \end{tabular}
-  \end{threeparttable}
+    \small
+    \centering
+    \begin{threeparttable}% выравнивание подписи по границам таблицы
+        \caption{Приставки СИ}\label{tab:unit:prefix}
+        \begin{tabular}{llcc|llcc}
+            \toprule
+            Приставка & Команда                  & Символ      & Степень &
+            Приставка & Команда                  & Символ      & Степень   \\
+            \midrule
+            Иокто     & \verb|\yocto|  & \si{\yocto} & -24     &
+            Дека      & \verb|\deca|  & \si{\deca}  & 1         \\
+            Зепто     & \verb|\zepto|  & \si{\zepto} & -21     &
+            Гекто     & \verb|\hecto|  & \si{\hecto} & 2         \\
+            Атто      & \verb|\atto|  & \si{\atto}  & -18     &
+            Кило      & \verb|\kilo|  & \si{\kilo}  & 3         \\
+            Фемто     & \verb|\femto|  & \si{\femto} & -15     &
+            Мега      & \verb|\mega|  & \si{\mega}  & 6         \\
+            Пико      & \verb|\pico|  & \si{\pico}  & -12     &
+            Гига      & \verb|\giga|  & \si{\giga}  & 9         \\
+            Нано      & \verb|\nano|  & \si{\nano}  & -9      &
+            Терра     & \verb|\tera|  & \si{\tera}  & 12        \\
+            Микро     & \verb|\micro|  & \si{\micro} & -6      &
+            Пета      & \verb|\peta|  & \si{\peta}  & 15        \\
+            Милли     & \verb|\milli|  & \si{\milli} & -3      &
+            Екса      & \verb|\exa|  & \si{\exa}   & 18        \\
+            Санти     & \verb|\centi|  & \si{\centi} & -2      &
+            Зетта     & \verb|\zetta|  & \si{\zetta} & 21        \\
+            Деци      & \verb|\deci| & \si{\deci}  & -1      &
+            Иотта     & \verb|\yotta| & \si{\yotta} & 24        \\
+            \bottomrule
+        \end{tabular}
+    \end{threeparttable}
 \end{table}
 
 \subsection{Заголовки с формулами: \texorpdfstring{\(a^2 + b^2 = c^2\)}{%
-a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
-\texorpdfstring{\(\left\vert\textrm{{Im}}\Sigma\left(
-\protect\varepsilon\right)\right\vert\approx const\)}{|ImΣ (ε)| ≈ const},
-\texorpdfstring{\(\sigma_{xx}^{(1)}\)}{σ\_\{xx\}\textasciicircum\{(1)\}}
+        a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
+    \texorpdfstring{\(\left\vert\textrm{{Im}}\Sigma\left(
+            \protect\varepsilon\right)\right\vert\approx const\)}{|ImΣ (ε)| ≈ const},
+    \texorpdfstring{\(\sigma_{xx}^{(1)}\)}{σ\_\{xx\}\textasciicircum\{(1)\}}
 }\label{subsec:with_math}
 
 Пакет \texttt{hyperref} берёт текст для закладок в pdf-файле из~аргументов
@@ -479,7 +479,7 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 а~также изменения цвета текста или шрифта, которые не отображаются в~закладках.
 Чтобы использование формул в заголовках не вызывало в~логе компиляции появление
 предупреждений типа <<\texttt{Token not allowed in~a~PDF string
-(Unicode):(hyperref) removing...}>>, следует использовать конструкцию
+    (Unicode):(hyperref) removing...}>>, следует использовать конструкцию
 \verb|\texorpdfstring{}{}|, где в~первых фигурных скобках указывается
 формула, а~во~вторых "--- запись формулы для закладок.
 
@@ -495,23 +495,23 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 Команда \verb+\note+ позволяет выбрать цвет текста.
 \note{Чёрный, } \note[red]{красный, } \note[green]{зелёный, }
 \note[blue]{синий.} \note[orange]{Обратите внимание на ширину и расстановку
-формирующихся пробелов, в~результате приведённой записи (зависит также
-от~применяемого компилятора).}
+    формирующихся пробелов, в~результате приведённой записи (зависит также
+    от~применяемого компилятора).}
 
 Окружение \verb+commentbox+ также позволяет выбрать цвет.
 
 \begin{commentbox}[red]
-        Красный текст.
+    Красный текст.
 
-        Несколько параграфов красного текста.
+    Несколько параграфов красного текста.
 \end{commentbox}
 
 \begin{commentbox}[blue]
-        Синяя формула.
+    Синяя формула.
 
-        \begin{equation}
-                \alpha + \beta = \gamma
-        \end{equation}
+    \begin{equation}
+        \alpha + \beta = \gamma
+    \end{equation}
 \end{commentbox}
 
 \verb+commentbox+ позволяет закомментировать участок кода в~режиме чистовика.
@@ -519,7 +519,7 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 \verb+comment+.
 
 \begin{comment}
-        Этот текст всегда скрыт.
+Этот текст всегда скрыт.
 \end{comment}
 
 \section{Работа со списком сокращений и~условных обозначений}\label{sec:acronyms}
@@ -566,10 +566,10 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 
 \nomenclature{%
     \( \begin{rcases}
-        a_n\\
+        a_n \\
         b_n
     \end{rcases} \)%
-    }{коэффициенты разложения Ми в дальнем поле соответствующие электрическим и
+}{коэффициенты разложения Ми в дальнем поле соответствующие электрическим и
     магнитным мультиполям}
 \nomenclature[a\( e \)]{\( {\boldsymbol{\hat{\mathrm e}}} \)}{единичный вектор}
 \nomenclature{\( E_0 \)}{амплитуда падающего поля}
@@ -577,10 +577,10 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 \nomenclature{\( k \)}{волновой вектор падающей волны}
 \nomenclature{%
     \( \begin{rcases}
-        a_n\\
+        a_n \\
         b_n
     \end{rcases} \)%
-    }{и снова коэффициенты разложения Ми в дальнем поле соответствующие
+}{и снова коэффициенты разложения Ми в дальнем поле соответствующие
     электрическим и магнитным мультиполям. Добавлено много текста, так что
     описание группы условных обозначений значительно превысило высоту этой
     группы...}
@@ -590,10 +590,10 @@ a\texttwosuperior\ + b\texttwosuperior\ = c\texttwosuperior},
 \nomenclature{\( n \)}{порядок мультиполя}
 \nomenclature{%
     \( \begin{rcases}
-        {\mathbf{N}}_{e1n}^{(j)}&{\mathbf{N}}_{o1n}^{(j)}\\
-        {\mathbf{M}_{o1n}^{(j)}}&{\mathbf{M}_{e1n}^{(j)}}
+        {\mathbf{N}}_{e1n}^{(j)} & {\mathbf{N}}_{o1n}^{(j)} \\
+        {\mathbf{M}_{o1n}^{(j)}} & {\mathbf{M}_{e1n}^{(j)}}
     \end{rcases} \)%
-    }{сферические векторные гармоники}
+}{сферические векторные гармоники}
 \nomenclature{\( \mu \)}{магнитная проницаемость в вакууме}
 \nomenclature{\( r, \theta, \phi \)}{полярные координаты}
 \nomenclature{\( \omega \)}{частота падающей волны}

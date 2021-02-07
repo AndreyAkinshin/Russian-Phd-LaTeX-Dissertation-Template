@@ -53,8 +53,8 @@
 
 Формулы в строку без номера добавляются так:
 \[
-  \lambda_{T_s} = K_x\frac{d{x}}{d{T_s}}, \qquad
-  \lambda_{q_s} = K_x\frac{d{x}}{d{q_s}},
+    \lambda_{T_s} = K_x\frac{d{x}}{d{T_s}}, \qquad
+    \lambda_{q_s} = K_x\frac{d{x}}{d{q_s}},
 \]
 
 \underline{\textbf{Вторая глава}} посвящена исследованию
@@ -83,73 +83,73 @@
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=false}}{} % не рекомендуется применять пакет микротипографики к автоматически генерируемому списку литературы
 \urlstyle{rm}                               % ссылки URL обычным шрифтом
 \ifnumequal{\value{bibliosel}}{0}{% Встроенная реализация с загрузкой файла через движок bibtex8
-  \renewcommand{\bibname}{\large \bibtitleauthor}
-  \nocite{*}
-  \insertbiblioauthor           % Подключаем Bib-базы
-  %\insertbiblioexternal   % !!! bibtex не умеет работать с несколькими библиографиями !!!
+    \renewcommand{\bibname}{\large \bibtitleauthor}
+    \nocite{*}
+    \insertbiblioauthor           % Подключаем Bib-базы
+    %\insertbiblioexternal   % !!! bibtex не умеет работать с несколькими библиографиями !!!
 }{% Реализация пакетом biblatex через движок biber
-  % Цитирования.
-  %  * Порядок перечисления определяет порядок в библиографии (только внутри подраздела, если `\insertbiblioauthorgrouped`).
-  %  * Если не соблюдать порядок "как для \printbibliography", нумерация в `\insertbiblioauthor` будет кривой.
-  %  * Если цитировать каждый источник отдельной командой --- найти некоторые ошибки будет проще.
-  %
-  %% authorvak
-  \nocite{vakbib1}%
-  \nocite{vakbib2}%
-  %
-  %% authorwos
-  \nocite{wosbib1}%
-  %
-  %% authorscopus
-  \nocite{scbib1}%
-  %
-  %% authorpathent
-  \nocite{patbib1}%
-  %
-  %% authorprogram
-  \nocite{progbib1}%
-  %
-  %% authorconf
-  \nocite{confbib1}%
-  \nocite{confbib2}%
-  %
-  %% authorother
-  \nocite{bib1}%
-  \nocite{bib2}%
+    % Цитирования.
+    %  * Порядок перечисления определяет порядок в библиографии (только внутри подраздела, если `\insertbiblioauthorgrouped`).
+    %  * Если не соблюдать порядок "как для \printbibliography", нумерация в `\insertbiblioauthor` будет кривой.
+    %  * Если цитировать каждый источник отдельной командой --- найти некоторые ошибки будет проще.
+    %
+    %% authorvak
+    \nocite{vakbib1}%
+    \nocite{vakbib2}%
+    %
+    %% authorwos
+    \nocite{wosbib1}%
+    %
+    %% authorscopus
+    \nocite{scbib1}%
+    %
+    %% authorpathent
+    \nocite{patbib1}%
+    %
+    %% authorprogram
+    \nocite{progbib1}%
+    %
+    %% authorconf
+    \nocite{confbib1}%
+    \nocite{confbib2}%
+    %
+    %% authorother
+    \nocite{bib1}%
+    \nocite{bib2}%
 
-  \ifnumgreater{\value{usefootcite}}{0}{
-    \begin{refcontext}[labelprefix={}]
-      \ifnum \value{bibgrouped}>0
-        \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
-      \else
-        \insertbiblioauthor      % Вывод всех работ автора
-      \fi
-    \end{refcontext}
-  }{
-  \ifnum \totvalue{citeexternal}>0
-    \begin{refcontext}[labelprefix=A]
-      \ifnum \value{bibgrouped}>0
-        \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
-      \else
-        \insertbiblioauthor      % Вывод всех работ автора
-      \fi
-    \end{refcontext}
-  \else
-    \ifnum \value{bibgrouped}>0
-      \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
-    \else
-      \insertbiblioauthor      % Вывод всех работ автора
-    \fi
-  \fi
-  %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
-  \begin{refcontext}[labelprefix={}]
-      \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
-  \end{refcontext}
-  % Невидимый библиографический список для подсчёта количества внешних публикаций
-  % Используется, чтобы убрать приставку "А" у работ автора, если в автореферате нет
-  % цитирований внешних источников.
-  \printbibliography[heading=nobibheading, section=0, env=countexternal, keyword=biblioexternal, resetnumbers=true]%
-  }
+    \ifnumgreater{\value{usefootcite}}{0}{
+        \begin{refcontext}[labelprefix={}]
+            \ifnum \value{bibgrouped}>0
+                \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+            \else
+                \insertbiblioauthor      % Вывод всех работ автора
+            \fi
+        \end{refcontext}
+    }{
+        \ifnum \totvalue{citeexternal}>0
+            \begin{refcontext}[labelprefix=A]
+                \ifnum \value{bibgrouped}>0
+                    \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+                \else
+                    \insertbiblioauthor      % Вывод всех работ автора
+                \fi
+            \end{refcontext}
+        \else
+            \ifnum \value{bibgrouped}>0
+                \insertbiblioauthorgrouped    % Вывод всех работ автора, сгруппированных по источникам
+            \else
+                \insertbiblioauthor      % Вывод всех работ автора
+            \fi
+        \fi
+        %  \insertbiblioauthorimportant  % Вывод наиболее значимых работ автора (определяется в файле characteristic во второй section)
+        \begin{refcontext}[labelprefix={}]
+            \insertbiblioexternal            % Вывод списка литературы, на которую ссылались в тексте автореферата
+        \end{refcontext}
+        % Невидимый библиографический список для подсчёта количества внешних публикаций
+        % Используется, чтобы убрать приставку "А" у работ автора, если в автореферате нет
+        % цитирований внешних источников.
+        \printbibliography[heading=nobibheading, section=0, env=countexternal, keyword=biblioexternal, resetnumbers=true]%
+    }
 }
 \ifdefmacro{\microtypesetup}{\microtypesetup{protrusion=true}}{}
 \urlstyle{tt}                               % возвращаем установки шрифта ссылок URL
