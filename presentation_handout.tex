@@ -1,0 +1,89 @@
+\newif\ifpresentation % Условие, проверяющее, что документ --- презентация
+\presentationtrue
+% Если требуется расположить слайды вертикально, замените landscape на portrait
+% и поправьте размеры в \includeslide
+\documentclass[a4paper,14pt,oneside,landscape]{memoir}
+\pagestyle{plain}
+\usepackage[a4paper, top=0.5cm, bottom=1.5cm, left=0.5cm, right=0.5cm, nohead, nomarginpar]{geometry}
+\usepackage{graphicx}
+
+\providecommand*\autodot{} % quick fix for polyglossia 1.50
+\usepackage{polyglossia}[2014/05/21]
+
+\usepackage{pgffor}
+
+\newif\ifxetexorluatex   % определяем новый условный оператор (http://tex.stackexchange.com/a/47579)
+\ifxetex
+    \xetexorluatextrue
+\else
+    \ifluatex
+        \xetexorluatextrue
+    \else
+        \xetexorluatexfalse
+    \fi
+\fi
+
+\input{common/setup}
+\input{common/fonts}
+
+\setlength{\parindent}{0pt}
+
+% \includeslide[comment]{page_number} : Команда добавления слайда с комментарием
+% page_number : номер страницы в файле presentation.pdf
+% comment : комментарий с слайду (необязательный)
+%
+% По умолчанию файл располагает слайды по 2 на страницу с небольшим зазором между ними.
+% Изменяйте значения 0.49\columnwidth в \begin{minipage} и width=\columnwidth в \includegraphics,
+% чтобы подогнать размеры.
+% Например, если требуется расположить слайды в одну колонку, замените 0.49\columnwidth на
+% 0.99\columnwidth.
+\newcommand{\includeslide}[2][{}]{%
+\begin{minipage}[t]{0.49\columnwidth}\centering\frame{%
+\includegraphics[page=#2,width=\columnwidth]{presentation}}%
+\par\raggedright{#1}\end{minipage}}
+
+
+\begin{document}
+%Слайд с комментарием
+\includeslide[Используйте подписи под слайдами чтобы пояснить содержание слайда.
+Например, расшифровать обозначения на графике, которые проговариваются только словами.]{1}
+\hfill
+%Слайд без комментария
+\includeslide{2}
+
+% Если во многих слайдах подряд отсутствуют комментарии, можно добавить их при помощи цикла
+% Ниже номера 3/5, 6/7 и т.д. -- номера страниц в файле presentation.pdf, расположенные
+% соответственно слева и справа
+\foreach \pga / \pgb in {3/5,6/7,8/9,10/11,12/13} {
+    \includeslide{\pga}
+    \hfill
+    \includeslide{\pgb}
+}
+
+\includeslide[На слайде представлена схема работы ускорителя заряженных частиц с задержкой импульса
+тока.
+Синим цветом изображена огибающая падающей волны, красным -- колебаний в ускоряющей секции.]{12}
+\hfill
+\includeslide{13}
+
+\foreach \pga / \pgb in {14/15,17/18} {
+    \includeslide{\pga}
+    \hfill
+    \includeslide{\pgb}
+}
+
+\includeslide[На слайде представлены уравнения Максвелла во временной области.]{19}
+\hfill
+\includeslide[На слайде представлены уравнения Максвелла в частотной области.]{20}
+
+\foreach \pga / \pgb in {21/22,23/24,25/26,27/28,29/30} {
+    \includeslide{\pga}
+    \hfill
+    \includeslide{\pgb}
+}
+
+% Располагаем одиночный слайд по центру страницы
+\centering
+\includeslide{31}
+
+\end{document}

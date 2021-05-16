@@ -129,6 +129,13 @@ presentation-booklet: TARGET=presentation_booklet
 presentation-booklet:
 	$(compile)
 
+##! компиляция презентации в формате А4 с комментариями для совета (раздаточный материал)
+presentation-handout: presentation
+presentation-handout: SOURCE=presentation_handout
+presentation-handout: TARGET=presentation_handout
+presentation-handout:
+	$(compile)
+
 ##! компиляция tikz графики
 tikz: SOURCE=tikz
 tikz: BACKEND=-pdflua # некоторые библиотеки работают только с lualatex
