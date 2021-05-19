@@ -83,6 +83,8 @@ BibTeX под UTF-8.
 * [synopsis_booklet.tex](synopsis_booklet.tex),
  [presentation_booklet.tex](presentation_booklet.tex): Файлы генерации печатных версий
  автореферата и презентации.
+* [presentation_handout.tex](presentation_handout.tex): Файл генерации раздаточных материалов из
+  презентации с добавлением подписей под слайдами.
 * [tikz.tex](tikz.tex): Файл изолированной сборки векторной графики [tikz](https://www.ctan.org/pkg/pgf).
 
 ## Дополнительная полезная информация
