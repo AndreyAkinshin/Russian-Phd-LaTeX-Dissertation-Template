@@ -66,6 +66,7 @@ BibTeX под UTF-8.
 	* [placeholder.txt](images/cache/placeholder.txt): Файл, необходимый для прекомпиляции
       рисунков в [overleaf](https://www.overleaf.com/).
 * **папка listings:** Общие файлы листингов.
+* **папка letters:** Файлы генерации конвертов для рассылки автореферата.
 
 Дополнительные файлы:
 
