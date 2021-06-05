@@ -1,0 +1,88 @@
+\input luaotfload.sty
+
+\pagewidth=229mm
+\pageheight=162mm
+\newdimen\leftOffset \leftOffset=2cm
+\newdimen\topOffset \topOffset=2cm
+\newdimen\rightOffset \rightOffset=2cm
+\newdimen\bottomOffset \bottomOffset=2cm
+\hoffset=\dimexpr (-1in + \leftOffset) \relax
+\voffset=\dimexpr (-1in + \topOffset) \relax
+\hsize=\dimexpr (\pagewidth - \leftOffset - \rightOffset) \relax
+\vsize=\dimexpr (\pageheight - \topOffset - \bottomOffset) \relax
+\parindent=0pt
+\parskip=14pt
+\baselineskip=1.5\baselineskip
+\nopagenumbers
+\tolerance=9999
+
+\font\myfont={LiberationSerif-Regular.ttf} at 14pt
+\font\myfontit={LiberationSerif-Italic.ttf} at 14pt
+\font\postindex={PostIndex.ttf} at 45pt
+\myfont
+\overfullrule=0pt
+
+\def\setfallback#1#2{
+\expandafter\ifcsname#1\endcsname%
+\relax%
+\else%
+\expandafter\def\csname#1\endcsname{#2}%
+\fi%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Данные отправителя
+\setfallback{fromwhom}{Учёного секретаря}
+\setfallback{frominstitution}{диссертационного совета МГУ}
+\setfallback{fromcity}{г.~Москва}
+\setfallback{fromaddress}{Ленинские горы, д.~1}
+\setfallback{fromindex}{119991}
+
+% Данные получателя по-умолчанию
+\setfallback{toindex}{119019}
+\setfallback{toinstitution}{ИТАР-ТАСС}
+\setfallback{towhom}{Учёному секретарю}
+\setfallback{tocity}{г.~Москва}
+\setfallback{toaddress}{Кремлёвская~наб., д.~1/9, стр.~8}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\raggedright
+
+% Откомментируйте, чтобы нарисовать рамку вокруг на границе страницы
+% \input tikz.tex
+% \tikz[remember picture,overlay]{\draw (0,0) -- ++(\hsize,0) -- ++(0,-\vsize)-- ++(-\hsize,0) -- ++(0,\vsize);}
+
+
+\hsize=\dimexpr (\pagewidth / 2 - \leftOffset - \rightOffset) \relax
+
+{\myfontit От кого:}
+\ifx\fromwhom\empty\else\fromwhom\break\fi
+\frominstitution\par
+{\myfontit Откуда:}
+\fromaddress\break
+\fromcity\break
+\fromindex
+
+\vfill
+
+{
+        \leftskip \dimexpr (\pagewidth / 2 - \leftOffset) \relax
+        \hsize=\dimexpr (\pagewidth - \leftOffset - \rightOffset) \relax
+        {\myfontit Кому:}
+        \ifx\towhom\empty\else\towhom\break\fi
+        \toinstitution \par
+        {\myfontit Куда:}
+        \toaddress \break
+        \tocity \break
+        \toindex \par
+}
+
+\postindex
+\$\toindex
+
+\eject
+
+\end
