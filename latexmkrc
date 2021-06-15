@@ -104,7 +104,7 @@ $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 $show_time = $TIMERON;
 
 # maximum number of passes
-$max_repeat = 6;
+$max_repeat = 7;
 
 # record access files
 $recorder = 1;
