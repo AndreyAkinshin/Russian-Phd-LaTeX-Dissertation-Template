@@ -121,10 +121,12 @@
                                  % до hyperref вызывать)
 \makeatletter
 %https://github.com/tabu-issues-for-future-maintainer/tabu/issues/26
-\def\tabuendlongtrial{% 
+\@ifpackagelater{longtable}{2020/02/07}{
+\def\tabuendlongtrial{%
     \LT@echunk  \global\setbox\LT@gbox \hbox{\unhbox\LT@gbox}\kern\wd\LT@gbox
                 \LT@get@widths
 }%
+}{}
 \makeatother
 
 \usepackage{threeparttable}      % автоматический подгон ширины подписи таблицы
