@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: dep
+        run: |
+          sudo apt -y install make texlive-full ttf-mscorefonts-installer
+          sudo fc-cache -fv
+      - name: make
+        run: |
+          make
+      - uses: actions/upload-artifact@v3
+        with:
+          name: output
+          path: ./*.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
