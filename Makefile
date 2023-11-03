@@ -161,12 +161,16 @@ clean:
 	"$(MAKE)" SOURCE=dissertation TARGET=dissertation clean-target
 	"$(MAKE)" SOURCE=synopsis TARGET=synopsis clean-target
 	"$(MAKE)" SOURCE=presentation TARGET=presentation clean-target
+	"$(MAKE)" SOURCE=presentation_booklet TARGET=presentation_booklet clean-target
+	"$(MAKE)" SOURCE=presentation_handout TARGET=presentation_handout clean-target
 
 ##! полная очистка проекта от временных файлов
 distclean:
 	"$(MAKE)" SOURCE=dissertation TARGET=dissertation distclean-target
 	"$(MAKE)" SOURCE=synopsis TARGET=synopsis distclean-target
 	"$(MAKE)" SOURCE=presentation TARGET=presentation distclean-target
+	"$(MAKE)" SOURCE=presentation_booklet TARGET=presentation_booklet distclean-target
+	"$(MAKE)" SOURCE=presentation_handout TARGET=presentation_handout distclean-target
 
 # include after "all" rule
 include examples.mk
