@@ -71,11 +71,13 @@
 
     \newcommand*{\SCSetCrefFormatBase}[2]{\csname #1format\endcsname{#2}} % имя настройки, тип ссылки
     \newcommand*{\SCSetCrefLabelcrefFormats}[3]{% подимя настройки, тип ссылки, формат
-        \SCSetCrefFormatBase{cref#1}{#2}{#3}%
-        \SCSetCrefFormatBase{labelcref#1}{#2}{#3}%
+        \SCSetCrefFormatBase{cref#1}{#2}{#3}% ссылка с приставкой
+        \SCSetCrefFormatBase{Cref#1}{#2}{#3}% ссылка с приставкой, стоящая в начале предложения
+        \SCSetCrefFormatBase{labelcref#1}{#2}{#3}% ссылка без приставки
     }
     \newcommand*{\SCSetCrefLabelcrefMultiFormats}[6]{% подимя настройки, тип ссылки, формат x4
         \SCSetCrefFormatBase{cref#1}{#2}{#3}{#4}{#5}{#6}% ссылка с приставкой
+        \SCSetCrefFormatBase{Cref#1}{#2}{#3}{#4}{#5}{#6}% ссылка с приставкой, стоящая в начале предложения
         \SCSetCrefFormatBase{labelcref#1}{#2}{#3}{#4}{#5}{#6}% ссылка без приставки
     }
     \newcommand*{\SCSetCrefLabelcrefFormatsForType}[3]{% тип ссылки, символ слева от ссылки, символ справа от ссылки
