@@ -39,7 +39,10 @@
 }
 
 %%% Подписи подрисунков %%%
-\DeclareCaptionSubType{figure}
+
+% "For the environments figure & table [...] this [вызов \DeclareCaptionSubType] will be done automatically" © texdoc subcaption
+%\DeclareCaptionSubType{figure}
+
 \renewcommand\thesubfigure{\asbuk{subfigure}} % нумерация подрисунков
 \ifsynopsis
 \DeclareCaptionFont{norm}{\fontsize{10pt}{11pt}\selectfont}
