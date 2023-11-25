@@ -84,6 +84,7 @@
     \SCSetCrefLabelcrefFormats{}{#1}{#2##2##1##3#3}% одиночная ссылка
     \SCSetCrefLabelcrefFormats{range}{#1}{#2##3##1##4#3 \cyrdash~#2##5##2##6#3}% диапазон ссылок
     \SCSetCrefLabelcrefMultiFormats{multi}{#1}{#2##2##1##3#3}{ и~#2##2##1##3#3}{, #2##2##1##3#3}{ и~#2##2##1##3#3}% перечисление ссылок
+    \SCSetCrefLabelcrefMultiFormats{rangemulti}{#1}{#2##3##1##4#3 \cyrdash~#2##5##2##6#3}{#2##3##1##4#3 \cyrdash~#2##5##2##6#3}{#2##3##1##4#3 \cyrdash~#2##5##2##6#3}{#2##3##1##4#3 \cyrdash~#2##5##2##6#3}% диапазон ссылок внутри перечисления ссылок
     }
     \newcommand*{\SCSetCrefLabelcrefFormatsForTypeSimple}[1]{\SCSetCrefLabelcrefFormatsForType{#1}{}{}}
     \newcommand*{\SCSetCrefLabelcrefFormatsForTypeParen}[1]{\SCSetCrefLabelcrefFormatsForType{#1}{(}{)}}
