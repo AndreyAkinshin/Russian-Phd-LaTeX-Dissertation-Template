@@ -55,6 +55,8 @@
 На рисунке~\cref{fig:knuth_2}\subcaptionref*{fig:knuth_2-2}
 показан Дональд Кнут в головном уборе.
 
+\section{Векторная графика}\label{sec:ch2/vector}
+
 Возможно вставлять векторные картинки, рассчитываемые \LaTeX\ <<на~лету>>
 с~их~предварительной компиляцией. Надписи в таких рисунках будут выполнены
 тем же~шрифтом, который указан для документа в целом.
@@ -83,6 +85,48 @@
 для Inkscape есть пакет svg2tikz,
 для Python есть пакет tikzplotlib,
 для R есть пакет tikzdevice.
+
+\begin{figure}[htbp]
+        \centerfloat{
+                \ifdefmacro{\tikzsetnextfilename}{\tikzsetnextfilename{pic2}}{}%
+                    \input{Dissertation/images/scheme.tikz}
+                }
+                \legend{%
+                    \textbf{1} "--- кружок с загогулиной;
+                    \textbf{2} "--- камертоны;
+                    \textbf{3} "--- кресты;
+                    \textbf{4} "--- волны;
+                    \textbf{5} "--- прямоугольники;
+                    \textbf{5} "--- пронзённый стрелой прямоугольник.%
+                }
+                \caption{Составная схема \textit{tikz}}\label{fig:scheme-tikz}
+\end{figure}
+
+На рисунке~\cref{fig:scheme-tikz} представлена составная схема \textit{tikz}.
+Каждый её элемент нарисован в отдельном файле в единичном масштабе.
+Расстановка элементов на рисунке производится при помощи аргументов \texttt{xshift},
+\texttt{yshift}, \texttt{rotate} и \texttt{scale} окружения \texttt{scope}.
+
+Пример использования библиотеки \textit{circuitikz} изображён на рисунке~\cref{fig:circuitikz}.
+
+\begin{figure}[htbp]
+        \centerfloat{
+            \input{Dissertation/images/circuit.tikz}
+        }
+        \caption{Схема \textit{circuitikz}}\label{fig:circuitikz}
+\end{figure}
+
+Красивые графики также можно добавлять при помощи пакета \textit{pgfplot}~(рисунок~\cref{fig:pgfplot}).
+Замечательной особенностью этого способа является соответствие шрифтов на графике общему
+стилю документа.
+
+\begin{figure}[htbp]
+        \centerfloat{
+            \input{Dissertation/images/plot_csv.tikz}
+        }
+        \caption{График \textit{pgfplot} на основе данных из \texttt{csv} файла}\label{fig:pgfplot}
+\end{figure}
+
 
 \section{Пример вёрстки списков}\label{sec:ch2/sec3}
 

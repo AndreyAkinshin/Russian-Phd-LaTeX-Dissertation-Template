@@ -1,0 +1,9 @@
+\begin{circuitikz}
+	\draw (5,.5) node [op amp] (opamp) {}
+	(0,0) node [left] {\(U_{we}\)} to [R, l=\(R_d\), o-*] (2,0)
+	to [R, l=\(R_d\), *-*] (opamp.+)
+	to [C, l_=\(C_{d2}\), *-] ($(opamp.+)+(0,-2)$) node [ground] {}
+	(opamp.out) |- (3.5,2) to [C, l_=\(C_{d1}\), *-] (2,2) to [short] (2,0)
+	(opamp.-) -| (3.5,2)
+	(opamp.out) to [short, *-o] (7,.5) node [right] {\(U_{wy}\)};
+\end{circuitikz}

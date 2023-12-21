@@ -1,0 +1,4 @@
+\draw (135:1) arc[start angle=135,delta angle=270,radius=1];
+\draw (45:0.9) circle (0.1);
+\draw (135:0.9) circle (0.1);
+\draw (0,-1) -- (0,-1.5);

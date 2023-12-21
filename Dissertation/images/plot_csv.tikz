@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+	\pgfplotsset{set layers}
+	\begin{axis}[
+		width=0.5\columnwidth,
+		height=0.3\textheight,
+		grid=major,
+		grid style={dashed,gray!30},
+		xlabel=Напряжение,
+		ylabel=Ток,
+		x unit=\si{\volt},
+		y unit=\si{\ampere},
+		legend columns=1,
+		legend cell align={left},
+		legend style={at={(1,0)},anchor=south east},
+		x tick label style={rotate=90,anchor=east}
+		]
+		\addplot[color=red,mark={},thick]
+		table[header=false,x index=0,y index=1,col sep=comma] {Dissertation/images/plot_csv.csv};
+		\addlegendentry{sin}
+		\addplot[color=blue,mark={},dotted,thick]
+		table[header=false,x index=0,y index=2,col sep=comma] {Dissertation/images/plot_csv.csv};
+		\addlegendentry{cos}
+		\addlegendimage{color=brown,mark={},dashdotted,thick}
+		\addlegendentry{lin}
+	\end{axis}
+	\begin{semilogyaxis}[
+		width=0.5\columnwidth,
+		height=0.3\textheight,
+		ylabel=Мощность,
+		y unit=\si{\watt},
+		axis y line=right,
+		axis x line=none,
+		]
+		\addplot[color=brown,mark={},dashdotted,thick]
+		table[header=false,x index=0,y index=0,col sep=comma] {Dissertation/images/plot_csv.csv};
+	\end{semilogyaxis}
+\end{tikzpicture}
