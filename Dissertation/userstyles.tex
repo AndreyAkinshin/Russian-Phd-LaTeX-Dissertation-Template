@@ -181,33 +181,30 @@
 \setlength{\lmarg}{\widthof{999}}   % ширина надписи 999
 \setlength{\twless}{\textwidth-\lmarg}
 
-\lstset{ %
-%    language=R,                     %  Язык указать здесь, если во всех листингах преимущественно один язык, в результате часть настроек может пойти только для этого языка
-    numbers=left,                   % where to put the line-numbers
-    numberstyle=\fontsize{12pt}{14pt}\selectfont\color{Gray},  % the style that is used for the line-numbers
-    firstnumber=1,                  % в этой и следующей строках задаётся поведение нумерации 5, 10, 15...
-    stepnumber=5,                   % the step between two line-numbers. If it's 1, each line will be numbered
-    numbersep=5pt,                  % how far the line-numbers are from the code
-    backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-    showspaces=false,               % show spaces adding particular underscores
-    showstringspaces=false,         % underline spaces within strings
-    showtabs=false,                 % show tabs within strings adding particular underscores
-    frame=leftline,                 % adds a frame of different types around the code
-    rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
-    tabsize=2,                      % sets default tabsize to 2 spaces
-    captionpos=t,                   % sets the caption-position to top
-    breaklines=true,                % sets automatic line breaking
-    breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-%    title=\lstname,                 % show the filename of files included with \lstinputlisting;
-    % also try caption instead of title
-    basicstyle=\fontsize{12pt}{14pt}\selectfont\ttfamily,% the size of the fonts that are used for the code
-%    keywordstyle=\color{blue},      % keyword style
-    commentstyle=\color{ForestGreen}\emph,% comment style
-    stringstyle=\color{Mahogany},   % string literal style
-    escapeinside={\%*}{*)},         % if you want to add a comment within your code
-    morekeywords={*,...},           % if you want to add more keywords to the set
-    inputencoding=utf8,             % кодировка кода
-    xleftmargin={\lmarg},           % Чтобы весь код и полоска с номерами строк была смещена влево, так чтобы цифры не вылезали за пределы текста слева
+\definecolor{lightgray}{rgb}{0.98,0.98,0.98}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{green}{rgb}{0,0.6,0}
+\definecolor{violet}{rgb}{0.79216,0.55686,0.77255}
+
+\lstset{
+	backgroundcolor=\color{lightgray},
+	basicstyle=\fontsize{10pt}{12pt}\selectfont\ttfamily,
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	commentstyle=\color{gray},
+	keepspaces=true,
+	keywordstyle=\color{violet},
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	stringstyle=\color{green},
+	tabsize=2,
+	xleftmargin={\lmarg}
 }
 
 %http://tex.stackexchange.com/questions/26872/smaller-frame-with-listings
