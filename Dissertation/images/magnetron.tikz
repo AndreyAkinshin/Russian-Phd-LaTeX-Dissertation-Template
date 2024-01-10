@@ -1,0 +1,12 @@
+\draw (0,0) circle (1);
+\draw (0,0) circle (0.8);
+\foreach \ph in {30,90,...,330} {
+	\draw (\ph:0.8) -- (\ph:1);
+}
+\draw (0.9,0) circle (0.1);
+\draw (-0.3,-1.2) -- ++(0,0.5)
+arc[start angle=180,end angle=0,radius=0.3] -- ++(0,-0.5);
+\draw (-0.4,-1.2) -- ++(0,0.5)
+arc[start angle=180,end angle=0,radius=0.4];
+\draw (0.2,1.1) -- ++(0,0.2) -- ++(-0.2,0) -- ++(0,0.2) --
+++(0.2,0) -- ++(0,0.2) -- ++(-0.4,0) -- ++(0,-0.6) -- cycle;

@@ -1,0 +1,11 @@
+\draw (-1,-1) rectangle (1,1);
+\begin{scope}[scale=0.3]
+	\draw (-2,0) sin +(1,0.5) cos +(1,-0.5) sin +(1,-0.5) cos +(1,0.5);
+\end{scope}
+\begin{scope}[yshift=10,scale=0.3]
+	\draw (-2,0) sin +(1,0.5) cos +(1,-0.5) sin +(1,-0.5) cos +(1,0.5);
+\end{scope}
+\begin{scope}[yshift=-10,scale=0.3]
+	\draw (-2,0) sin +(1,0.5) cos +(1,-0.5) sin +(1,-0.5) cos +(1,0.5);
+\end{scope}
+\draw (-0.15,-0.15) -- (0.15,0.15);

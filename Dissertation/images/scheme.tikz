@@ -1,0 +1,76 @@
+\begin{tikzpicture}[thick,>=stealth,scale=0.7]
+	\node at (0,0) {1};
+	\begin{scope}
+		\input{Dissertation/images/magnetron.tikz}
+	\end{scope}
+	\draw (1,0) -- (2,0);
+	\node[above] at (3,-1) {3};
+	\begin{scope}[xshift=3cm,yshift=-1cm]
+		\input{Dissertation/images/bridge.tikz}
+	\end{scope}
+	\node at (1,-2) {5};
+	\begin{scope}[xshift=1cm,yshift=-2cm]
+		\input{Dissertation/images/load.tikz}
+	\end{scope}
+	\draw (4,0) -- (5,0) -- (5, 1);
+	\node[above] at (6,2) {3};
+	\begin{scope}[xshift=6cm,yshift=2cm,rotate=90]
+		\input{Dissertation/images/bridge.tikz}
+	\end{scope}
+	\node at (7,0) {5};
+	\begin{scope}[xshift=7cm,rotate=90]
+		\input{Dissertation/images/load.tikz}
+	\end{scope}
+	\begin{scope}
+		\draw (5,3) -- (5,4);
+		\node at (5,5) {2};
+		\begin{scope}[xshift=5cm,yshift=5cm,scale=0.7]
+			\input{Dissertation/images/cavity.tikz}
+		\end{scope}
+	\end{scope}
+	\begin{scope}[xshift=2cm]
+		\draw (5,3) -- (5,4);
+		\node at (5,5) {2};
+		\begin{scope}[xshift=5cm,yshift=5cm,scale=0.7]
+			\input{Dissertation/images/cavity.tikz}
+		\end{scope}
+	\end{scope}
+	\draw (4,-2) -- (6,-2);
+	\node at (7,-3) {6};
+	\begin{scope}[xshift=7cm,yshift=-2cm]
+		\input{Dissertation/images/attenuator.tikz}
+	\end{scope}
+	\draw (8,-2) -- (9,-2) -- (9, -1);
+	\node[above] at (10,0) {3};
+	\begin{scope}[xshift=10cm,yshift=0cm,rotate=90]
+		\input{Dissertation/images/bridge.tikz}
+	\end{scope}
+	\begin{scope}
+		\draw (9, 1) -- (9, 2.5);
+		\node at (8,3) {4};
+		\begin{scope}[xshift=9cm,yshift=3cm,scale=0.5]
+			\input{Dissertation/images/filter.tikz}
+		\end{scope}
+		\draw (9, 3.5) -- (9, 4);
+		\node at (9,5) {2};
+		\begin{scope}[xshift=9cm,yshift=5cm,scale=0.7]
+			\input{Dissertation/images/cavity.tikz}
+		\end{scope}
+	\end{scope}
+	\begin{scope}[xshift=2cm]
+		\draw (9, 1) -- (9, 2.5);
+		\node at (8,3) {4};
+		\begin{scope}[xshift=9cm,yshift=3cm,scale=0.5]
+			\input{Dissertation/images/filter.tikz}
+		\end{scope}
+		\draw (9, 3.5) -- (9, 4);
+		\node at (9,5) {2};
+		\begin{scope}[xshift=9cm,yshift=5cm,scale=0.7]
+			\input{Dissertation/images/cavity.tikz}
+		\end{scope}
+	\end{scope}
+	\node at (11,-2) {5};
+	\begin{scope}[xshift=11cm,yshift=-2cm,rotate=90]
+		\input{Dissertation/images/load.tikz}
+	\end{scope}
+\end{tikzpicture}

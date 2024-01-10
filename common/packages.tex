@@ -157,6 +157,12 @@
 \usetikzlibrary{shapes.symbols}     % Для примера tikz рисунка
 \usetikzlibrary{arrows}             % Для примера tikz рисунка
 
+\usepackage[european,cuteinductors]{circuitikz} % Электрические схемы
+\usepackage{pgfplots}                           % Графики
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots,units}
+\pgfkeys{/pgf/number format/.cd,use comma,1000 sep={}} % форматирование чисел в графиках
+
 %%% Гиперссылки %%%
 \ifxetexorluatex
     \let\CYRDZE\relax
