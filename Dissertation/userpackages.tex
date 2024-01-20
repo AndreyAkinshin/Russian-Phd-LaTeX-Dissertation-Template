@@ -1,4 +1,5 @@
 \usepackage{fr-longtable}    %ради \endlasthead
+\usepackage{relsize}
 
 % Листинги с исходным кодом программ
 \usepackage{fancyvrb}
@@ -43,3 +44,19 @@
       \renewcommand{\gitMarkFormat}{\rmfamily\color{Gray}\small\bfseries}
    }{}
 }{}
+
+\newcommand{\astfootnote}[1]{
+	\let\oldthefootnote=\thefootnote
+	\setcounter{footnote}{0}
+	\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+	\footnote{#1}
+	\let\thefootnote=\oldthefootnote
+}
+
+\newcommand\extrafootertext[1]{
+    \bgroup
+    \renewcommand\thefootnote{\fnsymbol{footnote}}
+    \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}
+    \footnotetext[0]{#1}
+    \egroup
+}
