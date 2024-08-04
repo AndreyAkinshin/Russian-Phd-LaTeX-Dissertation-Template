@@ -130,18 +130,12 @@ cacheSolve <- function(x, ...) {
 \makeatother
 \fontsize{10pt}{10pt}\selectfont
 \begin{longtable*}[c]{|l|c|l|l|} %longtable* появляется из пакета ltcaption и даёт ненумерованную таблицу
-    % \caption{Описание входных файлов модели}\label{Namelists}
-    %\\
     \hline
-    %\multicolumn{4}{|c|}{\textbf{Файл puma\_namelist}}        \\ \hline
     Параметр & Умолч. & Тип & Описание               \\ \hline
     \endfirsthead   \hline
     \multicolumn{4}{|c|}{\small\slshape (продолжение)}        \\ \hline
     Параметр & Умолч. & Тип & Описание               \\ \hline
     \endhead        \hline
-    % \multicolumn{4}{|c|}{\small\slshape (окончание)}        \\ \hline
-    % Параметр & Умолч. & Тип & Описание               \\ \hline
-    %                                             \endlasthead        \hline
     \multicolumn{4}{|r|}{\small\slshape продолжение следует}  \\ \hline
     \endfoot        \hline
     \endlastfoot
@@ -222,7 +216,6 @@ cacheSolve <- function(x, ...) {
     & & & экватора    \\
     mars & 0 & int & 1: инициализация модели для планеты Марс     \\
     \hline
-    %& & & \(\:\) \\
     \multicolumn{4}{|l|}{\&SURFPAR}        \\ \hline
     kick & 1 & int & 0: инициализация без шума (\(p_s = const\)) \\
     &   &     & 1: генерация белого шума                  \\
@@ -376,7 +369,6 @@ cacheSolve <- function(x, ...) {
              &        &     & экватора                                          \\
     mars     & 0      & int & 1: инициализация модели для планеты Марс          \\
     \hline
-    %& & & $\:$ \\
     \multicolumn{4}{|l|}{\&SURFPAR}                                             \\ \hline
     kick     & 1      & int & 0: инициализация без шума (\(p_s = const\))       \\
              &        &     & 1: генерация белого шума                          \\
@@ -443,7 +435,7 @@ cacheSolve <- function(x, ...) {
 
 \verb!>{\setlength{\baselineskip}{0.7\baselineskip}}!,
 
-\noindent который уменьшает межстрочный интервал в для текста таблиц (иначе
+\noindent который уменьшает межстрочный интервал для текста таблиц (иначе
 заголовок второго столбца значительно шире, а двухстрочное имя
 сливается с~окружающими). Для первой и второй колонки текст в ячейках
 выравниваются по~центру как по~вертикали, так и по горизонтали "---
