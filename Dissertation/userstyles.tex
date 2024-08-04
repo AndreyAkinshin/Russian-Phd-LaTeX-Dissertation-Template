@@ -246,13 +246,6 @@
     \raisebox{.2ex}{+}%
 }
 
-%%%  Чересстрочное форматирование таблиц
-%% http://tex.stackexchange.com/questions/278362/apply-italic-formatting-to-every-other-row
-\newcounter{rowcnt}
-\newcommand\altshape{\ifnumodd{\value{rowcnt}}{\color{red}}{\vspace*{-1ex}\itshape}}
-% \AtBeginEnvironment{tabular}{\setcounter{rowcnt}{1}}
-% \AtEndEnvironment{tabular}{\setcounter{rowcnt}{0}}
-
 %%% Ради примера во второй главе
 \let\originalepsilon\epsilon
 \let\originalphi\phi
