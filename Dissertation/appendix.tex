@@ -120,6 +120,14 @@ cacheSolve <- function(x, ...) {
 
 \section{Подраздел приложения}\label{app:B1}
 Вот размещается длинная таблица:
+\makeatletter
+\@ifpackagelater{longtable}{2024/07/04} % hotfix of bug fixed in https://github.com/latex3/latex2e/commit/7c96b6b90a730278903e71a482d88479789a89a3
+{}
+{\@ifpackagelater{longtable}{2024/04/26}
+    {\addtocounter{table}{-1}}
+    {}
+}
+\makeatother
 \fontsize{10pt}{10pt}\selectfont
 \begin{longtable*}[c]{|l|c|l|l|} %longtable* появляется из пакета ltcaption и даёт ненумерованную таблицу
     % \caption{Описание входных файлов модели}\label{Namelists}
