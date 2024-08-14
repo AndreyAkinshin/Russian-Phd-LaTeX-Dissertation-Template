@@ -114,25 +114,20 @@
 \fi
 
 %%% Таблицы %%%
-\usepackage{longtable,ltcaption} % Длинные таблицы
+\usepackage{longtable} % Длинные таблицы
 \usepackage{multirow,makecell}   % Улучшенное форматирование таблиц
-\usepackage{tabu, tabulary}      % таблицы с автоматически подбирающейся
-                                 % шириной столбцов (tabu обязательно
-                                 % до hyperref вызывать)
-\makeatletter
-%https://github.com/tabu-issues-for-future-maintainer/tabu/issues/26
-\@ifpackagelater{longtable}{2020/02/07}{
-\def\tabuendlongtrial{%
-    \LT@echunk  \global\setbox\LT@gbox \hbox{\unhbox\LT@gbox}\kern\wd\LT@gbox
-                \LT@get@widths
-}%
-}{}
-\makeatother
+\usepackage{tabulary,tabularray} % Таблицы с автоматически подбирающейся
+                                 % шириной столбцов
+\UseTblrLibrary{booktabs}
+\ExplSyntaxOn% define \IfTokenListEmpty to use \captionof with tabularray
+\prg_generate_conditional_variant:Nnn \tl_if_empty:n { e } { TF }
+\let \IfTokenListEmpty = \tl_if_empty:eTF
+\ExplSyntaxOff
 
 \usepackage{threeparttable}      % автоматический подгон ширины подписи таблицы
 
 %%% Общее форматирование
-\usepackage{soulutf8}% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
+%\usepackage{soul}% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
 \usepackage{icomma}  % Запятая в десятичных дробях
 
 %%% Оптимизация расстановки переносов и длины последней строки абзаца
