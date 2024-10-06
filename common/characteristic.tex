@@ -126,9 +126,9 @@
         \nocite{*}%
         %
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
-        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
+        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК%
         \ifnum \value{citeauthorscopuswos}>0%
-            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of~Science и Scopus\sloppy%
+            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of~Science и Scopus%
         \fi%
         \ifnum \value{citeauthorconf}>0%
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
@@ -146,7 +146,7 @@
         \ifnum \value{citeregistered}>1%
             Зарегистрированы\ %
             \ifnum \value{citeauthorpatent}>0%
-            \formbytotal{citeauthorpatent}{патент}{}{а}{}\sloppy%
+            \formbytotal{citeauthorpatent}{патент}{}{а}{}%
             \ifnum \value{citeauthorprogram}=0 . \else \ и~\fi%
             \fi%
             \ifnum \value{citeauthorprogram}>0%
