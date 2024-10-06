@@ -38,6 +38,10 @@
 \listfiles
 
 \begin{document}
+%%% Переопределение именований типовых разделов
+% https://tex.stackexchange.com/a/156050
+\gappto\captionsrussian{\input{common/renames}} % for polyglossia and babel
+\input{common/renames}
 
 \input{Synopsis/title}        % Титульный лист
 %\mainmatter                   % В том числе начинает нумерацию страниц арабскими цифрами с единицы
