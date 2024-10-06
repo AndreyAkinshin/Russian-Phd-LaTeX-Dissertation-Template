@@ -111,7 +111,7 @@
         %  * при использовании `\insertbiblioauthorgrouped`, порядок команд `\printbibliography` в нём должен быть тем же (см. biblio/biblatex.tex)
         %
         % Невидимый библиографический список для подсчёта количества публикаций:
-        \printbibliography[heading=nobibheading, section=1, env=countauthorvak,          keyword=biblioauthorvak]%
+        \phantom{\printbibliography[heading=nobibheading, section=1, env=countauthorvak,          keyword=biblioauthorvak]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorwos,          keyword=biblioauthorwos]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorscopus,       keyword=biblioauthorscopus]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorconf,         keyword=biblioauthorconf]%
@@ -121,14 +121,14 @@
         \printbibliography[heading=nobibheading, section=1, env=countauthorprogram,      keyword=biblioauthorprogram]%
         \printbibliography[heading=nobibheading, section=1, env=countauthor,             keyword=biblioauthor]%
         \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
-        \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]}%
         %
         \nocite{*}%
         %
         {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
-        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК\sloppy%
+        \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК%
         \ifnum \value{citeauthorscopuswos}>0%
-            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of~Science и Scopus\sloppy%
+            , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of~Science и Scopus%
         \fi%
         \ifnum \value{citeauthorconf}>0%
             , \arabic{citeauthorconf} "--- в~тезисах докладов.
@@ -146,7 +146,7 @@
         \ifnum \value{citeregistered}>1%
             Зарегистрированы\ %
             \ifnum \value{citeauthorpatent}>0%
-            \formbytotal{citeauthorpatent}{патент}{}{а}{}\sloppy%
+            \formbytotal{citeauthorpatent}{патент}{}{а}{}%
             \ifnum \value{citeauthorprogram}=0 . \else \ и~\fi%
             \fi%
             \ifnum \value{citeauthorprogram}>0%
