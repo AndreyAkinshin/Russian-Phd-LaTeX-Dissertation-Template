@@ -13,14 +13,42 @@
         \IfFontExistsTF{LiberationSerif}{}{\setcounter{fontfamily}{0}}
     }{}
 
-    \ifnumequal{\value{fontfamily}}{0}{                    % Семейство шрифтов CMU. Используется как fallback
-        \setmonofont{CMU Typewriter Text}                  % моноширинный шрифт
-        \newfontfamily\cyrillicfonttt{CMU Typewriter Text} % моноширинный шрифт для кириллицы
-        \defaultfontfeatures{Ligatures=TeX}                % стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки моноширинного шрифта должны идти до этой строки, чтобы при врезках кода программ в коде не применялись лигатуры и замены дефисов
-        \setmainfont{CMU Serif}                            % Шрифт с засечками
-        \newfontfamily\cyrillicfont{CMU Serif}             % Шрифт с засечками для кириллицы
-        \setsansfont{CMU Sans Serif}                       % Шрифт без засечек
-        \newfontfamily\cyrillicfontsf{CMU Sans Serif}      % Шрифт без засечек для кириллицы
+    \ifnumequal{\value{fontfamily}}{0}{% Семейство шрифтов CMU. Используется как fallback
+        \setmonofont[
+          BoldFont={cmuntb.otf},
+          ItalicFont={cmunit.otf},
+          BoldItalicFont={cmuntx.otf}
+        ]{cmuntt.otf} % {CMU Typewriter Text} % моноширинный шрифт
+        \newfontfamily\cyrillicfonttt[
+          BoldFont={cmuntb.otf},
+          ItalicFont={cmunit.otf},
+          BoldItalicFont={cmuntx.otf}
+        ]{cmuntt.otf} % {CMU Typewriter Text} % моноширинный шрифт для кириллицы
+        \defaultfontfeatures{Ligatures=TeX}   % стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки моноширинного шрифта должны идти до этой строки, чтобы при врезках кода программ в коде не применялись лигатуры и замены дефисов
+        \setmainfont[
+          SlantedFont={cmunsl.otf},
+          BoldSlantedFont={cmunbl.otf},
+          BoldFont={cmunbx.otf},
+          ItalicFont={cmunti.otf},
+          BoldItalicFont={cmunbi.otf}
+        ]{cmunrm.otf} % {CMU Serif}           % Шрифт с засечками
+        \newfontfamily\cyrillicfont[
+          SlantedFont={cmunsl.otf},
+          BoldSlantedFont={cmunbl.otf},
+          BoldFont={cmunbx.otf},
+          ItalicFont={cmunti.otf},
+          BoldItalicFont={cmunbi.otf}
+        ]{cmunrm.otf}   % {CMU Serif}         % Шрифт с засечками для кириллицы
+        \setsansfont[
+          BoldFont={cmunsx.otf},
+          ItalicFont={cmunsi.otf},
+          BoldItalicFont={cmunso.otf}
+        ]{cmunss.otf} % {CMU Sans Serif}      % Шрифт без засечек
+        \newfontfamily\cyrillicfontsf[
+          BoldFont={cmunsx.otf},
+          ItalicFont={cmunsi.otf},
+          BoldItalicFont={cmunso.otf}
+        ]{cmunss.otf} % {CMU Sans Serif}      % Шрифт без засечек для кириллицы
     }
 
     \ifnumequal{\value{fontfamily}}{1}{                    % Семейство MS шрифтов
