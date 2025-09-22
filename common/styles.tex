@@ -62,6 +62,25 @@
 }
 
 %%% Настройки ссылок на рисунки, таблицы и др. %%%
+% Фикс проблемы со ссылками \subcaptionref в необновлённом TeXLive 2025 и memoir
+\makeatletter
+\@ifclasslater{memoir}{2025/09/22}{%
+% Считаем, что версии memoir новее будут взаимодействовать с amsmath и label корректнее
+}{
+  \@ifclasslater{memoir}{2025/03/10}{%
+  % Эта версия memoir некорректно взаимодействует с обновлённым amsmath
+    \renewcommand{\memsubfig@captionpar}[2]{%
+      \parbox[t]{#1}{\let\label=\memsub@label\@subcapsize\@contsubcstyle #2}}
+  }{}
+}
+% Фикс проблемы со ссылками пакета subcaption и обновлённого amsmath
+\@ifpackagelater{amsmath}{2025/01/11}{
+% https://tex.stackexchange.com/a/746030
+  \patchcmd\caption@subtypehook{\let\label\subcaption@label}
+    {\let\label\subcaption@label\let\ltx@label\subcaption@label}{}{\fail}
+}{}
+\makeatother
+
 % команды \cref...format отвечают за форматирование при помощи команды \cref
 % команды \labelcref...format отвечают за форматирование при помощи команды \labelcref
 
